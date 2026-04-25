@@ -7,7 +7,7 @@ const User = require('../models/User');
 // Register a new teacher (Admin only)
 router.post('/register', auth, authorize(['ADMIN']), async (req, res) => {
   try {
-    const { fullName, email, isFormTeacher, isSubjectTeacher } = req.body;
+    const { fullName, email, isFormTeacher, isSubjectTeacher, assignedClass, assignedSubject } = req.body;
 
     // Generate username from full name (lowercase, no spaces) + random suffix
     const baseUsername = fullName.toLowerCase().replace(/\s+/g, '');
@@ -25,7 +25,9 @@ router.post('/register', auth, authorize(['ADMIN']), async (req, res) => {
       email,
       role: 'TEACHER',
       isFormTeacher: !!isFormTeacher,
-      isSubjectTeacher: !!isSubjectTeacher
+      isSubjectTeacher: !!isSubjectTeacher,
+      assignedClass,
+      assignedSubject
     });
 
     res.status(201).send({
@@ -35,7 +37,9 @@ router.post('/register', auth, authorize(['ADMIN']), async (req, res) => {
         fullName: teacher.fullName,
         role: teacher.role,
         isFormTeacher: teacher.isFormTeacher,
-        isSubjectTeacher: teacher.isSubjectTeacher
+        isSubjectTeacher: teacher.isSubjectTeacher,
+        assignedClass: teacher.assignedClass,
+        assignedSubject: teacher.assignedSubject
       },
       credentials: {
         username,
@@ -53,11 +57,51 @@ router.get('/', auth, authorize(['ADMIN']), async (req, res) => {
   try {
     const teachers = await User.findAll({
       where: { role: 'TEACHER' },
-      attributes: ['id', 'username', 'fullName', 'isFormTeacher', 'isSubjectTeacher', 'createdAt']
+      attributes: ['id', 'username', 'fullName', 'isFormTeacher', 'isSubjectTeacher', 'assignedClass', 'assignedSubject', 'createdAt']
     });
     res.send(teachers);
   } catch (error) {
     res.status(500).send({ error: 'Failed to fetch teachers' });
+  }
+});
+
+// Update a teacher (Admin only)
+router.patch('/:id', auth, authorize(['ADMIN']), async (req, res) => {
+  try {
+    const { fullName, email, isFormTeacher, isSubjectTeacher, assignedClass, assignedSubject } = req.body;
+    const teacher = await User.findOne({ where: { id: req.params.id, role: 'TEACHER' } });
+
+    if (!teacher) {
+      return res.status(404).send({ error: 'Teacher not found' });
+    }
+
+    if (fullName) teacher.fullName = fullName;
+    if (email) teacher.email = email;
+    if (isFormTeacher !== undefined) teacher.isFormTeacher = isFormTeacher;
+    if (isSubjectTeacher !== undefined) teacher.isSubjectTeacher = isSubjectTeacher;
+    if (assignedClass !== undefined) teacher.assignedClass = assignedClass;
+    if (assignedSubject !== undefined) teacher.assignedSubject = assignedSubject;
+
+    await teacher.save();
+    res.send(teacher);
+  } catch (error) {
+    res.status(400).send({ error: 'Failed to update teacher' });
+  }
+});
+
+// Delete a teacher (Admin only)
+router.delete('/:id', auth, authorize(['ADMIN']), async (req, res) => {
+  try {
+    const teacher = await User.findOne({ where: { id: req.params.id, role: 'TEACHER' } });
+
+    if (!teacher) {
+      return res.status(404).send({ error: 'Teacher not found' });
+    }
+
+    await teacher.destroy();
+    res.send({ message: 'Teacher deleted successfully' });
+  } catch (error) {
+    res.status(500).send({ error: 'Failed to delete teacher' });
   }
 });
 

@@ -110,7 +110,7 @@ const seedData = async () => {
   }
 };
 
-sequelize.sync({ force: false }).then(async () => {
+sequelize.sync({ alter: true }).then(async () => {
   await seedData();
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

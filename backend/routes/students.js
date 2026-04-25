@@ -73,4 +73,15 @@ router.get('/subjects', auth, async (req, res) => {
   }
 });
 
+// Add a new subject (Admin only)
+router.post('/subjects', auth, authorize(['ADMIN']), async (req, res) => {
+  try {
+    const { name, category, level } = req.body;
+    const subject = await Subject.create({ name, category, level });
+    res.status(201).send(subject);
+  } catch (error) {
+    res.status(400).send({ error: 'Failed to create subject' });
+  }
+});
+
 module.exports = router;

@@ -31,6 +31,14 @@ const User = sequelize.define('User', {
   isSubjectTeacher: {
     type: DataTypes.BOOLEAN,
     defaultValue: true
+  },
+  assignedClass: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  assignedSubject: {
+    type: DataTypes.STRING,
+    allowNull: true
   }
 });
 

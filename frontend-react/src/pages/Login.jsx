@@ -80,7 +80,7 @@ const Login = () => {
           setUsername('');
           setPassword('');
         }}
-        className="mb-6 text-black font-black uppercase tracking-widest text-xs flex items-center gap-2 hover:translate-x-[-4px] transition-transform"
+        className="mb-6 text-white font-black uppercase tracking-widest text-xs flex items-center gap-2 hover:translate-x-[-4px] transition-transform"
       >
         ← Go Back
       </button>
@@ -98,17 +98,17 @@ const Login = () => {
       </div>
 
       {error && (
-        <div className="mb-6 p-4 bg-accent-red/10 border-4 border-accent-red text-accent-red font-black rounded-2xl">
+        <div className="mb-6 p-4 bg-accent-red border-4 border-black text-white font-black rounded-2xl shadow-cartoon-sm">
           Oops! {error}
         </div>
       )}
 
       <form onSubmit={handleLogin} className="space-y-6">
         <div className="relative group">
-          <label className="block text-lg font-black text-black mb-2 uppercase tracking-tight text-3d">Username</label>
+          <label className="block text-lg font-black text-white mb-2 uppercase tracking-tight text-3d">Username</label>
           <input 
             type="text" 
-            className="input-cartoon focus:border-accent-gold"
+            className="input-cartoon focus:border-accent-gold w-full bg-slate-800 text-white placeholder-white/30"
             placeholder={loginType === 'PARENT' ? "e.g. parent_12345" : "Your username..."}
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -116,10 +116,10 @@ const Login = () => {
           />
         </div>
         <div className="relative group">
-          <label className="block text-lg font-black text-black mb-2 uppercase tracking-tight text-3d">Password</label>
+          <label className="block text-lg font-black text-white mb-2 uppercase tracking-tight text-3d">Password</label>
           <input 
             type="password" 
-            className="input-cartoon focus:border-accent-gold"
+            className="input-cartoon focus:border-accent-gold w-full bg-slate-800 text-white placeholder-white/30"
             placeholder="Secret code..."
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -128,7 +128,7 @@ const Login = () => {
         </div>
         <button 
           type="submit" 
-          className="w-full btn-cartoon-primary text-xl mt-4 bg-accent-gold text-accent-black hover:bg-accent-black hover:text-accent-gold"
+          className="w-full btn-cartoon-primary text-xl mt-4 bg-accent-gold text-accent-black hover:bg-white hover:text-accent-black"
         >
           Unlock Portal! 🔑
         </button>
@@ -137,24 +137,24 @@ const Login = () => {
   );
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#fffbeb] relative overflow-hidden">
+    <div className="flex items-center justify-center min-h-screen bg-slate-950 relative overflow-hidden">
       <AcademicBackground />
 
-      <div className="p-10 cartoon-card w-full max-w-md relative z-10 bg-white">
+      <div className="p-10 cartoon-card w-full max-w-md relative z-10 bg-slate-900 border-4 border-black">
         <div className="mb-10 text-center relative">
           <div className="w-20 h-20 bg-accent-gold border-4 border-black rounded-3xl flex items-center justify-center text-black mx-auto mb-6 shadow-cartoon transform -rotate-6 hover:rotate-0 transition-all duration-300">
             <GraduationCap size={40} strokeWidth={2.5} />
           </div>
-          <h2 className="text-4xl font-black text-black tracking-tighter uppercase italic text-3d-lg">
+          <h2 className="text-4xl font-black text-white tracking-tighter uppercase italic text-3d-lg">
             School <span className="text-accent-red underline decoration-4 decoration-accent-gold underline-offset-4">Portal</span>
           </h2>
-          <p className="text-gray-600 mt-4 font-black text-lg italic uppercase">Select your role to start! 🎒</p>
+          <p className="text-slate-400 mt-4 font-black text-lg italic uppercase">Select your role to start! 🎒</p>
         </div>
 
         {!loginType ? renderLoginButtons() : renderLoginForm()}
         
         <div className="mt-12 text-center">
-          <p className="text-black font-black text-xs uppercase tracking-widest opacity-30">School Result System v2.0</p>
+          <p className="text-white font-black text-xs uppercase tracking-widest opacity-30">School Result System v2.0</p>
         </div>
       </div>
     </div>
