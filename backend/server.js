@@ -11,7 +11,12 @@ const app = express();
 
 // CORS Configuration
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'https://resultsoftware.netlify.app',
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:5173',
+    'https://resultsoftware.netlify.app',
+    process.env.FRONTEND_URL || 'https://resultsoftware.netlify.app'
+  ].filter(Boolean),
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
