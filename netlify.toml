@@ -1,5 +1,5 @@
 [build]
-  command = "npm --prefix backend install && npm --prefix netlify/functions install && npm --prefix frontend-react install && npm --prefix frontend-react run build"
+  command = "npm install && npm --prefix backend install && npm --prefix netlify/functions install && npm --prefix frontend-react install && npm --prefix frontend-react run build"
   publish = "frontend-react/dist"
   functions = "netlify/functions"
 
