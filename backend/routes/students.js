@@ -85,6 +85,22 @@ router.post('/subjects', auth, authorize(['ADMIN']), async (req, res) => {
 });
 
 // Update student (Admin/Teacher)
+router.patch('/release-results', auth, authorize(['ADMIN', 'TEACHER']), async (req, res) => {
+  try {
+    const { studentIds, released } = req.body;
+    if (!Array.isArray(studentIds)) {
+      return res.status(400).send({ error: 'studentIds must be an array' });
+    }
+    await Student.update(
+      { resultsReleased: released },
+      { where: { id: studentIds } }
+    );
+    res.send({ message: `Results ${released ? 'released' : 'held'} for ${studentIds.length} students` });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 router.patch('/:id', auth, authorize(['ADMIN', 'TEACHER']), async (req, res) => {
   try {
     const { firstName, lastName, studentClass, subjectIds } = req.body;

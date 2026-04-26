@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import api from '../api';
-import { UserPlus, FileText, CheckCircle, LogOut, LayoutDashboard, Calendar, FileSpreadsheet } from 'lucide-react';
+import { UserPlus, FileText, CheckCircle, LogOut, LayoutDashboard, Calendar, FileSpreadsheet, Lock, Unlock, Search } from 'lucide-react';
 import AcademicBackground from '../components/AcademicBackground';
 
 const TeacherDashboard = () => {
@@ -14,37 +14,41 @@ const TeacherDashboard = () => {
   };
 
   return (
-    <div className="flex h-screen bg-[#fffbeb] relative overflow-hidden">
+    <div className="flex h-screen bg-[#0f172a] relative overflow-hidden">
       <AcademicBackground />
       {/* Sidebar */}
-      <div className="w-72 bg-white border-r-4 border-black p-8 flex flex-col shadow-cartoon relative z-10">
+      <div className="w-72 bg-slate-900 border-r-4 border-black p-8 flex flex-col shadow-cartoon relative z-10">
         <div className="flex items-center gap-3 mb-12">
           <div className="w-12 h-12 bg-accent-gold border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm transform rotate-3">
             <LayoutDashboard size={24} className="text-black" />
           </div>
-          <h2 className="text-2xl font-black tracking-tighter uppercase italic text-black text-3d">Teacher <span className="text-accent-red">Hub</span></h2>
+          <h2 className="text-2xl font-black tracking-tighter uppercase italic text-white text-3d">Teacher <span className="text-accent-red">Hub</span></h2>
         </div>
         <nav className="flex-1 space-y-4">
-          <Link to="/teacher" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-black">
+          <Link to="/teacher" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-white">
             <LayoutDashboard className="mr-3" size={20} /> 
             <span>Dashboard</span>
           </Link>
           {user?.isFormTeacher && (
-            <Link to="/teacher/register-student" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-black uppercase tracking-tight text-black">
+            <Link to="/teacher/register-student" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-black uppercase tracking-tight text-white">
               <UserPlus className="mr-3" size={20} /> 
               <span>Register</span>
             </Link>
           )}
-          <Link to="/teacher/record-results" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-black">
+          <Link to="/teacher/record-results" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-white">
             <FileText className="mr-3" size={20} /> 
             <span>Results</span>
           </Link>
-          <Link to="/broadsheet" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-black">
+          <Link to="/teacher/release-results" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-white">
+            <Unlock className="mr-3" size={20} /> 
+            <span>Release</span>
+          </Link>
+          <Link to="/broadsheet" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-white">
             <FileSpreadsheet className="mr-3" size={20} /> 
             <span>Broadsheet</span>
           </Link>
           {user?.isFormTeacher && (
-            <Link to="/teacher/attendance" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-black uppercase tracking-tight text-black">
+            <Link to="/teacher/attendance" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-black uppercase tracking-tight text-white">
               <CheckCircle className="mr-3" size={20} /> 
               <span>Attendance</span>
             </Link>
@@ -52,7 +56,7 @@ const TeacherDashboard = () => {
         </nav>
         <button 
           onClick={handleLogout} 
-          className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 text-black font-black uppercase tracking-tight transition-all mt-auto group"
+          className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 text-white font-black uppercase tracking-tight transition-all mt-auto group"
         >
           <LogOut className="mr-3 transition-transform group-hover:-translate-x-1" size={20} /> 
           <span>Sign Out</span>
@@ -62,15 +66,15 @@ const TeacherDashboard = () => {
       <div className="flex-1 overflow-y-auto p-10">
         <header className="flex justify-between items-center mb-10">
           <div>
-            <h1 className="text-4xl font-black text-black tracking-tighter uppercase italic underline decoration-4 decoration-accent-gold text-3d-lg">Hello, Teacher {user?.fullName?.split(' ')[0]}! 🍎</h1>
-            <p className="text-gray-600 mt-2 font-bold text-lg">Ready to inspire some young minds today?</p>
+            <h1 className="text-4xl font-black text-white tracking-tighter uppercase italic underline decoration-4 decoration-accent-gold text-3d-lg">Hello, Teacher {user?.fullName?.split(' ')[0]}! 🍎</h1>
+            <p className="text-slate-400 mt-2 font-bold text-lg">Ready to inspire some young minds today?</p>
           </div>
           <div className="flex items-center gap-6">
             <div className="text-right">
-              <p className="text-xl font-black text-black uppercase tracking-tighter text-3d">{user?.fullName}</p>
+              <p className="text-xl font-black text-white uppercase tracking-tighter text-3d">{user?.fullName}</p>
               <p className="text-sm font-bold text-accent-red uppercase tracking-widest italic">Master Educator</p>
             </div>
-            <div className="w-16 h-16 bg-white border-4 border-black rounded-3xl flex items-center justify-center font-black text-2xl shadow-cartoon transform -rotate-3">
+            <div className="w-16 h-16 bg-slate-800 border-4 border-black rounded-3xl flex items-center justify-center font-black text-2xl shadow-cartoon transform -rotate-3 text-white">
               {user?.fullName?.charAt(0)}
             </div>
           </div>
@@ -86,6 +90,7 @@ const TeacherDashboard = () => {
               </>
             )}
             <Route path="/record-results" element={<RecordResults />} />
+            <Route path="/release-results" element={<ResultReleaseManager />} />
           </Routes>
         </main>
       </div>
@@ -540,6 +545,183 @@ const AttendanceManager = () => {
                       Tardy 🐢
                     </button>
                   </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+const ResultReleaseManager = () => {
+  const [students, setStudents] = useState([]);
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterClass, setFilterClass] = useState('');
+  const [message, setMessage] = useState('');
+
+  const classes = [
+    'Pre-Nursery', 'Nursery 1', 'Nursery 2',
+    'Primary 1', 'Primary 2', 'Primary 3', 'Primary 4', 'Primary 5', 'Primary 6',
+    'JSS 1', 'JSS 2', 'JSS 3',
+    'SSS 1', 'SSS 2', 'SSS 3'
+  ];
+
+  useEffect(() => {
+    fetchStudents();
+  }, []);
+
+  const fetchStudents = async () => {
+    const res = await api.get('/students');
+    setStudents(res.data);
+  };
+
+  const handleToggleSelect = (id) => {
+    setSelectedIds(prev => 
+      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+    );
+  };
+
+  const handleSelectAll = () => {
+    if (selectedIds.length === filteredStudents.length) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(filteredStudents.map(s => s.id));
+    }
+  };
+
+  const handleBulkAction = async (released) => {
+    if (selectedIds.length === 0) return;
+    try {
+      await api.patch('/students/release-results', {
+        studentIds: selectedIds,
+        released
+      });
+      setMessage(`Results ${released ? 'released' : 'held'} successfully! 🚀`);
+      fetchStudents();
+      setSelectedIds([]);
+      setTimeout(() => setMessage(''), 3000);
+    } catch (err) {
+      setMessage('Error updating status ❌');
+    }
+  };
+
+  const filteredStudents = students.filter(s => {
+    const matchesSearch = `${s.firstName} ${s.lastName} ${s.registrationNumber}`.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesClass = filterClass === '' || s.studentClass === filterClass;
+    return matchesSearch && matchesClass;
+  });
+
+  return (
+    <div className="cartoon-card p-10 bg-white">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b-4 border-black pb-8 gap-6">
+        <div>
+          <h2 className="text-4xl font-black text-black uppercase italic tracking-tighter text-3d mb-2">Result Release Gate 🛡️</h2>
+          <p className="text-xl font-black text-accent-red uppercase tracking-tight">Control who sees their glory!</p>
+        </div>
+        
+        <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+          <div className="relative flex-1 sm:w-64">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+            <input 
+              type="text" 
+              placeholder="Search legends..."
+              className="input-cartoon pl-12 py-3 text-sm"
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+            />
+          </div>
+          <select 
+            className="input-cartoon py-3 text-sm sm:w-48 appearance-none"
+            value={filterClass}
+            onChange={e => setFilterClass(e.target.value)}
+          >
+            <option value="">All Classes</option>
+            {classes.map(c => <option key={c} value={c}>{c}</option>)}
+          </select>
+        </div>
+      </div>
+
+      {message && (
+        <div className="p-6 mb-8 bg-accent-gold/20 border-4 border-black rounded-2xl flex items-center gap-4 animate-in fade-in duration-300">
+          <div className="w-4 h-4 bg-accent-gold border-2 border-black rounded-full animate-pulse"></div>
+          <span className="font-black uppercase tracking-tight text-black">{message}</span>
+        </div>
+      )}
+
+      <div className="flex gap-4 mb-8">
+        <button 
+          onClick={() => handleBulkAction(true)}
+          disabled={selectedIds.length === 0}
+          className="btn-cartoon-primary bg-accent-gold px-8 py-3 text-sm flex items-center gap-2 disabled:opacity-50"
+        >
+          <Unlock size={18} /> Release Selected
+        </button>
+        <button 
+          onClick={() => handleBulkAction(false)}
+          disabled={selectedIds.length === 0}
+          className="btn-cartoon-primary bg-accent-red text-white px-8 py-3 text-sm flex items-center gap-2 disabled:opacity-50"
+        >
+          <Lock size={18} /> Hold Selected
+        </button>
+      </div>
+
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="text-left border-b-4 border-black">
+              <th className="py-6 px-4">
+                <input 
+                  type="checkbox" 
+                  className="w-6 h-6 border-4 border-black rounded cursor-pointer accent-accent-gold"
+                  checked={selectedIds.length === filteredStudents.length && filteredStudents.length > 0}
+                  onChange={handleSelectAll}
+                />
+              </th>
+              <th className="py-6 font-black text-black uppercase tracking-widest text-sm">Superstar</th>
+              <th className="py-6 font-black text-black uppercase tracking-widest text-sm text-center">Status</th>
+              <th className="py-6 font-black text-black uppercase tracking-widest text-sm text-right">Class</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y-2 divide-black/10">
+            {filteredStudents.map(s => (
+              <tr key={s.id} className={`group transition-colors ${selectedIds.includes(s.id) ? 'bg-accent-gold/10' : 'hover:bg-gray-50'}`}>
+                <td className="py-6 px-4">
+                  <input 
+                    type="checkbox" 
+                    className="w-6 h-6 border-4 border-black rounded cursor-pointer accent-accent-gold"
+                    checked={selectedIds.includes(s.id)}
+                    onChange={() => handleToggleSelect(s.id)}
+                  />
+                </td>
+                <td className="py-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-white border-2 border-black rounded-xl flex items-center justify-center font-black text-black shadow-cartoon-xs group-hover:rotate-3 transition-transform">
+                      {s.firstName.charAt(0)}
+                    </div>
+                    <div>
+                      <span className="font-black text-lg text-black uppercase tracking-tight block">{s.firstName} {s.lastName}</span>
+                      <span className="text-xs font-bold text-gray-400">#{s.registrationNumber}</span>
+                    </div>
+                  </div>
+                </td>
+                <td className="py-6">
+                  <div className="flex justify-center">
+                    {s.resultsReleased ? (
+                      <span className="bg-accent-gold/20 text-accent-black border-2 border-accent-gold px-4 py-1 rounded-full font-black uppercase text-[10px] tracking-widest flex items-center gap-2">
+                        <Unlock size={12} /> Released
+                      </span>
+                    ) : (
+                      <span className="bg-gray-100 text-gray-400 border-2 border-gray-200 px-4 py-1 rounded-full font-black uppercase text-[10px] tracking-widest flex items-center gap-2">
+                        <Lock size={12} /> Held
+                      </span>
+                    )}
+                  </div>
+                </td>
+                <td className="py-6 text-right">
+                  <span className="bg-black text-white px-3 py-1 rounded-lg font-black uppercase text-xs tracking-widest">{s.studentClass}</span>
                 </td>
               </tr>
             ))}

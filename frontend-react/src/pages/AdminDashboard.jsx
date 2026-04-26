@@ -33,35 +33,35 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="flex h-screen bg-[#fffbeb] dark:bg-slate-950 relative overflow-hidden transition-colors duration-300">
+    <div className="flex h-screen bg-[#0f172a] relative overflow-hidden transition-colors duration-300">
       <AcademicBackground />
       {/* Sidebar */}
-      <div className="w-72 bg-white dark:bg-slate-900 border-r-4 border-black p-8 flex flex-col shadow-cartoon relative z-10 transition-colors">
+      <div className="w-72 bg-slate-900 border-r-4 border-black p-8 flex flex-col shadow-cartoon relative z-10 transition-colors">
         <div className="flex items-center gap-3 mb-12">
           <div className="w-12 h-12 bg-accent-gold border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm transform -rotate-3">
             <LayoutDashboard size={24} className="text-black" />
           </div>
-          <h2 className="text-2xl font-black tracking-tighter uppercase italic text-black dark:text-white text-3d">Admin <span className="text-accent-red">Hub</span></h2>
+          <h2 className="text-2xl font-black tracking-tighter uppercase italic text-white text-3d">Admin <span className="text-accent-red">Hub</span></h2>
         </div>
         <nav className="flex-1 space-y-4">
-          <Link to="/admin" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 dark:hover:bg-accent-gold/10 transition-all group font-black uppercase tracking-tight dark:text-slate-300 dark:hover:text-white">
-            <LayoutDashboard className="mr-3 text-black dark:text-slate-300" size={20} /> 
+          <Link to="/admin" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-white">
+            <LayoutDashboard className="mr-3" size={20} /> 
             <span>Control Room</span>
           </Link>
-          <Link to="/admin/students" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-black uppercase tracking-tight dark:text-slate-300 dark:hover:text-white">
-            <Users className="mr-3 text-black dark:text-slate-300" size={20} /> 
+          <Link to="/admin/students" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-black uppercase tracking-tight text-white">
+            <Users className="mr-3" size={20} /> 
             <span>The Squad</span>
           </Link>
-          <Link to="/admin/subjects" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight dark:text-slate-300 dark:hover:text-white">
-            <BookOpen className="mr-3 text-black dark:text-slate-300" size={20} /> 
+          <Link to="/admin/subjects" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-white">
+            <BookOpen className="mr-3" size={20} /> 
             <span>Knowledge</span>
           </Link>
-          <Link to="/admin/teachers" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-black uppercase tracking-tight dark:text-slate-300 dark:hover:text-white">
-            <UserCircle className="mr-3 text-black dark:text-slate-300" size={20} /> 
+          <Link to="/admin/teachers" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-black uppercase tracking-tight text-white">
+            <UserCircle className="mr-3" size={20} /> 
             <span>Educators</span>
           </Link>
-          <Link to="/broadsheet" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight dark:text-slate-300 dark:hover:text-white">
-            <FileSpreadsheet className="mr-3 text-black dark:text-slate-300" size={20} /> 
+          <Link to="/broadsheet" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-white">
+            <FileSpreadsheet className="mr-3" size={20} /> 
             <span>Broadsheet</span>
           </Link>
         </nav>
@@ -80,15 +80,15 @@ const AdminDashboard = () => {
       <div className="flex-1 overflow-y-auto p-10">
         <header className="flex justify-between items-center mb-10">
           <div>
-            <h1 className="text-4xl font-black text-black dark:text-white tracking-tighter uppercase italic text-3d-lg">Hi, {user?.fullName?.split(' ')[0]}! 👋</h1>
-            <p className="text-gray-600 dark:text-slate-400 mt-2 font-bold text-lg underline decoration-4 decoration-accent-gold">Ready to rule the academy today?</p>
+            <h1 className="text-4xl font-black text-white tracking-tighter uppercase italic text-3d-lg">Hi, {user?.fullName?.split(' ')[0]}! 👋</h1>
+            <p className="text-slate-400 mt-2 font-bold text-lg underline decoration-4 decoration-accent-gold">Ready to rule the academy today?</p>
           </div>
           <div className="flex items-center gap-6">
             <div className="text-right">
-              <p className="text-xl font-black text-black dark:text-white uppercase tracking-tighter text-3d">{user?.fullName}</p>
+              <p className="text-xl font-black text-white uppercase tracking-tighter text-3d">{user?.fullName}</p>
               <p className="text-sm font-bold text-accent-red uppercase tracking-widest">{user?.role} Mode</p>
             </div>
-            <div className="w-16 h-16 bg-white dark:bg-slate-800 border-4 border-black rounded-3xl flex items-center justify-center font-black text-2xl shadow-cartoon transform rotate-3 dark:text-white">
+            <div className="w-16 h-16 bg-slate-800 border-4 border-black rounded-3xl flex items-center justify-center font-black text-2xl shadow-cartoon transform rotate-3 text-white">
               {user?.fullName?.charAt(0)}
             </div>
           </div>

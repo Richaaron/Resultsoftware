@@ -103,29 +103,29 @@ const ParentDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#fffbeb] relative overflow-hidden">
+    <div className="min-h-screen bg-[#0f172a] relative overflow-hidden">
       <AcademicBackground />
       
       {/* Top Navigation */}
-      <nav className="bg-white border-b-4 border-black sticky top-0 z-50">
+      <nav className="bg-slate-900 border-b-4 border-black sticky top-0 z-50">
         <div className="container mx-auto px-6 h-24 flex justify-between items-center">
           <div className="flex items-center gap-4">
             <div className="w-14 h-14 bg-accent-gold border-4 border-black rounded-2xl flex items-center justify-center text-black shadow-cartoon-sm transform -rotate-3">
               <User size={28} />
             </div>
             <div>
-              <h1 className="text-3xl font-black text-black tracking-tighter uppercase italic text-3d">Parent <span className="text-accent-red">Zone</span></h1>
-              <p className="text-xs text-black/60 uppercase font-black tracking-widest">Watching them grow! 🌱</p>
+              <h1 className="text-3xl font-black text-white tracking-tighter uppercase italic text-3d">Parent <span className="text-accent-red">Zone</span></h1>
+              <p className="text-xs text-slate-400 uppercase font-black tracking-widest">Watching them grow! 🌱</p>
             </div>
           </div>
           <div className="flex items-center gap-6">
             <div className="text-right hidden sm:block">
-              <p className="text-xl font-black text-black uppercase tracking-tighter text-3d">{user?.fullName}</p>
+              <p className="text-xl font-black text-white uppercase tracking-tighter text-3d">{user?.fullName}</p>
               <p className="text-sm text-accent-red font-bold italic uppercase tracking-widest">Super Guardian</p>
             </div>
             <button 
               onClick={handleLogout} 
-              className="flex items-center gap-2 bg-white hover:bg-accent-red/10 text-black border-4 border-black px-6 py-3 rounded-2xl transition-all font-black uppercase tracking-tighter shadow-cartoon-sm hover:-translate-x-1 hover:-translate-y-1 hover:shadow-cartoon active:translate-x-0 active:translate-y-0 active:shadow-none"
+              className="flex items-center gap-2 bg-slate-800 hover:bg-accent-red/10 text-white border-4 border-black px-6 py-3 rounded-2xl transition-all font-black uppercase tracking-tighter shadow-cartoon-sm hover:-translate-x-1 hover:-translate-y-1 hover:shadow-cartoon active:translate-x-0 active:translate-y-0 active:shadow-none"
             >
               <LogOut size={20} /> 
               <span>Bye! 🚀</span>
@@ -138,8 +138,8 @@ const ParentDashboard = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Children Selection */}
           <div className="lg:col-span-3 space-y-8">
-            <div className="cartoon-card p-8 bg-white">
-              <h2 className="text-lg font-black text-black uppercase tracking-widest mb-6 italic border-b-4 border-black pb-2">My Superstars ⭐</h2>
+            <div className="cartoon-card p-8 bg-slate-900">
+              <h2 className="text-lg font-black text-white uppercase tracking-widest mb-6 italic border-b-4 border-black pb-2">My Superstars ⭐</h2>
               <div className="space-y-4">
                 {children.map(child => (
                   <button
@@ -147,29 +147,29 @@ const ParentDashboard = () => {
                     onClick={() => handleChildSelect(child)}
                     className={`w-full group flex items-center gap-4 p-4 rounded-2xl border-4 transition-all ${selectedChild?.id === child.id 
                       ? 'bg-accent-gold border-black shadow-cartoon-sm -translate-y-1' 
-                      : 'bg-white border-transparent hover:border-black hover:bg-accent-gold/10'}`}
+                      : 'bg-slate-800 border-transparent hover:border-black hover:bg-accent-gold/10'}`}
                   >
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-xl border-4 ${selectedChild?.id === child.id ? 'bg-white border-black transform -rotate-6' : 'bg-accent-gold/20 border-transparent text-accent-gold group-hover:border-black'}`}>
+                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-xl border-4 ${selectedChild?.id === child.id ? 'bg-white border-black transform -rotate-6' : 'bg-slate-900 border-transparent text-accent-gold group-hover:border-black'}`}>
                       {child.firstName.charAt(0)}
                     </div>
                     <div className="text-left">
-                      <p className={`text-lg font-black uppercase tracking-tighter ${selectedChild?.id === child.id ? 'text-black' : 'text-gray-900'}`}>{child.firstName}</p>
-                      <p className={`text-xs font-bold italic ${selectedChild?.id === child.id ? 'text-accent-red' : 'text-gray-400'}`}>{child.studentClass}</p>
+                      <p className={`text-lg font-black uppercase tracking-tighter ${selectedChild?.id === child.id ? 'text-black' : 'text-white'}`}>{child.firstName}</p>
+                      <p className={`text-xs font-bold italic ${selectedChild?.id === child.id ? 'text-accent-red' : 'text-slate-400'}`}>{child.studentClass}</p>
                     </div>
                   </button>
                 ))}
               </div>
             </div>
 
-            <div className="p-8 bg-accent-red/10 border-4 border-black rounded-3xl shadow-cartoon-sm relative overflow-hidden group">
+            <div className="p-8 bg-slate-900/50 border-4 border-black rounded-3xl shadow-cartoon-sm relative overflow-hidden group">
               <div className="relative z-10">
-                <h4 className="font-black text-black text-xl mb-2 uppercase italic tracking-tighter text-3d">Need Help? 🆘</h4>
-                <p className="text-sm font-bold text-gray-700 mb-6 leading-relaxed italic">The school team is here to help your champion succeed!</p>
+                <h4 className="font-black text-white text-xl mb-2 uppercase italic tracking-tighter text-3d">Need Help? 🆘</h4>
+                <p className="text-sm font-bold text-slate-400 mb-6 leading-relaxed italic">The school team is here to help your champion succeed!</p>
                 <button className="w-full bg-accent-gold border-4 border-black text-black text-xs font-black py-3 rounded-xl uppercase tracking-widest hover:bg-black hover:text-white transition-all shadow-cartoon-sm">
                   Ping Us! 📨
                 </button>
               </div>
-              <FileText className="absolute -bottom-6 -right-6 w-24 h-24 text-black/5 transform -rotate-12 group-hover:scale-110 transition-transform" />
+              <FileText className="absolute -bottom-6 -right-6 w-24 h-24 text-white/5 transform -rotate-12 group-hover:scale-110 transition-transform" />
             </div>
           </div>
 
@@ -177,9 +177,9 @@ const ParentDashboard = () => {
           <div className="lg:col-span-9 space-y-10">
             {selectedChild ? (
               <>
-                <div className="cartoon-card p-10 bg-white flex flex-col md:flex-row md:items-center justify-between gap-8 border-l-[12px] border-l-accent-gold">
+                <div className="cartoon-card p-10 bg-slate-900 flex flex-col md:flex-row md:items-center justify-between gap-8 border-l-[12px] border-l-accent-gold">
                   <div>
-                    <h2 className="text-4xl font-black text-black uppercase italic tracking-tighter text-3d-lg mb-2">
+                    <h2 className="text-4xl font-black text-white uppercase italic tracking-tighter text-3d-lg mb-2">
                       {selectedChild.firstName} {selectedChild.lastName}
                     </h2>
                     <div className="flex items-center gap-4">
@@ -188,13 +188,13 @@ const ParentDashboard = () => {
                     </div>
                   </div>
                   <div className="flex gap-6">
-                    <div className="bg-accent-gold/10 p-5 rounded-2xl text-center min-w-[120px] border-4 border-black shadow-cartoon-sm transform rotate-2">
-                      <p className="text-[10px] text-black font-black uppercase tracking-widest mb-1 opacity-50">Status</p>
-                      <p className="text-xl font-black text-black uppercase">Active ✨</p>
+                    <div className="bg-slate-800 p-5 rounded-2xl text-center min-w-[120px] border-4 border-black shadow-cartoon-sm transform rotate-2">
+                      <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest mb-1 opacity-50">Status</p>
+                      <p className="text-xl font-black text-white uppercase">Active ✨</p>
                     </div>
-                    <div className="bg-accent-red/10 p-5 rounded-2xl text-center min-w-[120px] border-4 border-black shadow-cartoon-sm transform -rotate-2">
-                      <p className="text-[10px] text-black font-black uppercase tracking-widest mb-1 opacity-50">Progress</p>
-                      <p className="text-xl font-black text-black uppercase">Great! 🚀</p>
+                    <div className="bg-slate-800 p-5 rounded-2xl text-center min-w-[120px] border-4 border-black shadow-cartoon-sm transform -rotate-2">
+                      <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest mb-1 opacity-50">Progress</p>
+                      <p className="text-xl font-black text-white uppercase">Great! 🚀</p>
                     </div>
                   </div>
                 </div>

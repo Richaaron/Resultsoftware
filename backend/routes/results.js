@@ -53,6 +53,10 @@ router.get('/student/:studentId', auth, async (req, res) => {
     if (req.user.role === 'PARENT') {
       const student = await Student.findOne({ where: { id: studentId, parentId: req.user.id } });
       if (!student) return res.status(403).send({ error: 'Unauthorized access to student results' });
+      
+      if (!student.resultsReleased) {
+        return res.send([]); // Return empty array if results are not released yet
+      }
     }
 
     const results = await Result.findAll({ 

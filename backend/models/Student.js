@@ -24,6 +24,10 @@ const Student = sequelize.define('Student', {
   studentClass: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  resultsReleased: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
   }
 });
 

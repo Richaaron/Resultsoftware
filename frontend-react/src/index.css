@@ -48,8 +48,8 @@
 
 :root {
   font-family: 'Comic Neue', cursive;
-  background-color: #fffbeb; /* Light creamy background */
-  color: #1a1a1a;
+  background-color: #0f172a; /* Dark slate background */
+  color: #f8fafc;
 }
 
 @layer utilities {
@@ -79,7 +79,7 @@
 
 @layer components {
   .cartoon-card {
-    @apply bg-white border-4 border-black rounded-3xl shadow-cartoon transition-all duration-200;
+    @apply bg-slate-900 border-4 border-black rounded-3xl shadow-cartoon transition-all duration-200;
   }
   
   .cartoon-card-hover {
@@ -95,6 +95,6 @@
   }
 
   .input-cartoon {
-    @apply w-full px-4 py-3 bg-white border-4 border-black rounded-2xl font-bold focus:ring-0 outline-none transition-all placeholder:text-gray-400;
+    @apply w-full px-4 py-3 bg-slate-800 text-white border-4 border-black rounded-2xl font-bold focus:ring-0 outline-none transition-all placeholder:text-slate-500;
   }
 }

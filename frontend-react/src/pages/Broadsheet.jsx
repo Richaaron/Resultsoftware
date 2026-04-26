@@ -57,22 +57,22 @@ const Broadsheet = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#fffbeb] relative overflow-hidden p-6 lg:p-10">
+    <div className="min-h-screen bg-[#0f172a] relative overflow-hidden p-6 lg:p-10">
       <AcademicBackground />
       
       <div className="max-w-7xl mx-auto relative z-10">
         <button 
           onClick={() => navigate(-1)}
-          className="mb-8 flex items-center gap-2 font-black uppercase tracking-tight text-black hover:text-accent-red transition-colors"
+          className="mb-8 flex items-center gap-2 font-black uppercase tracking-tight text-white hover:text-accent-red transition-colors"
         >
           <ArrowLeft size={20} /> Back to Dashboard
         </button>
 
-        <div className="cartoon-card bg-white p-8 mb-10">
+        <div className="cartoon-card bg-slate-900 p-8 mb-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
-                <label className="text-sm font-black uppercase tracking-widest text-black/50">Select Class</label>
+                <label className="text-sm font-black uppercase tracking-widest text-slate-400">Select Class</label>
                 <select 
                   className="input-cartoon"
                   value={studentClass}
@@ -83,7 +83,7 @@ const Broadsheet = () => {
                 </select>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-black uppercase tracking-widest text-black/50">Select Term</label>
+                <label className="text-sm font-black uppercase tracking-widest text-slate-400">Select Term</label>
                 <select 
                   className="input-cartoon"
                   value={term}
@@ -95,7 +95,7 @@ const Broadsheet = () => {
                 </select>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-black uppercase tracking-widest text-black/50">Academic Year</label>
+                <label className="text-sm font-black uppercase tracking-widest text-slate-400">Academic Year</label>
                 <select 
                   className="input-cartoon"
                   value={academicYear}
@@ -118,19 +118,19 @@ const Broadsheet = () => {
         </div>
 
         {students.length > 0 ? (
-          <div className="cartoon-card bg-white p-8 overflow-hidden">
+          <div className="cartoon-card bg-slate-900 p-8 overflow-hidden">
             <div className="flex justify-between items-center mb-8 border-b-4 border-black pb-6">
               <div>
-                <h2 className="text-3xl font-black text-black uppercase italic tracking-tighter text-3d">
+                <h2 className="text-3xl font-black text-white uppercase italic tracking-tighter text-3d">
                   Class Broadsheet: {studentClass}
                 </h2>
                 <p className="text-accent-red font-black uppercase tracking-tight">{term} Term | {academicYear}</p>
               </div>
               <div className="flex gap-4">
-                <button className="p-4 bg-white border-4 border-black rounded-2xl shadow-cartoon-sm hover:-translate-y-1 transition-all">
+                <button className="p-4 bg-slate-800 border-4 border-black rounded-2xl shadow-cartoon-sm hover:-translate-y-1 transition-all text-white">
                   <Printer size={24} />
                 </button>
-                <button className="p-4 bg-accent-gold border-4 border-black rounded-2xl shadow-cartoon-sm hover:-translate-y-1 transition-all">
+                <button className="p-4 bg-accent-gold border-4 border-black rounded-2xl shadow-cartoon-sm hover:-translate-y-1 transition-all text-black">
                   <Download size={24} />
                 </button>
               </div>
@@ -140,14 +140,14 @@ const Broadsheet = () => {
               <table className="w-full border-collapse">
                 <thead>
                   <tr className="border-b-4 border-black">
-                    <th className="p-4 text-left font-black uppercase tracking-widest text-xs bg-gray-50 border-r-2 border-black sticky left-0 z-20">Student Name</th>
+                    <th className="p-4 text-left font-black uppercase tracking-widest text-xs bg-slate-800 text-white border-r-2 border-black sticky left-0 z-20">Student Name</th>
                     {subjects.map(subject => (
-                      <th key={subject.id} className="p-4 text-center font-black uppercase tracking-widest text-[10px] min-w-[100px] border-r-2 border-black/10">
+                      <th key={subject.id} className="p-4 text-center font-black uppercase tracking-widest text-[10px] min-w-[100px] border-r-2 border-black/10 text-slate-300">
                         {subject.name}
                       </th>
                     ))}
-                    <th className="p-4 text-center font-black uppercase tracking-widest text-xs bg-accent-gold/10">Total</th>
-                    <th className="p-4 text-center font-black uppercase tracking-widest text-xs bg-accent-gold/10">Avg</th>
+                    <th className="p-4 text-center font-black uppercase tracking-widest text-xs bg-accent-gold/10 text-accent-gold">Total</th>
+                    <th className="p-4 text-center font-black uppercase tracking-widest text-xs bg-accent-gold/10 text-accent-gold">Avg</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -157,7 +157,7 @@ const Broadsheet = () => {
                     
                     return (
                       <tr key={student.id} className="border-b-2 border-black/5 hover:bg-accent-gold/5 transition-colors group">
-                        <td className="p-4 font-bold text-black uppercase tracking-tight sticky left-0 bg-white group-hover:bg-inherit border-r-2 border-black z-10">
+                        <td className="p-4 font-bold text-white uppercase tracking-tight sticky left-0 bg-slate-900 group-hover:bg-slate-800 border-r-2 border-black z-10">
                           {student.lastName} {student.firstName}
                         </td>
                         {subjects.map(subject => {
@@ -166,16 +166,16 @@ const Broadsheet = () => {
                           return (
                             <td key={subject.id} className="p-4 text-center border-r-2 border-black/5">
                               <div className="flex flex-col items-center">
-                                <span className="font-black text-lg">{score}</span>
+                                <span className="font-black text-lg text-white">{score}</span>
                                 {grade && <span className="text-[10px] font-black text-accent-red">{grade}</span>}
                               </div>
                             </td>
                           );
                         })}
-                        <td className="p-4 text-center font-black text-lg bg-accent-gold/5 border-r-2 border-black/5">
+                        <td className="p-4 text-center font-black text-lg bg-accent-gold/5 border-r-2 border-black/5 text-white">
                           {totalScore.toFixed(0)}
                         </td>
-                        <td className="p-4 text-center font-black text-lg bg-accent-gold/5">
+                        <td className="p-4 text-center font-black text-lg bg-accent-gold/5 text-white">
                           {avgScore.toFixed(1)}%
                         </td>
                       </tr>
@@ -186,9 +186,9 @@ const Broadsheet = () => {
             </div>
           </div>
         ) : !loading && studentClass && (
-          <div className="cartoon-card bg-white p-20 text-center border-4 border-dashed border-black/20">
-            <FileSpreadsheet size={64} className="mx-auto text-black/10 mb-6" />
-            <p className="text-2xl font-black text-black/20 uppercase italic tracking-widest">No results found for this selection!</p>
+          <div className="cartoon-card bg-slate-900 p-20 text-center border-4 border-dashed border-black/20">
+            <FileSpreadsheet size={64} className="mx-auto text-white/10 mb-6" />
+            <p className="text-2xl font-black text-white/20 uppercase italic tracking-widest">No results found for this selection!</p>
           </div>
         )}
       </div>
