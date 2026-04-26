@@ -20,17 +20,17 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
-// Routes
-app.use('/api/auth', require('../backend/routes/auth'));
-app.use('/api/students', require('../backend/routes/students'));
-app.use('/api/results', require('../backend/routes/results'));
-app.use('/api/attendance', require('../backend/routes/attendance'));
-app.use('/api/teachers', require('../backend/routes/teachers'));
-app.use('/api/settings', require('../backend/routes/settings'));
+// Routes (Vercel strips /api prefix, so register without it)
+app.use('/auth', require('../backend/routes/auth'));
+app.use('/students', require('../backend/routes/students'));
+app.use('/results', require('../backend/routes/results'));
+app.use('/attendance', require('../backend/routes/attendance'));
+app.use('/teachers', require('../backend/routes/teachers'));
+app.use('/settings', require('../backend/routes/settings'));
 
 const { auth, authorize } = require('../backend/middleware/auth');
 
-app.get('/api/stats', auth, authorize(['ADMIN']), async (req, res) => {
+app.get('/stats', auth, authorize(['ADMIN']), async (req, res) => {
   try {
     const studentCount = await require('../backend/models/Student').count();
     const teacherCount = await User.count({ where: { role: 'TEACHER' } });
@@ -42,7 +42,7 @@ app.get('/api/stats', auth, authorize(['ADMIN']), async (req, res) => {
 });
 
 // Database initialization endpoint
-app.post('/api/init', async (req, res) => {
+app.post('/init', async (req, res) => {
   try {
     await sequelize.sync({ alter: true });
     await seedData();
@@ -55,7 +55,7 @@ app.post('/api/init', async (req, res) => {
 });
 
 // Debug endpoint
-app.get('/api/debug/users', async (req, res) => {
+app.get('/debug/users', async (req, res) => {
   try {
     const users = await User.findAll({ 
       attributes: ['id', 'username', 'fullName', 'role', 'createdAt']
