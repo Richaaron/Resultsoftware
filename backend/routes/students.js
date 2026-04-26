@@ -84,4 +84,68 @@ router.post('/subjects', auth, authorize(['ADMIN']), async (req, res) => {
   }
 });
 
+// Update student (Admin/Teacher)
+router.patch('/:id', auth, authorize(['ADMIN', 'TEACHER']), async (req, res) => {
+  try {
+    const { firstName, lastName, studentClass, subjectIds } = req.body;
+    const student = await Student.findByPk(req.params.id);
+    if (!student) return res.status(404).send({ error: 'Student not found' });
+
+    await student.update({ firstName, lastName, studentClass });
+    
+    if (subjectIds) {
+      await student.setSubjects(subjectIds);
+    }
+
+    res.send(student);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+// Delete student (Admin only)
+router.delete('/:id', auth, authorize(['ADMIN']), async (req, res) => {
+  try {
+    const student = await Student.findByPk(req.params.id);
+    if (!student) return res.status(404).send({ error: 'Student not found' });
+    
+    // Also delete the associated parent account
+    if (student.parentId) {
+      await User.destroy({ where: { id: student.parentId } });
+    }
+    
+    await student.destroy();
+    res.send({ message: 'Student and parent account deleted' });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+// Update subject (Admin only)
+router.patch('/subjects/:id', auth, authorize(['ADMIN']), async (req, res) => {
+  try {
+    const { name, category, level } = req.body;
+    const subject = await Subject.findByPk(req.params.id);
+    if (!subject) return res.status(404).send({ error: 'Subject not found' });
+
+    await subject.update({ name, category, level });
+    res.send(subject);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+// Delete subject (Admin only)
+router.delete('/subjects/:id', auth, authorize(['ADMIN']), async (req, res) => {
+  try {
+    const subject = await Subject.findByPk(req.params.id);
+    if (!subject) return res.status(404).send({ error: 'Subject not found' });
+
+    await subject.destroy();
+    res.send({ message: 'Subject deleted' });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 module.exports = router;

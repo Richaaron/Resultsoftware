@@ -17,14 +17,25 @@ const Result = sequelize.define('Result', {
     type: DataTypes.STRING, // e.g., 2025/2026
     allowNull: false
   },
-  testScore: {
-    type: DataTypes.FLOAT
+  ca1Score: {
+    type: DataTypes.FLOAT,
+    defaultValue: 0
+  },
+  ca2Score: {
+    type: DataTypes.FLOAT,
+    defaultValue: 0
   },
   examScore: {
-    type: DataTypes.FLOAT
+    type: DataTypes.FLOAT,
+    defaultValue: 0
   },
   totalScore: {
-    type: DataTypes.FLOAT
+    type: DataTypes.FLOAT,
+    defaultValue: 0
+  },
+  averageScore: {
+    type: DataTypes.FLOAT,
+    defaultValue: 0
   },
   grade: {
     type: DataTypes.STRING
@@ -35,6 +46,8 @@ const Result = sequelize.define('Result', {
 });
 
 Result.belongsTo(Student);
+Student.hasMany(Result);
 Result.belongsTo(Subject);
+Subject.hasMany(Result);
 
 module.exports = Result;

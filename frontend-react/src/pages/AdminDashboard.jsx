@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import api from '../api';
-import { Users, BookOpen, LogOut, LayoutDashboard, Sparkles, GraduationCap, ClipboardCheck, UserCircle, UserPlus, CheckCircle, Eye, EyeOff, ChevronUp, Trash2, Edit3, Plus, X } from 'lucide-react';
+import { Users, BookOpen, LogOut, LayoutDashboard, Sparkles, GraduationCap, ClipboardCheck, UserCircle, UserPlus, CheckCircle, Eye, EyeOff, ChevronUp, Trash2, Edit3, Plus, X, FileSpreadsheet, Search } from 'lucide-react';
 import AcademicBackground from '../components/AcademicBackground';
 
 const AdminDashboard = () => {
@@ -59,6 +59,10 @@ const AdminDashboard = () => {
           <Link to="/admin/teachers" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-black uppercase tracking-tight dark:text-slate-300 dark:hover:text-white">
             <UserCircle className="mr-3 text-black dark:text-slate-300" size={20} /> 
             <span>Educators</span>
+          </Link>
+          <Link to="/broadsheet" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight dark:text-slate-300 dark:hover:text-white">
+            <FileSpreadsheet className="mr-3 text-black dark:text-slate-300" size={20} /> 
+            <span>Broadsheet</span>
           </Link>
         </nav>
         
@@ -177,6 +181,10 @@ const AdminOverview = () => {
             <UserCircle size={24} />
             Manage Educators
           </Link>
+          <Link to="/broadsheet" className="btn-cartoon-accent bg-accent-gold text-xl py-6 flex items-center justify-center gap-3 border-4 border-black shadow-cartoon-sm">
+            <FileSpreadsheet size={24} />
+            Class Broadsheet
+          </Link>
         </div>
       </div>
     </div>
@@ -185,19 +193,53 @@ const AdminOverview = () => {
 
 const StudentList = () => {
   const [students, setStudents] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterClass, setFilterClass] = useState('');
+
+  const classes = [
+    'Pre-Nursery', 'Nursery 1', 'Nursery 2',
+    'Primary 1', 'Primary 2', 'Primary 3', 'Primary 4', 'Primary 5', 'Primary 6',
+    'JSS 1', 'JSS 2', 'JSS 3',
+    'SSS 1', 'SSS 2', 'SSS 3'
+  ];
+
   useEffect(() => {
     api.get('/students').then(res => setStudents(res.data));
   }, []);
 
+  const filteredStudents = students.filter(s => {
+    const matchesSearch = `${s.firstName} ${s.lastName} ${s.registrationNumber}`.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesClass = filterClass === '' || s.studentClass === filterClass;
+    return matchesSearch && matchesClass;
+  });
+
   return (
     <div className="cartoon-card p-10 bg-white dark:bg-slate-900">
-      <div className="flex justify-between items-end mb-10 border-b-4 border-black pb-8">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b-4 border-black pb-8 gap-6">
         <div>
           <h2 className="text-4xl font-black text-black dark:text-white uppercase italic tracking-tighter text-3d mb-2">The Squad Roster 📜</h2>
           <p className="text-xl font-black text-accent-red uppercase tracking-tight">Behold the future legends!</p>
         </div>
-        <div className="w-16 h-16 bg-accent-gold border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm -rotate-6">
-          <GraduationCap size={32} className="text-black" />
+        
+        <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+          <div className="relative flex-1 sm:w-64">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+            <input 
+              type="text" 
+              placeholder="Search name or ID..."
+              className="input-cartoon pl-12 py-3 text-sm"
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+            />
+          </div>
+          <select 
+            className="input-cartoon py-3 text-sm sm:w-48 appearance-none"
+            value={filterClass}
+            onChange={e => setFilterClass(e.target.value)}
+          >
+            <option value="">All Classes</option>
+            {classes.map(c => <option key={c} value={c}>{c}</option>)}
+          </select>
         </div>
       </div>
 
@@ -205,31 +247,48 @@ const StudentList = () => {
         <table className="w-full">
           <thead>
             <tr className="text-left border-b-4 border-black">
+              <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm">Superstar</th>
               <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm">ID Card</th>
-              <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm">Legend Name</th>
-              <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm">Squad/Class</th>
-              <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm text-right">Magic</th>
+              <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm">Class</th>
+              <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm text-right">Action</th>
             </tr>
           </thead>
           <tbody className="divide-y-2 divide-black/10">
-            {students.map(s => (
-              <tr key={s.id} className="group hover:bg-accent-red/5 transition-colors">
-                <td className="py-6 font-mono font-black text-accent-red text-sm uppercase tracking-tighter">{s.registrationNumber}</td>
-                <td className="py-6 font-black text-xl text-black dark:text-white uppercase tracking-tight">{s.firstName} {s.lastName}</td>
+            {filteredStudents.map(s => (
+              <tr key={s.id} className="group hover:bg-accent-gold/5 transition-colors">
                 <td className="py-6">
-                  <span className="bg-black text-accent-gold px-3 py-1 rounded-lg font-black uppercase text-xs tracking-widest border-2 border-accent-gold">
-                    {s.studentClass}
-                  </span>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-white dark:bg-slate-800 border-2 border-black rounded-xl flex items-center justify-center font-black text-black dark:text-white shadow-cartoon-sm group-hover:rotate-3 transition-transform">
+                      {s.firstName.charAt(0)}
+                    </div>
+                    <span className="font-black text-xl text-black dark:text-white uppercase tracking-tight">{s.firstName} {s.lastName}</span>
+                  </div>
+                </td>
+                <td className="py-6">
+                  <span className="font-mono font-bold text-gray-500 dark:text-slate-400">#{s.registrationNumber}</span>
+                </td>
+                <td className="py-6">
+                  <span className="bg-accent-gold border-2 border-black px-3 py-1 rounded-lg font-black uppercase text-xs tracking-widest text-black">{s.studentClass}</span>
                 </td>
                 <td className="py-6 text-right">
-                  <button className="bg-white dark:bg-slate-800 dark:text-white border-2 border-black px-4 py-2 rounded-xl font-black uppercase text-xs tracking-widest hover:bg-accent-gold hover:text-black hover:shadow-cartoon-sm transition-all">
-                    Edit ✨
-                  </button>
+                  <div className="flex justify-end gap-2">
+                    <button className="p-3 bg-white dark:bg-slate-800 border-2 border-black rounded-xl hover:bg-accent-gold transition-all shadow-cartoon-xs">
+                      <Edit3 size={18} />
+                    </button>
+                    <button className="p-3 bg-accent-red text-white border-2 border-black rounded-xl hover:scale-110 transition-all shadow-cartoon-xs">
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        {filteredStudents.length === 0 && (
+          <div className="py-20 text-center">
+            <p className="text-2xl font-black text-gray-300 uppercase italic tracking-widest">No legends found matching your quest! 🔍</p>
+          </div>
+        )}
       </div>
     </div>
   );

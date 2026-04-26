@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import api from '../api';
-import { UserPlus, FileText, CheckCircle, LogOut, LayoutDashboard, Calendar } from 'lucide-react';
+import { UserPlus, FileText, CheckCircle, LogOut, LayoutDashboard, Calendar, FileSpreadsheet } from 'lucide-react';
 import AcademicBackground from '../components/AcademicBackground';
 
 const TeacherDashboard = () => {
@@ -38,6 +38,10 @@ const TeacherDashboard = () => {
           <Link to="/teacher/record-results" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-black">
             <FileText className="mr-3" size={20} /> 
             <span>Results</span>
+          </Link>
+          <Link to="/broadsheet" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-black">
+            <FileSpreadsheet className="mr-3" size={20} /> 
+            <span>Broadsheet</span>
           </Link>
           {user?.isFormTeacher && (
             <Link to="/teacher/attendance" className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-black uppercase tracking-tight text-black">
@@ -286,7 +290,8 @@ const RecordResults = () => {
     subjectId: '',
     term: 'First',
     academicYear: '2025/2026',
-    testScore: '',
+    ca1Score: '',
+    ca2Score: '',
     examScore: '',
     remark: ''
   });
@@ -307,7 +312,7 @@ const RecordResults = () => {
     try {
       await api.post('/results', { ...formData, studentId: selectedStudent.id });
       setMessage('Result recorded successfully! 🏆');
-      setFormData({ ...formData, testScore: '', examScore: '', remark: '' });
+      setFormData({ ...formData, ca1Score: '', ca2Score: '', examScore: '', remark: '' });
     } catch (err) {
       setMessage('Error recording result ❌');
     }
@@ -381,31 +386,44 @@ const RecordResults = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div className="space-y-3">
-              <label className="text-lg font-black text-black uppercase tracking-tight text-3d">Class Work (30)</label>
+              <label className="text-lg font-black text-black uppercase tracking-tight text-3d">1st CA (20)</label>
               <div className="relative">
                 <input 
-                  type="number" max="30"
+                  type="number" max="20"
                   className="input-cartoon text-2xl"
                   placeholder="0"
-                  value={formData.testScore}
-                  onChange={e => setFormData({...formData, testScore: parseFloat(e.target.value)})}
+                  value={formData.ca1Score}
+                  onChange={e => setFormData({...formData, ca1Score: parseFloat(e.target.value) || ''})}
                 />
-                <span className="absolute right-6 top-1/2 -translate-y-1/2 text-xs font-black text-gray-400 uppercase tracking-widest">Max 30</span>
+                <span className="absolute right-6 top-1/2 -translate-y-1/2 text-xs font-black text-gray-400 uppercase tracking-widest">Max 20</span>
               </div>
             </div>
             <div className="space-y-3">
-              <label className="text-lg font-black text-black uppercase tracking-tight text-3d">Big Exam (70)</label>
+              <label className="text-lg font-black text-black uppercase tracking-tight text-3d">2nd CA (20)</label>
               <div className="relative">
                 <input 
-                  type="number" max="70"
+                  type="number" max="20"
+                  className="input-cartoon text-2xl"
+                  placeholder="0"
+                  value={formData.ca2Score}
+                  onChange={e => setFormData({...formData, ca2Score: parseFloat(e.target.value) || ''})}
+                />
+                <span className="absolute right-6 top-1/2 -translate-y-1/2 text-xs font-black text-gray-400 uppercase tracking-widest">Max 20</span>
+              </div>
+            </div>
+            <div className="space-y-3">
+              <label className="text-lg font-black text-black uppercase tracking-tight text-3d">Exam (60)</label>
+              <div className="relative">
+                <input 
+                  type="number" max="60"
                   className="input-cartoon text-2xl"
                   placeholder="0"
                   value={formData.examScore}
-                  onChange={e => setFormData({...formData, examScore: parseFloat(e.target.value)})}
+                  onChange={e => setFormData({...formData, examScore: parseFloat(e.target.value) || ''})}
                 />
-                <span className="absolute right-6 top-1/2 -translate-y-1/2 text-xs font-black text-gray-400 uppercase tracking-widest">Max 70</span>
+                <span className="absolute right-6 top-1/2 -translate-y-1/2 text-xs font-black text-gray-400 uppercase tracking-widest">Max 60</span>
               </div>
             </div>
           </div>

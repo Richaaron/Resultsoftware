@@ -7,19 +7,22 @@ const Subject = require('../models/Subject');
 
 router.post('/', auth, authorize(['ADMIN', 'TEACHER']), async (req, res) => {
   try {
-    const { studentId, subjectId, term, academicYear, testScore, examScore, remark } = req.body;
+    const { studentId, subjectId, term, academicYear, ca1Score, ca2Score, examScore, remark } = req.body;
     
-    const totalScore = (testScore || 0) + (examScore || 0);
+    const ca1 = parseFloat(ca1Score) || 0;
+    const ca2 = parseFloat(ca2Score) || 0;
+    const exam = parseFloat(examScore) || 0;
+    
+    const totalScore = ca1 + ca2 + exam;
+    const averageScore = totalScore / 3; // Average of CA1, CA2, and Exam
+
     const calculateGrade = (total) => {
-      if (total >= 75) return "A1";
-      if (total >= 70) return "B2";
-      if (total >= 65) return "B3";
-      if (total >= 60) return "C4";
-      if (total >= 55) return "C5";
-      if (total >= 50) return "C6";
-      if (total >= 45) return "D7";
-      if (total >= 40) return "E8";
-      return "F9";
+      if (total >= 70) return "A";
+      if (total >= 60) return "B";
+      if (total >= 50) return "C";
+      if (total >= 45) return "D";
+      if (total >= 40) return "E";
+      return "F";
     };
 
     const result = await Result.create({
@@ -27,9 +30,11 @@ router.post('/', auth, authorize(['ADMIN', 'TEACHER']), async (req, res) => {
       SubjectId: subjectId,
       term,
       academicYear,
-      testScore,
-      examScore,
+      ca1Score: ca1,
+      ca2Score: ca2,
+      examScore: exam,
       totalScore,
+      averageScore,
       grade: calculateGrade(totalScore),
       remark
     });
@@ -55,6 +60,33 @@ router.get('/student/:studentId', auth, async (req, res) => {
       include: [Subject]
     });
     res.send(results);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.get('/broadsheet', auth, authorize(['ADMIN', 'TEACHER']), async (req, res) => {
+  try {
+    const { studentClass, term, academicYear } = req.query;
+
+    if (!studentClass || !term || !academicYear) {
+      return res.status(400).send({ error: 'Class, term, and academic year are required' });
+    }
+
+    const students = await Student.findAll({
+      where: { studentClass },
+      include: [
+        {
+          model: Result,
+          where: { term, academicYear },
+          required: false,
+          include: [Subject]
+        }
+      ],
+      order: [['lastName', 'ASC'], ['firstName', 'ASC']]
+    });
+
+    res.send(students);
   } catch (error) {
     res.status(500).send(error);
   }

@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 import TeacherDashboard from './pages/TeacherDashboard';
 import ParentDashboard from './pages/ParentDashboard';
+import Broadsheet from './pages/Broadsheet';
 
 const PrivateRoute = ({ children, roles }) => {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -47,6 +48,14 @@ function App() {
             element={
               <PrivateRoute roles={['PARENT']}>
                 <ParentDashboard />
+              </PrivateRoute>
+            } 
+          />
+          <Route 
+            path="/broadsheet" 
+            element={
+              <PrivateRoute roles={['ADMIN', 'TEACHER']}>
+                <Broadsheet />
               </PrivateRoute>
             } 
           />

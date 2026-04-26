@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
-import { LogOut, User, FileText, Calendar, Star, Trophy, Target } from 'lucide-react';
+import { LogOut, User, FileText, Calendar, Star, Trophy, Target, Download } from 'lucide-react';
 import AcademicBackground from '../components/AcademicBackground';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 const ParentDashboard = () => {
   const navigate = useNavigate();
@@ -25,6 +27,74 @@ const ParentDashboard = () => {
     const attendanceRes = await api.get(`/attendance/student/${child.id}`);
     setResults(resultsRes.data);
     setAttendance(attendanceRes.data);
+  };
+
+  const generateReportCard = () => {
+    if (!selectedChild || results.length === 0) return;
+
+    const doc = new jsPDF();
+    
+    // Add School Header
+    doc.setFontSize(22);
+    doc.setTextColor(0, 0, 0);
+    doc.text("THE ACADEMY", 105, 20, { align: "center" });
+    doc.setFontSize(10);
+    doc.text("Inspiring Excellence, Discovery & Growth", 105, 28, { align: "center" });
+    
+    doc.setLineWidth(1);
+    doc.line(20, 35, 190, 35);
+
+    // Student Info
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.text(`Student: ${selectedChild.lastName} ${selectedChild.firstName}`, 20, 45);
+    doc.text(`Reg No: ${selectedChild.registrationNumber}`, 20, 52);
+    doc.text(`Class: ${selectedChild.studentClass}`, 140, 45);
+    doc.text(`Academic Year: ${results[0]?.academicYear || '2025/2026'}`, 140, 52);
+
+    // Results Table
+    const tableRows = results.map(r => [
+      r.Subject?.name,
+      r.ca1Score,
+      r.ca2Score,
+      r.examScore,
+      r.totalScore,
+      r.grade,
+      r.remark
+    ]);
+
+    doc.autoTable({
+      startY: 60,
+      head: [['Subject', 'CA 1 (20)', 'CA 2 (20)', 'Exam (60)', 'Total (100)', 'Grade', 'Remark']],
+      body: tableRows,
+      theme: 'grid',
+      headStyles: { fillColor: [0, 0, 0], textColor: [255, 255, 255], fontStyle: 'bold' },
+      styles: { fontSize: 9 },
+      columnStyles: {
+        0: { cellWidth: 40 },
+        4: { fontStyle: 'bold' },
+        5: { fontStyle: 'bold' }
+      }
+    });
+
+    // Summary
+    const totalScore = results.reduce((acc, curr) => acc + curr.totalScore, 0);
+    const avgScore = (totalScore / results.length).toFixed(2);
+    const finalY = doc.lastAutoTable.finalY + 15;
+
+    doc.setFontSize(11);
+    doc.text(`Total Subjects: ${results.length}`, 20, finalY);
+    doc.text(`Total Score: ${totalScore}`, 20, finalY + 7);
+    doc.text(`Average Score: ${avgScore}%`, 140, finalY + 7);
+
+    // Signature Area
+    doc.line(20, finalY + 30, 80, finalY + 30);
+    doc.text("Class Teacher", 40, finalY + 35, { align: "center" });
+    
+    doc.line(130, finalY + 30, 190, finalY + 30);
+    doc.text("Principal", 160, finalY + 35, { align: "center" });
+
+    doc.save(`${selectedChild.firstName}_Report_Card.pdf`);
   };
 
   const handleLogout = () => {
@@ -136,7 +206,13 @@ const ParentDashboard = () => {
                       <h3 className="text-2xl font-black text-black uppercase italic tracking-tighter text-3d flex items-center gap-3">
                         <Trophy className="text-accent-gold" size={28} /> Achievement!
                       </h3>
-                      <button className="text-xs font-black text-accent-red hover:underline uppercase tracking-widest">Print 🖨️</button>
+                      <button 
+                        onClick={generateReportCard}
+                        disabled={results.length === 0}
+                        className="text-xs font-black text-accent-red hover:underline uppercase tracking-widest flex items-center gap-1 disabled:opacity-30"
+                      >
+                        Download PDF 📥
+                      </button>
                     </div>
                     <div className="space-y-6">
                       {results.length > 0 ? results.map(r => (
@@ -155,15 +231,23 @@ const ParentDashboard = () => {
                               <span className="text-2xl font-black leading-none">{r.grade}</span>
                             </div>
                           </div>
-                          <div className="flex items-center gap-4 mt-2">
-                            <div className="flex-1 h-4 bg-white border-2 border-black rounded-full overflow-hidden">
-                              <div 
-                                className={`h-full rounded-full border-r-2 border-black transition-all duration-1000 ${r.totalScore >= 50 ? 'bg-accent-gold' : 'bg-accent-red'}`}
-                                style={{ width: `${r.totalScore}%` }}
-                              ></div>
+                            <div className="flex-1 space-y-2">
+                              <div className="flex justify-between items-center text-xs font-black uppercase tracking-widest text-black/40">
+                                <span>CA1: {r.ca1Score}</span>
+                                <span>CA2: {r.ca2Score}</span>
+                                <span>Exam: {r.examScore}</span>
+                              </div>
+                              <div className="h-4 bg-white border-2 border-black rounded-full overflow-hidden">
+                                <div 
+                                  className={`h-full rounded-full border-r-2 border-black transition-all duration-1000 ${r.totalScore >= 50 ? 'bg-accent-gold' : 'bg-accent-red'}`}
+                                  style={{ width: `${r.totalScore}%` }}
+                                ></div>
+                              </div>
+                              <div className="flex justify-between items-center">
+                                <span className="text-xs font-black text-black/40 uppercase tracking-widest">Avg: {r.averageScore?.toFixed(1)}</span>
+                                <span className="text-lg font-black text-black italic">Total: {r.totalScore}%</span>
+                              </div>
                             </div>
-                            <span className="text-lg font-black text-black italic">{r.totalScore}%</span>
-                          </div>
                         </div>
                       )) : (
                         <div className="py-16 text-center">
