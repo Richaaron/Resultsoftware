@@ -3,30 +3,12 @@
   "version": "1.0.0",
   "description": "Result Software - Student Result Management System",
   "private": true,
-  "workspaces": [
-    "backend",
-    "frontend-react"
-  ],
   "engines": {
     "node": "24.x"
   },
   "scripts": {
-    "install-all": "npm install && cd backend && npm install && cd ../frontend-react && npm install",
-    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend-react && npm run dev\"",
-    "build": "cd frontend-react && npm run build",
-    "build:backend": "cd backend && npm run build",
-    "build:frontend": "cd frontend-react && npm run build"
-  },
-  "dependencies": {
-    "bcryptjs": "^3.0.3",
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
-    "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3",
-    "pg": "^8.11.3",
-    "pg-hstore": "^2.3.4",
-    "sequelize": "^6.37.8",
-    "serverless-http": "^3.2.0"
+    "dev": "npm --prefix backend run dev & npm --prefix frontend-react run dev",
+    "build": "npm --prefix frontend-react run build"
   },
   "devDependencies": {
     "concurrently": "^8.2.0"
