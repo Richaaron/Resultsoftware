@@ -8,6 +8,11 @@ echo "Installing frontend dependencies..."
 cd frontend-react && npm ci && cd ..
 
 echo "Building frontend..."
-cd frontend-react && npm run build && cd ..
+cd frontend-react && npm run build 2>&1 || (echo "Build failed!" && exit 1) && cd ..
 
-echo "Build complete!"
+if [ ! -d "frontend-react/dist" ]; then
+  echo "Error: frontend-react/dist directory does not exist after build!"
+  exit 1
+fi
+
+echo "Build complete! dist directory created successfully."
