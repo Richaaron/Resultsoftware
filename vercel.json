@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "buildCommand": "npm install && cd frontend-react && npm run build",
+  "buildCommand": "npm install && npm --prefix backend install && npm --prefix frontend-react run build",
   "outputDirectory": "frontend-react/dist",
   "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "api/index.js"
+    },
     {
       "src": "/[^.]+$",
       "dest": "frontend-react/dist/index.html"
@@ -13,8 +17,9 @@
     }
   ],
   "env": {
-    "DATABASE_URL": "Supabase PostgreSQL connection string",
-    "JWT_SECRET": "Secret key for JWT token signing",
-    "FRONTEND_URL": "Frontend URL for CORS"
+    "DATABASE_URL": "@database_url",
+    "JWT_SECRET": "@jwt_secret",
+    "FRONTEND_URL": "@frontend_url",
+    "NODE_ENV": "production"
   }
 }
