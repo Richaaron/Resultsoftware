@@ -72,27 +72,45 @@ const seedData = async () => {
   try {
     // Ensure admin user exists with correct password
     const hashedAdminPassword = await bcrypt.hash('admin123', 8);
-    await User.upsert({
-      username: 'admin',
-      password: hashedAdminPassword,
-      fullName: 'System Administrator',
-      role: 'ADMIN',
-      isFormTeacher: false,
-      isSubjectTeacher: true
-    }, { where: { username: 'admin' } });
-    console.log('Seed: Admin user ensured.');
+    const [adminUser, adminCreated] = await User.findOrCreate({
+      where: { username: 'admin' },
+      defaults: {
+        password: hashedAdminPassword,
+        fullName: 'System Administrator',
+        role: 'ADMIN',
+        isFormTeacher: false,
+        isSubjectTeacher: true
+      }
+    });
+    
+    // Update password if user already existed
+    if (!adminCreated) {
+      await adminUser.update({ password: hashedAdminPassword });
+      console.log('Seed: Admin password updated.');
+    } else {
+      console.log('Seed: Admin user created.');
+    }
 
     // Ensure teacher user exists
     const hashedTeacherPassword = await bcrypt.hash('teacher123', 8);
-    await User.upsert({
-      username: 'teacher',
-      password: hashedTeacherPassword,
-      fullName: 'John Doe',
-      role: 'TEACHER',
-      isFormTeacher: false,
-      isSubjectTeacher: true
-    }, { where: { username: 'teacher' } });
-    console.log('Seed: Teacher user ensured.');
+    const [teacherUser, teacherCreated] = await User.findOrCreate({
+      where: { username: 'teacher' },
+      defaults: {
+        password: hashedTeacherPassword,
+        fullName: 'John Doe',
+        role: 'TEACHER',
+        isFormTeacher: false,
+        isSubjectTeacher: true
+      }
+    });
+    
+    // Update password if user already existed
+    if (!teacherCreated) {
+      await teacherUser.update({ password: hashedTeacherPassword });
+      console.log('Seed: Teacher password updated.');
+    } else {
+      console.log('Seed: Teacher user created.');
+    }
 
     // Add subjects if none exist
     const subjectCount = await Subject.count();
