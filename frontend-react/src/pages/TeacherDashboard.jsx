@@ -342,6 +342,7 @@ const RegisterStudent = () => {
     lastName: "",
     registrationNumber: "",
     studentClass: "",
+    dateOfBirth: "",
     subjectIds: [],
     profileImage: null,
   });
@@ -375,6 +376,7 @@ const RegisterStudent = () => {
         lastName: "",
         registrationNumber: "",
         studentClass: "",
+        dateOfBirth: "",
         subjectIds: [],
         profileImage: null,
       });
@@ -520,6 +522,20 @@ const RegisterStudent = () => {
               required
             />
           </div>
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-lg font-black text-black uppercase tracking-tight text-3d">
+            Date of Birth 🎂
+          </label>
+          <input
+            type="date"
+            className="input-cartoon"
+            value={formData.dateOfBirth}
+            onChange={(e) =>
+              setFormData({ ...formData, dateOfBirth: e.target.value })
+            }
+          />
         </div>
 
         <div className="space-y-2">

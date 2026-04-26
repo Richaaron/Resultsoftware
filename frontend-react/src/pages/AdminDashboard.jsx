@@ -754,6 +754,7 @@ const StudentList = () => {
     lastName: "",
     registrationNumber: "",
     studentClass: "",
+    dateOfBirth: "",
     subjectIds: [],
     profileImage: null,
   });
@@ -850,6 +851,7 @@ const StudentList = () => {
         lastName: "",
         registrationNumber: "",
         studentClass: "",
+        dateOfBirth: "",
         subjectIds: [],
         profileImage: null,
       });
@@ -1179,6 +1181,22 @@ const StudentList = () => {
                       ))}
                     </select>
                   </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-black text-black dark:text-slate-300 uppercase tracking-widest">
+                      Date of Birth 🎂
+                    </label>
+                    <input
+                      type="date"
+                      className="input-cartoon w-full"
+                      value={formData.dateOfBirth}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          dateOfBirth: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
                 </div>
 
                 <div className="md:col-span-2 space-y-4">
@@ -1333,6 +1351,22 @@ const StudentList = () => {
                         </option>
                       ))}
                     </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-black text-black dark:text-slate-300 uppercase tracking-widest">
+                      Date of Birth 🎂
+                    </label>
+                    <input
+                      type="date"
+                      className="input-cartoon w-full"
+                      value={editingStudent.dateOfBirth || ""}
+                      onChange={(e) =>
+                        setEditingStudent({
+                          ...editingStudent,
+                          dateOfBirth: e.target.value,
+                        })
+                      }
+                    />
                   </div>
                 </div>
 
