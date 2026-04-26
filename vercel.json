@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "buildCommand": "npm install && cd backend && npm install && cd ../frontend-react && npm install && npm run build",
+  "outputDirectory": "frontend-react/dist",
   "builds": [
     {
       "src": "backend/server.js",
@@ -7,14 +9,6 @@
       "config": {
         "zeroConfig": true,
         "includeFiles": "backend/**"
-      }
-    },
-    {
-      "src": "frontend-react/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "outputDirectory": "frontend-react/dist",
-        "buildCommand": "npm run build"
       }
     }
   ],
