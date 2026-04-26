@@ -63,6 +63,22 @@ app.post('/api/init', async (req, res) => {
   }
 });
 
+// Debug endpoint - check database users
+app.get('/api/debug/users', async (req, res) => {
+  try {
+    const users = await User.findAll({ 
+      attributes: ['id', 'username', 'fullName', 'role', 'createdAt']
+    });
+    res.json({ 
+      count: users.length, 
+      users: users,
+      dbInitialized: dbInitialized
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 const PORT = process.env.PORT || 5000;
 
 // Database initialization flag
