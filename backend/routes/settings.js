@@ -1,52 +1,106 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Setting = require('../models/Setting');
-const User = require('../models/User');
-const bcrypt = require('bcryptjs');
-const { auth, authorize } = require('../middleware/auth');
+const Setting = require("../models/Setting");
+const User = require("../models/User");
+const bcrypt = require("bcryptjs");
+const { auth, authorize } = require("../middleware/auth");
 
 // Get current settings
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     let settings = await Setting.findOne();
     if (!settings) {
       settings = await Setting.create({});
     }
-    res.json(settings);
+    res.json({
+      id: settings.id,
+      schoolName: settings.schoolName,
+      logo: settings.logo,
+      primaryColor: settings.primaryColor,
+      secondaryColor: settings.secondaryColor,
+      principalName: settings.principalName,
+      schoolAddress: settings.schoolAddress,
+      currentTerm: settings.currentTerm,
+      currentAcademicYear: settings.currentAcademicYear,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
 // Update settings
-router.put('/', auth, authorize(['ADMIN']), async (req, res) => {
+router.put("/", auth, authorize(["ADMIN"]), async (req, res) => {
   try {
+    const {
+      schoolName,
+      logo,
+      primaryColor,
+      secondaryColor,
+      principalName,
+      schoolAddress,
+      currentTerm,
+      currentAcademicYear,
+    } = req.body;
+
     let settings = await Setting.findOne();
     if (!settings) {
-      settings = await Setting.create(req.body);
+      settings = await Setting.create({
+        schoolName,
+        logo,
+        primaryColor,
+        secondaryColor,
+        principalName,
+        schoolAddress,
+        currentTerm,
+        currentAcademicYear,
+      });
     } else {
-      await settings.update(req.body);
+      await settings.update({
+        ...(schoolName !== undefined && { schoolName }),
+        ...(logo !== undefined && { logo }),
+        ...(primaryColor !== undefined && { primaryColor }),
+        ...(secondaryColor !== undefined && { secondaryColor }),
+        ...(principalName !== undefined && { principalName }),
+        ...(schoolAddress !== undefined && { schoolAddress }),
+        ...(currentTerm !== undefined && { currentTerm }),
+        ...(currentAcademicYear !== undefined && { currentAcademicYear }),
+      });
     }
-    res.json(settings);
+
+    res.json({
+      id: settings.id,
+      schoolName: settings.schoolName,
+      logo: settings.logo,
+      primaryColor: settings.primaryColor,
+      secondaryColor: settings.secondaryColor,
+      principalName: settings.principalName,
+      schoolAddress: settings.schoolAddress,
+      currentTerm: settings.currentTerm,
+      currentAcademicYear: settings.currentAcademicYear,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
 // Change admin password
-router.put('/change-password', auth, authorize(['ADMIN']), async (req, res) => {
+router.put("/change-password", auth, authorize(["ADMIN"]), async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
     const user = await User.findByPk(req.user.id);
 
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
     const isMatch = await bcrypt.compare(currentPassword, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: 'Current password incorrect' });
+      return res.status(400).json({ message: "Current password incorrect" });
     }
 
     user.password = await bcrypt.hash(newPassword, 8);
     await user.save();
-    res.json({ message: 'Password updated successfully' });
+    res.json({ message: "Password updated successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

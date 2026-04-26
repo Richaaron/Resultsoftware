@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Routes, Route, Link, NavLink, useNavigate } from "react-router-dom";
 import api from "../api";
 import {
   Users,
@@ -60,7 +60,7 @@ const AdminDashboard = () => {
     <div className="flex h-screen bg-[#0f172a] relative overflow-hidden transition-colors duration-300">
       <AcademicBackground />
       {/* Sidebar */}
-      <div className="w-72 bg-slate-900 border-r-4 border-black p-8 flex flex-col shadow-cartoon relative z-10 transition-colors">
+      <div className="w-72 bg-slate-900 border-r-4 border-black p-8 flex flex-col shadow-cartoon relative z-10 transition-colors overflow-y-auto">
         <div className="flex items-center gap-3 mb-12">
           <div className="w-12 h-12 bg-accent-gold border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm transform -rotate-3">
             <LayoutDashboard size={24} className="text-black" />
@@ -69,49 +69,62 @@ const AdminDashboard = () => {
             Admin <span className="text-accent-red">Hub</span>
           </h2>
         </div>
-        <nav className="flex-1 space-y-4">
-          <Link
+        <nav className="space-y-4">
+          <NavLink
             to="/admin"
-            className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-white"
+            end
+            className={({ isActive }) =>
+              `flex items-center p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+            }
           >
             <LayoutDashboard className="mr-3" size={20} />
             <span>Control Room</span>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/admin/students"
-            className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-black uppercase tracking-tight text-white"
+            className={({ isActive }) =>
+              `flex items-center p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white ${isActive ? "border-black bg-accent-red/30" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
+            }
           >
             <Users className="mr-3" size={20} />
             <span>The Squad</span>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/admin/subjects"
-            className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-white"
+            className={({ isActive }) =>
+              `flex items-center p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+            }
           >
             <BookOpen className="mr-3" size={20} />
             <span>Knowledge</span>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/admin/teachers"
-            className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-black uppercase tracking-tight text-white"
+            className={({ isActive }) =>
+              `flex items-center p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white ${isActive ? "border-black bg-accent-red/30" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
+            }
           >
             <UserCircle className="mr-3" size={20} />
             <span>Educators</span>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/broadsheet"
-            className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-white"
+            className={({ isActive }) =>
+              `flex items-center p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+            }
           >
             <FileSpreadsheet className="mr-3" size={20} />
             <span>Broadsheet</span>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/admin/settings"
-            className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-black uppercase tracking-tight text-white"
+            className={({ isActive }) =>
+              `flex items-center p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white ${isActive ? "border-black bg-accent-red/30" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
+            }
           >
             <Settings className="mr-3" size={20} />
             <span>Settings</span>
-          </Link>
+          </NavLink>
         </nav>
 
         {/* Scroll to Top Button */}
@@ -133,7 +146,7 @@ const AdminDashboard = () => {
         {/* Logout Button */}
         <button
           onClick={handleLogout}
-          className={`flex items-center p-4 rounded-2xl border-4 border-black bg-accent-red shadow-cartoon-sm hover:-translate-y-1 transition-all group ${showScrollTop ? "" : "mt-auto"}`}
+          className="flex items-center p-4 rounded-2xl border-4 border-black bg-accent-red shadow-cartoon-sm hover:-translate-y-1 transition-all group mt-4"
         >
           <LogOut
             size={20}
@@ -191,6 +204,10 @@ const AdminSettings = () => {
     logo: "",
     primaryColor: "#fbbf24",
     secondaryColor: "#ef4444",
+    principalName: "",
+    schoolAddress: "",
+    currentTerm: "First",
+    currentAcademicYear: "",
   });
   const [passwordData, setPasswordData] = useState({
     currentPassword: "",
@@ -207,7 +224,17 @@ const AdminSettings = () => {
   const fetchSettings = async () => {
     try {
       const res = await api.get("/settings");
-      setSettings(res.data);
+      setSettings({
+        schoolName: "",
+        logo: "",
+        primaryColor: "#fbbf24",
+        secondaryColor: "#ef4444",
+        principalName: "",
+        schoolAddress: "",
+        currentTerm: "First",
+        currentAcademicYear: "",
+        ...res.data,
+      });
     } catch (err) {
       console.error("Error fetching settings:", err);
     }
@@ -216,7 +243,16 @@ const AdminSettings = () => {
   const handleUpdateSettings = async (e) => {
     e.preventDefault();
     try {
-      await api.put("/settings", settings);
+      await api.put("/settings", {
+        schoolName: settings.schoolName,
+        logo: settings.logo,
+        primaryColor: settings.primaryColor,
+        secondaryColor: settings.secondaryColor,
+        principalName: settings.principalName,
+        schoolAddress: settings.schoolAddress,
+        currentTerm: settings.currentTerm,
+        currentAcademicYear: settings.currentAcademicYear,
+      });
 
       // Apply colors immediately
       document.documentElement.style.setProperty(
@@ -327,6 +363,72 @@ const AdminSettings = () => {
                   setSettings({ ...settings, schoolName: e.target.value })
                 }
               />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+                Principal Name
+              </label>
+              <input
+                type="text"
+                className="input-cartoon"
+                placeholder="e.g. Mr. John Smith"
+                value={settings.principalName}
+                onChange={(e) =>
+                  setSettings({ ...settings, principalName: e.target.value })
+                }
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+                School Address
+              </label>
+              <input
+                type="text"
+                className="input-cartoon"
+                placeholder="e.g. 123 Academy Road, Lagos"
+                value={settings.schoolAddress}
+                onChange={(e) =>
+                  setSettings({ ...settings, schoolAddress: e.target.value })
+                }
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+                  Current Term
+                </label>
+                <select
+                  className="input-cartoon"
+                  value={settings.currentTerm}
+                  onChange={(e) =>
+                    setSettings({ ...settings, currentTerm: e.target.value })
+                  }
+                >
+                  <option value="First">First Term</option>
+                  <option value="Second">Second Term</option>
+                  <option value="Third">Third Term</option>
+                </select>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+                  Academic Year
+                </label>
+                <input
+                  type="text"
+                  className="input-cartoon"
+                  placeholder="e.g. 2024/2025"
+                  value={settings.currentAcademicYear}
+                  onChange={(e) =>
+                    setSettings({
+                      ...settings,
+                      currentAcademicYear: e.target.value,
+                    })
+                  }
+                />
+              </div>
             </div>
 
             <div className="space-y-2">
@@ -527,7 +629,7 @@ const AdminOverview = () => {
 
   return (
     <div className="space-y-10">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         <div className="cartoon-card p-8 cartoon-card-hover group bg-accent-gold/20 dark:bg-accent-gold/10">
           <div className="w-14 h-14 bg-white dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
             <Users size={28} className="text-black dark:text-white" />
@@ -555,6 +657,21 @@ const AdminOverview = () => {
           </p>
           <div className="mt-4 inline-flex items-center px-3 py-1 bg-white dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
             Subjects 📚
+          </div>
+        </div>
+
+        <div className="cartoon-card p-8 cartoon-card-hover group bg-accent-gold/20 dark:bg-accent-gold/10">
+          <div className="w-14 h-14 bg-white dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
+            <UserCircle size={28} className="text-black dark:text-white" />
+          </div>
+          <h3 className="text-black dark:text-slate-300 uppercase text-sm font-black tracking-widest mb-2 italic">
+            Educators
+          </h3>
+          <p className="text-6xl font-black text-black dark:text-white tracking-tighter text-3d-lg">
+            {stats.teacherCount}
+          </p>
+          <div className="mt-4 inline-flex items-center px-3 py-1 bg-white dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
+            Teachers 🍎
           </div>
         </div>
 
@@ -627,6 +744,11 @@ const StudentList = () => {
   const [subjects, setSubjects] = useState([]);
   const [message, setMessage] = useState("");
   const [parentCreds, setParentCreds] = useState(null);
+  const [confirmDelete, setConfirmDelete] = useState({
+    show: false,
+    id: null,
+    type: "",
+  });
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -762,13 +884,11 @@ const StudentList = () => {
     }
   };
 
-  const handleDeleteStudent = async (id) => {
-    if (
-      !window.confirm(
-        "Are you sure you want to remove this legend from the squad? 🚀",
-      )
-    )
-      return;
+  const handleDeleteStudent = (id) => {
+    setConfirmDelete({ show: true, id, type: "student" });
+  };
+
+  const executeDeleteStudent = async (id) => {
     try {
       await api.delete(`/students/${id}`);
       setMessage("Legend removed! 👋");
@@ -789,6 +909,44 @@ const StudentList = () => {
 
   return (
     <div className="cartoon-card p-10 bg-white dark:bg-slate-900">
+      {/* Confirm Delete Modal */}
+      {confirmDelete.show && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
+          <div className="cartoon-card bg-white dark:bg-slate-900 border-4 border-black shadow-cartoon p-8 w-full max-w-sm mx-4 rounded-3xl">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 bg-accent-red border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm">
+                <Trash2 size={22} className="text-white" />
+              </div>
+              <h3 className="text-xl font-black text-black dark:text-white uppercase italic tracking-tighter text-3d">
+                Are you sure?
+              </h3>
+            </div>
+            <p className="text-sm font-bold text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+              This will permanently remove the legend from the squad. There's no
+              undo! 💥
+            </p>
+            <div className="flex gap-4">
+              <button
+                onClick={() => {
+                  executeDeleteStudent(confirmDelete.id);
+                  setConfirmDelete({ show: false, id: null, type: "" });
+                }}
+                className="flex-1 py-3 bg-accent-red border-4 border-black rounded-2xl font-black text-white uppercase tracking-tight shadow-cartoon-sm hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
+              >
+                <Trash2 size={16} /> Confirm
+              </button>
+              <button
+                onClick={() =>
+                  setConfirmDelete({ show: false, id: null, type: "" })
+                }
+                className="flex-1 py-3 bg-white dark:bg-slate-800 border-4 border-black rounded-2xl font-black text-black dark:text-white uppercase tracking-tight shadow-cartoon-sm hover:-translate-y-1 transition-all"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b-4 border-black pb-8 gap-6">
         <div>
           <h2 className="text-4xl font-black text-black dark:text-white uppercase italic tracking-tighter text-3d mb-2">
@@ -1471,6 +1629,11 @@ export default AdminDashboard;
 
 const TeacherManagement = () => {
   const [teachers, setTeachers] = useState([]);
+  const [confirmDelete, setConfirmDelete] = useState({
+    show: false,
+    id: null,
+    type: "",
+  });
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -1602,13 +1765,11 @@ const TeacherManagement = () => {
     }
   };
 
-  const handleDelete = async (id) => {
-    if (
-      !window.confirm(
-        "Are you sure you want to eject this educator from the academy? 🚀",
-      )
-    )
-      return;
+  const handleDelete = (id) => {
+    setConfirmDelete({ show: true, id, type: "teacher" });
+  };
+
+  const executeDeleteTeacher = async (id) => {
     try {
       await api.delete(`/teachers/${id}`);
       setMessage("Educator ejected successfully! 👋");
@@ -1634,6 +1795,63 @@ const TeacherManagement = () => {
 
   return (
     <div className="space-y-10">
+      {/* Confirm Delete Modal */}
+      {confirmDelete.show && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
+          <div className="cartoon-card bg-white dark:bg-slate-900 border-4 border-black shadow-cartoon p-8 w-full max-w-sm mx-4 rounded-3xl">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 bg-accent-red border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm">
+                <Trash2 size={22} className="text-white" />
+              </div>
+              <h3 className="text-xl font-black text-black dark:text-white uppercase italic tracking-tighter text-3d">
+                Are you sure?
+              </h3>
+            </div>
+            <p className="text-sm font-bold text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+              This will permanently eject this educator from the academy. No
+              take-backs! 🚀
+            </p>
+            <div className="flex gap-4">
+              <button
+                onClick={() => {
+                  executeDeleteTeacher(confirmDelete.id);
+                  setConfirmDelete({ show: false, id: null, type: "" });
+                }}
+                className="flex-1 py-3 bg-accent-red border-4 border-black rounded-2xl font-black text-white uppercase tracking-tight shadow-cartoon-sm hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
+              >
+                <Trash2 size={16} /> Confirm
+              </button>
+              <button
+                onClick={() =>
+                  setConfirmDelete({ show: false, id: null, type: "" })
+                }
+                className="flex-1 py-3 bg-white dark:bg-slate-800 border-4 border-black rounded-2xl font-black text-black dark:text-white uppercase tracking-tight shadow-cartoon-sm hover:-translate-y-1 transition-all"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Teacher Count Banner */}
+      <div className="flex items-center gap-4 px-6 py-4 bg-accent-gold/20 border-4 border-black rounded-2xl shadow-cartoon-sm">
+        <div className="w-10 h-10 bg-accent-gold border-4 border-black rounded-xl flex items-center justify-center shadow-cartoon-sm">
+          <UserCircle size={20} className="text-black" />
+        </div>
+        <div>
+          <p className="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+            Total Educators on Roster
+          </p>
+          <p className="text-2xl font-black text-black dark:text-white tracking-tighter text-3d">
+            {teachers.length}{" "}
+            <span className="text-base font-bold text-accent-red uppercase tracking-tight">
+              Teacher{teachers.length !== 1 ? "s" : ""}
+            </span>
+          </p>
+        </div>
+      </div>
+
       <div className="cartoon-card p-10 bg-white dark:bg-slate-900">
         <h2 className="text-3xl font-black text-black dark:text-white mb-8 uppercase italic tracking-tighter text-3d">
           Hire New Educator! 🍎

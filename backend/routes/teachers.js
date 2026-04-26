@@ -1,21 +1,29 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const bcrypt = require('bcryptjs');
-const { auth, authorize } = require('../middleware/auth');
-const User = require('../models/User');
+const bcrypt = require("bcryptjs");
+const { auth, authorize } = require("../middleware/auth");
+const User = require("../models/User");
 
 // Register a new teacher (Admin only)
-router.post('/register', auth, authorize(['ADMIN']), async (req, res) => {
+router.post("/register", auth, authorize(["ADMIN"]), async (req, res) => {
   try {
-    const { fullName, email, isFormTeacher, isSubjectTeacher, assignedClass, assignedSubject, profileImage } = req.body;
+    const {
+      fullName,
+      email,
+      isFormTeacher,
+      isSubjectTeacher,
+      assignedClass,
+      assignedSubject,
+      profileImage,
+    } = req.body;
 
     // Handle multiple subjects if provided as array
-    const formattedSubject = Array.isArray(assignedSubject) 
-      ? assignedSubject.join(', ') 
+    const formattedSubject = Array.isArray(assignedSubject)
+      ? assignedSubject.join(", ")
       : assignedSubject;
 
     // Generate username from full name (lowercase, no spaces) + random suffix
-    const baseUsername = fullName.toLowerCase().replace(/\s+/g, '');
+    const baseUsername = fullName.toLowerCase().replace(/\s+/g, "");
     const randomSuffix = Math.floor(1000 + Math.random() * 9000);
     const username = `teacher_${baseUsername}${randomSuffix}`;
 
@@ -27,13 +35,13 @@ router.post('/register', auth, authorize(['ADMIN']), async (req, res) => {
       username,
       password: hashedPassword,
       fullName,
-      email,
-      role: 'TEACHER',
+      email: email || null,
+      role: "TEACHER",
       isFormTeacher: !!isFormTeacher,
       isSubjectTeacher: !!isSubjectTeacher,
       assignedClass,
       assignedSubject: formattedSubject,
-      profileImage
+      profileImage,
     });
 
     res.status(201).send({
@@ -41,90 +49,55 @@ router.post('/register', auth, authorize(['ADMIN']), async (req, res) => {
         id: teacher.id,
         username: teacher.username,
         fullName: teacher.fullName,
+        email: teacher.email,
         role: teacher.role,
         isFormTeacher: teacher.isFormTeacher,
         isSubjectTeacher: teacher.isSubjectTeacher,
         assignedClass: teacher.assignedClass,
-        assignedSubject: teacher.assignedSubject
+        assignedSubject: teacher.assignedSubject,
       },
       credentials: {
         username,
-        password
-      }
+        password,
+      },
     });
   } catch (error) {
-    console.error('Teacher registration error:', error);
-    res.status(400).send({ error: 'Failed to register teacher' });
+    console.error("Teacher registration error:", error);
+    res.status(400).send({ error: "Failed to register teacher" });
   }
 });
 
 // Get all teachers (Admin only)
-router.get('/', auth, authorize(['ADMIN']), async (req, res) => {
+router.get("/", auth, authorize(["ADMIN"]), async (req, res) => {
   try {
     const teachers = await User.findAll({
-      where: { role: 'TEACHER' },
-      attributes: ['id', 'username', 'fullName', 'isFormTeacher', 'isSubjectTeacher', 'assignedClass', 'assignedSubject', 'createdAt']
+      where: { role: "TEACHER" },
+      attributes: [
+        "id",
+        "username",
+        "fullName",
+        "email",
+        "isFormTeacher",
+        "isSubjectTeacher",
+        "assignedClass",
+        "assignedSubject",
+        "createdAt",
+      ],
     });
     res.send(teachers);
   } catch (error) {
-    res.status(500).send({ error: 'Failed to fetch teachers' });
+    res.status(500).send({ error: "Failed to fetch teachers" });
   }
 });
 
-// Update a teacher (Admin only)
-router.patch('/:id', auth, authorize(['ADMIN']), async (req, res) => {
-  try {
-    const { fullName, email, isFormTeacher, isSubjectTeacher, assignedClass, assignedSubject, profileImage } = req.body;
-    const teacher = await User.findOne({ where: { id: req.params.id, role: 'TEACHER' } });
-
-    if (!teacher) {
-      return res.status(404).send({ error: 'Teacher not found' });
-    }
-
-    if (fullName) teacher.fullName = fullName;
-    if (email) teacher.email = email;
-    if (isFormTeacher !== undefined) teacher.isFormTeacher = isFormTeacher;
-    if (isSubjectTeacher !== undefined) teacher.isSubjectTeacher = isSubjectTeacher;
-    if (assignedClass !== undefined) teacher.assignedClass = assignedClass;
-    if (profileImage !== undefined) teacher.profileImage = profileImage;
-    
-    if (assignedSubject !== undefined) {
-      teacher.assignedSubject = Array.isArray(assignedSubject) 
-        ? assignedSubject.join(', ') 
-        : assignedSubject;
-    }
-
-    await teacher.save();
-    res.send(teacher);
-  } catch (error) {
-    res.status(400).send({ error: 'Failed to update teacher' });
-  }
-});
-
-// Delete a teacher (Admin only)
-router.delete('/:id', auth, authorize(['ADMIN']), async (req, res) => {
-  try {
-    const teacher = await User.findOne({ where: { id: req.params.id, role: 'TEACHER' } });
-
-    if (!teacher) {
-      return res.status(404).send({ error: 'Teacher not found' });
-    }
-
-    await teacher.destroy();
-    res.send({ message: 'Teacher deleted successfully' });
-  } catch (error) {
-    res.status(500).send({ error: 'Failed to delete teacher' });
-  }
-});
-
-// Update teacher profile image (Self)
-router.patch('/profile', auth, authorize(['TEACHER']), async (req, res) => {
+// Update teacher profile image (Self) — MUST be above PATCH /:id to avoid being swallowed
+router.patch("/profile", auth, authorize(["TEACHER"]), async (req, res) => {
   try {
     const { profileImage } = req.body;
     const teacher = await User.findByPk(req.user.id);
 
     if (!teacher) {
-      return res.status(404).send({ error: 'Teacher not found' });
+      return res.status(404).send({ error: "Teacher not found" });
     }
 
     teacher.profileImage = profileImage;
@@ -132,8 +105,79 @@ router.patch('/profile', auth, authorize(['TEACHER']), async (req, res) => {
 
     res.send({ profileImage: teacher.profileImage });
   } catch (error) {
-    console.error('Profile update error:', error);
-    res.status(400).send({ error: 'Failed to update profile' });
+    console.error("Profile update error:", error);
+    res.status(400).send({ error: "Failed to update profile" });
+  }
+});
+
+// Update a teacher (Admin only)
+router.patch("/:id", auth, authorize(["ADMIN"]), async (req, res) => {
+  try {
+    const {
+      fullName,
+      email,
+      isFormTeacher,
+      isSubjectTeacher,
+      assignedClass,
+      assignedSubject,
+      profileImage,
+    } = req.body;
+    const teacher = await User.findOne({
+      where: { id: req.params.id, role: "TEACHER" },
+    });
+
+    if (!teacher) {
+      return res.status(404).send({ error: "Teacher not found" });
+    }
+
+    if (fullName !== undefined) teacher.fullName = fullName;
+    if (email !== undefined) teacher.email = email;
+    if (isFormTeacher !== undefined) teacher.isFormTeacher = isFormTeacher;
+    if (isSubjectTeacher !== undefined)
+      teacher.isSubjectTeacher = isSubjectTeacher;
+    if (assignedClass !== undefined) teacher.assignedClass = assignedClass;
+    if (profileImage !== undefined) teacher.profileImage = profileImage;
+
+    if (assignedSubject !== undefined) {
+      teacher.assignedSubject = Array.isArray(assignedSubject)
+        ? assignedSubject.join(", ")
+        : assignedSubject;
+    }
+
+    await teacher.save();
+
+    res.send({
+      id: teacher.id,
+      username: teacher.username,
+      fullName: teacher.fullName,
+      email: teacher.email,
+      role: teacher.role,
+      isFormTeacher: teacher.isFormTeacher,
+      isSubjectTeacher: teacher.isSubjectTeacher,
+      assignedClass: teacher.assignedClass,
+      assignedSubject: teacher.assignedSubject,
+      profileImage: teacher.profileImage,
+    });
+  } catch (error) {
+    res.status(400).send({ error: "Failed to update teacher" });
+  }
+});
+
+// Delete a teacher (Admin only)
+router.delete("/:id", auth, authorize(["ADMIN"]), async (req, res) => {
+  try {
+    const teacher = await User.findOne({
+      where: { id: req.params.id, role: "TEACHER" },
+    });
+
+    if (!teacher) {
+      return res.status(404).send({ error: "Teacher not found" });
+    }
+
+    await teacher.destroy();
+    res.send({ message: "Teacher deleted successfully" });
+  } catch (error) {
+    res.status(500).send({ error: "Failed to delete teacher" });
   }
 });
 

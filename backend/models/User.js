@@ -1,49 +1,53 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../utils/db');
+const { DataTypes } = require("sequelize");
+const sequelize = require("../utils/db");
 
-const User = sequelize.define('User', {
+const User = sequelize.define("User", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
   },
   username: {
     type: DataTypes.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
   },
   password: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   fullName: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   role: {
-    type: DataTypes.ENUM('ADMIN', 'TEACHER', 'PARENT'),
-    defaultValue: 'TEACHER'
+    type: DataTypes.ENUM("ADMIN", "TEACHER", "PARENT"),
+    defaultValue: "TEACHER",
   },
   isFormTeacher: {
     type: DataTypes.BOOLEAN,
-    defaultValue: false
+    defaultValue: false,
   },
   isSubjectTeacher: {
     type: DataTypes.BOOLEAN,
-    defaultValue: true
+    defaultValue: true,
   },
   profileImage: {
     type: DataTypes.TEXT,
-    allowNull: true
+    allowNull: true,
   },
   assignedClass: {
     type: DataTypes.STRING,
-    allowNull: true
+    allowNull: true,
   },
   assignedSubject: {
     type: DataTypes.TEXT,
-    allowNull: true
-  }
+    allowNull: true,
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
 });
 
 module.exports = User;

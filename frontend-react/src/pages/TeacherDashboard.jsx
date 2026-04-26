@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Routes, Route, Link, NavLink, useNavigate } from "react-router-dom";
 import api from "../api";
 import {
   UserPlus,
@@ -64,7 +64,7 @@ const TeacherDashboard = () => {
     <div className="flex h-screen bg-[#0f172a] relative overflow-hidden">
       <AcademicBackground />
       {/* Sidebar */}
-      <div className="w-72 bg-slate-900 border-r-4 border-black p-8 flex flex-col shadow-cartoon relative z-10">
+      <div className="w-72 bg-slate-900 border-r-4 border-black p-8 flex flex-col shadow-cartoon relative z-10 overflow-y-auto">
         <div className="flex items-center gap-3 mb-12">
           <div className="w-12 h-12 bg-accent-gold border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm transform rotate-3">
             <LayoutDashboard size={24} className="text-black" />
@@ -73,60 +73,75 @@ const TeacherDashboard = () => {
             Teacher <span className="text-accent-red">Hub</span>
           </h2>
         </div>
-        <nav className="flex-1 space-y-4">
-          <Link
+        <nav className="space-y-4">
+          <NavLink
             to="/teacher"
-            className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-white"
+            end
+            className={({ isActive }) =>
+              `flex items-center p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+            }
           >
             <LayoutDashboard className="mr-3" size={20} />
             <span>Dashboard</span>
-          </Link>
+          </NavLink>
           {user?.isFormTeacher && (
-            <Link
+            <NavLink
               to="/teacher/register-student"
-              className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-black uppercase tracking-tight text-white"
+              className={({ isActive }) =>
+                `flex items-center p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white ${isActive ? "border-black bg-accent-red/20" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
+              }
             >
               <UserPlus className="mr-3" size={20} />
               <span>Register</span>
-            </Link>
+            </NavLink>
           )}
-          <Link
+          <NavLink
             to="/teacher/record-results"
-            className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-white"
+            className={({ isActive }) =>
+              `flex items-center p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+            }
           >
             <FileText className="mr-3" size={20} />
             <span>Results</span>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/teacher/release-results"
-            className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-white"
+            className={({ isActive }) =>
+              `flex items-center p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+            }
           >
             <Unlock className="mr-3" size={20} />
             <span>Release</span>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/broadsheet"
-            className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-white"
+            className={({ isActive }) =>
+              `flex items-center p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+            }
           >
             <FileSpreadsheet className="mr-3" size={20} />
             <span>Broadsheet</span>
-          </Link>
+          </NavLink>
           {user?.isFormTeacher && (
-            <Link
+            <NavLink
               to="/teacher/attendance"
-              className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-black uppercase tracking-tight text-white"
+              className={({ isActive }) =>
+                `flex items-center p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white ${isActive ? "border-black bg-accent-red/20" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
+              }
             >
               <CheckCircle className="mr-3" size={20} />
               <span>Attendance</span>
-            </Link>
+            </NavLink>
           )}
-          <Link
+          <NavLink
             to="/teacher/settings"
-            className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-white"
+            className={({ isActive }) =>
+              `flex items-center p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+            }
           >
             <Settings className="mr-3" size={20} />
             <span>Settings</span>
-          </Link>
+          </NavLink>
         </nav>
         {/* Scroll to Top Button in Sidebar */}
         {showScrollTop && (
@@ -145,7 +160,7 @@ const TeacherDashboard = () => {
         )}
         <button
           onClick={handleLogout}
-          className={`flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 text-white font-black uppercase tracking-tight transition-all group ${showScrollTop ? "mt-4" : "mt-auto"}`}
+          className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 text-white font-black uppercase tracking-tight transition-all group mt-4"
         >
           <LogOut
             className="mr-3 transition-transform group-hover:-translate-x-1"
@@ -190,7 +205,7 @@ const TeacherDashboard = () => {
 
         <main className="max-w-6xl">
           <Routes>
-            <Route path="/" element={<TeacherOverview />} />
+            <Route path="/" element={<TeacherOverview user={user} />} />
             {user?.isFormTeacher && (
               <>
                 <Route path="/register-student" element={<RegisterStudent />} />
@@ -219,7 +234,34 @@ const TeacherDashboard = () => {
   );
 };
 
-const TeacherOverview = () => {
+const TeacherOverview = ({ user }) => {
+  const [classStudentCount, setClassStudentCount] = useState(null);
+  const [totalStudentCount, setTotalStudentCount] = useState(null);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        if (user?.assignedClass) {
+          const classRes = await api.get("/students", {
+            params: { studentClass: user.assignedClass },
+          });
+          setClassStudentCount(classRes.data.length);
+        }
+        const totalRes = await api.get("/students");
+        setTotalStudentCount(totalRes.data.length);
+      } catch (err) {
+        console.error("Failed to fetch overview stats", err);
+      }
+    };
+    fetchStats();
+  }, [user?.assignedClass]);
+
+  const subjectList = user?.assignedSubject
+    ? typeof user.assignedSubject === "string"
+      ? user.assignedSubject.split(", ").filter((s) => s !== "")
+      : user.assignedSubject
+    : [];
+
   return (
     <div className="cartoon-card p-10 bg-white">
       <h2 className="text-3xl font-black text-black mb-6 uppercase italic tracking-tighter text-3d">
@@ -230,6 +272,46 @@ const TeacherOverview = () => {
         your students' progress sharp, their attendance perfect, and their
         results shining! ✨
       </p>
+
+      {/* Live Stat Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        {user?.assignedClass && (
+          <div className="p-6 bg-accent-gold/20 border-4 border-black rounded-3xl shadow-cartoon-sm hover:-translate-y-1 transition-all flex flex-col items-center text-center">
+            <span className="text-5xl font-black text-black text-3d mb-2">
+              {classStudentCount !== null ? classStudentCount : "—"}
+            </span>
+            <h4 className="font-black text-black text-sm uppercase tracking-widest italic">
+              Students in Your Class 🏫
+            </h4>
+            <p className="text-xs font-bold text-gray-600 mt-1 uppercase tracking-wider">
+              {user.assignedClass}
+            </p>
+          </div>
+        )}
+        <div className="p-6 bg-accent-red/10 border-4 border-black rounded-3xl shadow-cartoon-sm hover:-translate-y-1 transition-all flex flex-col items-center text-center">
+          <span className="text-5xl font-black text-black text-3d mb-2">
+            {subjectList.length > 0 ? subjectList.length : "—"}
+          </span>
+          <h4 className="font-black text-black text-sm uppercase tracking-widest italic">
+            Your Subjects 📚
+          </h4>
+          <p className="text-xs font-bold text-gray-600 mt-1 uppercase tracking-wider truncate max-w-full">
+            {subjectList.length > 0 ? subjectList.join(", ") : "None assigned"}
+          </p>
+        </div>
+        <div className="p-6 bg-slate-100 border-4 border-black rounded-3xl shadow-cartoon-sm hover:-translate-y-1 transition-all flex flex-col items-center text-center">
+          <span className="text-5xl font-black text-black text-3d mb-2">
+            {totalStudentCount !== null ? totalStudentCount : "—"}
+          </span>
+          <h4 className="font-black text-black text-sm uppercase tracking-widest italic">
+            Total Students 🌟
+          </h4>
+          <p className="text-xs font-bold text-gray-600 mt-1 uppercase tracking-wider">
+            School-wide
+          </p>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
         <div className="p-8 bg-accent-gold/20 border-4 border-black rounded-3xl shadow-cartoon-sm hover:-translate-y-1 transition-all">
           <h4 className="font-black text-black text-xl mb-3 uppercase tracking-tight italic">
@@ -529,6 +611,9 @@ const RecordResults = ({ user }) => {
     user?.isFormTeacher ? "class" : "subject",
   );
   const [selectedSubjectFilter, setSelectedSubjectFilter] = useState("");
+  const [editMode, setEditMode] = useState(false);
+  const [existingResults, setExistingResults] = useState([]);
+  const [editingResult, setEditingResult] = useState(null);
 
   // Set initial mode based on user roles when user data changes
   // But only if the user hasn't manually changed the mode yet
@@ -596,14 +681,19 @@ const RecordResults = ({ user }) => {
     }
   };
 
-  const handleStudentSelect = (id) => {
+  const handleStudentSelect = async (id) => {
     if (!id) {
       setSelectedStudent(null);
       setSubjects([]);
+      setExistingResults([]);
+      setEditMode(false);
+      setEditingResult(null);
       return;
     }
     const student = students.find((s) => s.id === parseInt(id));
     setSelectedStudent(student);
+    setEditMode(false);
+    setEditingResult(null);
 
     // In subject mode, we might want to automatically select the subject we're filtering by
     if (recordingMode === "subject" && selectedSubjectFilter) {
@@ -615,16 +705,38 @@ const RecordResults = ({ user }) => {
       }
     }
     setSubjects(student?.Subjects || []);
+
+    // Fetch existing results for this student
+    try {
+      const res = await api.get(`/results/student/${id}`);
+      setExistingResults(res.data || []);
+    } catch (err) {
+      console.error("Failed to fetch existing results", err);
+      setExistingResults([]);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.post("/results", {
-        ...formData,
-        studentId: selectedStudent.id,
-      });
-      setMessage("Result recorded successfully! 🏆");
+      if (editMode && editingResult) {
+        await api.patch(`/results/${editingResult.id}`, {
+          ...formData,
+          studentId: selectedStudent.id,
+        });
+        setMessage("Result updated successfully! ✏️");
+        setEditMode(false);
+        setEditingResult(null);
+      } else {
+        await api.post("/results", {
+          ...formData,
+          studentId: selectedStudent.id,
+        });
+        setMessage("Result recorded successfully! 🏆");
+      }
+      // Refresh existing results
+      const res = await api.get(`/results/student/${selectedStudent.id}`);
+      setExistingResults(res.data || []);
       setFormData({
         ...formData,
         ca1Score: "",
@@ -633,8 +745,43 @@ const RecordResults = ({ user }) => {
         remark: "",
       });
     } catch (err) {
-      setMessage("Error recording result ❌");
+      setMessage(
+        editMode ? "Error updating result ❌" : "Error recording result ❌",
+      );
     }
+  };
+
+  const handleEditResult = (result) => {
+    setEditMode(true);
+    setEditingResult(result);
+    setFormData({
+      subjectId: result.subjectId || result.Subject?.id || "",
+      term: result.term || "First",
+      academicYear: result.academicYear || "2025/2026",
+      ca1Score: result.ca1Score ?? "",
+      ca2Score: result.ca2Score ?? "",
+      examScore: result.examScore ?? "",
+      remark: result.remark || "",
+    });
+    // Make sure subjects list is available for the select
+    if (selectedStudent?.Subjects) {
+      setSubjects(selectedStudent.Subjects);
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleCancelEdit = () => {
+    setEditMode(false);
+    setEditingResult(null);
+    setFormData({
+      subjectId: "",
+      term: "First",
+      academicYear: "2025/2026",
+      ca1Score: "",
+      ca2Score: "",
+      examScore: "",
+      remark: "",
+    });
   };
 
   return (
@@ -916,19 +1063,116 @@ const RecordResults = ({ user }) => {
             ></textarea>
           </div>
 
-          <button
-            type="submit"
-            className="w-full btn-cartoon-primary bg-accent-gold text-accent-black hover:bg-accent-black hover:text-accent-gold py-5 text-2xl flex items-center justify-center gap-3"
-          >
-            <CheckCircle size={28} />
-            Lock in Results! 🏆
-          </button>
+          <div className="flex gap-4">
+            <button
+              type="submit"
+              className={`flex-1 btn-cartoon-primary py-5 text-2xl flex items-center justify-center gap-3 ${editMode ? "bg-accent-red text-white hover:bg-black hover:text-accent-red" : "bg-accent-gold text-accent-black hover:bg-accent-black hover:text-accent-gold"}`}
+            >
+              <CheckCircle size={28} />
+              {editMode ? "Update Result ✏️" : "Lock in Results! 🏆"}
+            </button>
+            {editMode && (
+              <button
+                type="button"
+                onClick={handleCancelEdit}
+                className="px-8 py-5 border-4 border-black rounded-2xl font-black uppercase tracking-tight text-black bg-gray-100 hover:bg-gray-200 transition-all shadow-cartoon-sm hover:-translate-y-1"
+              >
+                Cancel Edit
+              </button>
+            )}
+          </div>
         </form>
       ) : (
         <div className="py-20 border-4 border-dashed border-black rounded-3xl text-center bg-gray-50/50">
           <p className="font-black text-gray-400 uppercase tracking-widest text-xl">
             Select a superstar above to record their glory! ✨
           </p>
+        </div>
+      )}
+
+      {/* Existing Results Table */}
+      {selectedStudent && existingResults.length > 0 && (
+        <div className="mt-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <h3 className="text-2xl font-black text-black uppercase italic tracking-tighter text-3d mb-6 border-t-4 border-black pt-8">
+            Past Results for {selectedStudent.firstName} 📋
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="w-full border-4 border-black rounded-2xl overflow-hidden">
+              <thead>
+                <tr className="bg-black text-white">
+                  <th className="py-4 px-4 text-left font-black uppercase tracking-widest text-xs">
+                    Subject
+                  </th>
+                  <th className="py-4 px-4 text-center font-black uppercase tracking-widest text-xs">
+                    Term
+                  </th>
+                  <th className="py-4 px-4 text-center font-black uppercase tracking-widest text-xs">
+                    CA1
+                  </th>
+                  <th className="py-4 px-4 text-center font-black uppercase tracking-widest text-xs">
+                    CA2
+                  </th>
+                  <th className="py-4 px-4 text-center font-black uppercase tracking-widest text-xs">
+                    Exam
+                  </th>
+                  <th className="py-4 px-4 text-center font-black uppercase tracking-widest text-xs">
+                    Total
+                  </th>
+                  <th className="py-4 px-4 text-center font-black uppercase tracking-widest text-xs">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y-2 divide-black/10">
+                {existingResults.map((result) => {
+                  const total =
+                    (result.ca1Score || 0) +
+                    (result.ca2Score || 0) +
+                    (result.examScore || 0);
+                  const isEditing = editingResult?.id === result.id;
+                  return (
+                    <tr
+                      key={result.id}
+                      className={`transition-colors ${isEditing ? "bg-accent-gold/20 border-l-4 border-accent-gold" : "hover:bg-gray-50"}`}
+                    >
+                      <td className="py-4 px-4 font-black text-black text-sm uppercase tracking-tight">
+                        {result.Subject?.name || result.subjectName || "—"}
+                      </td>
+                      <td className="py-4 px-4 text-center">
+                        <span className="bg-black text-white px-2 py-1 rounded-lg font-black uppercase text-xs tracking-widest">
+                          {result.term}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-center font-black text-black">
+                        {result.ca1Score ?? "—"}
+                      </td>
+                      <td className="py-4 px-4 text-center font-black text-black">
+                        {result.ca2Score ?? "—"}
+                      </td>
+                      <td className="py-4 px-4 text-center font-black text-black">
+                        {result.examScore ?? "—"}
+                      </td>
+                      <td className="py-4 px-4 text-center">
+                        <span
+                          className={`font-black text-lg ${total >= 50 ? "text-accent-green" : "text-accent-red"}`}
+                        >
+                          {total}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-center">
+                        <button
+                          onClick={() => handleEditResult(result)}
+                          className="px-4 py-2 bg-accent-gold border-2 border-black rounded-xl text-xs font-black uppercase tracking-widest text-black hover:shadow-cartoon-sm hover:-translate-y-1 active:translate-y-0 transition-all"
+                        >
+                          Edit ✏️
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>
@@ -938,27 +1182,73 @@ const RecordResults = ({ user }) => {
 const AttendanceManager = ({ user }) => {
   const [students, setStudents] = useState([]);
   const [message, setMessage] = useState("");
+  const [selectedDate, setSelectedDate] = useState(
+    new Date().toISOString().split("T")[0],
+  );
+  const [markedMap, setMarkedMap] = useState({});
 
   useEffect(() => {
     if (user?.assignedClass) {
       api
         .get("/students", { params: { studentClass: user.assignedClass } })
-        .then((res) => setStudents(res.data));
+        .then((res) => setStudents(res.data))
+        .catch((err) => console.error("Failed to fetch students", err));
     }
   }, [user?.assignedClass]);
+
+  // Fetch existing attendance whenever date or class changes
+  useEffect(() => {
+    const fetchExistingAttendance = async () => {
+      if (!user?.assignedClass) return;
+      try {
+        const res = await api.get(
+          `/attendance/class/${encodeURIComponent(user.assignedClass)}`,
+          { params: { date: selectedDate } },
+        );
+        const records = res.data || [];
+        const map = {};
+        records.forEach((r) => {
+          map[r.studentId] = r.status;
+        });
+        setMarkedMap(map);
+      } catch (err) {
+        // If endpoint not found or no records, silently clear map
+        setMarkedMap({});
+      }
+    };
+    fetchExistingAttendance();
+  }, [selectedDate, user?.assignedClass]);
 
   const handleAttendance = async (studentId, status) => {
     try {
       await api.post("/attendance", {
         studentId,
-        date: new Date().toISOString().split("T")[0],
+        date: selectedDate,
         status,
       });
+      setMarkedMap((prev) => ({ ...prev, [studentId]: status }));
       setMessage(`Marked ${status}! 📝`);
       setTimeout(() => setMessage(""), 3000);
     } catch (err) {
       setMessage("Error! ❌");
     }
+  };
+
+  const statusBadgeClass = (status) => {
+    if (status === "Present")
+      return "bg-accent-gold/20 text-black border-accent-gold";
+    if (status === "Absent")
+      return "bg-accent-red/20 text-accent-red border-accent-red";
+    if (status === "Late") return "bg-black/10 text-black border-black";
+    return "";
+  };
+
+  const rowHighlightClass = (studentId) => {
+    const status = markedMap[studentId];
+    if (status === "Present") return "bg-accent-gold/10";
+    if (status === "Absent") return "bg-accent-red/10";
+    if (status === "Late") return "bg-black/5";
+    return "hover:bg-accent-gold/5";
   };
 
   return (
@@ -969,15 +1259,29 @@ const AttendanceManager = ({ user }) => {
             Daily Roll Call 📢
           </h2>
           <p className="text-xl font-black text-accent-red uppercase tracking-tight">
-            {new Date().toLocaleDateString("en-US", {
+            {new Date(selectedDate + "T00:00:00").toLocaleDateString("en-US", {
               weekday: "long",
               month: "long",
               day: "numeric",
             })}
           </p>
         </div>
-        <div className="w-16 h-16 bg-accent-gold border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm -rotate-6">
-          <Calendar size={32} className="text-black" />
+        <div className="flex items-center gap-4">
+          {/* Date Picker */}
+          <div className="flex flex-col items-end gap-1">
+            <label className="text-xs font-black text-black uppercase tracking-widest">
+              Pick Date 📅
+            </label>
+            <input
+              type="date"
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+              className="border-4 border-black rounded-xl px-4 py-2 font-black text-black bg-accent-gold/10 focus:outline-none focus:bg-accent-gold/20 transition-all cursor-pointer"
+            />
+          </div>
+          <div className="w-16 h-16 bg-accent-gold border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm -rotate-6">
+            <Calendar size={32} className="text-black" />
+          </div>
         </div>
       </div>
 
@@ -1001,7 +1305,10 @@ const AttendanceManager = ({ user }) => {
                 Class
               </th>
               <th className="py-6 font-black text-black uppercase tracking-widest text-sm text-center">
-                Status
+                Current Status
+              </th>
+              <th className="py-6 font-black text-black uppercase tracking-widest text-sm text-center">
+                Mark
               </th>
             </tr>
           </thead>
@@ -1009,7 +1316,7 @@ const AttendanceManager = ({ user }) => {
             {students.map((s) => (
               <tr
                 key={s.id}
-                className="group hover:bg-accent-gold/5 transition-colors"
+                className={`group transition-colors ${rowHighlightClass(s.id)}`}
               >
                 <td className="py-6">
                   <div className="flex items-center gap-4">
@@ -1033,6 +1340,22 @@ const AttendanceManager = ({ user }) => {
                   <span className="bg-black text-white px-3 py-1 rounded-lg font-black uppercase text-xs tracking-widest border-2 border-accent-gold">
                     {s.studentClass}
                   </span>
+                </td>
+                <td className="py-6 text-center">
+                  {markedMap[s.id] ? (
+                    <span
+                      className={`px-4 py-1 rounded-lg font-black uppercase text-xs tracking-widest border-2 ${statusBadgeClass(markedMap[s.id])}`}
+                    >
+                      {markedMap[s.id] === "Present" && "✅ "}
+                      {markedMap[s.id] === "Absent" && "❌ "}
+                      {markedMap[s.id] === "Late" && "🐢 "}
+                      {markedMap[s.id]}
+                    </span>
+                  ) : (
+                    <span className="text-xs font-black text-gray-400 uppercase tracking-widest">
+                      Not marked
+                    </span>
+                  )}
                 </td>
                 <td className="py-6">
                   <div className="flex items-center justify-center gap-3">
