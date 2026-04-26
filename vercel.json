@@ -12,7 +12,10 @@
     {
       "src": "frontend-react/package.json",
       "use": "@vercel/static-build",
-      "config": { "outputDirectory": "dist" }
+      "config": {
+        "outputDirectory": "frontend-react/dist",
+        "buildCommand": "npm run build"
+      }
     }
   ],
   "routes": [
