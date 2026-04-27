@@ -242,9 +242,9 @@ const TeacherDashboard = () => {
               <Route path="/register-student" element={<RegisterStudent />} />
             )}
             <Route path="/record-results" element={<RecordResults />} />
-            <Route path="/release-results" element={<ReleaseResults />} />
-            <Route path="/attendance" element={<AttendanceManagement />} />
-            <Route path="/settings" element={<TeacherSettings />} />
+            <Route path="/release-results" element={<ResultReleaseManager user={user} />} />
+            <Route path="/attendance" element={<AttendanceManager user={user} />} />
+            <Route path="/settings" element={<TeacherSettings user={user} setUser={setUser} />} />
           </Routes>
         </main>
 
