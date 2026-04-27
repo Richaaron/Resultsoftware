@@ -54,14 +54,14 @@ const Login = () => {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
       <button
         onClick={() => setLoginType("ADMIN")}
-        className="professional-card flex flex-col items-center justify-center gap-4 p-6 md:p-8 group h-full hover:shadow-lg"
+        className="professional-card flex flex-col items-center justify-center gap-4 p-8 md:p-10 group h-full bg-slate-800/60 border-slate-600/60 hover:shadow-xl"
       >
-        <div className="w-14 md:w-16 h-14 md:h-16 bg-slate-800 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
-          <ShieldCheck size={32} className="text-accent-gold" />
+        <div className="w-16 md:w-20 h-16 md:h-20 bg-slate-700 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <ShieldCheck size={40} className="text-accent-gold" />
         </div>
         <div className="text-center">
-          <span className="text-lg md:text-xl font-bold block text-white">Admin</span>
-          <span className="text-xs md:text-sm font-medium text-slate-400">
+          <span className="text-xl md:text-2xl font-bold block text-white">Admin</span>
+          <span className="text-xs md:text-sm font-semibold text-slate-300">
             Full Access
           </span>
         </div>
@@ -69,14 +69,14 @@ const Login = () => {
 
       <button
         onClick={() => setLoginType("TEACHER")}
-        className="professional-card flex flex-col items-center justify-center gap-4 p-6 md:p-8 group h-full hover:shadow-lg"
+        className="professional-card flex flex-col items-center justify-center gap-4 p-8 md:p-10 group h-full bg-slate-800/60 border-slate-600/60 hover:shadow-xl"
       >
-        <div className="w-14 md:w-16 h-14 md:h-16 bg-slate-800 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
-          <UserCircle size={32} className="text-accent-gold" />
+        <div className="w-16 md:w-20 h-16 md:h-20 bg-slate-700 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <UserCircle size={40} className="text-accent-gold" />
         </div>
         <div className="text-center">
-          <span className="text-lg md:text-xl font-bold block text-white">Teacher</span>
-          <span className="text-xs md:text-sm font-medium text-slate-400">
+          <span className="text-xl md:text-2xl font-bold block text-white">Teacher</span>
+          <span className="text-xs md:text-sm font-semibold text-slate-300">
             Records
           </span>
         </div>
@@ -84,14 +84,14 @@ const Login = () => {
 
       <button
         onClick={() => setLoginType("PARENT")}
-        className="professional-card flex flex-col items-center justify-center gap-4 p-6 md:p-8 group h-full hover:shadow-lg"
+        className="professional-card flex flex-col items-center justify-center gap-4 p-8 md:p-10 group h-full bg-slate-800/60 border-slate-600/60 hover:shadow-xl"
       >
-        <div className="w-14 md:w-16 h-14 md:h-16 bg-slate-800 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
-          <Users size={32} className="text-accent-gold" />
+        <div className="w-16 md:w-20 h-16 md:h-20 bg-slate-700 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <Users size={40} className="text-accent-gold" />
         </div>
         <div className="text-center">
-          <span className="text-lg md:text-xl font-bold block text-white">Parent</span>
-          <span className="text-xs md:text-sm font-medium text-slate-400">
+          <span className="text-xl md:text-2xl font-bold block text-white">Parent</span>
+          <span className="text-xs md:text-sm font-semibold text-slate-300">
             Results
           </span>
         </div>
@@ -114,19 +114,19 @@ const Login = () => {
         ← Go Back
       </button>
 
-      <div className="professional-card p-4 mb-6 md:mb-8 flex items-center gap-4 bg-slate-800/40 border-slate-700/60">
+      <div className="professional-card p-5 mb-6 md:mb-8 flex items-center gap-4 bg-slate-800/60 border-slate-600/60">
         {loginType === "ADMIN" ? (
-          <ShieldCheck size={24} className="text-accent-gold flex-shrink-0" />
+          <ShieldCheck size={28} className="text-accent-gold flex-shrink-0" />
         ) : loginType === "TEACHER" ? (
-          <UserCircle size={24} className="text-accent-gold flex-shrink-0" />
+          <UserCircle size={28} className="text-accent-gold flex-shrink-0" />
         ) : (
-          <Users size={24} className="text-accent-gold flex-shrink-0" />
+          <Users size={28} className="text-accent-gold flex-shrink-0" />
         )}
         <div>
-          <h3 className="text-lg md:text-xl font-bold text-white">
+          <h3 className="text-lg md:text-2xl font-bold text-white">
             {loginType} Login
           </h3>
-          <p className="text-xs md:text-sm font-medium text-slate-400">
+          <p className="text-xs md:text-sm font-medium text-slate-300">
             Enter your credentials
           </p>
         </div>
@@ -138,9 +138,9 @@ const Login = () => {
         </div>
       )}
 
-      <form onSubmit={handleLogin} className="space-y-4 md:space-y-6">
+      <form onSubmit={handleLogin} className="space-y-5 md:space-y-6">
         <div className="relative group">
-          <label className="block text-sm md:text-base font-semibold text-slate-200 mb-2">
+          <label className="block text-sm md:text-base font-bold text-white mb-2.5">
             Username
           </label>
           <input
@@ -155,7 +155,7 @@ const Login = () => {
           />
         </div>
         <div className="relative group">
-          <label className="block text-sm md:text-base font-semibold text-slate-200 mb-2">
+          <label className="block text-sm md:text-base font-bold text-white mb-2.5">
             Password
           </label>
           <div className="relative">
@@ -193,18 +193,18 @@ const Login = () => {
     <div className="flex items-center justify-center min-h-screen bg-slate-950 relative overflow-hidden p-4">
       <AcademicBackground />
 
-      <div className="professional-card p-6 md:p-10 w-full max-w-2xl relative z-10 bg-slate-900/70 border-slate-700/60">
+      <div className="professional-card p-8 md:p-12 w-full max-w-2xl relative z-10 bg-slate-900/85 border-slate-600/60 shadow-2xl">
         <div className="mb-8 md:mb-10 text-center relative">
-          <div className="w-16 md:w-20 h-16 md:h-20 bg-accent-gold rounded-lg flex items-center justify-center text-slate-900 mx-auto mb-4 md:mb-6 shadow-md">
-            <GraduationCap size={32} md:size={40} strokeWidth={2.5} />
+          <div className="w-16 md:w-20 h-16 md:h-20 bg-accent-gold rounded-lg flex items-center justify-center text-slate-950 mx-auto mb-6 md:mb-8 shadow-lg">
+            <GraduationCap size={40} strokeWidth={2.5} />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
             School{" "}
             <span className="text-accent-gold">
               Portal
             </span>
           </h2>
-          <p className="text-slate-400 mt-3 md:mt-4 font-medium text-sm md:text-base">
+          <p className="text-slate-300 font-medium text-base md:text-lg">
             Select your role to continue
           </p>
         </div>

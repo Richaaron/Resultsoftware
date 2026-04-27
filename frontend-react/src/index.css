@@ -80,47 +80,71 @@
 
 @layer components {
   .professional-card {
-    @apply bg-slate-900/60 border border-slate-700/50 rounded-lg shadow-md backdrop-blur-sm transition-all duration-300 hover:bg-slate-900/80 hover:border-slate-600/50 hover:shadow-lg;
+    @apply bg-slate-900/80 border border-slate-600/60 rounded-lg shadow-lg backdrop-blur-sm transition-all duration-300 hover:bg-slate-900/90 hover:border-slate-500/70 hover:shadow-xl;
+  }
+
+  .card-content {
+    @apply bg-slate-800/40 border border-slate-700/40 rounded-lg p-6 shadow-md;
   }
 
   .btn-primary {
-    @apply bg-accent-gold text-slate-900 px-6 py-2.5 rounded-lg font-semibold transition-all duration-200 hover:bg-amber-400 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg;
+    @apply bg-accent-gold text-slate-950 px-6 py-3 rounded-lg font-bold transition-all duration-200 hover:bg-amber-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl hover:translate-y-[-2px];
   }
 
   .btn-secondary {
-    @apply bg-slate-800 text-white px-6 py-2.5 rounded-lg font-semibold border border-slate-700 transition-all duration-200 hover:bg-slate-700 hover:border-slate-600 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg;
+    @apply bg-slate-700 text-white px-6 py-3 rounded-lg font-semibold border border-slate-600 transition-all duration-200 hover:bg-slate-600 hover:border-slate-500 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg;
   }
 
   .btn-accent {
-    @apply bg-accent-red text-white px-6 py-2.5 rounded-lg font-semibold transition-all duration-200 hover:bg-red-600 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg;
+    @apply bg-accent-red text-white px-6 py-3 rounded-lg font-bold transition-all duration-200 hover:bg-red-500 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl hover:translate-y-[-2px];
   }
 
   .btn-ghost {
-    @apply text-slate-300 px-4 py-2.5 rounded-lg font-medium transition-all duration-200 hover:bg-slate-800 hover:text-white active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply text-slate-200 px-4 py-2.5 rounded-lg font-medium transition-all duration-200 hover:bg-slate-700 hover:text-white active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   .input-field {
-    @apply w-full px-4 py-2.5 bg-slate-800/50 text-white border border-slate-700/50 rounded-lg font-medium focus:ring-2 focus:ring-accent-gold focus:border-transparent outline-none transition-all placeholder:text-slate-500 backdrop-blur-sm;
+    @apply w-full px-4 py-3 bg-slate-700/60 text-white border border-slate-600/60 rounded-lg font-medium focus:ring-2 focus:ring-accent-gold focus:border-accent-gold outline-none transition-all placeholder:text-slate-400 backdrop-blur-sm;
+  }
+
+  .input-field::placeholder {
+    @apply text-slate-400 opacity-100;
   }
 
   .badge {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold;
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-sm font-bold;
   }
 
   .badge-primary {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-accent-gold/20 text-accent-gold;
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-sm font-bold bg-accent-gold/30 text-accent-gold border border-accent-gold/50;
   }
 
   .badge-success {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-emerald-500/20 text-emerald-400;
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-sm font-bold bg-emerald-500/30 text-emerald-300 border border-emerald-500/50;
   }
 
   .badge-warning {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-amber-500/20 text-amber-400;
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-sm font-bold bg-amber-500/30 text-amber-300 border border-amber-500/50;
   }
 
   .badge-error {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-red-500/20 text-red-400;
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-sm font-bold bg-red-500/30 text-red-300 border border-red-500/50;
+  }
+
+  .table-header {
+    @apply bg-slate-800/80 border-b-2 border-slate-700/60 px-4 py-3 text-accent-gold font-bold text-sm uppercase tracking-wide;
+  }
+
+  .table-cell {
+    @apply px-4 py-3 text-slate-100 font-medium text-sm border-b border-slate-700/30;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold text-white mb-2;
+  }
+
+  .section-subtitle {
+    @apply text-slate-300 font-medium text-sm mb-6;
   }
 }
 
