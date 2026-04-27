@@ -1,13 +1,24 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
 const bcrypt = require('bcryptjs');
 const sequelize = require('./utils/db');
+const logger = require('./utils/logger');
+const { validateEnv } = require('./utils/envValidator');
+const { errorHandler, asyncHandler } = require('./middleware/errorHandler');
+const { authLimiter, apiLimiter } = require('./utils/rateLimiter');
 const User = require('./models/User');
 const Subject = require('./models/Subject');
 require('./models/StudentSubject'); // Initialize many-to-many relationship
 
+// Validate environment variables
+validateEnv();
+
 const app = express();
+
+// Security middleware
+app.use(helmet());
 
 // CORS Configuration
 const corsOptions = {
@@ -34,7 +45,7 @@ app.use((req, res, next) => {
       try {
         req.body = JSON.parse(data);
       } catch (e) {
-        console.error('JSON parse error:', e);
+        logger.error('JSON parse error:', e);
         req.body = {};
       }
     }
@@ -44,6 +55,17 @@ app.use((req, res, next) => {
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
+
+// Request logging middleware
+app.use((req, res, next) => {
+  req.id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  logger.info({ method: req.method, path: req.path, requestId: req.id });
+  next();
+});
+
+// Apply rate limiting to auth routes
+app.use('/api/auth/login', authLimiter);
+app.use('/api/', apiLimiter);
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
@@ -55,54 +77,42 @@ app.use('/api/settings', require('./routes/settings'));
 
 const { auth, authorize } = require('./middleware/auth');
 
-app.get('/api/stats', auth, authorize(['ADMIN']), async (req, res) => {
-  try {
-    const studentCount = await require('./models/Student').count();
-    const teacherCount = await User.count({ where: { role: 'TEACHER' } });
-    const subjectCount = await Subject.count();
-    res.send({ studentCount, teacherCount, subjectCount });
-  } catch (error) {
-    res.status(500).send(error);
+app.get('/api/stats', auth, authorize(['ADMIN']), asyncHandler(async (req, res) => {
+  const studentCount = await require('./models/Student').count();
+  const teacherCount = await User.count({ where: { role: 'TEACHER' } });
+  const subjectCount = await Subject.count();
+  res.send({ studentCount, teacherCount, subjectCount });
+}));
+
+// Database initialization endpoint (for Netlify/serverless)
+app.post('/api/init', asyncHandler(async (req, res) => {
+  if (dbInitialized) {
+    return res.json({ message: 'Database already initialized', status: 'ok' });
   }
+
+  await sequelize.sync({ alter: true });
+  await seedData();
+  
+  dbInitialized = true;
+  logger.info('Database initialized successfully');
+  res.json({ message: 'Database initialized successfully', status: 'success' });
+}));
+
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Database initialization endpoint
-app.post('/api/init', async (req, res) => {
-  try {
-    if (dbInitialized) {
-      return res.json({ message: 'Database already initialized', status: 'ok' });
-    }
-
-    // Attempt to sync database
-    await sequelize.sync({ alter: true });
-    
-    // Run seed data
-    await seedData();
-    
-    dbInitialized = true;
-    console.log('Database initialized successfully');
-    res.json({ message: 'Database initialized successfully', status: 'success' });
-  } catch (error) {
-    console.error('Database initialization failed:', error);
-    res.status(500).json({ message: 'Database initialization failed', error: error.message });
-  }
+// Error handling middleware (must be last)
+app.use((req, res) => {
+  res.status(404).json({
+    status: 404,
+    error: 'Not Found',
+    message: 'The requested resource does not exist'
+  });
 });
 
-// Debug endpoint - check database users
-app.get('/api/debug/users', async (req, res) => {
-  try {
-    const users = await User.findAll({ 
-      attributes: ['id', 'username', 'fullName', 'role', 'createdAt']
-    });
-    res.json({ 
-      count: users.length, 
-      users: users,
-      dbInitialized: dbInitialized
-    });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
@@ -127,9 +137,9 @@ const seedData = async () => {
     // Update password if user already existed
     if (!adminCreated) {
       await adminUser.update({ password: hashedAdminPassword });
-      console.log('Seed: Admin password updated.');
+      logger.info('Seed: Admin password updated.');
     } else {
-      console.log('Seed: Admin user created.');
+      logger.info('Seed: Admin user created.');
     }
 
     // Ensure teacher user exists
@@ -148,9 +158,9 @@ const seedData = async () => {
     // Update password if user already existed
     if (!teacherCreated) {
       await teacherUser.update({ password: hashedTeacherPassword });
-      console.log('Seed: Teacher password updated.');
+      logger.info('Seed: Teacher password updated.');
     } else {
-      console.log('Seed: Teacher user created.');
+      logger.info('Seed: Teacher user created.');
     }
 
     // Add subjects if none exist
@@ -206,25 +216,29 @@ const seedData = async () => {
       { name: 'Commerce', category: 'Secondary', level: 'Senior' }
     ];
     await Subject.bulkCreate(subjects);
-    console.log('Seed: Nigerian curriculum subjects added.');
+    logger.info('Seed: Nigerian curriculum subjects added.');
   }
   } catch (error) {
-    console.error('Seed data error:', error);
+    logger.error('Seed data error:', error);
     throw error;
   }
 };
 
 sequelize.sync({ alter: true }).then(async () => {
-  await seedData();
-  dbInitialized = true;
-  console.log('Database initialized on startup');
+  try {
+    await seedData();
+    dbInitialized = true;
+    logger.info('Database initialized on startup');
+  } catch (err) {
+    logger.warn('Database initialization on startup failed - will use /api/init endpoint', err.message);
+  }
   
   app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    logger.info(`Server is running on port ${PORT} in ${process.env.NODE_ENV} mode`);
   });
 }).catch(err => {
-  console.error('Database initialization on startup failed:', err);
-  // Don't crash - Vercel will use the /api/init endpoint instead
+  logger.error('Critical: Database connection failed', err.message);
+  // Don't crash - Netlify/serverless will use the /api/init endpoint instead
 });
 
 // Export for Vercel

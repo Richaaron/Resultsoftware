@@ -4,114 +4,30 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const { auth } = require("../middleware/auth");
+const { validate, schemas } = require("../middleware/validation");
+const { asyncHandler } = require("../middleware/errorHandler");
+const logger = require("../utils/logger");
 
-// Ensure default users exist and have correct passwords
-const ensureDefaultUsers = async () => {
-  try {
-    const hashedAdminPassword = await bcrypt.hash('admin123', 8);
-    const [adminUser, adminCreated] = await User.findOrCreate({
-      where: { username: 'admin' },
-      defaults: {
-        password: hashedAdminPassword,
-        fullName: 'System Administrator',
-        role: 'ADMIN',
-        isFormTeacher: false,
-        isSubjectTeacher: true
-      }
-    });
-    
-    // Always update password to ensure it's correct
-    if (!adminCreated) {
-      await adminUser.update({ password: hashedAdminPassword });
-      console.log('[Seed] Admin password reset to admin123');
-    }
+router.post("/login", validate(schemas.login), asyncHandler(async (req, res) => {
+  const { username, password } = req.body;
 
-    const hashedTeacherPassword = await bcrypt.hash('teacher123', 8);
-    const [teacherUser, teacherCreated] = await User.findOrCreate({
-      where: { username: 'teacher' },
-      defaults: {
-        password: hashedTeacherPassword,
-        fullName: 'John Doe',
-        role: 'TEACHER',
-        isFormTeacher: false,
-        isSubjectTeacher: true
-      }
-    });
-    
-    // Always update password to ensure it's correct
-    if (!teacherCreated) {
-      await teacherUser.update({ password: hashedTeacherPassword });
-      console.log('[Seed] Teacher password reset to teacher123');
-    }
-  } catch (err) {
-    console.error('Error ensuring default users:', err);
+  const user = await User.findOne({ where: { username } });
+  if (!user) {
+    return res.status(401).json({ error: "Invalid login credentials" });
   }
-};
 
-router.post("/login", async (req, res) => {
-  try {
-    // Ensure default users exist (important for Netlify)
-    await ensureDefaultUsers();
-
-    console.log(`[Login] Full req.body:`, JSON.stringify(req.body));
-    console.log(`[Login] Content-Type:`, req.headers['content-type']);
-    const { username, password } = req.body;
-    console.log(`[Login] Attempting login for username: ${username}`);
-    
-    const user = await User.findOne({ where: { username } });
-    
-    if (!user) {
-      console.log(`[Login] User not found: ${username}`);
-      return res.status(401).send({ error: "Invalid login credentials" });
-    }
-    
-    console.log(`[Login] User found: ${username}, role: ${user.role}`);
-    console.log(`[Login] Stored password hash: ${user.password.substring(0, 20)}...`);
-    console.log(`[Login] Comparing with password: ${password}`);
-    
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    console.log(`[Login] Password match result: ${passwordMatch}`);
-    
-    if (!passwordMatch) {
-      console.log(`[Login] Password mismatch for user: ${username}`);
-      return res.status(401).send({ error: "Invalid login credentials" });
-    }
-
-    if (!process.env.JWT_SECRET) {
-      console.error('[Login] JWT_SECRET is not set!');
-      return res.status(500).send({ error: "Server configuration error: JWT_SECRET not set" });
-    }
-
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "8h",
-    });
-    res.send({
-      user: {
-        id: user.id,
-        username: user.username,
-        fullName: user.fullName,
-        email: user.email,
-        role: user.role,
-        isFormTeacher: user.isFormTeacher,
-        isSubjectTeacher: user.isSubjectTeacher,
-        assignedClass: user.assignedClass,
-        assignedSubject: user.assignedSubject,
-        profileImage: user.profileImage,
-      },
-      token,
-    });
-  } catch (error) {
-    console.error('[Login] Error during login:', error.message, error.stack);
-    res.status(400).send({ error: error.message || "Login failed", details: error.toString() });
+  const passwordMatch = await bcrypt.compare(password, user.password);
+  if (!passwordMatch) {
+    return res.status(401).json({ error: "Invalid login credentials" });
   }
-});
 
-router.get("/profile", auth, async (req, res) => {
-  try {
-    const user = await User.findByPk(req.user.id);
-    if (!user) return res.status(404).send({ error: "User not found" });
+  const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+    expiresIn: "24h",
+  });
 
-    res.send({
+  res.json({
+    token,
+    user: {
       id: user.id,
       username: user.username,
       fullName: user.fullName,
@@ -122,33 +38,28 @@ router.get("/profile", auth, async (req, res) => {
       assignedClass: user.assignedClass,
       assignedSubject: user.assignedSubject,
       profileImage: user.profileImage,
-    });
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
-
-// Reset default passwords (for setup/troubleshooting)
-router.post("/reset-default-passwords", async (req, res) => {
-  try {
-    const hashedAdminPassword = await bcrypt.hash('admin123', 8);
-    const adminUser = await User.findOne({ where: { username: 'admin' } });
-    if (adminUser) {
-      await adminUser.update({ password: hashedAdminPassword });
-      console.log('[Reset] Admin password updated to admin123');
     }
+  });
+}));
 
-    const hashedTeacherPassword = await bcrypt.hash('teacher123', 8);
-    const teacherUser = await User.findOne({ where: { username: 'teacher' } });
-    if (teacherUser) {
-      await teacherUser.update({ password: hashedTeacherPassword });
-      console.log('[Reset] Teacher password updated to teacher123');
-    }
-
-    res.json({ message: 'Passwords reset successfully', admin: 'admin123', teacher: 'teacher123' });
-  } catch (error) {
-    res.status(500).send({ error: error.message });
+router.get("/profile", auth, asyncHandler(async (req, res) => {
+  const user = await User.findByPk(req.user.id);
+  if (!user) {
+    return res.status(404).json({ error: "User not found" });
   }
-});
+
+  res.json({
+    id: user.id,
+    username: user.username,
+    fullName: user.fullName,
+    email: user.email,
+    role: user.role,
+    isFormTeacher: user.isFormTeacher,
+    isSubjectTeacher: user.isSubjectTeacher,
+    assignedClass: user.assignedClass,
+    assignedSubject: user.assignedSubject,
+    profileImage: user.profileImage,
+  });
+}));
 
 module.exports = router;
