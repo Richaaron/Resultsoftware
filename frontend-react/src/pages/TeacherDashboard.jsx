@@ -247,11 +247,12 @@ const TeacherDashboard = () => {
             <Route path="/settings" element={<TeacherSettings />} />
           </Routes>
         </main>
-      </div>
-    </div>
-  );
+
+        {/* Floating Scroll Button */}
+        {showScroll && (
+          <button
             onClick={scrollToTop}
-            className="flex items-center p-4 rounded-2xl border-4 border-black bg-accent-gold shadow-cartoon-sm hover:-translate-y-1 transition-all group mt-4"
+            className="fixed bottom-8 right-8 flex items-center p-4 rounded-2xl border-4 border-black bg-accent-gold shadow-cartoon-sm hover:-translate-y-1 transition-all group"
           >
             <ChevronUp
               className="mr-3 text-black group-hover:scale-125 transition-transform"
@@ -262,17 +263,9 @@ const TeacherDashboard = () => {
             </span>
           </button>
         )}
-        <button
-          onClick={handleLogout}
-          className="flex items-center p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 text-white font-black uppercase tracking-tight transition-all group mt-4"
-        >
-          <LogOut
-            className="mr-3 transition-transform group-hover:-translate-x-1"
-            size={20}
-          />
-          <span>Sign Out</span>
-        </button>
       </div>
+    </div>
+  );
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto p-10">
         <header className="flex justify-between items-center mb-10">
