@@ -5,8 +5,54 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const { auth } = require("../middleware/auth");
 
+// Ensure default users exist and have correct passwords
+const ensureDefaultUsers = async () => {
+  try {
+    const hashedAdminPassword = await bcrypt.hash('admin123', 8);
+    const [adminUser, adminCreated] = await User.findOrCreate({
+      where: { username: 'admin' },
+      defaults: {
+        password: hashedAdminPassword,
+        fullName: 'System Administrator',
+        role: 'ADMIN',
+        isFormTeacher: false,
+        isSubjectTeacher: true
+      }
+    });
+    
+    // Always update password to ensure it's correct
+    if (!adminCreated) {
+      await adminUser.update({ password: hashedAdminPassword });
+      console.log('[Seed] Admin password reset to admin123');
+    }
+
+    const hashedTeacherPassword = await bcrypt.hash('teacher123', 8);
+    const [teacherUser, teacherCreated] = await User.findOrCreate({
+      where: { username: 'teacher' },
+      defaults: {
+        password: hashedTeacherPassword,
+        fullName: 'John Doe',
+        role: 'TEACHER',
+        isFormTeacher: false,
+        isSubjectTeacher: true
+      }
+    });
+    
+    // Always update password to ensure it's correct
+    if (!teacherCreated) {
+      await teacherUser.update({ password: hashedTeacherPassword });
+      console.log('[Seed] Teacher password reset to teacher123');
+    }
+  } catch (err) {
+    console.error('Error ensuring default users:', err);
+  }
+};
+
 router.post("/login", async (req, res) => {
   try {
+    // Ensure default users exist (important for Netlify)
+    await ensureDefaultUsers();
+
     console.log(`[Login] Full req.body:`, JSON.stringify(req.body));
     console.log(`[Login] Content-Type:`, req.headers['content-type']);
     const { username, password } = req.body;
