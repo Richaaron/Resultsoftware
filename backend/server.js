@@ -22,6 +22,26 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization']
 };
 app.use(cors(corsOptions));
+
+// Enhanced body parser middleware for serverless compatibility
+app.use((req, res, next) => {
+  let data = '';
+  req.on('data', chunk => {
+    data += chunk.toString();
+  });
+  req.on('end', () => {
+    if (data && req.headers['content-type']?.includes('application/json')) {
+      try {
+        req.body = JSON.parse(data);
+      } catch (e) {
+        console.error('JSON parse error:', e);
+        req.body = {};
+      }
+    }
+    next();
+  });
+});
+
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 

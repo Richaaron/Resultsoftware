@@ -44,7 +44,25 @@ console.log('Environment JWT_SECRET set:', !!process.env.JWT_SECRET);
 const serverless = require('serverless-http');
 const app = require('../../backend/server');
 
-exports.handler = serverless(app, {
+// Custom request handler to ensure body parsing works
+const handler = serverless(app, {
   binary: ['application/octet-stream', 'image/*'],
   basePath: '/.netlify/functions/api'
 });
+
+exports.handler = async (event, context) => {
+  // If this is an OPTIONS request, handle CORS
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type,Authorization'
+      }
+    };
+  }
+  
+  // Call the serverless handler
+  return handler(event, context);
+};
