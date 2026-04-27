@@ -1100,22 +1100,22 @@ const StudentList = () => {
 
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
-          <div className="cartoon-card bg-slate-50 dark:bg-slate-900 p-8 w-full max-w-4xl relative border-4 border-black shadow-cartoon my-8">
+          <div className="cartoon-card bg-slate-50 dark:bg-slate-900 p-6 w-full max-w-2xl relative border-4 border-black shadow-cartoon my-8">
             <button
               onClick={() => setShowAddModal(false)}
               className="absolute top-4 right-4 text-black dark:text-slate-100 hover:rotate-90 transition-transform"
             >
-              <X size={28} />
+              <X size={24} />
             </button>
-            <h3 className="text-3xl font-black text-black dark:text-slate-100 uppercase italic tracking-tighter mb-8 text-3d">
+            <h3 className="text-2xl font-black text-black dark:text-slate-100 uppercase italic tracking-tighter mb-6 text-3d">
               Enroll New Legend ⭐
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Profile Image Section */}
-                <div className="md:row-span-2 flex flex-col items-center gap-4">
-                  <div className="w-48 h-48 bg-gray-100 dark:bg-slate-800 border-4 border-black rounded-3xl overflow-hidden shadow-cartoon-sm relative group">
+                <div className="flex flex-col items-center gap-3">
+                  <div className="w-32 h-32 bg-gray-100 dark:bg-slate-800 border-4 border-black rounded-3xl overflow-hidden shadow-md relative group">
                     {formData.profileImage ? (
                       <img
                         src={formData.profileImage}
@@ -1124,14 +1124,14 @@ const StudentList = () => {
                       />
                     ) : (
                       <div className="w-full h-full flex flex-col items-center justify-center text-gray-400 gap-2">
-                        <UserPlus size={56} />
+                        <UserPlus size={40} />
                         <span className="text-xs font-black uppercase tracking-widest">
                           Add Photo
                         </span>
                       </div>
                     )}
                     <label className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer gap-2">
-                      <Upload size={32} className="text-white" />
+                      <Upload size={24} className="text-white" />
                       <span className="text-white font-black text-xs uppercase tracking-widest">
                         {formData.profileImage
                           ? "Change Photo"
@@ -1276,9 +1276,9 @@ const StudentList = () => {
 
               <button
                 type="submit"
-                className="btn-cartoon-primary w-full py-6 text-2xl bg-accent-gold flex items-center justify-center gap-3"
+                className="btn-cartoon-primary w-full py-4 text-lg bg-accent-gold flex items-center justify-center gap-2"
               >
-                <Sparkles size={28} />
+                <Sparkles size={20} />
                 Enroll Legend! 🚀
               </button>
             </form>
@@ -1288,14 +1288,14 @@ const StudentList = () => {
 
       {editingStudent && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
-          <div className="cartoon-card bg-slate-50 dark:bg-slate-900 p-8 w-full max-w-4xl relative border-4 border-black shadow-cartoon my-8">
+          <div className="cartoon-card bg-slate-50 dark:bg-slate-900 p-6 w-full max-w-2xl relative border-4 border-black shadow-cartoon my-8">
             <button
               onClick={() => setEditingStudent(null)}
-              className="absolute top-4 right-4 text-black dark:text-white hover:rotate-90 transition-transform"
+              className="absolute top-4 right-4 text-black dark:text-slate-100 hover:rotate-90 transition-transform"
             >
-              <X size={28} />
+              <X size={24} />
             </button>
-            <h3 className="text-3xl font-black text-black dark:text-white uppercase italic tracking-tighter mb-8 text-3d">
+            <h3 className="text-2xl font-black text-black dark:text-slate-100 uppercase italic tracking-tighter mb-6 text-3d">
               Modify Legend 🛠️
             </h3>
 
