@@ -492,7 +492,7 @@ const AdminSettings = () => {
                   <img
                     src={settings.logo}
                     alt="Logo"
-                    className="w-20 h-20 object-contain bg-white p-2 rounded-xl border-2 border-black"
+                    className="w-20 h-20 object-contain bg-slate-50 p-2 rounded-xl border-2 border-black"
                   />
                 ) : (
                   <div className="w-20 h-20 bg-slate-700 border-2 border-black rounded-xl flex items-center justify-center text-slate-500">
@@ -683,7 +683,7 @@ const AdminOverview = () => {
     <div className="space-y-10">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         <div className="cartoon-card p-8 cartoon-card-hover group bg-accent-gold/20 dark:bg-accent-gold/10">
-          <div className="w-14 h-14 bg-white dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
+          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
             <Users size={28} className="text-black dark:text-white" />
           </div>
           <h3 className="text-black dark:text-slate-300 uppercase text-sm font-black tracking-widest mb-2 italic">
@@ -692,13 +692,13 @@ const AdminOverview = () => {
           <p className="text-6xl font-black text-black dark:text-white tracking-tighter text-3d-lg">
             {stats.studentCount}
           </p>
-          <div className="mt-4 inline-flex items-center px-3 py-1 bg-white dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
+          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
             Students ⚡
           </div>
         </div>
 
         <div className="cartoon-card p-8 cartoon-card-hover group bg-accent-red/20 dark:bg-accent-red/10">
-          <div className="w-14 h-14 bg-white dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
+          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
             <BookOpen size={28} className="text-black dark:text-white" />
           </div>
           <h3 className="text-black dark:text-slate-300 uppercase text-sm font-black tracking-widest mb-2 italic">
@@ -707,13 +707,13 @@ const AdminOverview = () => {
           <p className="text-6xl font-black text-black dark:text-white tracking-tighter text-3d-lg">
             {stats.subjectCount}
           </p>
-          <div className="mt-4 inline-flex items-center px-3 py-1 bg-white dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
+          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
             Subjects 📚
           </div>
         </div>
 
         <div className="cartoon-card p-8 cartoon-card-hover group bg-accent-gold/20 dark:bg-accent-gold/10">
-          <div className="w-14 h-14 bg-white dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
+          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
             <UserCircle size={28} className="text-black dark:text-white" />
           </div>
           <h3 className="text-black dark:text-slate-300 uppercase text-sm font-black tracking-widest mb-2 italic">
@@ -722,13 +722,13 @@ const AdminOverview = () => {
           <p className="text-6xl font-black text-black dark:text-white tracking-tighter text-3d-lg">
             {stats.teacherCount}
           </p>
-          <div className="mt-4 inline-flex items-center px-3 py-1 bg-white dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
+          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
             Teachers 🍎
           </div>
         </div>
 
         <div className="cartoon-card p-8 cartoon-card-hover group bg-accent-gold/10 dark:bg-accent-gold/5">
-          <div className="w-14 h-14 bg-white dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
+          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
             <Sparkles size={28} className="text-black dark:text-white" />
           </div>
           <h3 className="text-black dark:text-slate-300 uppercase text-sm font-black tracking-widest mb-2 italic">
@@ -737,13 +737,13 @@ const AdminOverview = () => {
           <p className="text-6xl font-black text-black dark:text-white tracking-tighter text-3d-lg">
             100%
           </p>
-          <div className="mt-4 inline-flex items-center px-3 py-1 bg-white dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
+          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
             All Systems Go! 🚀
           </div>
         </div>
       </div>
 
-      <div className="cartoon-card p-10 bg-white dark:bg-slate-900 border-4 border-black shadow-cartoon">
+      <div className="cartoon-card p-10 bg-slate-50 dark:bg-slate-900 border-4 border-black shadow-cartoon">
         <div className="flex items-center gap-4 mb-8">
           <div className="w-12 h-12 bg-accent-gold border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm rotate-6">
             <ClipboardCheck size={24} className="text-black" />
@@ -962,11 +962,11 @@ const StudentList = () => {
   });
 
   return (
-    <div className="cartoon-card p-10 bg-white dark:bg-slate-900">
+    <div className="cartoon-card p-10 bg-slate-50 dark:bg-slate-900">
       {/* Confirm Delete Modal */}
       {confirmDelete.show && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
-          <div className="cartoon-card bg-white dark:bg-slate-900 border-4 border-black shadow-cartoon p-8 w-full max-w-sm mx-4 rounded-3xl">
+          <div className="cartoon-card bg-slate-50 dark:bg-slate-900 border-4 border-black shadow-cartoon p-8 w-full max-w-sm mx-4 rounded-3xl">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 bg-accent-red border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm">
                 <Trash2 size={22} className="text-white" />
@@ -993,7 +993,7 @@ const StudentList = () => {
                 onClick={() =>
                   setConfirmDelete({ show: false, id: null, type: "" })
                 }
-                className="flex-1 py-3 bg-white dark:bg-slate-800 border-4 border-black rounded-2xl font-black text-black dark:text-white uppercase tracking-tight shadow-cartoon-sm hover:-translate-y-1 transition-all"
+                className="flex-1 py-3 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-2xl font-black text-black dark:text-white uppercase tracking-tight shadow-cartoon-sm hover:-translate-y-1 transition-all"
               >
                 Cancel
               </button>
@@ -1100,14 +1100,14 @@ const StudentList = () => {
 
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
-          <div className="cartoon-card bg-white dark:bg-slate-900 p-8 w-full max-w-4xl relative border-4 border-black shadow-cartoon my-8">
+          <div className="cartoon-card bg-slate-50 dark:bg-slate-900 p-8 w-full max-w-4xl relative border-4 border-black shadow-cartoon my-8">
             <button
               onClick={() => setShowAddModal(false)}
-              className="absolute top-4 right-4 text-black dark:text-white hover:rotate-90 transition-transform"
+              className="absolute top-4 right-4 text-black dark:text-slate-100 hover:rotate-90 transition-transform"
             >
               <X size={28} />
             </button>
-            <h3 className="text-3xl font-black text-black dark:text-white uppercase italic tracking-tighter mb-8 text-3d">
+            <h3 className="text-3xl font-black text-black dark:text-slate-100 uppercase italic tracking-tighter mb-8 text-3d">
               Enroll New Legend ⭐
             </h3>
 
@@ -1264,7 +1264,7 @@ const StudentList = () => {
                         className={`p-2 rounded-xl border-2 font-black text-[10px] uppercase tracking-tighter transition-all ${
                           formData.subjectIds.includes(sub.id)
                             ? "bg-accent-gold border-black shadow-cartoon-xs -translate-y-1 text-black"
-                            : "bg-white dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-400 dark:text-slate-500 hover:border-black"
+                            : "bg-slate-50 dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-400 dark:text-slate-500 hover:border-black"
                         }`}
                       >
                         {sub.name}
@@ -1288,7 +1288,7 @@ const StudentList = () => {
 
       {editingStudent && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
-          <div className="cartoon-card bg-white dark:bg-slate-900 p-8 w-full max-w-4xl relative border-4 border-black shadow-cartoon my-8">
+          <div className="cartoon-card bg-slate-50 dark:bg-slate-900 p-8 w-full max-w-4xl relative border-4 border-black shadow-cartoon my-8">
             <button
               onClick={() => setEditingStudent(null)}
               className="absolute top-4 right-4 text-black dark:text-white hover:rotate-90 transition-transform"
@@ -1437,7 +1437,7 @@ const StudentList = () => {
                             (s) => s.id === sub.id,
                           )
                             ? "bg-accent-gold border-black shadow-cartoon-xs -translate-y-1 text-black"
-                            : "bg-white dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-400 dark:text-slate-500 hover:border-black"
+                            : "bg-slate-50 dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-400 dark:text-slate-500 hover:border-black"
                         }`}
                       >
                         {sub.name}
@@ -1485,7 +1485,7 @@ const StudentList = () => {
               >
                 <td className="py-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 bg-white dark:bg-slate-800 border-2 border-black rounded-2xl flex items-center justify-center overflow-hidden shadow-cartoon-sm group-hover:rotate-3 transition-transform">
+                    <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-2xl flex items-center justify-center overflow-hidden shadow-cartoon-sm group-hover:rotate-3 transition-transform">
                       {s.profileImage ? (
                         <img
                           src={s.profileImage}
@@ -1517,7 +1517,7 @@ const StudentList = () => {
                   <div className="flex justify-end gap-2">
                     <button
                       onClick={() => setEditingStudent(s)}
-                      className="p-3 bg-white dark:bg-slate-800 border-2 border-black rounded-xl hover:bg-accent-gold transition-all shadow-cartoon-xs"
+                      className="p-3 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-xl hover:bg-accent-gold transition-all shadow-cartoon-xs"
                     >
                       <Edit3 size={18} />
                     </button>
@@ -1578,7 +1578,7 @@ const SubjectList = () => {
   };
 
   return (
-    <div className="cartoon-card p-10 bg-white dark:bg-slate-900">
+    <div className="cartoon-card p-10 bg-slate-50 dark:bg-slate-900">
       <div className="flex justify-between items-end mb-10 border-b-4 border-black pb-8">
         <div>
           <h2 className="text-4xl font-black text-black dark:text-white uppercase italic tracking-tighter text-3d mb-2">
@@ -1614,7 +1614,7 @@ const SubjectList = () => {
       {/* Add Subject Modal */}
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="cartoon-card bg-white dark:bg-slate-900 p-8 w-full max-w-md relative border-4 border-black shadow-cartoon">
+          <div className="cartoon-card bg-slate-50 dark:bg-slate-900 p-8 w-full max-w-md relative border-4 border-black shadow-cartoon">
             <button
               onClick={() => setShowAddModal(false)}
               className="absolute top-4 right-4 text-black dark:text-white hover:rotate-90 transition-transform"
@@ -1688,7 +1688,7 @@ const SubjectList = () => {
         {subjects.map((sub) => (
           <div
             key={sub.id}
-            className="cartoon-card p-8 bg-white dark:bg-slate-800 border-4 border-black shadow-cartoon-sm hover:-translate-y-2 transition-transform group cursor-pointer"
+            className="cartoon-card p-8 bg-slate-50 dark:bg-slate-800 border-4 border-black shadow-cartoon-sm hover:-translate-y-2 transition-transform group cursor-pointer"
           >
             <div className="w-14 h-14 bg-accent-gold/10 dark:bg-accent-gold/5 border-4 border-black rounded-2xl mb-6 flex items-center justify-center group-hover:bg-accent-gold transition-colors">
               <BookOpen size={28} className="text-black dark:text-white" />
@@ -1884,7 +1884,7 @@ const TeacherManagement = () => {
       {/* Confirm Delete Modal */}
       {confirmDelete.show && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
-          <div className="cartoon-card bg-white dark:bg-slate-900 border-4 border-black shadow-cartoon p-8 w-full max-w-sm mx-4 rounded-3xl">
+          <div className="cartoon-card bg-slate-50 dark:bg-slate-900 border-4 border-black shadow-cartoon p-8 w-full max-w-sm mx-4 rounded-3xl">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 bg-accent-red border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm">
                 <Trash2 size={22} className="text-white" />
@@ -1911,7 +1911,7 @@ const TeacherManagement = () => {
                 onClick={() =>
                   setConfirmDelete({ show: false, id: null, type: "" })
                 }
-                className="flex-1 py-3 bg-white dark:bg-slate-800 border-4 border-black rounded-2xl font-black text-black dark:text-white uppercase tracking-tight shadow-cartoon-sm hover:-translate-y-1 transition-all"
+                className="flex-1 py-3 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-2xl font-black text-black dark:text-white uppercase tracking-tight shadow-cartoon-sm hover:-translate-y-1 transition-all"
               >
                 Cancel
               </button>
@@ -1938,7 +1938,7 @@ const TeacherManagement = () => {
         </div>
       </div>
 
-      <div className="cartoon-card p-10 bg-white dark:bg-slate-900">
+      <div className="cartoon-card p-10 bg-slate-50 dark:bg-slate-900">
         <h2 className="text-3xl font-black text-black dark:text-white mb-8 uppercase italic tracking-tighter text-3d">
           Hire New Educator! 🍎
         </h2>
@@ -2105,7 +2105,7 @@ const TeacherManagement = () => {
                   className={`p-3 rounded-xl border-2 font-black text-[10px] uppercase tracking-tighter transition-all ${
                     formData.assignedSubject.includes(s.name)
                       ? "bg-accent-gold border-black shadow-cartoon-xs -translate-y-1 text-black"
-                      : "bg-white dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-400 dark:text-slate-500 hover:border-black"
+                      : "bg-slate-50 dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-400 dark:text-slate-500 hover:border-black"
                   }`}
                 >
                   {s.name}
@@ -2129,7 +2129,7 @@ const TeacherManagement = () => {
                   }
                 />
                 <div className="w-14 h-8 bg-gray-200 border-4 border-black rounded-full peer peer-checked:bg-accent-gold transition-all"></div>
-                <div className="absolute left-1 top-1 w-6 h-6 bg-white border-2 border-black rounded-full transition-all peer-checked:translate-x-6"></div>
+                <div className="absolute left-1 top-1 w-6 h-6 bg-slate-50 border-2 border-black rounded-full transition-all peer-checked:translate-x-6"></div>
               </div>
               <span className="font-black uppercase tracking-tight text-black dark:text-slate-300 text-sm group-hover:text-accent-red transition-colors">
                 Form Teacher
@@ -2150,7 +2150,7 @@ const TeacherManagement = () => {
                   }
                 />
                 <div className="w-14 h-8 bg-gray-200 border-4 border-black rounded-full peer peer-checked:bg-accent-red transition-all"></div>
-                <div className="absolute left-1 top-1 w-6 h-6 bg-white border-2 border-black rounded-full transition-all peer-checked:translate-x-6"></div>
+                <div className="absolute left-1 top-1 w-6 h-6 bg-slate-50 border-2 border-black rounded-full transition-all peer-checked:translate-x-6"></div>
               </div>
               <span className="font-black uppercase tracking-tight text-black dark:text-slate-300 text-sm group-hover:text-accent-gold transition-colors">
                 Subject Teacher
@@ -2168,7 +2168,7 @@ const TeacherManagement = () => {
         </form>
       </div>
 
-      <div className="cartoon-card p-10 bg-white dark:bg-slate-900">
+      <div className="cartoon-card p-10 bg-slate-50 dark:bg-slate-900">
         <h2 className="text-3xl font-black text-black dark:text-white mb-8 uppercase italic tracking-tighter text-3d">
           The Educators Squad 🎓
         </h2>
@@ -2201,7 +2201,7 @@ const TeacherManagement = () => {
                 >
                   <td className="py-6 font-black text-lg text-black dark:text-white uppercase tracking-tight italic">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-white dark:bg-slate-800 border-2 border-black rounded-xl flex items-center justify-center overflow-hidden shadow-cartoon-sm group-hover:rotate-3 transition-transform">
+                      <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-xl flex items-center justify-center overflow-hidden shadow-cartoon-sm group-hover:rotate-3 transition-transform">
                         {t.profileImage ? (
                           <img
                             src={t.profileImage}
@@ -2246,7 +2246,7 @@ const TeacherManagement = () => {
                           t.assignedSubject.split(", ").map((sub, idx) => (
                             <span
                               key={idx}
-                              className="bg-white dark:bg-slate-800 text-black dark:text-white px-2 py-0.5 rounded-md font-black uppercase text-[8px] tracking-widest border border-black whitespace-nowrap"
+                              className="bg-slate-50 dark:bg-slate-800 text-black dark:text-white px-2 py-0.5 rounded-md font-black uppercase text-[8px] tracking-widest border border-black whitespace-nowrap"
                             >
                               {sub}
                             </span>
@@ -2285,7 +2285,7 @@ const TeacherManagement = () => {
       {/* Edit Teacher Modal */}
       {editingTeacher && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="cartoon-card bg-white dark:bg-slate-900 p-8 w-full max-w-2xl relative border-4 border-black shadow-cartoon">
+          <div className="cartoon-card bg-slate-50 dark:bg-slate-900 p-8 w-full max-w-2xl relative border-4 border-black shadow-cartoon">
             <button
               onClick={() => setEditingTeacher(null)}
               className="absolute top-4 right-4 text-black dark:text-white hover:rotate-90 transition-transform"
@@ -2395,7 +2395,7 @@ const TeacherManagement = () => {
                           .split(", ")
                           .includes(s.name)
                           ? "bg-accent-gold border-black shadow-cartoon-xs -translate-y-1 text-black"
-                          : "bg-white dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-400 dark:text-slate-500 hover:border-black"
+                          : "bg-slate-50 dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-400 dark:text-slate-500 hover:border-black"
                       }`}
                     >
                       {s.name}

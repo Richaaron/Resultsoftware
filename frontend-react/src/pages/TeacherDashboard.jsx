@@ -71,7 +71,7 @@ const TeacherDashboard = () => {
       <div className="md:hidden flex items-center justify-between bg-slate-900 border-b-4 border-black p-4 sticky top-0 z-50">
         <div className="flex items-center gap-2">
           <LayoutDashboard size={24} className="text-accent-gold" />
-          <h1 className="text-lg font-black text-white uppercase">Teacher Hub</h1>
+          <h1 className="text-lg font-black text-slate-100 uppercase">Teacher Hub</h1>
         </div>
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -97,7 +97,7 @@ const TeacherDashboard = () => {
           <div className="w-12 h-12 bg-accent-gold border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm transform rotate-3">
             <LayoutDashboard size={24} className="text-black" />
           </div>
-          <h2 className="text-xl md:text-2xl font-black tracking-tighter uppercase italic text-white text-3d">
+          <h2 className="text-xl md:text-2xl font-black tracking-tighter uppercase italic text-slate-100 text-3d">
             Teacher <span className="text-accent-red">Hub</span>
           </h2>
         </div>
@@ -297,7 +297,7 @@ const TeacherOverview = ({ user }) => {
     : [];
 
   return (
-    <div className="cartoon-card p-10 bg-white">
+    <div className="cartoon-card p-10 bg-slate-50">
       <h2 className="text-3xl font-black text-black mb-6 uppercase italic tracking-tighter text-3d">
         Classroom Command Center 🚀
       </h2>
@@ -429,7 +429,7 @@ const RegisterStudent = () => {
   };
 
   return (
-    <div className="max-w-3xl cartoon-card p-10 bg-white">
+    <div className="max-w-3xl cartoon-card p-10 bg-slate-50">
       <h2 className="text-3xl font-black text-black mb-8 uppercase italic tracking-tighter text-3d">
         Register New Superstar! ⭐
       </h2>
@@ -632,7 +632,7 @@ const RegisterStudent = () => {
                 className={`p-3 rounded-xl border-2 font-bold text-xs transition-all ${
                   formData.subjectIds.includes(subject.id)
                     ? "bg-accent-gold border-black shadow-cartoon-sm -translate-y-1 text-black"
-                    : "bg-white border-gray-200 text-gray-400 hover:border-black"
+                    : "bg-slate-50 border-gray-300 text-gray-600 hover:border-black"
                 }`}
               >
                 {subject.name}
@@ -835,7 +835,7 @@ const RecordResults = ({ user }) => {
   };
 
   return (
-    <div className="cartoon-card p-10 bg-white max-w-4xl">
+    <div className="cartoon-card p-10 bg-slate-50 max-w-4xl">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
         <h2 className="text-3xl font-black text-black uppercase italic tracking-tighter text-3d">
           Record Achievement! 🏆
@@ -954,7 +954,7 @@ const RecordResults = ({ user }) => {
           className="space-y-10 animate-in fade-in slide-in-from-top-4 duration-500"
         >
           <div className="p-8 bg-accent-gold/10 border-4 border-black rounded-3xl flex items-center gap-6 shadow-cartoon-sm">
-            <div className="w-20 h-20 bg-white border-4 border-black rounded-2xl flex items-center justify-center text-black font-black text-3xl shadow-cartoon-sm rotate-3 overflow-hidden">
+            <div className="w-20 h-20 bg-slate-50 border-4 border-black rounded-2xl flex items-center justify-center text-black font-black text-3xl shadow-cartoon-sm rotate-3 overflow-hidden">
               {selectedStudent.profileImage ? (
                 <img
                   src={selectedStudent.profileImage}
@@ -973,7 +973,7 @@ const RecordResults = ({ user }) => {
                 <span className="bg-black text-white px-3 py-1 rounded-lg font-black uppercase text-xs tracking-widest">
                   {selectedStudent.studentClass}
                 </span>
-                <span className="bg-white border-2 border-black text-black px-3 py-1 rounded-lg font-black uppercase text-xs tracking-widest">
+                <span className="bg-slate-50 border-2 border-black text-black px-3 py-1 rounded-lg font-black uppercase text-xs tracking-widest">
                   {selectedStudent.registrationNumber}
                 </span>
               </div>
@@ -1302,7 +1302,7 @@ const AttendanceManager = ({ user }) => {
   };
 
   return (
-    <div className="cartoon-card p-10 bg-white">
+    <div className="cartoon-card p-10 bg-slate-50">
       <div className="flex justify-between items-end mb-10 border-b-4 border-black pb-8">
         <div>
           <h2 className="text-4xl font-black text-black uppercase italic tracking-tighter text-3d mb-2">
@@ -1370,7 +1370,7 @@ const AttendanceManager = ({ user }) => {
               >
                 <td className="py-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-white border-2 border-black rounded-xl flex items-center justify-center font-black text-black shadow-cartoon-sm group-hover:rotate-3 transition-transform overflow-hidden">
+                    <div className="w-12 h-12 bg-slate-50 border-2 border-black rounded-xl flex items-center justify-center font-black text-black shadow-cartoon-sm group-hover:rotate-3 transition-transform overflow-hidden">
                       {s.profileImage ? (
                         <img
                           src={s.profileImage}
@@ -1514,7 +1514,7 @@ const ResultReleaseManager = ({ user }) => {
   });
 
   return (
-    <div className="cartoon-card p-10 bg-white">
+    <div className="cartoon-card p-10 bg-slate-50">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b-4 border-black pb-8 gap-6">
         <div>
           <h2 className="text-4xl font-black text-black uppercase italic tracking-tighter text-3d mb-2">
@@ -1622,7 +1622,7 @@ const ResultReleaseManager = ({ user }) => {
                 </td>
                 <td className="py-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-white border-2 border-black rounded-xl flex items-center justify-center font-black text-black shadow-cartoon-xs group-hover:rotate-3 transition-transform overflow-hidden">
+                    <div className="w-12 h-12 bg-slate-50 border-2 border-black rounded-xl flex items-center justify-center font-black text-black shadow-cartoon-xs group-hover:rotate-3 transition-transform overflow-hidden">
                       {s.profileImage ? (
                         <img
                           src={s.profileImage}

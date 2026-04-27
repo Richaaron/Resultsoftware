@@ -206,7 +206,7 @@ const ParentDashboard = () => {
           onClick={() => setShowContactModal(false)}
         >
           <div
-            className="cartoon-card bg-white p-10 max-w-md w-full relative"
+            className="cartoon-card bg-slate-50 p-10 max-w-md w-full relative"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -315,7 +315,7 @@ const ParentDashboard = () => {
                     <div
                       className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-xl border-4 ${
                         selectedChild?.id === child.id
-                          ? "bg-white border-black transform -rotate-6"
+                          ? "bg-slate-50 border-black transform -rotate-6"
                           : "bg-slate-900 border-transparent text-accent-gold group-hover:border-black"
                       }`}
                     >
@@ -468,7 +468,7 @@ const ParentDashboard = () => {
 
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
                   {/* Results Card */}
-                  <div className="cartoon-card bg-white p-10">
+                  <div className="cartoon-card bg-slate-50 p-10">
                     <div className="flex items-center justify-between mb-8 border-b-4 border-black pb-4">
                       <h3 className="text-2xl font-black text-black uppercase italic tracking-tighter text-3d flex items-center gap-3">
                         <Trophy className="text-accent-gold" size={28} />{" "}
@@ -522,7 +522,7 @@ const ParentDashboard = () => {
                                 <span>CA2: {r.ca2Score}</span>
                                 <span>Exam: {r.examScore}</span>
                               </div>
-                              <div className="h-4 bg-white border-2 border-black rounded-full overflow-hidden">
+                              <div className="h-4 bg-slate-50 border-2 border-black rounded-full overflow-hidden">
                                 <div
                                   className={`h-full rounded-full border-r-2 border-black transition-all duration-1000 ${
                                     r.totalScore >= 50
@@ -554,7 +554,7 @@ const ParentDashboard = () => {
                   </div>
 
                   {/* Attendance Card */}
-                  <div className="cartoon-card bg-white p-10">
+                  <div className="cartoon-card bg-slate-50 p-10">
                     <div className="flex items-center justify-between mb-8 border-b-4 border-black pb-4">
                       <h3 className="text-2xl font-black text-black uppercase italic tracking-tighter text-3d flex items-center gap-3">
                         <Target className="text-accent-red" size={28} /> Daily
@@ -569,7 +569,7 @@ const ParentDashboard = () => {
                         attendanceToShow.map((a) => (
                           <div
                             key={a.id}
-                            className="p-4 bg-white border-4 border-black rounded-2xl text-center group hover:bg-accent-gold/10 transition-all shadow-cartoon-sm"
+                            className="p-4 bg-slate-50 border-4 border-black rounded-2xl text-center group hover:bg-accent-gold/10 transition-all shadow-cartoon-sm"
                           >
                             <p className="text-[10px] font-black text-black/40 uppercase tracking-widest mb-2">
                               {new Date(a.date).toLocaleDateString("en-US", {
@@ -604,7 +604,7 @@ const ParentDashboard = () => {
                       <div className="mt-6 text-center">
                         <button
                           onClick={() => setShowAllAttendance((prev) => !prev)}
-                          className="text-xs font-black uppercase tracking-widest border-4 border-black px-6 py-2 rounded-xl bg-white hover:bg-accent-gold transition-all shadow-cartoon-sm"
+                          className="text-xs font-black uppercase tracking-widest border-4 border-black px-6 py-2 rounded-xl bg-slate-50 hover:bg-accent-gold transition-all shadow-cartoon-sm"
                         >
                           {showAllAttendance
                             ? `Show Less ▲`
@@ -633,7 +633,7 @@ const ParentDashboard = () => {
                 </div>
               </>
             ) : (
-              <div className="cartoon-card p-24 bg-white text-center">
+              <div className="cartoon-card p-24 bg-slate-50 text-center">
                 <div className="w-24 h-24 bg-accent-gold/20 border-4 border-black rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-cartoon transform -rotate-6">
                   <User size={48} className="text-black" />
                 </div>
