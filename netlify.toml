@@ -22,18 +22,18 @@
 # - EMAIL_USER (Gmail for notifications)
 # - EMAIL_PASSWORD (Gmail App Password)
 
-# SPA routing fallback (important for React Router) - must be FIRST
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-# Route API calls to serverless function - must be AFTER static file handling
+# Route API calls to serverless function - MUST BE FIRST (more specific)
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/api/:splat"
   status = 200
   force = true
+
+# SPA routing fallback (important for React Router) - catches everything else
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
 
 # Health check endpoints (no redirect needed)
 # GET /.netlify/functions/api/health
@@ -68,11 +68,5 @@
   for = "/*"
   [headers.values]
     Content-Encoding = "gzip, br"
-
-# Error page redirects
-[[redirects]]
-  from = ""
-  status = 404
-  to = "/index.html"
 
 
