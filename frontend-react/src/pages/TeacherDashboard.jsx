@@ -593,7 +593,7 @@ const RegisterStudent = () => {
             Class
           </label>
           <select
-            className="input-cartoon appearance-none"
+            className="input-cartoon appearance-none bg-white border-2 border-gray-400"
             value={formData.studentClass}
             onChange={(e) =>
               setFormData({ ...formData, studentClass: e.target.value })
@@ -835,7 +835,7 @@ const RecordResults = ({ user }) => {
   };
 
   return (
-    <div className="cartoon-card p-10 bg-slate-50 max-w-4xl">
+    <div className="cartoon-card p-10 bg-slate-200 max-w-4xl">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
         <h2 className="text-3xl font-black text-black uppercase italic tracking-tighter text-3d">
           Record Achievement! 🏆
@@ -898,7 +898,7 @@ const RecordResults = ({ user }) => {
               Choose Subject
             </label>
             <select
-              className="input-cartoon appearance-none bg-accent-red/5"
+              className="input-cartoon appearance-none bg-white border-2 border-gray-400"
               value={selectedSubjectFilter}
               onChange={(e) => {
                 setSelectedSubjectFilter(e.target.value);
@@ -926,7 +926,7 @@ const RecordResults = ({ user }) => {
             Select Champion
           </label>
           <select
-            className="input-cartoon appearance-none bg-accent-yellow/10"
+            className="input-cartoon appearance-none bg-white border-2 border-gray-400"
             onChange={(e) => handleStudentSelect(e.target.value)}
             value={selectedStudent?.id || ""}
           >
@@ -954,7 +954,7 @@ const RecordResults = ({ user }) => {
           className="space-y-10 animate-in fade-in slide-in-from-top-4 duration-500"
         >
           <div className="p-8 bg-accent-gold/10 border-4 border-black rounded-3xl flex items-center gap-6 shadow-cartoon-sm">
-            <div className="w-20 h-20 bg-slate-50 border-4 border-black rounded-2xl flex items-center justify-center text-black font-black text-3xl shadow-cartoon-sm rotate-3 overflow-hidden">
+            <div className="w-20 h-20 bg-white border-4 border-black rounded-2xl flex items-center justify-center text-black font-black text-3xl shadow-cartoon-sm rotate-3 overflow-hidden">
               {selectedStudent.profileImage ? (
                 <img
                   src={selectedStudent.profileImage}
@@ -973,7 +973,7 @@ const RecordResults = ({ user }) => {
                 <span className="bg-black text-white px-3 py-1 rounded-lg font-black uppercase text-xs tracking-widest">
                   {selectedStudent.studentClass}
                 </span>
-                <span className="bg-slate-50 border-2 border-black text-black px-3 py-1 rounded-lg font-black uppercase text-xs tracking-widest">
+                <span className="bg-white border-2 border-black text-black px-3 py-1 rounded-lg font-black uppercase text-xs tracking-widest">
                   {selectedStudent.registrationNumber}
                 </span>
               </div>
@@ -991,7 +991,7 @@ const RecordResults = ({ user }) => {
                 )}
               </label>
               <select
-                className={`input-cartoon appearance-none ${recordingMode === "subject" ? "bg-accent-red/5 border-accent-red" : ""}`}
+                className="input-cartoon appearance-none bg-white border-2 border-gray-400"
                 value={formData.subjectId}
                 onChange={(e) =>
                   setFormData({ ...formData, subjectId: e.target.value })
@@ -1014,7 +1014,7 @@ const RecordResults = ({ user }) => {
                 Term
               </label>
               <select
-                className="input-cartoon appearance-none"
+                className="input-cartoon appearance-none bg-white border-2 border-gray-400"
                 value={formData.term}
                 onChange={(e) =>
                   setFormData({ ...formData, term: e.target.value })
