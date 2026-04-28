@@ -142,6 +142,18 @@ app.get('/api/health/detailed', asyncHandler(async (req, res) => {
   res.json(checks);
 }));
 
+// Email configuration check endpoint
+app.get('/api/email-config', (req, res) => {
+  res.json({
+    EMAIL_USER_SET: !!process.env.EMAIL_USER,
+    EMAIL_USER_VALUE: process.env.EMAIL_USER ? process.env.EMAIL_USER.substring(0, 10) + '***' : 'NOT SET',
+    EMAIL_PASSWORD_SET: !!process.env.EMAIL_PASSWORD,
+    EMAIL_PASSWORD_LENGTH: process.env.EMAIL_PASSWORD ? process.env.EMAIL_PASSWORD.length : 0,
+    NODE_ENV: process.env.NODE_ENV,
+    timestamp: new Date().toISOString()
+  });
+});
+
 // Test email endpoint (for configuration verification)
 app.post('/api/test-email', asyncHandler(async (req, res) => {
   const { to } = req.body;
@@ -162,19 +174,31 @@ app.post('/api/test-email', asyncHandler(async (req, res) => {
 
   try {
     const { sendTestEmail } = require('./utils/emailService');
-    await sendTestEmail(to);
-    res.json({ 
-      status: 'success',
-      message: 'Test email sent successfully',
-      sentTo: to,
-      timestamp: new Date().toISOString()
-    });
+    const result = await sendTestEmail(to);
+    
+    if (result.success) {
+      res.json({ 
+        status: 'success',
+        message: 'Test email sent successfully',
+        sentTo: to,
+        messageId: result.messageId,
+        timestamp: new Date().toISOString()
+      });
+    } else {
+      res.status(500).json({ 
+        status: 'error',
+        error: 'Email sending failed',
+        message: result.error,
+        sentTo: to
+      });
+    }
   } catch (error) {
     logger.error('Test email failed:', error);
     res.status(500).json({ 
       status: 'error',
       error: 'Failed to send test email',
-      message: error.message
+      message: error.message,
+      details: error.toString()
     });
   }
 }));
