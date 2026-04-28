@@ -23,6 +23,8 @@ import {
 } from "lucide-react";
 import AcademicBackground from "../components/AcademicBackground";
 import TeacherMessages from "../components/TeacherMessages";
+import SubjectTeacherBroadsheet from "../components/SubjectTeacherBroadsheet";
+import FormTeacherResultEntry from "../components/FormTeacherResultEntry";
 
 const TeacherDashboard = () => {
   const navigate = useNavigate();
@@ -158,6 +160,30 @@ const TeacherDashboard = () => {
             <FileSpreadsheet className="mr-2 md:mr-3" size={18} />
             <span>Broadsheet</span>
           </NavLink>
+          {user?.isSubjectTeacher && (
+            <NavLink
+              to="/teacher/subject-broadsheet"
+              onClick={() => setSidebarOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center p-3 md:p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+              }
+            >
+              <FileSpreadsheet className="mr-2 md:mr-3" size={18} />
+              <span>Subject Results</span>
+            </NavLink>
+          )}
+          {user?.isFormTeacher && (
+            <NavLink
+              to="/teacher/enter-results"
+              onClick={() => setSidebarOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center p-3 md:p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-red/20" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
+              }
+            >
+              <FileText className="mr-2 md:mr-3" size={18} />
+              <span>Enter Results 📝</span>
+            </NavLink>
+          )}
           {user?.isFormTeacher && (
             <NavLink
               to="/teacher/attendance"
@@ -261,6 +287,12 @@ const TeacherDashboard = () => {
             )}
             <Route path="/record-results" element={<RecordResults />} />
             <Route path="/release-results" element={<ResultReleaseManager user={user} />} />
+            {user?.isSubjectTeacher && (
+              <Route path="/subject-broadsheet" element={<SubjectTeacherBroadsheet />} />
+            )}
+            {user?.isFormTeacher && (
+              <Route path="/enter-results" element={<FormTeacherResultEntry user={user} />} />
+            )}
             <Route path="/attendance" element={<AttendanceManager user={user} />} />
             <Route path="/settings" element={<TeacherSettings user={user} setUser={setUser} />} />
           </Routes>
