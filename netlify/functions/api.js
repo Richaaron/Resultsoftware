@@ -46,8 +46,7 @@ const app = require('../../backend/server');
 
 // Custom request handler to ensure body parsing works
 const handler = serverless(app, {
-  binary: ['application/octet-stream', 'image/*'],
-  basePath: '/.netlify/functions/api'
+  binary: ['application/octet-stream', 'image/*']
 });
 
 exports.handler = async (event, context) => {
