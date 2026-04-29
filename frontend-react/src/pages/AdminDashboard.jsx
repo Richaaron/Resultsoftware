@@ -2267,8 +2267,9 @@ const TeacherManagement = () => {
   };
 
   const getAutoSubjectsForClass = (className, allSubjects) => {
-    // SSS classes are NOT auto-assigned (teacher picks specific section subjects)
+    // SSS and JSS classes are NOT auto-assigned (manual selection)
     if (SSS_CLASSES.includes(className)) return null;
+    if (JSS_CLASSES.includes(className)) return null;
     const filter = getSectionFilterForClass(className);
     if (!filter) return null;
     return getFilteredSubjects(allSubjects, filter).map(s => s.name);
