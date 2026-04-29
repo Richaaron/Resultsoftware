@@ -13,7 +13,7 @@ const { sendWelcomeEmail } = require('../utils/emailService');
 
 // Create student with auto-generated parent account
 router.post('/', auth, authorize(['ADMIN', 'TEACHER']), validate(schemas.createStudent), asyncHandler(async (req, res) => {
-  const { firstName, lastName, studentClass, subjectIds, profileImage, parentEmail } = req.body;
+  const { firstName, lastName, studentClass, section, subjectIds, profileImage, parentEmail } = req.body;
 
   // Auto-generate registration number with fvs + random 4-digit number
   const randomNumber = Math.floor(1000 + Math.random() * 9000);
@@ -42,6 +42,7 @@ router.post('/', auth, authorize(['ADMIN', 'TEACHER']), validate(schemas.createS
     lastName,
     registrationNumber,
     studentClass,
+    section,
     profileImage,
     parentId: parent.id
   });
@@ -148,12 +149,13 @@ router.patch('/:id', auth, authorize(['ADMIN', 'TEACHER']), asyncHandler(async (
     return res.status(404).json({ error: 'Student not found' });
   }
 
-  const { firstName, lastName, studentClass, subjectIds, profileImage, parentEmail } = req.body;
+  const { firstName, lastName, studentClass, section, subjectIds, profileImage, parentEmail } = req.body;
 
   await student.update({ 
     ...(firstName && { firstName }), 
     ...(lastName && { lastName }), 
-    ...(studentClass && { studentClass }), 
+    ...(studentClass && { studentClass }),
+    ...(section && { section }),
     ...(profileImage && { profileImage }),
     ...(parentEmail && { parentEmail })
   });

@@ -844,6 +844,7 @@ const StudentList = () => {
     lastName: "",
     registrationNumber: "",
     studentClass: "",
+    section: "",
     dateOfBirth: "",
     parentEmail: "",
     subjectIds: [],
@@ -905,9 +906,17 @@ const StudentList = () => {
     const classInfo = classToLevel[formData.studentClass];
     if (!classInfo) return subjects;
 
-    return subjects.filter(
+    let filtered = subjects.filter(
       (s) => s.category === classInfo.category && s.level === classInfo.level
     );
+
+    // For Senior Secondary, filter by section if one is selected
+    if (["SSS 1", "SSS 2", "SSS 3"].includes(formData.studentClass) && formData.section) {
+      filtered = filtered.filter((s) => s.section === formData.section);
+    }
+
+    return filtered;
+  };
   };
 
   const getGroupedSubjects = (subjectList) => {
@@ -981,6 +990,7 @@ const StudentList = () => {
         lastName: "",
         registrationNumber: "",
         studentClass: "",
+        section: "",
         dateOfBirth: "",
         parentEmail: "",
         subjectIds: [],
@@ -1312,6 +1322,28 @@ const StudentList = () => {
                       ))}
                     </select>
                   </div>
+                  {formData.studentClass && ["SSS 1", "SSS 2", "SSS 3"].includes(formData.studentClass) && (
+                    <div className="space-y-1">
+                      <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                        Section 📚
+                      </label>
+                      <select
+                        className="input-cartoon w-full text-sm py-2"
+                        value={formData.section || ""}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            section: e.target.value,
+                          })
+                        }
+                      >
+                        <option value="">Select Section...</option>
+                        <option value="Science">Science</option>
+                        <option value="Art">Art</option>
+                        <option value="Commercial">Commercial</option>
+                      </select>
+                    </div>
+                  )}
                   <div className="space-y-1">
                     <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
                       Date of Birth 🎂
@@ -1538,6 +1570,28 @@ const StudentList = () => {
                       ))}
                     </select>
                   </div>
+                  {editingStudent.studentClass && ["SSS 1", "SSS 2", "SSS 3"].includes(editingStudent.studentClass) && (
+                    <div className="space-y-1">
+                      <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                        Section 📚
+                      </label>
+                      <select
+                        className="input-cartoon w-full text-sm py-2"
+                        value={editingStudent.section || ""}
+                        onChange={(e) =>
+                          setEditingStudent({
+                            ...editingStudent,
+                            section: e.target.value || null,
+                          })
+                        }
+                      >
+                        <option value="">Select Section...</option>
+                        <option value="Science">Science</option>
+                        <option value="Art">Art</option>
+                        <option value="Commercial">Commercial</option>
+                      </select>
+                    </div>
+                  )}
                   <div className="space-y-1">
                     <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
                       Date of Birth 🎂
@@ -1573,13 +1627,16 @@ const StudentList = () => {
                   </div>
                 </div>
 
-                <div className="md:col-span-2 space-y-2">
+                  <div className="md:col-span-2 space-y-2">
                   <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
                     Subjects
                   </label>
                   <div className="space-y-3 p-3 border-2 border-gray-300 dark:border-slate-700 rounded-lg bg-gray-50 dark:bg-slate-800 max-h-48 overflow-y-auto">
                     {editingStudent.studentClass && ["SSS 1", "SSS 2", "SSS 3"].includes(editingStudent.studentClass)
-                      ? Object.entries(getGroupedSubjects(subjects.filter(s => s.category === "Secondary" && s.level === "Senior"))).map(([section, subs]) => (
+                      ? Object.entries(getGroupedSubjects(editingStudent.section 
+                          ? subjects.filter(s => s.category === "Secondary" && s.level === "Senior" && s.section === editingStudent.section)
+                          : subjects.filter(s => s.category === "Secondary" && s.level === "Senior")
+                        )).map(([section, subs]) => (
                           <div key={section} className="space-y-2">
                             <h4 className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">
                               {section} Section

@@ -426,6 +426,7 @@ const RegisterStudent = () => {
     lastName: "",
     registrationNumber: "",
     studentClass: "",
+    section: "",
     dateOfBirth: "",
     subjectIds: [],
     profileImage: null,
@@ -460,6 +461,7 @@ const RegisterStudent = () => {
         lastName: "",
         registrationNumber: "",
         studentClass: "",
+        section: "",
         dateOfBirth: "",
         subjectIds: [],
         profileImage: null,
@@ -668,6 +670,26 @@ const RegisterStudent = () => {
             <option value="SSS 3">SSS 3</option>
           </select>
         </div>
+
+        {formData.studentClass && ["SSS 1", "SSS 2", "SSS 3"].includes(formData.studentClass) && (
+          <div className="space-y-2">
+            <label className="text-lg font-black text-black uppercase tracking-tight text-3d">
+              Section 📚
+            </label>
+            <select
+              className="input-cartoon appearance-none bg-white border-2 border-gray-400"
+              value={formData.section}
+              onChange={(e) =>
+                setFormData({ ...formData, section: e.target.value })
+              }
+            >
+              <option value="">Select Section...</option>
+              <option value="Science">Science</option>
+              <option value="Art">Art</option>
+              <option value="Commercial">Commercial</option>
+            </select>
+          </div>
+        )}
 
         <div className="space-y-4">
           <label className="text-lg font-black text-black uppercase tracking-tight block text-3d">

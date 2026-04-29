@@ -51,6 +51,7 @@ const schemas = {
       lastName: Joi.string().max(50).required(),
       registrationNumber: Joi.string().max(20).required(),
       studentClass: Joi.string().max(10).required(),
+      section: Joi.string().valid('Science', 'Art', 'Commercial').optional(),
       parentEmail: Joi.string().email().optional(),
       subjectIds: Joi.array().items(Joi.number()).optional(),
       profileImage: Joi.string().optional()

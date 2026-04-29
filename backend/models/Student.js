@@ -25,6 +25,11 @@ const Student = sequelize.define("Student", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  section: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    comment: 'Science, Art, or Commercial for Senior Secondary School'
+  },
   profileImage: {
     type: DataTypes.TEXT,
     allowNull: true,
