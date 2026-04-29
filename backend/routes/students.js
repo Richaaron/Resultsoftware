@@ -13,7 +13,7 @@ const { sendWelcomeEmail } = require('../utils/emailService');
 
 // Create student with auto-generated parent account
 router.post('/', auth, authorize(['ADMIN', 'TEACHER']), validate(schemas.createStudent), asyncHandler(async (req, res) => {
-  const { firstName, lastName, studentClass, section, subjectIds, profileImage, parentEmail } = req.body;
+  const { firstName, lastName, studentClass, section, subjectIds, profileImage, parentEmail, feesPaid } = req.body;
 
   // Auto-generate registration number with fvs + random 4-digit number
   const randomNumber = Math.floor(1000 + Math.random() * 9000);
@@ -44,7 +44,8 @@ router.post('/', auth, authorize(['ADMIN', 'TEACHER']), validate(schemas.createS
     studentClass,
     section,
     profileImage,
-    parentId: parent.id
+    parentId: parent.id,
+    feesPaid: feesPaid === true
   });
 
   if (subjectIds && Array.isArray(subjectIds) && subjectIds.length > 0) {
@@ -142,6 +143,24 @@ router.patch('/release-results', auth, authorize(['ADMIN', 'TEACHER']), asyncHan
   });
 }));
 
+// Update fee status for students
+router.patch('/update-fees', auth, authorize(['ADMIN']), asyncHandler(async (req, res) => {
+  const { studentIds, feesPaid } = req.body;
+  
+  if (!Array.isArray(studentIds) || studentIds.length === 0) {
+    return res.status(400).json({ error: 'studentIds must be a non-empty array' });
+  }
+
+  await Student.update(
+    { feesPaid: feesPaid === true },
+    { where: { id: studentIds } }
+  );
+
+  res.json({ 
+    message: `Fee status updated for ${studentIds.length} students` 
+  });
+}));
+
 // Update student
 router.patch('/:id', auth, authorize(['ADMIN', 'TEACHER']), asyncHandler(async (req, res) => {
   const student = await Student.findByPk(req.params.id);
@@ -149,7 +168,7 @@ router.patch('/:id', auth, authorize(['ADMIN', 'TEACHER']), asyncHandler(async (
     return res.status(404).json({ error: 'Student not found' });
   }
 
-  const { firstName, lastName, studentClass, section, subjectIds, profileImage, parentEmail } = req.body;
+  const { firstName, lastName, studentClass, section, subjectIds, profileImage, parentEmail, feesPaid } = req.body;
 
   await student.update({ 
     ...(firstName && { firstName }), 
@@ -157,7 +176,8 @@ router.patch('/:id', auth, authorize(['ADMIN', 'TEACHER']), asyncHandler(async (
     ...(studentClass && { studentClass }),
     ...(section && { section }),
     ...(profileImage && { profileImage }),
-    ...(parentEmail && { parentEmail })
+    ...(parentEmail && { parentEmail }),
+    ...(feesPaid !== undefined && { feesPaid })
   });
 
   // Update parent's email if provided

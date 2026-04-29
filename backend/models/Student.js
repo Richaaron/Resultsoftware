@@ -42,6 +42,10 @@ const Student = sequelize.define("Student", {
     type: DataTypes.DATEONLY,
     allowNull: true,
   },
+  feesPaid: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
   gender: {
     type: DataTypes.STRING,
     allowNull: true,

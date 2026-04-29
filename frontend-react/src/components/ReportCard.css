@@ -1,0 +1,250 @@
+.report-card-container {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .report-card-container {
+    display: block !important;
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: white !important;
+    box-sizing: border-box;
+  }
+
+  .report-card-container * {
+    visibility: visible;
+  }
+
+  .report-card-wrapper {
+    padding: 2rem;
+    font-family: 'Times New Roman', Times, serif;
+    color: #000;
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    min-height: 100vh;
+    box-shadow: none;
+  }
+
+  /* Header */
+  .report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px double #000;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .logo-container {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .school-logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .logo-placeholder {
+    width: 80px;
+    height: 80px;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #ccc;
+  }
+
+  .school-info {
+    text-align: center;
+    flex: 1;
+    padding: 0 1rem;
+  }
+
+  .school-name {
+    font-size: 24px;
+    font-weight: 900;
+    margin: 0 0 5px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .school-address {
+    font-size: 12px;
+    margin: 0 0 10px 0;
+  }
+
+  .report-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    text-decoration: underline;
+  }
+
+  /* Student Details */
+  .student-details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    background-color: #f9f9f9 !important;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .detail-item {
+    font-size: 14px;
+  }
+
+  .detail-label {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  /* Grades Table */
+  .grades-section {
+    margin-bottom: 2rem;
+  }
+
+  .grades-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+  }
+
+  .grades-table th,
+  .grades-table td {
+    border: 1px solid #000;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .grades-table th {
+    font-weight: bold;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Summary Section */
+  .summary-section {
+    margin-bottom: 2rem;
+  }
+
+  .summary-box {
+    border: 2px solid #000;
+  }
+
+  .summary-title {
+    margin: 0;
+    padding: 5px 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .summary-item .label {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  /* Signatures */
+  .signatures-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 4rem;
+    padding: 0 1rem;
+  }
+
+  .signature-box {
+    text-align: center;
+    width: 200px;
+  }
+
+  .signature-img {
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 5px;
+  }
+
+  .signature-line {
+    border-bottom: 1px solid #000;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 5px;
+  }
+
+  .signature-name {
+    font-weight: bold;
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .signature-title {
+    margin: 0;
+    font-size: 12px;
+    font-style: italic;
+  }
+
+  .stamp-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .official-stamp {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 10px;
+    text-align: center;
+    opacity: 0.7;
+    transform: rotate(-15deg);
+  }
+
+  .report-footer {
+    text-align: center;
+    font-size: 10px;
+    font-style: italic;
+    color: #666;
+    margin-top: 2rem;
+    border-top: 1px dashed #ccc;
+    padding-top: 5px;
+  }
+}

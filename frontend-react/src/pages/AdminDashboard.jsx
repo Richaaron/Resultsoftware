@@ -277,7 +277,9 @@ const AdminSettings = () => {
     primaryColor: "#fbbf24",
     secondaryColor: "#ef4444",
     principalName: "",
+    principalSignature: "",
     headTeacherName: "",
+    headTeacherSignature: "",
     schoolAddress: "",
     currentTerm: "First",
     currentAcademicYear: "",
@@ -303,7 +305,9 @@ const AdminSettings = () => {
         primaryColor: "#fbbf24",
         secondaryColor: "#ef4444",
         principalName: "",
+        principalSignature: "",
         headTeacherName: "",
+        headTeacherSignature: "",
         schoolAddress: "",
         currentTerm: "First",
         currentAcademicYear: "",
@@ -323,7 +327,9 @@ const AdminSettings = () => {
         primaryColor: settings.primaryColor,
         secondaryColor: settings.secondaryColor,
         principalName: settings.principalName,
+        principalSignature: settings.principalSignature,
         headTeacherName: settings.headTeacherName,
+        headTeacherSignature: settings.headTeacherSignature,
         schoolAddress: settings.schoolAddress,
         currentTerm: settings.currentTerm,
         currentAcademicYear: settings.currentAcademicYear,
@@ -381,6 +387,28 @@ const AdminSettings = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setSettings({ ...settings, logo: reader.result });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handlePrincipalSignatureUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSettings({ ...settings, principalSignature: reader.result });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleHeadTeacherSignatureUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSettings({ ...settings, headTeacherSignature: reader.result });
       };
       reader.readAsDataURL(file);
     }
@@ -554,6 +582,76 @@ const AdminSettings = () => {
                   <p className="text-[10px] text-slate-500 mt-2 font-bold uppercase">
                     PNG, JPG recommended
                   </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+                  Principal's Signature
+                </label>
+                <div className="flex items-center gap-4 p-4 bg-slate-800 border-4 border-black border-dashed rounded-2xl">
+                  {settings.principalSignature ? (
+                    <img
+                      src={settings.principalSignature}
+                      alt="Principal Signature"
+                      className="h-16 object-contain bg-slate-50 p-2 rounded-xl border-2 border-black flex-1"
+                    />
+                  ) : (
+                    <div className="h-16 flex-1 bg-slate-700 border-2 border-black rounded-xl flex items-center justify-center text-slate-500 text-xs font-black uppercase">
+                      No Signature
+                    </div>
+                  )}
+                  <div>
+                    <input
+                      type="file"
+                      id="principal-sig-upload"
+                      className="hidden"
+                      accept="image/*"
+                      onChange={handlePrincipalSignatureUpload}
+                    />
+                    <label
+                      htmlFor="principal-sig-upload"
+                      className="btn-cartoon-primary bg-slate-50 text-black text-xs py-2 px-3 inline-flex items-center gap-2 cursor-pointer"
+                    >
+                      <Upload size={14} />
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+                  Head Teacher's Signature
+                </label>
+                <div className="flex items-center gap-4 p-4 bg-slate-800 border-4 border-black border-dashed rounded-2xl">
+                  {settings.headTeacherSignature ? (
+                    <img
+                      src={settings.headTeacherSignature}
+                      alt="Head Teacher Signature"
+                      className="h-16 object-contain bg-slate-50 p-2 rounded-xl border-2 border-black flex-1"
+                    />
+                  ) : (
+                    <div className="h-16 flex-1 bg-slate-700 border-2 border-black rounded-xl flex items-center justify-center text-slate-500 text-xs font-black uppercase">
+                      No Signature
+                    </div>
+                  )}
+                  <div>
+                    <input
+                      type="file"
+                      id="head-teacher-sig-upload"
+                      className="hidden"
+                      accept="image/*"
+                      onChange={handleHeadTeacherSignatureUpload}
+                    />
+                    <label
+                      htmlFor="head-teacher-sig-upload"
+                      className="btn-cartoon-primary bg-slate-50 text-black text-xs py-2 px-3 inline-flex items-center gap-2 cursor-pointer"
+                    >
+                      <Upload size={14} />
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -847,6 +945,7 @@ const StudentList = () => {
     section: "",
     dateOfBirth: "",
     parentEmail: "",
+    feesPaid: false,
     subjectIds: [],
     profileImage: null,
   });
@@ -1021,6 +1120,17 @@ const StudentList = () => {
 
   const handleDeleteStudent = (id) => {
     setConfirmDelete({ show: true, id, type: "student" });
+  };
+
+  const handleToggleFeeStatus = async (studentId, currentStatus) => {
+    try {
+      await api.patch(`/students/${studentId}`, { feesPaid: !currentStatus });
+      fetchStudents();
+      setMessage(`Fee status updated! 💰`);
+      setTimeout(() => setMessage(""), 3000);
+    } catch (err) {
+      setMessage("Error updating fee status ❌");
+    }
   };
 
   const executeDeleteStudent = async (id) => {
@@ -1369,6 +1479,23 @@ const StudentList = () => {
                       }
                     />
                   </div>
+                  <div className="space-y-1 flex items-center mt-6">
+                    <input
+                      type="checkbox"
+                      id="addFeesPaid"
+                      className="w-5 h-5 border-2 border-black rounded-md accent-accent-gold cursor-pointer"
+                      checked={formData.feesPaid}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          feesPaid: e.target.checked,
+                        })
+                      }
+                    />
+                    <label htmlFor="addFeesPaid" className="ml-2 text-sm font-black text-black dark:text-slate-300 uppercase tracking-tight cursor-pointer">
+                      School Fees Paid? 💰
+                    </label>
+                  </div>
                 </div>
 
                 <div className="md:col-span-2 space-y-2">
@@ -1648,6 +1775,23 @@ const StudentList = () => {
                       }
                     />
                   </div>
+                  <div className="space-y-1 flex items-center mt-6">
+                    <input
+                      type="checkbox"
+                      id="editFeesPaid"
+                      className="w-5 h-5 border-2 border-black rounded-md accent-accent-gold cursor-pointer"
+                      checked={editingStudent.feesPaid || false}
+                      onChange={(e) =>
+                        setEditingStudent({
+                          ...editingStudent,
+                          feesPaid: e.target.checked,
+                        })
+                      }
+                    />
+                    <label htmlFor="editFeesPaid" className="ml-2 text-sm font-black text-black dark:text-slate-300 uppercase tracking-tight cursor-pointer">
+                      School Fees Paid? 💰
+                    </label>
+                  </div>
                 </div>
 
                 <div className="md:col-span-2 space-y-2">
@@ -1740,6 +1884,9 @@ const StudentList = () => {
               <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm">
                 Class
               </th>
+              <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm text-center">
+                Fee Status
+              </th>
               <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm text-right">
                 Action
               </th>
@@ -1780,6 +1927,18 @@ const StudentList = () => {
                   <span className="bg-accent-gold border-2 border-black px-3 py-1 rounded-lg font-black uppercase text-xs tracking-widest text-black shadow-cartoon-xs">
                     {s.studentClass}
                   </span>
+                </td>
+                <td className="py-6 text-center">
+                  <button
+                    onClick={() => handleToggleFeeStatus(s.id, s.feesPaid)}
+                    className={`px-3 py-1 border-2 border-black rounded-lg font-black uppercase text-[10px] sm:text-xs tracking-widest shadow-cartoon-xs transition-transform hover:scale-105 ${
+                      s.feesPaid
+                        ? "bg-green-400 text-black"
+                        : "bg-red-400 text-white"
+                    }`}
+                  >
+                    {s.feesPaid ? "Paid 💰" : "Unpaid ❌"}
+                  </button>
                 </td>
                 <td className="py-6 text-right">
                   <div className="flex justify-end gap-2">
