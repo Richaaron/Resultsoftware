@@ -25,6 +25,7 @@ const ParentDashboard = () => {
   const [selectedChild, setSelectedChild] = useState(null);
   const [results, setResults] = useState([]);
   const [attendance, setAttendance] = useState([]);
+  const [attendanceStats, setAttendanceStats] = useState(null);
   const [settings, setSettings] = useState(null);
   const [selectedTerm, setSelectedTerm] = useState("All");
   const [selectedYear, setSelectedYear] = useState("All");
@@ -40,8 +41,10 @@ const ParentDashboard = () => {
     setShowAllAttendance(false);
     const resultsRes = await api.get(`/results/student/${child.id}`);
     const attendanceRes = await api.get(`/attendance/student/${child.id}`);
+    const attendanceStatsRes = await api.get(`/attendance/student/${child.id}/percentage`);
     setResults(resultsRes.data);
     setAttendance(attendanceRes.data);
+    setAttendanceStats(attendanceStatsRes.data);
   }
 
   useEffect(() => {
@@ -112,7 +115,8 @@ const ParentDashboard = () => {
             currentClass: selectedChild.studentClass,
             results: filteredResults
           }}
-          settings={settings} 
+          settings={settings}
+          attendanceStats={attendanceStats}
         />
       )}
 

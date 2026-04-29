@@ -25,6 +25,7 @@ import AcademicBackground from "../components/AcademicBackground";
 import TeacherMessages from "../components/TeacherMessages";
 import SubjectTeacherBroadsheet from "../components/SubjectTeacherBroadsheet";
 import FormTeacherResultEntry from "../components/FormTeacherResultEntry";
+import AttendanceManager from "../components/AttendanceManager";
 
 const TeacherDashboard = () => {
   const navigate = useNavigate();

@@ -262,4 +262,47 @@ router.get(
   }
 );
 
+// POST /batch - batch update attendance for a class
+router.post(
+  "/batch",
+  auth,
+  authorize(["ADMIN", "TEACHER"]),
+  async (req, res) => {
+    try {
+      const { date, records } = req.body;
+      if (!date || !Array.isArray(records)) {
+        return res.status(400).send({ error: "date and records array are required" });
+      }
+
+      const results = [];
+      for (const record of records) {
+        const { studentId, status } = record;
+        if (!studentId || !status) continue;
+
+        const existing = await Attendance.findOne({
+          where: { StudentId: studentId, date },
+        });
+
+        if (existing) {
+          existing.status = status;
+          await existing.save();
+          results.push(existing);
+        } else {
+          const newRecord = await Attendance.create({
+            StudentId: studentId,
+            date,
+            status,
+          });
+          results.push(newRecord);
+        }
+      }
+
+      res.status(200).send(results);
+    } catch (error) {
+      console.error("Batch attendance error:", error);
+      res.status(500).send({ error: "Failed to process batch attendance" });
+    }
+  }
+);
+
 module.exports = router;

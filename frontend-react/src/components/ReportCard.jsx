@@ -1,7 +1,7 @@
 import React from "react";
 import "./ReportCard.css";
 
-const ReportCard = React.forwardRef(({ student, settings }, ref) => {
+const ReportCard = React.forwardRef(({ student, settings, attendanceStats }, ref) => {
   if (!student || !settings) return null;
 
   // Group results by term if needed, or just display the current term's results
@@ -130,7 +130,13 @@ const ReportCard = React.forwardRef(({ student, settings }, ref) => {
                 <span className="label">Average:</span>
                 <span className="value">{calculateAverage()}%</span>
               </div>
-              <div className="summary-item">
+              <div className="summary-item col-span-3">
+                <span className="label">Attendance:</span>
+                <span className="value text-sm font-bold">
+                  {attendanceStats ? `${attendanceStats.presentDays} days present out of ${attendanceStats.totalDays} total days (${attendanceStats.percentage}%)` : "N/A"}
+                </span>
+              </div>
+              <div className="summary-item" style={{ gridColumn: '1 / -1' }}>
                 <span className="label">Grade Key:</span>
                 <span className="value text-xs">
                   A (70-100) | B (60-69) | C (50-59) | D (40-49) | F (0-39)
