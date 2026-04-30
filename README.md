@@ -1,6 +1,6 @@
-# Result Software - Student Result Management System
+# Folusho Victory School Result Portal
 
-A full-stack web application for managing student results, attendance, and academic records. Built with Node.js/Express backend, React frontend, and PostgreSQL (Supabase) database.
+A full-stack web application for managing student results, attendance, and academic records at Folusho Victory School. Built with Node.js/Express backend, React frontend, and PostgreSQL (Supabase) database.
 
 ## 🎯 Features
 

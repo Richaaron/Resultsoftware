@@ -1976,6 +1976,7 @@ const TeacherManagement = () => {
     assignedSubject: [], // Changed to array
     profileImage: null,
   });
+  const [showTeacherForm, setShowTeacherForm] = useState(false);
   const [editingTeacher, setEditingTeacher] = useState(null);
   const [subjects, setSubjects] = useState([]);
   const [message, setMessage] = useState("");
@@ -2186,6 +2187,22 @@ const TeacherManagement = () => {
         </div>
       </div>
 
+      <div className="cartoon-card p-10 bg-slate-50 dark:bg-slate-900">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-3xl font-black text-black dark:text-white uppercase italic tracking-tighter text-3d">
+            Hire New Educator! 🍎
+          </h2>
+          <button
+            onClick={() => setShowTeacherForm(true)}
+            className="btn-cartoon-primary bg-accent-gold text-black py-3 px-6 flex items-center gap-2 font-black uppercase tracking-tight"
+          >
+            <Plus size={20} />
+            Add Teacher
+          </button>
+        </div>
+      </div>
+
+      {showTeacherForm && (
       <div className="fixed inset-0 z-40 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
         <div className="cartoon-card bg-slate-50 dark:bg-slate-900 p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto border-4 border-black shadow-cartoon relative">
           <button
@@ -2201,6 +2218,7 @@ const TeacherManagement = () => {
               });
               setMessage("");
               setCreds(null);
+              setShowTeacherForm(false);
             }}
             className="absolute top-4 right-4 text-black dark:text-white hover:rotate-90 transition-transform"
           >
@@ -2448,6 +2466,7 @@ const TeacherManagement = () => {
                 });
                 setMessage("");
                 setCreds(null);
+                setShowTeacherForm(false);
               }}
               className="flex-1 btn-cartoon-primary bg-slate-300 dark:bg-slate-700 text-black dark:text-white py-4 text-lg flex items-center justify-center gap-3 border-4 border-black"
             >
@@ -2458,6 +2477,7 @@ const TeacherManagement = () => {
         </form>
         </div>
       </div>
+      )}
 
       <div className="cartoon-card p-10 bg-slate-50 dark:bg-slate-900">
         <h2 className="text-3xl font-black text-black dark:text-white mb-8 uppercase italic tracking-tighter text-3d">

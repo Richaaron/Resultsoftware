@@ -199,7 +199,8 @@ const Login = () => {
             <GraduationCap size={32} strokeWidth={2.5} />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
-            Folusho{" "}
+            Folusho Victory School
+            <br />
             <span className="text-accent-gold">
               Result Portal
             </span>
@@ -213,7 +214,7 @@ const Login = () => {
 
         <div className="mt-8 md:mt-12 text-center">
           <p className="text-slate-500 text-xs font-medium">
-            Folusho Result Portal v2.0
+            Folusho Victory School Result Portal v2.0
           </p>
         </div>
       </div>
