@@ -277,9 +277,7 @@ const AdminSettings = () => {
     primaryColor: "#fbbf24",
     secondaryColor: "#ef4444",
     principalName: "",
-    principalSignature: "",
     headTeacherName: "",
-    headTeacherSignature: "",
     schoolAddress: "",
     currentTerm: "First",
     currentAcademicYear: "",
@@ -305,9 +303,7 @@ const AdminSettings = () => {
         primaryColor: "#fbbf24",
         secondaryColor: "#ef4444",
         principalName: "",
-        principalSignature: "",
         headTeacherName: "",
-        headTeacherSignature: "",
         schoolAddress: "",
         currentTerm: "First",
         currentAcademicYear: "",
@@ -327,9 +323,7 @@ const AdminSettings = () => {
         primaryColor: settings.primaryColor,
         secondaryColor: settings.secondaryColor,
         principalName: settings.principalName,
-        principalSignature: settings.principalSignature,
         headTeacherName: settings.headTeacherName,
-        headTeacherSignature: settings.headTeacherSignature,
         schoolAddress: settings.schoolAddress,
         currentTerm: settings.currentTerm,
         currentAcademicYear: settings.currentAcademicYear,
@@ -387,28 +381,6 @@ const AdminSettings = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setSettings({ ...settings, logo: reader.result });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handlePrincipalSignatureUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSettings({ ...settings, principalSignature: reader.result });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleHeadTeacherSignatureUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSettings({ ...settings, headTeacherSignature: reader.result });
       };
       reader.readAsDataURL(file);
     }
@@ -586,76 +558,6 @@ const AdminSettings = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
-                  Principal's Signature
-                </label>
-                <div className="flex items-center gap-4 p-4 bg-slate-800 border-4 border-black border-dashed rounded-2xl">
-                  {settings.principalSignature ? (
-                    <img
-                      src={settings.principalSignature}
-                      alt="Principal Signature"
-                      className="h-16 object-contain bg-slate-50 p-2 rounded-xl border-2 border-black flex-1"
-                    />
-                  ) : (
-                    <div className="h-16 flex-1 bg-slate-700 border-2 border-black rounded-xl flex items-center justify-center text-slate-500 text-xs font-black uppercase">
-                      No Signature
-                    </div>
-                  )}
-                  <div>
-                    <input
-                      type="file"
-                      id="principal-sig-upload"
-                      className="hidden"
-                      accept="image/*"
-                      onChange={handlePrincipalSignatureUpload}
-                    />
-                    <label
-                      htmlFor="principal-sig-upload"
-                      className="btn-cartoon-primary bg-slate-50 text-black text-xs py-2 px-3 inline-flex items-center gap-2 cursor-pointer"
-                    >
-                      <Upload size={14} />
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
-                  Head Teacher's Signature
-                </label>
-                <div className="flex items-center gap-4 p-4 bg-slate-800 border-4 border-black border-dashed rounded-2xl">
-                  {settings.headTeacherSignature ? (
-                    <img
-                      src={settings.headTeacherSignature}
-                      alt="Head Teacher Signature"
-                      className="h-16 object-contain bg-slate-50 p-2 rounded-xl border-2 border-black flex-1"
-                    />
-                  ) : (
-                    <div className="h-16 flex-1 bg-slate-700 border-2 border-black rounded-xl flex items-center justify-center text-slate-500 text-xs font-black uppercase">
-                      No Signature
-                    </div>
-                  )}
-                  <div>
-                    <input
-                      type="file"
-                      id="head-teacher-sig-upload"
-                      className="hidden"
-                      accept="image/*"
-                      onChange={handleHeadTeacherSignatureUpload}
-                    />
-                    <label
-                      htmlFor="head-teacher-sig-upload"
-                      className="btn-cartoon-primary bg-slate-50 text-black text-xs py-2 px-3 inline-flex items-center gap-2 cursor-pointer"
-                    >
-                      <Upload size={14} />
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
@@ -818,62 +720,62 @@ const AdminOverview = () => {
   return (
     <div className="space-y-10">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-        <div className="cartoon-card p-6 cartoon-card-hover group bg-accent-gold/20 dark:bg-accent-gold/10">
-          <div className="w-10 h-10 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-xl flex items-center justify-center mb-4 shadow-cartoon-sm group-hover:scale-110 transition-transform">
-            <Users size={20} className="text-black dark:text-white" />
+        <div className="cartoon-card p-8 cartoon-card-hover group bg-accent-gold/20 dark:bg-accent-gold/10">
+          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
+            <Users size={28} className="text-black dark:text-white" />
           </div>
-          <h3 className="text-black dark:text-slate-300 uppercase text-xs md:text-sm font-black tracking-widest mb-1 italic">
+          <h3 className="text-black dark:text-slate-300 uppercase text-sm font-black tracking-widest mb-2 italic">
             Total Legends
           </h3>
-          <p className="text-4xl md:text-5xl font-black text-black dark:text-white tracking-tighter text-3d-lg">
+          <p className="text-6xl font-black text-black dark:text-white tracking-tighter text-3d-lg">
             {stats.studentCount}
           </p>
-          <div className="mt-3 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-full text-[10px] font-black uppercase tracking-tighter dark:text-slate-300">
+          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
             Students ⚡
           </div>
         </div>
 
-        <div className="cartoon-card p-6 cartoon-card-hover group bg-accent-red/20 dark:bg-accent-red/10">
-          <div className="w-10 h-10 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-xl flex items-center justify-center mb-4 shadow-cartoon-sm group-hover:scale-110 transition-transform">
-            <BookOpen size={20} className="text-black dark:text-white" />
+        <div className="cartoon-card p-8 cartoon-card-hover group bg-accent-red/20 dark:bg-accent-red/10">
+          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
+            <BookOpen size={28} className="text-black dark:text-white" />
           </div>
-          <h3 className="text-black dark:text-slate-300 uppercase text-xs md:text-sm font-black tracking-widest mb-1 italic">
+          <h3 className="text-black dark:text-slate-300 uppercase text-sm font-black tracking-widest mb-2 italic">
             Knowledge Cubes
           </h3>
-          <p className="text-4xl md:text-5xl font-black text-black dark:text-white tracking-tighter text-3d-lg">
+          <p className="text-6xl font-black text-black dark:text-white tracking-tighter text-3d-lg">
             {stats.subjectCount}
           </p>
-          <div className="mt-3 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-full text-[10px] font-black uppercase tracking-tighter dark:text-slate-300">
+          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
             Subjects 📚
           </div>
         </div>
 
-        <div className="cartoon-card p-6 cartoon-card-hover group bg-accent-gold/20 dark:bg-accent-gold/10">
-          <div className="w-10 h-10 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-xl flex items-center justify-center mb-4 shadow-cartoon-sm group-hover:scale-110 transition-transform">
-            <UserCircle size={20} className="text-black dark:text-white" />
+        <div className="cartoon-card p-8 cartoon-card-hover group bg-accent-gold/20 dark:bg-accent-gold/10">
+          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
+            <UserCircle size={28} className="text-black dark:text-white" />
           </div>
-          <h3 className="text-black dark:text-slate-300 uppercase text-xs md:text-sm font-black tracking-widest mb-1 italic">
+          <h3 className="text-black dark:text-slate-300 uppercase text-sm font-black tracking-widest mb-2 italic">
             Educators
           </h3>
-          <p className="text-4xl md:text-5xl font-black text-black dark:text-white tracking-tighter text-3d-lg">
+          <p className="text-6xl font-black text-black dark:text-white tracking-tighter text-3d-lg">
             {stats.teacherCount}
           </p>
-          <div className="mt-3 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-full text-[10px] font-black uppercase tracking-tighter dark:text-slate-300">
+          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
             Teachers 🍎
           </div>
         </div>
 
-        <div className="cartoon-card p-6 cartoon-card-hover group bg-accent-gold/10 dark:bg-accent-gold/5">
-          <div className="w-10 h-10 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-xl flex items-center justify-center mb-4 shadow-cartoon-sm group-hover:scale-110 transition-transform">
-            <Sparkles size={20} className="text-black dark:text-white" />
+        <div className="cartoon-card p-8 cartoon-card-hover group bg-accent-gold/10 dark:bg-accent-gold/5">
+          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
+            <Sparkles size={28} className="text-black dark:text-white" />
           </div>
-          <h3 className="text-black dark:text-slate-300 uppercase text-xs md:text-sm font-black tracking-widest mb-1 italic">
+          <h3 className="text-black dark:text-slate-300 uppercase text-sm font-black tracking-widest mb-2 italic">
             System Health
           </h3>
-          <p className="text-4xl md:text-5xl font-black text-black dark:text-white tracking-tighter text-3d-lg">
+          <p className="text-6xl font-black text-black dark:text-white tracking-tighter text-3d-lg">
             100%
           </p>
-          <div className="mt-3 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-full text-[10px] font-black uppercase tracking-tighter dark:text-slate-300">
+          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
             All Systems Go! 🚀
           </div>
         </div>
@@ -945,7 +847,6 @@ const StudentList = () => {
     section: "",
     dateOfBirth: "",
     parentEmail: "",
-    feesPaid: false,
     subjectIds: [],
     profileImage: null,
   });
@@ -981,8 +882,8 @@ const StudentList = () => {
     api.get("/students/subjects").then((res) => setSubjects(res.data));
   };
 
-  const getSubjectsByClass = (className) => {
-    if (!className) return subjects;
+  const getSubjectsForClass = () => {
+    if (!formData.studentClass) return subjects;
     
     const classToLevel = {
       "Pre-Nursery": { level: "General", category: "Primary" },
@@ -1002,18 +903,25 @@ const StudentList = () => {
       "SSS 3": { level: "Senior", category: "Secondary" },
     };
 
-    const classInfo = classToLevel[className];
+    const classInfo = classToLevel[formData.studentClass];
     if (!classInfo) return subjects;
 
-    return subjects.filter(
+    let filtered = subjects.filter(
       (s) => s.category === classInfo.category && s.level === classInfo.level
     );
+
+    // For Senior Secondary, filter by section if one is selected
+    if (["SSS 1", "SSS 2", "SSS 3"].includes(formData.studentClass) && formData.section) {
+      filtered = filtered.filter((s) => s.section === formData.section);
+    }
+
+    return filtered;
   };
 
   const getGroupedSubjects = (subjectList) => {
     const grouped = {};
     subjectList.forEach((sub) => {
-      const key = sub.section || "Core (All Sections)";
+      const key = sub.section || "General";
       if (!grouped[key]) grouped[key] = [];
       grouped[key].push(sub);
     });
@@ -1120,17 +1028,6 @@ const StudentList = () => {
 
   const handleDeleteStudent = (id) => {
     setConfirmDelete({ show: true, id, type: "student" });
-  };
-
-  const handleToggleFeeStatus = async (studentId, currentStatus) => {
-    try {
-      await api.patch(`/students/${studentId}`, { feesPaid: !currentStatus });
-      fetchStudents();
-      setMessage(`Fee status updated! 💰`);
-      setTimeout(() => setMessage(""), 3000);
-    } catch (err) {
-      setMessage("Error updating fee status ❌");
-    }
   };
 
   const executeDeleteStudent = async (id) => {
@@ -1479,87 +1376,40 @@ const StudentList = () => {
                       }
                     />
                   </div>
-                  <div className="space-y-1 flex items-center mt-6">
-                    <input
-                      type="checkbox"
-                      id="addFeesPaid"
-                      className="w-5 h-5 border-2 border-black rounded-md accent-accent-gold cursor-pointer"
-                      checked={formData.feesPaid}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          feesPaid: e.target.checked,
-                        })
-                      }
-                    />
-                    <label htmlFor="addFeesPaid" className="ml-2 text-sm font-black text-black dark:text-slate-300 uppercase tracking-tight cursor-pointer">
-                      School Fees Paid? 💰
-                    </label>
-                  </div>
                 </div>
 
                 <div className="md:col-span-2 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
-                      Subjects {formData.subjectIds.length > 0 && <span className="text-blue-500">({formData.subjectIds.length} selected)</span>}
-                    </label>
-                    {getSubjectsByClass(formData.studentClass).length > 0 && (
-                      <div className="flex gap-2">
-                        <button
-                          type="button"
-                          onClick={() => setFormData((prev) => ({ ...prev, subjectIds: getSubjectsByClass(formData.studentClass).map((s) => s.id) }))}
-                          className="text-[9px] font-black uppercase tracking-widest text-blue-500 hover:text-blue-700 border border-blue-300 rounded px-2 py-0.5"
-                        >
-                          Select All
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setFormData((prev) => ({ ...prev, subjectIds: [] }))}
-                          className="text-[9px] font-black uppercase tracking-widest text-red-400 hover:text-red-600 border border-red-300 rounded px-2 py-0.5"
-                        >
-                          Clear
-                        </button>
-                      </div>
-                    )}
-                  </div>
-
-                  {!formData.studentClass ? (
-                    <div className="p-4 border-2 border-dashed border-gray-300 dark:border-slate-600 rounded-lg text-center text-xs font-bold text-gray-400 uppercase tracking-widest">
-                      Select a class first to see subjects
-                    </div>
-                  ) : getSubjectsByClass(formData.studentClass).length === 0 ? (
-                    <div className="p-4 border-2 border-dashed border-gray-300 dark:border-slate-600 rounded-lg text-center text-xs font-bold text-gray-400 uppercase tracking-widest">
-                      No subjects found for this class/section
-                    </div>
-                  ) : (
-                    <div className="space-y-3 p-3 border-2 border-gray-300 dark:border-slate-700 rounded-lg bg-gray-50 dark:bg-slate-800">
-                      {["SSS 1", "SSS 2", "SSS 3"].includes(formData.studentClass)
-                        ? Object.entries(getGroupedSubjects(getSubjectsByClass(formData.studentClass))).map(([section, subs]) => (
-                            <div key={section} className="space-y-2">
-                              <h4 className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest border-b border-blue-200 dark:border-blue-800 pb-1">
-                                {section}
-                              </h4>
-                              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                                {subs.map((sub) => (
-                                  <button
-                                    key={sub.id}
-                                    type="button"
-                                    onClick={() => handleSubjectToggle(sub.id)}
-                                    className={`p-2 rounded-lg border text-[9px] sm:text-[10px] font-semibold uppercase tracking-tight transition-all ${
-                                      formData.subjectIds.includes(sub.id)
-                                        ? "bg-blue-500 border-blue-600 shadow-sm text-white"
-                                        : "bg-white dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-700 dark:text-slate-300 hover:border-blue-400"
-                                    }`}
-                                  >
-                                    {sub.name}
-                                  </button>
-                                ))}
-                              </div>
+                  <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                    Subjects
+                  </label>
+                  <div className="space-y-3 p-3 border-2 border-gray-300 dark:border-slate-700 rounded-lg bg-gray-50 dark:bg-slate-800 max-h-48 overflow-y-auto">
+                    {formData.studentClass && ["SSS 1", "SSS 2", "SSS 3"].includes(formData.studentClass)
+                      ? Object.entries(getGroupedSubjects(getSubjectsForClass())).map(([section, subs]) => (
+                          <div key={section} className="space-y-2">
+                            <h4 className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">
+                              {section} Section
+                            </h4>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                              {subs.map((sub) => (
+                                <button
+                                  key={sub.id}
+                                  type="button"
+                                  onClick={() => handleSubjectToggle(sub.id)}
+                                  className={`p-2 rounded-lg border text-[9px] sm:text-[10px] font-semibold uppercase tracking-tight transition-all ${
+                                    formData.subjectIds.includes(sub.id)
+                                      ? "bg-blue-500 border-blue-600 shadow-sm text-white"
+                                      : "bg-white dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-700 dark:text-slate-300 hover:border-blue-400"
+                                  }`}
+                                >
+                                  {sub.name}
+                                </button>
+                              ))}
                             </div>
-                          ))
-                        : (
+                          </div>
+                        ))
+                      : (
                           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                            {getSubjectsByClass(formData.studentClass).map((sub) => (
+                            {getSubjectsForClass().map((sub) => (
                               <button
                                 key={sub.id}
                                 type="button"
@@ -1575,8 +1425,7 @@ const StudentList = () => {
                             ))}
                           </div>
                         )}
-                    </div>
-                  )}
+                  </div>
                 </div>
               </div>
 
@@ -1775,23 +1624,6 @@ const StudentList = () => {
                       }
                     />
                   </div>
-                  <div className="space-y-1 flex items-center mt-6">
-                    <input
-                      type="checkbox"
-                      id="editFeesPaid"
-                      className="w-5 h-5 border-2 border-black rounded-md accent-accent-gold cursor-pointer"
-                      checked={editingStudent.feesPaid || false}
-                      onChange={(e) =>
-                        setEditingStudent({
-                          ...editingStudent,
-                          feesPaid: e.target.checked,
-                        })
-                      }
-                    />
-                    <label htmlFor="editFeesPaid" className="ml-2 text-sm font-black text-black dark:text-slate-300 uppercase tracking-tight cursor-pointer">
-                      School Fees Paid? 💰
-                    </label>
-                  </div>
                 </div>
 
                 <div className="md:col-span-2 space-y-2">
@@ -1800,10 +1632,13 @@ const StudentList = () => {
                   </label>
                   <div className="space-y-3 p-3 border-2 border-gray-300 dark:border-slate-700 rounded-lg bg-gray-50 dark:bg-slate-800 max-h-48 overflow-y-auto">
                     {editingStudent.studentClass && ["SSS 1", "SSS 2", "SSS 3"].includes(editingStudent.studentClass)
-                      ? Object.entries(getGroupedSubjects(getSubjectsByClass(editingStudent.studentClass))).map(([section, subs]) => (
+                      ? Object.entries(getGroupedSubjects(editingStudent.section 
+                          ? subjects.filter(s => s.category === "Secondary" && s.level === "Senior" && s.section === editingStudent.section)
+                          : subjects.filter(s => s.category === "Secondary" && s.level === "Senior")
+                        )).map(([section, subs]) => (
                           <div key={section} className="space-y-2">
-                            <h4 className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest border-b border-blue-200 dark:border-blue-800 pb-1">
-                              {section}
+                            <h4 className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">
+                              {section} Section
                             </h4>
                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                               {subs.map((sub) => (
@@ -1827,7 +1662,7 @@ const StudentList = () => {
                         ))
                       : (
                           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                            {getSubjectsByClass(editingStudent.studentClass).map((sub) => (
+                            {subjects.map((sub) => (
                               <button
                                 key={sub.id}
                                 type="button"
@@ -1884,9 +1719,6 @@ const StudentList = () => {
               <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm">
                 Class
               </th>
-              <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm text-center">
-                Fee Status
-              </th>
               <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm text-right">
                 Action
               </th>
@@ -1928,18 +1760,6 @@ const StudentList = () => {
                     {s.studentClass}
                   </span>
                 </td>
-                <td className="py-6 text-center">
-                  <button
-                    onClick={() => handleToggleFeeStatus(s.id, s.feesPaid)}
-                    className={`px-3 py-1 border-2 border-black rounded-lg font-black uppercase text-[10px] sm:text-xs tracking-widest shadow-cartoon-xs transition-transform hover:scale-105 ${
-                      s.feesPaid
-                        ? "bg-green-400 text-black"
-                        : "bg-red-400 text-white"
-                    }`}
-                  >
-                    {s.feesPaid ? "Paid 💰" : "Unpaid ❌"}
-                  </button>
-                </td>
                 <td className="py-6 text-right">
                   <div className="flex justify-end gap-2">
                     <button
@@ -1979,7 +1799,6 @@ const SubjectList = () => {
     name: "",
     category: "Primary",
     level: "General",
-    section: "",
   });
   const [message, setMessage] = useState("");
 
@@ -1996,7 +1815,7 @@ const SubjectList = () => {
     try {
       await api.post("/students/subjects", newSubject);
       setMessage("Subject added to the vault! 📚");
-      setNewSubject({ name: "", category: "Primary", level: "General", section: "" });
+      setNewSubject({ name: "", category: "Primary", level: "General" });
       setShowAddModal(false);
       fetchSubjects();
       setTimeout(() => setMessage(""), 3000);
@@ -2092,11 +1911,7 @@ const SubjectList = () => {
                   className="input-cartoon w-full"
                   value={newSubject.level}
                   onChange={(e) =>
-                    setNewSubject({
-                      ...newSubject,
-                      level: e.target.value,
-                      section: e.target.value !== "Senior" ? "" : newSubject.section,
-                    })
+                    setNewSubject({ ...newSubject, level: e.target.value })
                   }
                 >
                   <option value="Beginner">Beginner</option>
@@ -2105,30 +1920,6 @@ const SubjectList = () => {
                   <option value="Senior">Senior</option>
                 </select>
               </div>
-
-              {/* Section — only for Secondary Senior */}
-              {newSubject.category === "Secondary" && newSubject.level === "Senior" && (
-                <div className="space-y-2">
-                  <label className="text-sm font-black text-black dark:text-slate-300 uppercase tracking-widest">
-                    Section 📂
-                  </label>
-                  <select
-                    className="input-cartoon w-full"
-                    value={newSubject.section}
-                    onChange={(e) =>
-                      setNewSubject({ ...newSubject, section: e.target.value })
-                    }
-                  >
-                    <option value="">All Sections (Core)</option>
-                    <option value="Science">Science</option>
-                    <option value="Art">Art</option>
-                    <option value="Commercial">Commercial</option>
-                  </select>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                    Leave as "All Sections" for subjects shared across all senior sections.
-                  </p>
-                </div>
-              )}
               <button
                 type="submit"
                 className="btn-cartoon-primary w-full py-4 text-lg"
@@ -2159,16 +1950,6 @@ const SubjectList = () => {
               <span className="bg-accent-gold border-2 border-black px-3 py-1 rounded-lg font-black uppercase text-[10px] tracking-widest">
                 {sub.level}
               </span>
-              {sub.section && (
-                <span className="bg-blue-500 text-white border-2 border-black px-3 py-1 rounded-lg font-black uppercase text-[10px] tracking-widest">
-                  {sub.section}
-                </span>
-              )}
-              {!sub.section && sub.level === "Senior" && sub.category === "Secondary" && (
-                <span className="bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border-2 border-black px-3 py-1 rounded-lg font-black uppercase text-[10px] tracking-widest">
-                  Core
-                </span>
-              )}
             </div>
           </div>
         ))}
@@ -2200,8 +1981,6 @@ const TeacherManagement = () => {
   const [message, setMessage] = useState("");
   const [creds, setCreds] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
-  const [subjectSectionFilter, setSubjectSectionFilter] = useState('');
-  const [editSubjectSectionFilter, setEditSubjectSectionFilter] = useState('');
 
   const classes = [
     "Pre-Nursery",
@@ -2242,37 +2021,6 @@ const TeacherManagement = () => {
     } catch (err) {
       console.error(err);
     }
-  };
-
-  const NURSERY_CLASSES = ['Pre-Nursery', 'Nursery 1', 'Nursery 2'];
-  const PRIMARY_CLASSES = ['Primary 1', 'Primary 2', 'Primary 3', 'Primary 4', 'Primary 5', 'Primary 6'];
-  const JSS_CLASSES    = ['JSS 1', 'JSS 2', 'JSS 3'];
-  const SSS_CLASSES    = ['SSS 1', 'SSS 2', 'SSS 3'];
-
-  const getSectionFilterForClass = (className) => {
-    if (NURSERY_CLASSES.includes(className)) return 'Nursery';
-    if (PRIMARY_CLASSES.includes(className)) return 'Primary';
-    if (JSS_CLASSES.includes(className))    return 'Junior Secondary';
-    if (SSS_CLASSES.includes(className))    return 'Senior Secondary';
-    return '';
-  };
-
-  const getFilteredSubjects = (allSubjects, filter) => {
-    if (!filter) return allSubjects;
-    if (filter === 'Nursery')          return allSubjects.filter(s => s.category === 'Nursery');
-    if (filter === 'Primary')          return allSubjects.filter(s => s.category === 'Primary');
-    if (filter === 'Junior Secondary') return allSubjects.filter(s => s.category === 'Secondary' && s.level === 'Junior');
-    if (filter === 'Senior Secondary') return allSubjects.filter(s => s.category === 'Secondary' && s.level === 'Senior');
-    return allSubjects;
-  };
-
-  const getAutoSubjectsForClass = (className, allSubjects) => {
-    // SSS and JSS classes are NOT auto-assigned (manual selection)
-    if (SSS_CLASSES.includes(className)) return null;
-    if (JSS_CLASSES.includes(className)) return null;
-    const filter = getSectionFilterForClass(className);
-    if (!filter) return null;
-    return getFilteredSubjects(allSubjects, filter).map(s => s.name);
   };
 
   const handleImageChange = (e) => {
@@ -2346,7 +2094,8 @@ const TeacherManagement = () => {
       });
       fetchTeachers();
     } catch (err) {
-      setMessage("Error registering teacher");
+      const errorMsg = err.response?.data?.message || err.message || "Error registering teacher";
+      setMessage(errorMsg);
     }
   };
 
@@ -2437,68 +2186,88 @@ const TeacherManagement = () => {
         </div>
       </div>
 
-      <div className="cartoon-card p-10 bg-slate-50 dark:bg-slate-900">
-        <h2 className="text-3xl font-black text-black dark:text-white mb-8 uppercase italic tracking-tighter text-3d">
-          Hire New Educator! 🍎
-        </h2>
-
-        {message && (
-          <div
-            className={`p-6 mb-8 border-4 border-black rounded-2xl flex items-center gap-4 ${message.includes("Error") ? "bg-accent-red/20" : "bg-accent-gold/20"}`}
+      <div className="fixed inset-0 z-40 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div className="cartoon-card bg-slate-50 dark:bg-slate-900 p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto border-4 border-black shadow-cartoon relative">
+          <button
+            onClick={() => {
+              setFormData({
+                fullName: "",
+                email: "",
+                isFormTeacher: false,
+                isSubjectTeacher: true,
+                assignedClass: "",
+                assignedSubject: [],
+                profileImage: null,
+              });
+              setMessage("");
+              setCreds(null);
+            }}
+            className="absolute top-4 right-4 text-black dark:text-white hover:rotate-90 transition-transform"
           >
-            <div
-              className={`w-4 h-4 rounded-full border-2 border-black ${message.includes("Error") ? "bg-accent-red" : "bg-accent-gold"}`}
-            ></div>
-            <span className="font-black uppercase tracking-tight text-black dark:text-white">
-              {message}
-            </span>
-          </div>
-        )}
+            <X size={24} />
+          </button>
 
-        {creds && (
-          <div className="p-8 mb-10 bg-accent-gold border-4 border-black rounded-3xl shadow-cartoon">
-            <div className="flex items-center gap-3 mb-6 text-black font-black uppercase italic tracking-tight text-xl text-3d">
-              <CheckCircle size={28} />
-              <span>Teacher Keys Generated! 🔑</span>
+          <h2 className="text-3xl font-black text-black dark:text-white mb-8 uppercase italic tracking-tighter text-3d pr-8">
+            Hire New Educator! 🍎
+          </h2>
+
+          {message && (
+            <div
+              className={`p-6 mb-8 border-4 border-black rounded-2xl flex items-center gap-4 ${message.includes("Error") ? "bg-accent-red/20" : "bg-accent-gold/20"}`}
+            >
+              <div
+                className={`w-4 h-4 rounded-full border-2 border-black flex-shrink-0 ${message.includes("Error") ? "bg-accent-red" : "bg-accent-gold"}`}
+              ></div>
+              <span className="font-black uppercase tracking-tight text-black dark:text-white text-sm">
+                {message}
+              </span>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-black p-4 rounded-2xl border-4 border-black shadow-cartoon-sm">
-                <p className="text-xs text-accent-gold/60 uppercase font-black tracking-widest mb-2">
-                  Login Username
-                </p>
-                <p className="font-mono font-black text-xl text-accent-gold select-all">
-                  {creds.username}
-                </p>
+          )}
+
+          {creds && (
+            <div className="p-8 mb-10 bg-accent-gold border-4 border-black rounded-3xl shadow-cartoon">
+              <div className="flex items-center gap-3 mb-6 text-black font-black uppercase italic tracking-tight text-lg text-3d">
+                <CheckCircle size={28} />
+                <span>Teacher Keys Generated! 🔑</span>
               </div>
-              <div className="bg-black p-4 rounded-2xl border-4 border-black shadow-cartoon-sm relative">
-                <p className="text-xs text-accent-gold/60 uppercase font-black tracking-widest mb-2">
-                  Login Password
-                </p>
-                <div className="flex items-center justify-between">
-                  <p className="font-mono font-black text-xl text-accent-gold select-all">
-                    {showPassword ? creds.password : "••••••••"}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-black p-4 rounded-2xl border-4 border-black shadow-cartoon-sm">
+                  <p className="text-xs text-accent-gold/60 uppercase font-black tracking-widest mb-2">
+                    Login Username
                   </p>
-                  <button
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="text-accent-gold hover:text-white transition-colors p-1"
-                  >
-                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                  </button>
+                  <p className="font-mono font-black text-sm text-accent-gold select-all break-all">
+                    {creds.username}
+                  </p>
+                </div>
+                <div className="bg-black p-4 rounded-2xl border-4 border-black shadow-cartoon-sm relative">
+                  <p className="text-xs text-accent-gold/60 uppercase font-black tracking-widest mb-2">
+                    Login Password
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <p className="font-mono font-black text-sm text-accent-gold select-all break-all">
+                      {showPassword ? creds.password : "••••••••"}
+                    </p>
+                    <button
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="text-accent-gold hover:text-white transition-colors p-1 flex-shrink-0"
+                    >
+                      {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                    </button>
+                  </div>
                 </div>
               </div>
+              <p className="text-sm mt-6 text-black font-bold italic">
+                🚀 Mission: Share these keys with the new educator immediately!
+              </p>
             </div>
-            <p className="text-sm mt-6 text-black font-bold italic">
-              🚀 Mission: Share these keys with the new educator immediately!
-            </p>
-          </div>
-        )}
+          )}
 
-        <form
-          onSubmit={handleSubmit}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          <form
+            onSubmit={handleSubmit}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
-          <div className="md:col-span-2 flex flex-col items-center gap-4 mb-4">
-            <div className="w-36 h-36 bg-gray-100 dark:bg-slate-800 border-4 border-black rounded-3xl overflow-hidden shadow-cartoon-sm relative group">
+          <div className="md:col-span-2 flex flex-col items-center gap-3 mb-4">
+            <div className="w-24 h-24 bg-gray-100 dark:bg-slate-800 border-4 border-black rounded-2xl overflow-hidden shadow-cartoon-sm relative group">
               {formData.profileImage ? (
                 <img
                   src={formData.profileImage}
@@ -2507,7 +2276,7 @@ const TeacherManagement = () => {
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center text-gray-400 gap-2">
-                  <UserPlus size={48} />
+                  <UserPlus size={28} />
                   <span className="text-xs font-black uppercase tracking-widest">
                     Add Photo
                   </span>
@@ -2516,7 +2285,7 @@ const TeacherManagement = () => {
               <label className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer gap-2">
                 <Upload size={24} className="text-white" />
                 <span className="text-white font-black text-xs uppercase tracking-widest">
-                  {formData.profileImage ? "Change Photo" : "Upload Photo"}
+                  {formData.profileImage ? "Change" : "Upload"}
                 </span>
                 <input
                   type="file"
@@ -2527,7 +2296,7 @@ const TeacherManagement = () => {
               </label>
             </div>
             <p className="text-xs font-black uppercase tracking-widest text-gray-500">
-              Teacher Avatar
+              Avatar (Optional)
             </p>
             {formData.profileImage && (
               <button
@@ -2541,7 +2310,7 @@ const TeacherManagement = () => {
           </div>
 
           <div className="space-y-2">
-            <label className="text-lg font-black text-black dark:text-slate-300 uppercase tracking-tight text-3d">
+            <label className="text-base font-black text-black dark:text-slate-300 uppercase tracking-tight text-3d">
               Full Name
             </label>
             <input
@@ -2556,7 +2325,7 @@ const TeacherManagement = () => {
             />
           </div>
           <div className="space-y-2">
-            <label className="text-lg font-black text-black dark:text-slate-300 uppercase tracking-tight text-3d">
+            <label className="text-base font-black text-black dark:text-slate-300 uppercase tracking-tight text-3d">
               Email Address
             </label>
             <input
@@ -2572,23 +2341,15 @@ const TeacherManagement = () => {
           </div>
 
           <div className="space-y-2">
-            <label className="text-lg font-black text-black dark:text-slate-300 uppercase tracking-tight text-3d">
+            <label className="text-base font-black text-black dark:text-slate-300 uppercase tracking-tight text-3d">
               Assign Class (Optional)
             </label>
             <select
               className="input-cartoon w-full"
               value={formData.assignedClass}
-              onChange={(e) => {
-                const cls = e.target.value;
-                const sectionFilter = getSectionFilterForClass(cls);
-                const autoSubjects = cls ? getAutoSubjectsForClass(cls, subjects) : null;
-                setSubjectSectionFilter(sectionFilter);
-                setFormData({
-                  ...formData,
-                  assignedClass: cls,
-                  assignedSubject: autoSubjects !== null ? autoSubjects : formData.assignedSubject,
-                });
-              }}
+              onChange={(e) =>
+                setFormData({ ...formData, assignedClass: e.target.value })
+              }
             >
               <option value="">Select a Class</option>
               {classes.map((c) => (
@@ -2600,66 +2361,24 @@ const TeacherManagement = () => {
           </div>
 
           <div className="space-y-2 md:col-span-2">
-            <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-              <label className="text-lg font-black text-black dark:text-slate-300 uppercase tracking-tight text-3d">
-                Assign Subjects
-                {formData.assignedSubject.length > 0 && (
-                  <span className="ml-2 text-sm text-accent-gold font-black">({formData.assignedSubject.length} selected)</span>
-                )}
-              </label>
-              <div className="flex flex-wrap gap-1">
-                {['', 'Nursery', 'Primary', 'Junior Secondary', 'Senior Secondary'].map((sec) => (
-                  <button
-                    key={sec || 'all'}
-                    type="button"
-                    onClick={() => setSubjectSectionFilter(sec)}
-                    className={`px-2 py-1 rounded-lg border-2 font-black text-[9px] uppercase tracking-widest transition-all ${
-                      subjectSectionFilter === sec
-                        ? 'bg-accent-gold border-black text-black shadow-cartoon-xs'
-                        : 'bg-slate-200 dark:bg-slate-700 border-gray-300 dark:border-slate-600 text-gray-500 dark:text-slate-400 hover:border-black'
-                    }`}
-                  >
-                    {sec || 'All'}
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div className="flex justify-end gap-2 mb-1">
-              <button
-                type="button"
-                onClick={() => setFormData(prev => ({ ...prev, assignedSubject: getFilteredSubjects(subjects, subjectSectionFilter).map(s => s.name) }))}
-                className="text-[9px] font-black uppercase tracking-widest text-blue-500 hover:text-blue-700 border border-blue-300 rounded px-2 py-0.5"
-              >
-                Select All Shown
-              </button>
-              <button
-                type="button"
-                onClick={() => setFormData(prev => ({ ...prev, assignedSubject: [] }))}
-                className="text-[9px] font-black uppercase tracking-widest text-red-400 hover:text-red-600 border border-red-300 rounded px-2 py-0.5"
-              >
-                Clear All
-              </button>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 p-4 border-4 border-black rounded-2xl bg-gray-50 dark:bg-slate-800 shadow-inner max-h-48 overflow-y-auto">
-              {getFilteredSubjects(subjects, subjectSectionFilter).map((s) => (
+            <label className="text-base font-black text-black dark:text-slate-300 uppercase tracking-tight text-3d">
+              Assign Subjects (Select Multiple)
+            </label>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 p-4 border-4 border-black rounded-2xl bg-gray-50 dark:bg-slate-800 shadow-inner max-h-56 overflow-y-auto">
+              {subjects.map((s) => (
                 <button
                   key={s.id}
                   type="button"
                   onClick={() => handleSubjectToggle(s.name)}
                   className={`p-3 rounded-xl border-2 font-black text-[10px] uppercase tracking-tighter transition-all ${
                     formData.assignedSubject.includes(s.name)
-                      ? 'bg-accent-gold border-black shadow-cartoon-xs -translate-y-1 text-black'
-                      : 'bg-slate-50 dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-400 dark:text-slate-500 hover:border-black'
+                      ? "bg-accent-gold border-black shadow-cartoon-xs -translate-y-1 text-black"
+                      : "bg-slate-50 dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-400 dark:text-slate-500 hover:border-black"
                   }`}
                 >
                   {s.name}
                 </button>
               ))}
-              {getFilteredSubjects(subjects, subjectSectionFilter).length === 0 && (
-                <div className="col-span-4 text-center text-xs font-black uppercase tracking-widest text-gray-400 py-4">
-                  No subjects in this section
-                </div>
-              )}
             </div>
           </div>
 
@@ -2707,14 +2426,37 @@ const TeacherManagement = () => {
             </label>
           </div>
 
-          <button
-            type="submit"
-            className="md:col-span-2 btn-cartoon-primary bg-accent-gold text-accent-black py-5 text-2xl flex items-center justify-center gap-3"
-          >
-            <UserPlus size={28} />
-            Onboard Teacher! 🚀
-          </button>
+          <div className="md:col-span-2 flex gap-4">
+            <button
+              type="submit"
+              className="flex-1 btn-cartoon-primary bg-accent-gold text-accent-black py-4 text-lg flex items-center justify-center gap-3"
+            >
+              <UserPlus size={24} />
+              Onboard Teacher! 🚀
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setFormData({
+                  fullName: "",
+                  email: "",
+                  isFormTeacher: false,
+                  isSubjectTeacher: true,
+                  assignedClass: "",
+                  assignedSubject: [],
+                  profileImage: null,
+                });
+                setMessage("");
+                setCreds(null);
+              }}
+              className="flex-1 btn-cartoon-primary bg-slate-300 dark:bg-slate-700 text-black dark:text-white py-4 text-lg flex items-center justify-center gap-3 border-4 border-black"
+            >
+              <X size={24} />
+              Cancel
+            </button>
+          </div>
         </form>
+        </div>
       </div>
 
       <div className="cartoon-card p-10 bg-slate-50 dark:bg-slate-900">
@@ -2914,20 +2656,12 @@ const TeacherManagement = () => {
                 <select
                   className="input-cartoon w-full"
                   value={editingTeacher.assignedClass || ""}
-                  onChange={(e) => {
-                    const cls = e.target.value;
-                    const sectionFilter = getSectionFilterForClass(cls);
-                    const autoSubjects = cls ? getAutoSubjectsForClass(cls, subjects) : null;
-                    setEditSubjectSectionFilter(sectionFilter);
-                    const currentSubjects = typeof editingTeacher.assignedSubject === 'string'
-                      ? editingTeacher.assignedSubject
-                      : (editingTeacher.assignedSubject || []).join(', ');
+                  onChange={(e) =>
                     setEditingTeacher({
                       ...editingTeacher,
-                      assignedClass: cls,
-                      assignedSubject: autoSubjects !== null ? autoSubjects.join(', ') : currentSubjects,
-                    });
-                  }}
+                      assignedClass: e.target.value,
+                    })
+                  }
                 >
                   <option value="">None</option>
                   {classes.map((c) => (
@@ -2938,64 +2672,21 @@ const TeacherManagement = () => {
                 </select>
               </div>
               <div className="space-y-2 md:col-span-2">
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <label className="text-sm font-black text-black dark:text-slate-300 uppercase tracking-widest">
-                    Assign Subjects
-                    {(() => {
-                      const count = (editingTeacher.assignedSubject || '').split(', ').filter(Boolean).length;
-                      return count > 0 ? <span className="ml-2 text-accent-gold">({count} selected)</span> : null;
-                    })()}
-                  </label>
-                  <div className="flex flex-wrap gap-1">
-                    {['', 'Nursery', 'Primary', 'Junior Secondary', 'Senior Secondary'].map((sec) => (
-                      <button
-                        key={sec || 'all'}
-                        type="button"
-                        onClick={() => setEditSubjectSectionFilter(sec)}
-                        className={`px-2 py-1 rounded-lg border-2 font-black text-[9px] uppercase tracking-widest transition-all ${
-                          editSubjectSectionFilter === sec
-                            ? 'bg-accent-gold border-black text-black shadow-cartoon-xs'
-                            : 'bg-slate-200 dark:bg-slate-700 border-gray-300 dark:border-slate-600 text-gray-500 dark:text-slate-400 hover:border-black'
-                        }`}
-                      >
-                        {sec || 'All'}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex justify-end gap-2 mb-1">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const shown = getFilteredSubjects(subjects, editSubjectSectionFilter).map(s => s.name);
-                      const existing = (editingTeacher.assignedSubject || '').split(', ').filter(Boolean);
-                      const merged = [...new Set([...existing, ...shown])];
-                      setEditingTeacher({ ...editingTeacher, assignedSubject: merged.join(', ') });
-                    }}
-                    className="text-[9px] font-black uppercase tracking-widest text-blue-500 hover:text-blue-700 border border-blue-300 rounded px-2 py-0.5"
-                  >
-                    Select All Shown
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setEditingTeacher({ ...editingTeacher, assignedSubject: '' })}
-                    className="text-[9px] font-black uppercase tracking-widest text-red-400 hover:text-red-600 border border-red-300 rounded px-2 py-0.5"
-                  >
-                    Clear All
-                  </button>
-                </div>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 p-4 border-4 border-black rounded-2xl bg-gray-50 dark:bg-slate-800 shadow-inner max-h-40 overflow-y-auto">
-                  {getFilteredSubjects(subjects, editSubjectSectionFilter).map((s) => (
+                <label className="text-sm font-black text-black dark:text-slate-300 uppercase tracking-widest">
+                  Assign Subjects (Select Multiple)
+                </label>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4 border-4 border-black rounded-2xl bg-gray-50 dark:bg-slate-800 shadow-inner max-h-40 overflow-y-auto">
+                  {subjects.map((s) => (
                     <button
                       key={s.id}
                       type="button"
                       onClick={() => handleEditSubjectToggle(s.name)}
                       className={`p-2 rounded-xl border-2 font-black text-[10px] uppercase tracking-tighter transition-all ${
-                        (editingTeacher.assignedSubject || '')
-                          .split(', ')
+                        (editingTeacher.assignedSubject || "")
+                          .split(", ")
                           .includes(s.name)
-                          ? 'bg-accent-gold border-black shadow-cartoon-xs -translate-y-1 text-black'
-                          : 'bg-slate-50 dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-400 dark:text-slate-500 hover:border-black'
+                          ? "bg-accent-gold border-black shadow-cartoon-xs -translate-y-1 text-black"
+                          : "bg-slate-50 dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-400 dark:text-slate-500 hover:border-black"
                       }`}
                     >
                       {s.name}
