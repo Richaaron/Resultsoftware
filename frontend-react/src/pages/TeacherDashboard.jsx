@@ -1636,13 +1636,19 @@ const TeacherSettings = ({ user, setUser }) => {
         currentPassword: passwordData.currentPassword,
         newPassword: passwordData.newPassword,
       });
-      setMessage("Password changed successfully! 🔐");
+      setMessage("Password changed successfully! 🔐 Redirecting to login...");
       setPasswordData({
         currentPassword: "",
         newPassword: "",
         confirmPassword: "",
       });
-      setTimeout(() => setMessage(""), 3000);
+      
+      // Auto logout and redirect to login after 2 seconds
+      setTimeout(() => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        navigate("/login");
+      }, 2000);
     } catch (err) {
       setError(err.response?.data?.message || "Error changing password");
       setTimeout(() => setError(""), 3000);
