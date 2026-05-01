@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const sequelize = require("../utils/db");
 const { auth } = require("../middleware/auth");
 const { validate, schemas } = require("../middleware/validation");
 const { asyncHandler } = require("../middleware/errorHandler");
