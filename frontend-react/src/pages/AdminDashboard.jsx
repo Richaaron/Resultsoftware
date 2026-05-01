@@ -2631,8 +2631,8 @@ const TeacherManagement = () => {
 
       {/* Edit Teacher Modal */}
       {editingTeacher && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/50 backdrop-blur-sm">
-          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-2xl relative border border-brand-700/50 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/50 backdrop-blur-sm overflow-y-auto">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-2xl relative border border-brand-700/50 shadow-xl my-8">
             <button
               onClick={() => setEditingTeacher(null)}
               className="absolute top-4 right-4 text-black dark:text-white hover:rotate-90 transition-transform"
