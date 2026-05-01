@@ -28,27 +28,68 @@
   .report-card-container * {
     visibility: visible;
   }
+}
 
-  .report-card-wrapper {
-    padding: 2rem;
-    font-family: 'Times New Roman', Times, serif;
-    color: #000;
-    max-width: 800px;
-    margin: 0 auto;
-    border: 1px solid #ddd;
-    min-height: 100vh;
-    box-shadow: none;
+/* Screen Preview Friendly Version */
+.report-card-preview {
+  display: block;
+  background-color: white;
+  color: black;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  font-family: 'Times New Roman', Times, serif;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+  overflow-x: auto;
+}
+
+.report-card-wrapper {
+  padding: 1rem md:padding: 2rem;
+  font-family: 'Times New Roman', Times, serif;
+  color: #000;
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  min-height: 100vh;
+  box-shadow: none;
+  background-color: white;
+}
+
+/* Responsive Table Helper */
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Adjust grid for mobile */
+@media (max-width: 640px) {
+  .student-details-grid,
+  .school-authority-section {
+    grid-template-columns: 1fr !important;
   }
-
-  /* Header */
+  
   .report-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 3px double #000;
-    padding-bottom: 1rem;
-    margin-bottom: 1.5rem;
+    flex-direction: column;
+    text-align: center;
   }
+  
+  .logo-container {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Header */
+.report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px double #000;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
 
   .logo-container {
     width: 100px;

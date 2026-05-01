@@ -1247,19 +1247,19 @@ const StudentList = () => {
       )}
 
       {showAddModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/60 backdrop-blur-sm overflow-y-auto">
-          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-6xl relative border border-brand-700/50 shadow-xl my-4 max-h-[95vh] flex flex-col">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 md:p-4 bg-brand-950/60 backdrop-blur-sm overflow-y-auto">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-4 md:p-6 w-full max-w-6xl relative border border-brand-700/50 shadow-xl my-2 md:my-4 max-h-[98vh] md:max-h-[95vh] flex flex-col">
             <button
               onClick={() => setShowAddModal(false)}
-              className="absolute top-4 right-4 text-black dark:text-brand-100 hover:rotate-90 transition-transform z-10"
+              className="absolute top-2 right-2 md:top-4 md:right-4 text-black dark:text-brand-100 hover:rotate-90 transition-transform z-10 p-1 bg-white/10 rounded-full"
             >
-              <X size={24} />
+              <X size={20} className="md:w-6 md:h-6" />
             </button>
-            <h3 className="text-2xl font-bold text-black dark:text-brand-100 uppercase  tracking-tight mb-4 text-gradient">
+            <h3 className="text-xl md:text-2xl font-bold text-black dark:text-brand-100 uppercase tracking-tight mb-3 md:mb-4 text-gradient">
               Enroll New Legend ⭐
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-2 overflow-y-auto flex-1 pr-2">
+            <form onSubmit={handleSubmit} className="space-y-3 md:space-y-2 overflow-y-auto flex-1 pr-1 md:pr-2 scrollbar-thin">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
                 {/* Profile Image Section */}
                 <div className="flex flex-col items-center gap-0.5">
@@ -1573,19 +1573,19 @@ const StudentList = () => {
       )}
 
       {editingStudent && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/60 backdrop-blur-sm overflow-y-auto">
-          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-5xl relative border border-brand-700/50 shadow-xl my-8 max-h-[95vh] flex flex-col">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 md:p-4 bg-brand-950/60 backdrop-blur-sm overflow-y-auto">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-4 md:p-6 w-full max-w-5xl relative border border-brand-700/50 shadow-xl my-2 md:my-8 max-h-[98vh] md:max-h-[95vh] flex flex-col">
             <button
               onClick={() => setEditingStudent(null)}
-              className="absolute top-4 right-4 text-black dark:text-brand-100 hover:rotate-90 transition-transform"
+              className="absolute top-2 right-2 md:top-4 md:right-4 text-black dark:text-brand-100 hover:rotate-90 transition-transform p-1 bg-white/10 rounded-full"
             >
-              <X size={24} />
+              <X size={20} className="md:w-6 md:h-6" />
             </button>
-            <h3 className="text-2xl font-bold text-black dark:text-brand-100 uppercase  tracking-tight mb-6 text-gradient">
+            <h3 className="text-xl md:text-2xl font-bold text-black dark:text-brand-100 uppercase tracking-tight mb-4 md:mb-6 text-gradient">
               Modify Legend 🛠️
             </h3>
 
-            <form onSubmit={handleUpdateStudent} className="space-y-4 overflow-y-auto flex-1 pr-2">
+            <form onSubmit={handleUpdateStudent} className="space-y-3 md:space-y-4 overflow-y-auto flex-1 pr-1 md:pr-2 scrollbar-thin">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {/* Profile Image Section */}
                 <div className="md:row-span-2 flex flex-col items-center gap-2">
@@ -2355,8 +2355,8 @@ const TeacherManagement = () => {
       </div>
 
       {showTeacherForm && (
-      <div className="fixed inset-0 z-40 flex items-center justify-center p-4 bg-brand-950/50 backdrop-blur-sm">
-        <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-brand-700/50 shadow-xl relative">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-2 md:p-4 bg-brand-950/50 backdrop-blur-sm overflow-y-auto">
+        <div className="professional-card bg-brand-50 dark:bg-brand-900 p-4 md:p-6 w-full max-w-2xl max-h-[98vh] md:max-h-[90vh] overflow-y-auto border border-brand-700/50 shadow-xl relative my-2">
           <button
             onClick={() => {
               setFormData({
@@ -2372,12 +2372,12 @@ const TeacherManagement = () => {
               setCreds(null);
               setShowTeacherForm(false);
             }}
-            className="absolute top-4 right-4 text-black dark:text-white hover:rotate-90 transition-transform"
+            className="absolute top-2 right-2 md:top-4 md:right-4 text-black dark:text-white hover:rotate-90 transition-transform p-1 bg-white/10 rounded-full"
           >
-            <X size={24} />
+            <X size={20} className="md:w-6 md:h-6" />
           </button>
 
-          <h2 className="text-3xl font-bold text-black dark:text-white mb-8 uppercase  tracking-tight text-gradient pr-8">
+          <h2 className="text-xl md:text-3xl font-bold text-black dark:text-white mb-6 md:mb-8 uppercase tracking-tight text-gradient pr-8">
             Hire New Educator! 🍎
           </h2>
 
