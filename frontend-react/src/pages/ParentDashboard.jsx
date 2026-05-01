@@ -127,7 +127,7 @@ const ParentDashboard = () => {
           onClick={() => setShowContactModal(false)}
         >
           <div
-            className="professional-card bg-brand-50 p-10 max-w-md w-full relative"
+            className="professional-card bg-brand-50 p-6 max-w-md w-full relative"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -218,7 +218,7 @@ const ParentDashboard = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Children Selection */}
           <div className="lg:col-span-3 space-y-8">
-            <div className="professional-card p-8 bg-brand-900">
+            <div className="professional-card p-6 bg-brand-900">
               <h2 className="text-lg font-bold text-white uppercase tracking-widest mb-6  border-b-4 border-brand-900 pb-2">
                 My Superstars ⭐
               </h2>
@@ -292,7 +292,7 @@ const ParentDashboard = () => {
             {selectedChild ? (
               <>
                 {/* Student Header */}
-                <div className="professional-card p-10 bg-brand-900 flex flex-col md:flex-row md:items-center justify-between gap-8 border-l-[12px] border-l-accent-gold">
+                <div className="professional-card p-6 bg-brand-900 flex flex-col md:flex-row md:items-center justify-between gap-6 border-l-[12px] border-l-accent-gold">
                   <div>
                     <h2 className="text-4xl font-bold text-white uppercase  tracking-tight text-gradient mb-2">
                       {selectedChild.firstName} {selectedChild.lastName}
@@ -404,7 +404,7 @@ const ParentDashboard = () => {
 
                     <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
                       {/* Results Card */}
-                      <div className="professional-card bg-brand-50 p-10">
+                      <div className="professional-card bg-brand-50 p-6">
                         <div className="flex items-center justify-between mb-8 border-b-4 border-brand-900 pb-4">
                           <h3 className="text-2xl font-bold text-black uppercase  tracking-tight text-gradient flex items-center gap-3">
                             <Trophy className="text-accent-gold" size={28} />{" "}
@@ -490,7 +490,7 @@ const ParentDashboard = () => {
                       </div>
 
                       {/* Attendance Card */}
-                      <div className="professional-card bg-brand-50 p-10">
+                      <div className="professional-card bg-brand-50 p-6">
                         <div className="flex items-center justify-between mb-8 border-b-4 border-brand-900 pb-4">
                           <h3 className="text-2xl font-bold text-black uppercase  tracking-tight text-gradient flex items-center gap-3">
                             <Target className="text-accent-red" size={28} /> Daily

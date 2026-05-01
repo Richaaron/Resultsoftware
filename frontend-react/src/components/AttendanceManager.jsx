@@ -82,7 +82,7 @@ const AttendanceManager = ({ user }) => {
 
   if (!user?.assignedClass) {
     return (
-      <div className="professional-card p-10 bg-brand-50 text-center">
+      <div className="professional-card p-6 bg-brand-50 text-center">
         <h2 className="text-2xl font-bold uppercase text-brand-400">
           No Class Assigned
         </h2>
@@ -92,7 +92,7 @@ const AttendanceManager = ({ user }) => {
   }
 
   return (
-    <div className="professional-card p-6 md:p-10 bg-brand-50">
+    <div className="professional-card p-6 md:p-6 bg-brand-50">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
           <h2 className="text-3xl font-bold text-black uppercase  tracking-tight text-gradient">

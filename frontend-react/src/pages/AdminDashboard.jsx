@@ -415,7 +415,7 @@ const AdminSettings = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* School Identity */}
-        <div className="professional-card p-8 bg-brand-900">
+        <div className="professional-card p-6 bg-brand-900">
           <div className="flex items-center gap-4 mb-8">
             <div className="w-12 h-12 bg-accent-gold border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md">
               <Sparkles size={24} className="text-black" />
@@ -611,7 +611,7 @@ const AdminSettings = () => {
         </div>
 
         {/* Security Settings */}
-        <div className="professional-card p-8 bg-brand-900">
+        <div className="professional-card p-6 bg-brand-900">
           <div className="flex items-center gap-4 mb-8">
             <div className="w-12 h-12 bg-accent-red border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md">
               <Lock size={24} className="text-white" />
@@ -719,15 +719,15 @@ const AdminOverview = () => {
 
   return (
     <div className="space-y-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-        <div className="professional-card p-8 hover:-translate-y-1 group bg-accent-gold/20 dark:bg-accent-gold/10">
-          <div className="w-14 h-14 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
-            <Users size={28} className="text-black dark:text-white" />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="professional-card p-6 hover:-translate-y-1 group bg-accent-gold/20 dark:bg-accent-gold/10">
+          <div className="w-12 h-12 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
+            <Users size={24} className="text-black dark:text-white" />
           </div>
           <h3 className="text-black dark:text-brand-300 uppercase text-sm font-bold tracking-widest mb-2 ">
             Total Students
           </h3>
-          <p className="text-6xl font-bold text-black dark:text-white tracking-tight text-gradient">
+          <p className="text-4xl font-bold text-black dark:text-white tracking-tight text-gradient">
             {stats.studentCount}
           </p>
           <div className="mt-4 inline-flex items-center px-3 py-1 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-full text-xs font-bold uppercase tracking-tight dark:text-brand-300">
@@ -735,14 +735,14 @@ const AdminOverview = () => {
           </div>
         </div>
 
-        <div className="professional-card p-8 hover:-translate-y-1 group bg-accent-red/20 dark:bg-accent-red/10">
-          <div className="w-14 h-14 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
-            <BookOpen size={28} className="text-black dark:text-white" />
+        <div className="professional-card p-6 hover:-translate-y-1 group bg-accent-red/20 dark:bg-accent-red/10">
+          <div className="w-12 h-12 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
+            <BookOpen size={24} className="text-black dark:text-white" />
           </div>
           <h3 className="text-black dark:text-brand-300 uppercase text-sm font-bold tracking-widest mb-2 ">
             Subjects
           </h3>
-          <p className="text-6xl font-bold text-black dark:text-white tracking-tight text-gradient">
+          <p className="text-4xl font-bold text-black dark:text-white tracking-tight text-gradient">
             {stats.subjectCount}
           </p>
           <div className="mt-4 inline-flex items-center px-3 py-1 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-full text-xs font-bold uppercase tracking-tight dark:text-brand-300">
@@ -750,14 +750,14 @@ const AdminOverview = () => {
           </div>
         </div>
 
-        <div className="professional-card p-8 hover:-translate-y-1 group bg-accent-gold/20 dark:bg-accent-gold/10">
-          <div className="w-14 h-14 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
-            <UserCircle size={28} className="text-black dark:text-white" />
+        <div className="professional-card p-6 hover:-translate-y-1 group bg-accent-gold/20 dark:bg-accent-gold/10">
+          <div className="w-12 h-12 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
+            <UserCircle size={24} className="text-black dark:text-white" />
           </div>
           <h3 className="text-black dark:text-brand-300 uppercase text-sm font-bold tracking-widest mb-2 ">
             Educators
           </h3>
-          <p className="text-6xl font-bold text-black dark:text-white tracking-tight text-gradient">
+          <p className="text-4xl font-bold text-black dark:text-white tracking-tight text-gradient">
             {stats.teacherCount}
           </p>
           <div className="mt-4 inline-flex items-center px-3 py-1 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-full text-xs font-bold uppercase tracking-tight dark:text-brand-300">
@@ -765,14 +765,14 @@ const AdminOverview = () => {
           </div>
         </div>
 
-        <div className="professional-card p-8 hover:-translate-y-1 group bg-accent-gold/10 dark:bg-accent-gold/5">
-          <div className="w-14 h-14 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
-            <Sparkles size={28} className="text-black dark:text-white" />
+        <div className="professional-card p-6 hover:-translate-y-1 group bg-accent-gold/10 dark:bg-accent-gold/5">
+          <div className="w-12 h-12 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
+            <Sparkles size={24} className="text-black dark:text-white" />
           </div>
           <h3 className="text-black dark:text-brand-300 uppercase text-sm font-bold tracking-widest mb-2 ">
             System Health
           </h3>
-          <p className="text-6xl font-bold text-black dark:text-white tracking-tight text-gradient">
+          <p className="text-4xl font-bold text-black dark:text-white tracking-tight text-gradient">
             100%
           </p>
           <div className="mt-4 inline-flex items-center px-3 py-1 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-full text-xs font-bold uppercase tracking-tight dark:text-brand-300">
@@ -781,7 +781,7 @@ const AdminOverview = () => {
         </div>
       </div>
 
-      <div className="professional-card p-10 bg-brand-50 dark:bg-brand-900 border border-brand-700/50 shadow-xl">
+      <div className="professional-card p-6 bg-brand-50 dark:bg-brand-900 border border-brand-700/50 shadow-xl">
         <div className="flex items-center gap-4 mb-8">
           <div className="w-12 h-12 bg-accent-gold border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md">
             <ClipboardCheck size={24} className="text-black" />
@@ -1050,11 +1050,11 @@ const StudentList = () => {
   });
 
   return (
-    <div className="professional-card p-10 bg-brand-50 dark:bg-brand-900">
+    <div className="professional-card p-6 bg-brand-50 dark:bg-brand-900">
       {/* Confirm Delete Modal */}
       {confirmDelete.show && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-brand-950/60 backdrop-blur-sm">
-          <div className="professional-card bg-brand-50 dark:bg-brand-900 border border-brand-700/50 shadow-xl p-8 w-full max-w-sm mx-4 rounded-xl">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 border border-brand-700/50 shadow-xl p-6 w-full max-w-sm mx-4 rounded-xl">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 bg-accent-red border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md">
                 <Trash2 size={22} className="text-white" />
@@ -1162,7 +1162,7 @@ const StudentList = () => {
       {parentCreds && (
         <div className="p-8 mb-10 bg-accent-gold border border-brand-700/50 rounded-xl shadow-xl animate-in zoom-in-95 duration-300">
           <div className="flex items-center gap-3 mb-6 text-black font-bold uppercase  tracking-tight text-xl text-gradient">
-            <CheckCircle size={28} />
+            <CheckCircle size={24} />
             <span>Parent Access Keys Generated! 🔑</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -1212,7 +1212,7 @@ const StudentList = () => {
                       />
                     ) : (
                       <div className="w-full h-full flex flex-col items-center justify-center text-gray-400 gap-1">
-                        <UserPlus size={28} className="sm:w-8 sm:h-8" />
+                        <UserPlus size={24} className="sm:w-8 sm:h-8" />
                         <span className="text-[8px] sm:text-xs font-semibold uppercase tracking-tight">
                           Add Photo
                         </span>
@@ -1697,7 +1697,7 @@ const StudentList = () => {
                   type="submit"
                   className="btn-primary w-full py-6 text-2xl bg-accent-gold flex items-center justify-center gap-3"
                 >
-                  <Save size={28} />
+                  <Save size={24} />
                   Save Changes! ✨
                 </button>
               </div>
@@ -1732,7 +1732,7 @@ const StudentList = () => {
               >
                 <td className="py-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-lg flex items-center justify-center overflow-hidden shadow-md group-hover:rotate-3 transition-transform">
+                    <div className="w-12 h-12 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-lg flex items-center justify-center overflow-hidden shadow-md group-hover:rotate-3 transition-transform">
                       {s.profileImage ? (
                         <img
                           src={s.profileImage}
@@ -1825,7 +1825,7 @@ const SubjectList = () => {
   };
 
   return (
-    <div className="professional-card p-10 bg-brand-50 dark:bg-brand-900">
+    <div className="professional-card p-6 bg-brand-50 dark:bg-brand-900">
       <div className="flex justify-between items-end mb-10 border-b-4 border-brand-900 pb-8">
         <div>
           <h2 className="text-4xl font-bold text-black dark:text-white uppercase  tracking-tight text-gradient mb-2">
@@ -1861,7 +1861,7 @@ const SubjectList = () => {
       {/* Add Subject Modal */}
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/50 backdrop-blur-sm">
-          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-8 w-full max-w-md relative border border-brand-700/50 shadow-xl">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-md relative border border-brand-700/50 shadow-xl">
             <button
               onClick={() => setShowAddModal(false)}
               className="absolute top-4 right-4 text-black dark:text-white hover:rotate-90 transition-transform"
@@ -1935,10 +1935,10 @@ const SubjectList = () => {
         {subjects.map((sub) => (
           <div
             key={sub.id}
-            className="professional-card p-8 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 shadow-md hover:-translate-y-2 transition-transform group cursor-pointer"
+            className="professional-card p-6 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 shadow-md hover:-translate-y-2 transition-transform group cursor-pointer"
           >
-            <div className="w-14 h-14 bg-accent-gold/10 dark:bg-accent-gold/5 border border-brand-700/50 rounded-lg mb-6 flex items-center justify-center group-hover:bg-accent-gold transition-colors">
-              <BookOpen size={28} className="text-black dark:text-white" />
+            <div className="w-12 h-12 bg-accent-gold/10 dark:bg-accent-gold/5 border border-brand-700/50 rounded-lg mb-6 flex items-center justify-center group-hover:bg-accent-gold transition-colors">
+              <BookOpen size={24} className="text-black dark:text-white" />
             </div>
             <h4 className="text-2xl font-bold text-black dark:text-white uppercase  tracking-tight text-gradient mb-4">
               {sub.name}
@@ -2133,7 +2133,7 @@ const TeacherManagement = () => {
       {/* Confirm Delete Modal */}
       {confirmDelete.show && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-brand-950/60 backdrop-blur-sm">
-          <div className="professional-card bg-brand-50 dark:bg-brand-900 border border-brand-700/50 shadow-xl p-8 w-full max-w-sm mx-4 rounded-xl">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 border border-brand-700/50 shadow-xl p-6 w-full max-w-sm mx-4 rounded-xl">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 bg-accent-red border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md">
                 <Trash2 size={22} className="text-white" />
@@ -2187,7 +2187,7 @@ const TeacherManagement = () => {
         </div>
       </div>
 
-      <div className="professional-card p-10 bg-brand-50 dark:bg-brand-900">
+      <div className="professional-card p-6 bg-brand-50 dark:bg-brand-900">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-3xl font-bold text-black dark:text-white uppercase  tracking-tight text-gradient">
             Hire New Educator! 🍎
@@ -2204,7 +2204,7 @@ const TeacherManagement = () => {
 
       {showTeacherForm && (
       <div className="fixed inset-0 z-40 flex items-center justify-center p-4 bg-brand-950/50 backdrop-blur-sm">
-        <div className="professional-card bg-brand-50 dark:bg-brand-900 p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-brand-700/50 shadow-xl relative">
+        <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-brand-700/50 shadow-xl relative">
           <button
             onClick={() => {
               setFormData({
@@ -2245,7 +2245,7 @@ const TeacherManagement = () => {
           {creds && (
             <div className="p-8 mb-10 bg-accent-gold border border-brand-700/50 rounded-xl shadow-xl">
               <div className="flex items-center gap-3 mb-6 text-black font-bold uppercase  tracking-tight text-lg text-gradient">
-                <CheckCircle size={28} />
+                <CheckCircle size={24} />
                 <span>Teacher Keys Generated! 🔑</span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -2294,7 +2294,7 @@ const TeacherManagement = () => {
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center text-gray-400 gap-2">
-                  <UserPlus size={28} />
+                  <UserPlus size={24} />
                   <span className="text-xs font-bold uppercase tracking-widest">
                     Add Photo
                   </span>
@@ -2479,7 +2479,7 @@ const TeacherManagement = () => {
       </div>
       )}
 
-      <div className="professional-card p-10 bg-brand-50 dark:bg-brand-900">
+      <div className="professional-card p-6 bg-brand-50 dark:bg-brand-900">
         <h2 className="text-3xl font-bold text-black dark:text-white mb-8 uppercase  tracking-tight text-gradient">
           The Educators Squad 🎓
         </h2>
@@ -2596,7 +2596,7 @@ const TeacherManagement = () => {
       {/* Edit Teacher Modal */}
       {editingTeacher && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/50 backdrop-blur-sm">
-          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-8 w-full max-w-2xl relative border border-brand-700/50 shadow-xl">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-2xl relative border border-brand-700/50 shadow-xl">
             <button
               onClick={() => setEditingTeacher(null)}
               className="absolute top-4 right-4 text-black dark:text-white hover:rotate-90 transition-transform"

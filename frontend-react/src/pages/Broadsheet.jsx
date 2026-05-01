@@ -343,7 +343,7 @@ const Broadsheet = () => {
         </button>
 
         {/* Fix #3: Filter controls get no-print */}
-        <div className="no-print professional-card bg-brand-900 p-8 mb-10">
+        <div className="no-print professional-card bg-brand-900 p-6 mb-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
@@ -407,7 +407,7 @@ const Broadsheet = () => {
         </div>
 
         {broadsheetData.length > 0 ? (
-          <div className="professional-card bg-brand-900 p-8 overflow-hidden print-full">
+          <div className="professional-card bg-brand-900 p-6 overflow-hidden print-full">
             <div className="flex justify-between items-center mb-8 border-b-4 border-brand-900 pb-6">
               <div>
                 <h2 className="text-3xl font-bold text-white uppercase  tracking-tight text-gradient mb-2">

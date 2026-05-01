@@ -348,7 +348,7 @@ const TeacherOverview = ({ user }) => {
     : [];
 
   return (
-    <div className="professional-card p-10 bg-brand-50">
+    <div className="professional-card p-6 bg-brand-50">
       <h2 className="text-3xl font-bold text-black mb-6 uppercase  tracking-tight text-gradient">
         Classroom Command Center 🚀
       </h2>
@@ -484,7 +484,7 @@ const RegisterStudent = () => {
   };
 
   return (
-    <div className="max-w-3xl professional-card p-10 bg-brand-50">
+    <div className="max-w-3xl professional-card p-6 bg-brand-50">
       <h2 className="text-3xl font-bold text-black mb-8 uppercase  tracking-tight text-gradient">
         Register New Superstar! ⭐
       </h2>
@@ -925,7 +925,7 @@ const RecordResults = ({ user }) => {
   };
 
   return (
-    <div className="professional-card p-10 bg-brand-700 max-w-4xl">
+    <div className="professional-card p-6 bg-brand-700 max-w-4xl">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
         <h2 className="text-3xl font-bold text-white uppercase  tracking-tight text-gradient">
           Record Achievement! 🏆
@@ -1416,7 +1416,7 @@ const ResultReleaseManager = ({ user }) => {
   });
 
   return (
-    <div className="professional-card p-10 bg-brand-50">
+    <div className="professional-card p-6 bg-brand-50">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b-4 border-brand-900 pb-8 gap-6">
         <div>
           <h2 className="text-4xl font-bold text-black uppercase  tracking-tight text-gradient mb-2">
@@ -1678,7 +1678,7 @@ const TeacherSettings = ({ user, setUser }) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* Profile Avatar */}
-        <div className="professional-card p-8 bg-brand-900">
+        <div className="professional-card p-6 bg-brand-900">
           <div className="flex items-center gap-4 mb-8">
             <div className="w-12 h-12 bg-accent-gold border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md">
               <UserCircle size={24} className="text-black" />
@@ -1736,7 +1736,7 @@ const TeacherSettings = ({ user, setUser }) => {
         </div>
 
         {/* Security */}
-        <div className="professional-card p-8 bg-brand-900">
+        <div className="professional-card p-6 bg-brand-900">
           <div className="flex items-center gap-4 mb-8">
             <div className="w-12 h-12 bg-accent-red border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md">
               <Lock size={24} className="text-white" />
