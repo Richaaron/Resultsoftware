@@ -304,4 +304,64 @@ router.post("/:id/reactivate", auth, authorize(["ADMIN"]), async (req, res) => {
   }
 });
 
+// Resend credentials email to teacher (Admin only)
+router.post("/:id/resend-credentials", auth, authorize(["ADMIN"]), async (req, res) => {
+  try {
+    const teacher = await User.findOne({
+      where: { id: req.params.id, role: "TEACHER" },
+    });
+
+    if (!teacher) {
+      return res.status(404).send({ error: "Teacher not found" });
+    }
+
+    if (!teacher.email) {
+      return res.status(400).send({ error: "Teacher has no email address on file" });
+    }
+
+    // Note: We don't have the password stored, so we'll need to generate a temporary one
+    // or just send what we know. For now, we'll inform them to reset.
+    const bcrypt = require('bcryptjs');
+    const tempPassword = `temp_${Math.random().toString(36).substring(2, 15)}`;
+    const hashedPassword = await bcrypt.hash(tempPassword, 8);
+    
+    // Update password
+    teacher.password = hashedPassword;
+    await teacher.save();
+
+    // Send email with credentials
+    if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
+      try {
+        await sendTeacherWelcomeEmail(teacher.email, {
+          fullName: teacher.fullName,
+          username: teacher.username,
+          password: tempPassword,
+          isFormTeacher: teacher.isFormTeacher,
+          isSubjectTeacher: teacher.isSubjectTeacher,
+          assignedClass: teacher.assignedClass,
+          assignedSubject: teacher.assignedSubject,
+        });
+        logger.info(`Credentials resent to teacher: ${teacher.email}`);
+        res.send({
+          message: "Credentials sent successfully to teacher's email",
+          teacher: {
+            id: teacher.id,
+            fullName: teacher.fullName,
+            email: teacher.email,
+            username: teacher.username,
+          }
+        });
+      } catch (emailError) {
+        logger.error(`Failed to send credentials email to ${teacher.email}: ${emailError.message}`);
+        res.status(500).send({ error: `Failed to send email: ${emailError.message}` });
+      }
+    } else {
+      res.status(500).send({ error: "Email service not configured on server" });
+    }
+  } catch (error) {
+    logger.error(`Failed to resend credentials: ${error.message}`);
+    res.status(500).send({ error: "Failed to resend credentials" });
+  }
+});
+
 module.exports = router;
