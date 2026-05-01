@@ -49,18 +49,18 @@ const sectionFixes = [
   { name: 'Biology',             section: 'Science' },
   { name: 'Chemistry',           section: 'Science' },
   { name: 'Physics',             section: 'Science' },
-  { name: 'Further Mathematics', section: 'Science' },
-  { name: 'Agricultural Science',section: 'Science' },
+  { name: 'Further Mathematics', section: 'General' },
+  { name: 'Agricultural Science',section: 'General' },
 
   // Art
   { name: 'Literature in English', section: 'Art' },
   { name: 'Government',            section: 'Art' },
-  { name: 'Geography',             section: 'Art' },
+  { name: 'Geography',             section: 'General' },
 
   // Commercial
   { name: 'Commerce',             section: 'Commercial' },
   { name: 'Financial Accounting', section: 'Commercial' },
-  { name: 'Marketing',            section: 'Commercial' },
+  { name: 'Marketing',            section: 'General' },
 ];
 
 async function run() {
