@@ -1,11 +1,11 @@
 const ActivityLog = require("../models/ActivityLog");
-const { sendActivityNotificationEmail } = require("./emailService");
+const { sendActivityNotificationEmail, sendTeacherActivitySummaryEmail } = require("./emailService");
 const logger = require("./logger");
 
 const ADMIN_EMAIL = "folushovictoryschool@gmail.com";
 
 /**
- * Log teacher activity and send email to admin for high-severity activities
+ * Log teacher activity and send email to admin for all teacher activities
  */
 async function logActivity(teacherId, activityType, description, req, affectedResource = null, severity = "LOW") {
   try {
@@ -22,14 +22,24 @@ async function logActivity(teacherId, activityType, description, req, affectedRe
       severity,
     });
 
-    // Send email notification for high-severity activities
+    // Send email notification for HIGH/CRITICAL activities immediately
     if (["HIGH", "CRITICAL"].includes(severity) && process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
       try {
         await sendActivityNotificationEmail(ADMIN_EMAIL, teacherId, activity);
         await activity.update({ emailSent: true });
-        logger.info(`Activity alert email sent for activity ID: ${activity.id}`);
+        logger.info(`High-severity activity alert email sent for activity ID: ${activity.id}`);
       } catch (emailError) {
         logger.warn(`Failed to send activity alert email: ${emailError.message}`);
+      }
+    }
+    // Send email for all other teacher activities (for tracking/audit)
+    else if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
+      try {
+        await sendTeacherActivitySummaryEmail(ADMIN_EMAIL, teacherId, activity);
+        await activity.update({ emailSent: true });
+        logger.info(`Activity tracking email sent for activity ID: ${activity.id}`);
+      } catch (emailError) {
+        logger.warn(`Failed to send activity tracking email: ${emailError.message}`);
       }
     }
 

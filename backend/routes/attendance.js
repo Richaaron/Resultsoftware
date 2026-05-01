@@ -5,6 +5,7 @@ const { auth, authorize } = require("../middleware/auth");
 const Attendance = require("../models/Attendance");
 const Student = require("../models/Student");
 const { sendAttendanceAlert } = require("../utils/emailService");
+const { logActivity } = require("../utils/activityTracker");
 const logger = require("../utils/logger");
 
 // GET all attendance for a class on a given date
@@ -85,8 +86,26 @@ router.post("/", auth, authorize(["ADMIN", "TEACHER"]), async (req, res) => {
 
     if (existing) {
       // Update the existing record's status
+      const oldStatus = existing.status;
       existing.status = status;
       await existing.save();
+      
+      // Log activity if teacher (not admin)
+      if (req.user.role === "TEACHER") {
+        try {
+          await logActivity(
+            req.user.id,
+            "UPDATE_ATTENDANCE",
+            `Updated attendance for student ${studentId} from ${oldStatus} to ${status} on ${date}`,
+            req,
+            `Attendance ID: ${existing.id}`,
+            "MEDIUM"
+          );
+        } catch (error) {
+          logger.warn(`Failed to log activity: ${error.message}`);
+        }
+      }
+      
       return res.send(existing);
     }
 
@@ -96,6 +115,22 @@ router.post("/", auth, authorize(["ADMIN", "TEACHER"]), async (req, res) => {
       date,
       status,
     });
+
+    // Log activity if teacher (not admin)
+    if (req.user.role === "TEACHER") {
+      try {
+        await logActivity(
+          req.user.id,
+          "CREATE_ATTENDANCE",
+          `Created attendance record for student ${studentId} with status ${status} on ${date}`,
+          req,
+          `Attendance ID: ${attendance.id}`,
+          "MEDIUM"
+        );
+      } catch (error) {
+        logger.warn(`Failed to log activity: ${error.message}`);
+      }
+    }
 
     res.status(201).send(attendance);
   } catch (error) {
@@ -194,6 +229,22 @@ router.post(
           logger.error(
             `Error checking attendance for student ${student.id}: ${studentError.message}`
           );
+        }
+      }
+
+      // Log activity if teacher (not admin)
+      if (req.user.role === "TEACHER") {
+        try {
+          await logActivity(
+            req.user.id,
+            "OTHER",
+            `Checked attendance alerts for class ${studentClass}, found ${lowAttendanceStudents.length} students below ${attendanceThreshold}% threshold, sent ${alertsSent} alerts`,
+            req,
+            `Class: ${studentClass}`,
+            "LOW"
+          );
+        } catch (error) {
+          logger.warn(`Failed to log activity: ${error.message}`);
         }
       }
 

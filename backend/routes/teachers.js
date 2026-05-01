@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { auth, authorize } = require("../middleware/auth");
 const User = require("../models/User");
-const { sendWelcomeEmail } = require("../utils/emailService");
+const { sendTeacherWelcomeEmail } = require("../utils/emailService");
 const logger = require("../utils/logger");
 
 // Register a new teacher (Admin only)
@@ -50,14 +50,48 @@ router.post("/register", auth, authorize(["ADMIN"]), async (req, res) => {
     });
 
     // Send welcome email if email is provided and notifications are enabled
-    if (email && process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
-      try {
-        await sendWelcomeEmail(email, fullName, password, username);
-        logger.info(`Welcome email sent to teacher: ${email}`);
-      } catch (emailError) {
-        logger.warn(`Failed to send welcome email to ${email}: ${emailError.message}`);
-        // Don't fail the registration if email fails
+    let emailStatus = {
+      sent: false,
+      message: '',
+    };
+
+    if (email) {
+      if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
+        try {
+          await sendTeacherWelcomeEmail(email, {
+            fullName,
+            username,
+            password,
+            isFormTeacher,
+            isSubjectTeacher,
+            assignedClass,
+            assignedSubject: formattedSubject,
+          });
+          logger.info(`Welcome email sent to teacher: ${email}`);
+          emailStatus = {
+            sent: true,
+            message: `Welcome email with login credentials and assignment details sent to ${email}`,
+          };
+        } catch (emailError) {
+          logger.error(`Failed to send welcome email to ${email}: ${emailError.message}`);
+          emailStatus = {
+            sent: false,
+            message: `Failed to send email: ${emailError.message}`,
+          };
+          // Don't fail the registration if email fails
+        }
+      } else {
+        logger.warn('Email notifications not configured. Set EMAIL_USER and EMAIL_PASSWORD environment variables.');
+        emailStatus = {
+          sent: false,
+          message: 'Email notifications are not configured on the server',
+        };
       }
+    } else {
+      emailStatus = {
+        sent: false,
+        message: 'No email address provided for teacher',
+      };
     }
 
     res.status(201).send({
@@ -76,6 +110,7 @@ router.post("/register", auth, authorize(["ADMIN"]), async (req, res) => {
         username,
         password,
       },
+      emailStatus,
     });
   } catch (error) {
     console.error("Teacher registration error:", error);

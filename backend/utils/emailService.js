@@ -211,12 +211,174 @@ async function sendActivityNotificationEmail(to, teacherId, activity) {
   return sendEmail(to, subject, html);
 }
 
+/**
+ * Send comprehensive welcome email to new teacher with assignment details
+ */
+async function sendTeacherWelcomeEmail(to, teacherDetails) {
+  const { fullName, username, password, isFormTeacher, isSubjectTeacher, assignedClass, assignedSubject } = teacherDetails;
+  const subject = 'Welcome to Result Management System - Teacher Account Created';
+  const portalUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+  const loginUrl = `${portalUrl}/login`;
+  
+  // Build assignment info
+  let assignmentInfo = '<p><strong>Role:</strong> ';
+  const roles = [];
+  if (isFormTeacher) roles.push('Form Teacher');
+  if (isSubjectTeacher) roles.push('Subject Teacher');
+  assignmentInfo += (roles.length > 0 ? roles.join(', ') : 'Teacher') + '</p>';
+  
+  if (assignedClass) {
+    assignmentInfo += `<p><strong>Assigned Class:</strong> ${assignedClass}</p>`;
+  }
+  if (assignedSubject) {
+    assignmentInfo += `<p><strong>Assigned Subject(s):</strong> ${assignedSubject}</p>`;
+  }
+
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <div style="background-color: #2196F3; color: white; padding: 20px; border-radius: 5px 5px 0 0; text-align: center;">
+        <h1 style="margin: 0;">Result Management System</h1>
+        <p style="margin: 5px 0 0 0;">Teacher Account Created</p>
+      </div>
+      
+      <div style="padding: 20px; background-color: #f9f9f9;">
+        <p>Dear <strong>${fullName}</strong>,</p>
+        
+        <p>Your teacher account has been successfully created in the Result Management System. You can now log in and manage student results, attendance, and class information.</p>
+        
+        <div style="background-color: white; padding: 15px; margin: 20px 0; border-radius: 5px; border-left: 4px solid #2196F3;">
+          <h3 style="margin-top: 0; color: #333;">Your Login Credentials</h3>
+          <p><strong>Username:</strong> <code style="background-color: #f0f0f0; padding: 5px 10px; border-radius: 3px; font-family: monospace;">${username}</code></p>
+          <p><strong>Temporary Password:</strong> <code style="background-color: #f0f0f0; padding: 5px 10px; border-radius: 3px; font-family: monospace;">${password}</code></p>
+        </div>
+        
+        <div style="background-color: white; padding: 15px; margin: 20px 0; border-radius: 5px;">
+          <h3 style="margin-top: 0; color: #333;">Your Assignment Details</h3>
+          ${assignmentInfo}
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+          <a href="${loginUrl}" style="background-color: #2196F3; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
+            Log In to Your Account
+          </a>
+        </div>
+        
+        <div style="background-color: #fff3cd; padding: 15px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #ffc107;">
+          <h4 style="margin-top: 0; color: #856404;">Important: Security Notice</h4>
+          <ul style="margin: 10px 0; padding-left: 20px; color: #856404;">
+            <li>Please change your temporary password immediately after logging in</li>
+            <li>Use a strong password with uppercase, lowercase, numbers, and special characters</li>
+            <li>Never share your login credentials with anyone</li>
+            <li>Log out properly when you finish using the system</li>
+          </ul>
+        </div>
+        
+        <div style="background-color: #e3f2fd; padding: 15px; border-radius: 5px; margin: 20px 0;">
+          <h4 style="margin-top: 0; color: #1976d2;">Getting Started</h4>
+          <p style="margin: 10px 0; color: #333;">
+            Once logged in, you can:
+          </p>
+          <ul style="margin: 10px 0; padding-left: 20px; color: #333;">
+            <li>View and manage student results</li>
+            <li>Track attendance records</li>
+            <li>Send messages to parents</li>
+            <li>Update student information</li>
+            <li>Generate performance reports</li>
+          </ul>
+        </div>
+        
+        <p style="color: #666; margin-top: 30px;">If you experience any issues logging in or have questions about the system, please contact the school administration.</p>
+        
+        <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="color: #999; font-size: 12px; text-align: center;">This is an automated email. Please do not reply to this message.</p>
+      </div>
+    </div>
+  `;
+
+  return sendEmail(to, subject, html);
+}
+
+/**
+ * Send teacher activity summary to admin for tracking/audit
+ */
+async function sendTeacherActivitySummaryEmail(to, teacherId, activity) {
+  const User = require("../models/User");
+  const teacher = await User.findByPk(teacherId);
+  
+  const activityTypeLabels = {
+    LOGIN: "🔓 Login",
+    LOGOUT: "🔐 Logout",
+    CREATE_RESULT: "➕ Created Result",
+    UPDATE_RESULT: "✏️ Updated Result",
+    DELETE_RESULT: "🗑️ Deleted Result",
+    CREATE_ATTENDANCE: "➕ Created Attendance",
+    UPDATE_ATTENDANCE: "✏️ Updated Attendance",
+    DELETE_ATTENDANCE: "🗑️ Deleted Attendance",
+    ACCESS_STUDENT_DATA: "👁️ Accessed Student Data",
+    EXPORT_DATA: "📤 Exported Data",
+    CHANGE_PASSWORD: "🔑 Changed Password",
+    PROFILE_UPDATE: "👤 Updated Profile",
+    OTHER: "📝 Other Activity",
+  };
+
+  const severityColors = {
+    LOW: "#4CAF50",
+    MEDIUM: "#FF9800",
+    HIGH: "#F44336",
+    CRITICAL: "#8B0000",
+  };
+
+  const subject = `Teacher Activity Log - ${teacher?.fullName || `ID: ${teacherId}`} - ${activityTypeLabels[activity.activityType] || activity.activityType}`;
+  
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <div style="background-color: #2196F3; color: white; padding: 15px; border-radius: 5px 5px 0 0; text-align: center;">
+        <h2 style="margin: 0;">📊 Teacher Activity Tracked</h2>
+      </div>
+      
+      <div style="padding: 20px; background-color: #f9f9f9;">
+        <div style="background-color: white; padding: 15px; margin: 10px 0; border-radius: 5px; border-left: 4px solid ${severityColors[activity.severity]};">
+          <p style="margin: 5px 0;"><strong>Teacher:</strong> ${teacher?.fullName || `ID: ${teacherId}`}</p>
+          <p style="margin: 5px 0;"><strong>Activity:</strong> ${activityTypeLabels[activity.activityType] || activity.activityType}</p>
+          <p style="margin: 5px 0;"><strong>Timestamp:</strong> ${new Date(activity.createdAt).toLocaleString('en-US', { 
+            year: 'numeric', 
+            month: '2-digit', 
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+          })}</p>
+          <p style="margin: 5px 0;"><strong>Severity:</strong> <span style="color: ${severityColors[activity.severity]}; font-weight: bold;">${activity.severity}</span></p>
+          <p style="margin: 5px 0;"><strong>IP Address:</strong> ${activity.ipAddress || 'Unknown'}</p>
+          ${activity.affectedResource ? `<p style="margin: 5px 0;"><strong>Resource:</strong> ${activity.affectedResource}</p>` : ''}
+          ${activity.description ? `<p style="margin: 5px 0;"><strong>Details:</strong> ${activity.description}</p>` : ''}
+        </div>
+
+        <div style="background-color: #e3f2fd; padding: 12px; border-radius: 5px; margin: 15px 0; font-size: 13px;">
+          <p style="margin: 5px 0; color: #555;">
+            <strong>📋 Note:</strong> This is an automated audit log entry. All teacher activities are tracked for compliance and security purposes.
+          </p>
+        </div>
+
+        <p style="color: #666; font-size: 12px; margin-top: 20px; text-align: center;">
+          Sent automatically by Result Management System
+        </p>
+      </div>
+    </div>
+  `;
+
+  return sendEmail(to, subject, html);
+}
+
 module.exports = {
   sendEmail,
   sendWelcomeEmail,
+  sendTeacherWelcomeEmail,
   sendResultsNotification,
   sendAttendanceAlert,
   sendPasswordResetEmail,
   sendTestEmail,
   sendActivityNotificationEmail,
+  sendTeacherActivitySummaryEmail,
 };
