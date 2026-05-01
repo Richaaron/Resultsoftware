@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const logger = require('../utils/logger');
 
 const auth = async (req, res, next) => {
   try {
@@ -10,6 +11,12 @@ const auth = async (req, res, next) => {
     const user = await User.findByPk(decoded.id);
 
     if (!user) throw new Error();
+
+    // Check if teacher is active - prevent inactive teachers from accessing API
+    if (user.role === 'TEACHER' && !user.isActive) {
+      logger.warn(`Inactive teacher attempted API access: ${user.username}`);
+      return res.status(403).send({ error: 'Your account has been deactivated.' });
+    }
 
     req.token = token;
     req.user = user;

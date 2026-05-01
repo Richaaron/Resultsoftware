@@ -22,6 +22,12 @@ router.post("/login", validate(schemas.login), asyncHandler(async (req, res) => 
     return res.status(401).json({ error: "Invalid login credentials" });
   }
 
+  // Check if user (especially teachers) is active
+  if (user.role === "TEACHER" && !user.isActive) {
+    logger.warn(`Inactive teacher attempted login: ${user.username}`);
+    return res.status(403).json({ error: "Your account has been deactivated. Please contact administration." });
+  }
+
   const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
     expiresIn: "24h",
   });

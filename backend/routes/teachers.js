@@ -118,11 +118,11 @@ router.post("/register", auth, authorize(["ADMIN"]), async (req, res) => {
   }
 });
 
-// Get all teachers (Admin only)
+// Get all active teachers (Admin only)
 router.get("/", auth, authorize(["ADMIN"]), async (req, res) => {
   try {
     const teachers = await User.findAll({
-      where: { role: "TEACHER" },
+      where: { role: "TEACHER", isActive: true },
       attributes: [
         "id",
         "username",
@@ -138,6 +138,30 @@ router.get("/", auth, authorize(["ADMIN"]), async (req, res) => {
     res.send(teachers);
   } catch (error) {
     res.status(500).send({ error: "Failed to fetch teachers" });
+  }
+});
+
+// Get inactive/archived teachers (Admin only)
+router.get("/archived/list", auth, authorize(["ADMIN"]), async (req, res) => {
+  try {
+    const inactiveTeachers = await User.findAll({
+      where: { role: "TEACHER", isActive: false },
+      attributes: [
+        "id",
+        "username",
+        "fullName",
+        "email",
+        "isFormTeacher",
+        "isSubjectTeacher",
+        "assignedClass",
+        "assignedSubject",
+        "createdAt",
+        "updatedAt",
+      ],
+    });
+    res.send(inactiveTeachers);
+  } catch (error) {
+    res.status(500).send({ error: "Failed to fetch archived teachers" });
   }
 });
 
@@ -214,7 +238,7 @@ router.patch("/:id", auth, authorize(["ADMIN"]), async (req, res) => {
   }
 });
 
-// Delete a teacher (Admin only)
+// Deactivate a teacher (Admin only) - Soft delete
 router.delete("/:id", auth, authorize(["ADMIN"]), async (req, res) => {
   try {
     const teacher = await User.findOne({
@@ -225,10 +249,58 @@ router.delete("/:id", auth, authorize(["ADMIN"]), async (req, res) => {
       return res.status(404).send({ error: "Teacher not found" });
     }
 
-    await teacher.destroy();
-    res.send({ message: "Teacher deleted successfully" });
+    if (!teacher.isActive) {
+      return res.status(400).send({ error: "Teacher is already deactivated" });
+    }
+
+    teacher.isActive = false;
+    await teacher.save();
+    logger.info(`Teacher ${teacher.fullName} (ID: ${teacher.id}) has been deactivated`);
+    res.send({ 
+      message: "Teacher deactivated successfully",
+      teacher: {
+        id: teacher.id,
+        fullName: teacher.fullName,
+        email: teacher.email,
+        isActive: teacher.isActive,
+      }
+    });
   } catch (error) {
-    res.status(500).send({ error: "Failed to delete teacher" });
+    logger.error(`Failed to deactivate teacher: ${error.message}`);
+    res.status(500).send({ error: "Failed to deactivate teacher" });
+  }
+});
+
+// Reactivate a teacher (Admin only)
+router.post("/:id/reactivate", auth, authorize(["ADMIN"]), async (req, res) => {
+  try {
+    const teacher = await User.findOne({
+      where: { id: req.params.id, role: "TEACHER" },
+    });
+
+    if (!teacher) {
+      return res.status(404).send({ error: "Teacher not found" });
+    }
+
+    if (teacher.isActive) {
+      return res.status(400).send({ error: "Teacher is already active" });
+    }
+
+    teacher.isActive = true;
+    await teacher.save();
+    logger.info(`Teacher ${teacher.fullName} (ID: ${teacher.id}) has been reactivated`);
+    res.send({ 
+      message: "Teacher reactivated successfully",
+      teacher: {
+        id: teacher.id,
+        fullName: teacher.fullName,
+        email: teacher.email,
+        isActive: teacher.isActive,
+      }
+    });
+  } catch (error) {
+    logger.error(`Failed to reactivate teacher: ${error.message}`);
+    res.status(500).send({ error: "Failed to reactivate teacher" });
   }
 });
 

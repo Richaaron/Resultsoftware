@@ -48,6 +48,11 @@ const User = sequelize.define("User", {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  isActive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true,
+    comment: 'Soft delete flag - set to false to deactivate without losing data'
+  },
 });
 
 module.exports = User;
