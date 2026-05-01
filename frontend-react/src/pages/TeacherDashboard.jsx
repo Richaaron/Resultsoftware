@@ -534,7 +534,7 @@ const RegisterStudent = () => {
   };
 
   return (
-    <div className="max-w-3xl professional-card p-6 bg-brand-50">
+    <div className="max-w-5xl professional-card p-6 bg-brand-50">
       <h2 className="text-3xl font-bold text-black mb-8 uppercase  tracking-tight text-gradient">
         Register New Superstar! ⭐
       </h2>

@@ -1248,7 +1248,7 @@ const StudentList = () => {
 
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/60 backdrop-blur-sm overflow-y-auto">
-          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-5xl relative border border-brand-700/50 shadow-xl my-4 max-h-[85vh] flex flex-col">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-6xl relative border border-brand-700/50 shadow-xl my-4 max-h-[95vh] flex flex-col">
             <button
               onClick={() => setShowAddModal(false)}
               className="absolute top-4 right-4 text-black dark:text-brand-100 hover:rotate-90 transition-transform z-10"
@@ -1544,7 +1544,7 @@ const StudentList = () => {
 
       {editingStudent && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/60 backdrop-blur-sm overflow-y-auto">
-          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-2xl relative border border-brand-700/50 shadow-xl my-8">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-4xl relative border border-brand-700/50 shadow-xl my-8 max-h-[95vh] flex flex-col">
             <button
               onClick={() => setEditingStudent(null)}
               className="absolute top-4 right-4 text-black dark:text-brand-100 hover:rotate-90 transition-transform"
@@ -1555,7 +1555,7 @@ const StudentList = () => {
               Modify Legend 🛠️
             </h3>
 
-            <form onSubmit={handleUpdateStudent} className="space-y-4">
+            <form onSubmit={handleUpdateStudent} className="space-y-4 overflow-y-auto flex-1 pr-2">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {/* Profile Image Section */}
                 <div className="md:row-span-2 flex flex-col items-center gap-2">
