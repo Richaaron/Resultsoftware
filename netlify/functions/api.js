@@ -62,9 +62,14 @@ exports.handler = async (event, context) => {
   
   console.log(`[netlify-function] ${method} ${requestPath}`);
   
-  // CRITICAL: Only invoke Express for /api/* requests
-  // Everything else must return 404 to allow Netlify to serve static files
-  const isApiPath = requestPath === '/api' || requestPath.startsWith('/api/');
+  // Strip /.netlify/functions to match Express routes
+  if (event.path && event.path.includes('/.netlify/functions')) {
+    event.path = event.path.replace('/.netlify/functions', '');
+    requestPath = event.path;
+  }
+  
+  // CRITICAL: Only invoke Express for /api requests
+  const isApiPath = requestPath.includes('/api');
   
   if (!isApiPath) {
     console.log(`[netlify-function] NOT an API path, returning 404 to allow static file serving`);
