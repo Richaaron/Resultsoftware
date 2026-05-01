@@ -1,14 +1,125 @@
 const nodemailer = require('nodemailer');
+const axios = require('axios');
 const logger = require('./logger');
 
-// Create transporter for Gmail
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASSWORD,
+// Initialize transporters for email providers
+let primaryTransporter = null;
+let fallbackTransporter = null;
+let useBrevo = false;
+
+// Initialize email service based on configuration
+function initializeEmailService() {
+  // Try Gmail first (with IPv4-only to avoid IPv6 timeout issues)
+  if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
+    try {
+      primaryTransporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 587,
+        secure: false,
+        family: 4, // Force IPv4 to avoid IPv6 timeout issues
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASSWORD,
+        },
+        connectionTimeout: 5000,
+        socketTimeout: 5000,
+      });
+      logger.info('Gmail SMTP configured as primary email service (IPv4-only)');
+    } catch (error) {
+      logger.warn('Failed to initialize Gmail transporter:', error.message);
+    }
+  }
+
+  // Setup Brevo as fallback (if API key provided)
+  if (process.env.BREVO_API_KEY) {
+    fallbackTransporter = 'brevo';
+    logger.info('Brevo configured as fallback email service');
+  } else if (!primaryTransporter) {
+    logger.warn('No email service configured. Set EMAIL_USER/EMAIL_PASSWORD or BREVO_API_KEY');
+  }
+}
+
+// Initialize on module load
+initializeEmailService();
+
+// Send email via Brevo API
+async function sendEmailViaBrevo(to, subject, html, text = null) {
+  try {
+    if (!process.env.BREVO_API_KEY) {
+      throw new Error('Brevo API key not configured');
+    }
+
+    const senderEmail = process.env.EMAIL_USER || 'noreply@resultsoftware.local';
+    const senderName = process.env.EMAIL_FROM_NAME || 'Result Management System';
+
+    const response = await axios.post('https://api.brevo.com/v3/smtp/email', {
+      to: [{ email: to }],
+      sender: { name: senderName, email: senderEmail },
+      subject: subject,
+      htmlContent: html,
+      textContent: text || html.replace(/<[^>]*>/g, ''),
+    }, {
+      headers: {
+        'api-key': process.env.BREVO_API_KEY,
+        'Content-Type': 'application/json',
+      },
+      timeout: 10000,
+    });
+
+    logger.info(`Email sent via Brevo to ${to}: ${response.data.messageId}`);
+    return { success: true, messageId: response.data.messageId, service: 'brevo' };
+  } catch (error) {
+    logger.error(`Failed to send email via Brevo to ${to}: ${error.message}`);
+    return { success: false, error: error.message, service: 'brevo' };
+  }
+}
+
+// Send email with automatic fallback
+async function sendEmailWithFallback(to, subject, html, text = null) {
+  // Try primary transporter first
+  if (primaryTransporter) {
+    try {
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to,
+        subject,
+        html,
+        text: text || html.replace(/<[^>]*>/g, ''),
+      };
+
+      const info = await primaryTransporter.sendMail(mailOptions);
+      logger.info(`Email sent via Gmail to ${to}: ${info.messageId}`);
+      return { success: true, messageId: info.messageId, service: 'gmail' };
+    } catch (error) {
+      logger.warn(`Gmail delivery failed for ${to}, attempting Brevo fallback: ${error.message}`);
+      // Continue to fallback
+    }
+  }
+
+  // Try Brevo fallback
+  if (fallbackTransporter === 'brevo') {
+    return sendEmailViaBrevo(to, subject, html, text);
+  }
+
+  return { success: false, error: 'No email service available', service: 'none' };
+}
+
+// Legacy transporter for backward compatibility
+const transporter = {
+  sendMail: async (mailOptions) => {
+    const result = await sendEmailWithFallback(
+      mailOptions.to,
+      mailOptions.subject,
+      mailOptions.html,
+      mailOptions.text
+    );
+    if (result.success) {
+      return result;
+    } else {
+      throw new Error(result.error);
+    }
   },
-});
+};
 
 /**
  * Send email with template
@@ -18,22 +129,7 @@ const transporter = nodemailer.createTransport({
  * @param {string} text - Plain text content (optional)
  */
 async function sendEmail(to, subject, html, text = null) {
-  try {
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to,
-      subject,
-      html,
-      text: text || html.replace(/<[^>]*>/g, ''), // Strip HTML for text fallback
-    };
-
-    const info = await transporter.sendMail(mailOptions);
-    logger.info(`Email sent to ${to}: ${info.messageId}`);
-    return { success: true, messageId: info.messageId };
-  } catch (error) {
-    logger.error(`Failed to send email to ${to}: ${error.message}`);
-    return { success: false, error: error.message };
-  }
+  return sendEmailWithFallback(to, subject, html, text);
 }
 
 /**
