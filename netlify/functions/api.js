@@ -44,8 +44,8 @@ console.log('Environment JWT_SECRET set:', !!process.env.JWT_SECRET);
 const serverless = require('serverless-http');
 const app = require('../../backend/server');
 
-// Custom request handler to ensure body parsing works
 const handler = serverless(app, {
+  basePath: '/.netlify/functions',
   binary: ['application/octet-stream', 'image/*']
 });
 
@@ -61,12 +61,6 @@ exports.handler = async (event, context) => {
   const method = event.httpMethod || 'GET';
   
   console.log(`[netlify-function] ${method} ${requestPath}`);
-  
-  // Strip /.netlify/functions to match Express routes
-  if (event.path && event.path.includes('/.netlify/functions')) {
-    event.path = event.path.replace('/.netlify/functions', '');
-    requestPath = event.path;
-  }
   
   // CRITICAL: Only invoke Express for /api requests
   const isApiPath = requestPath.includes('/api');
