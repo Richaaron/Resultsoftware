@@ -982,6 +982,12 @@ const StudentList = () => {
     return grouped;
   };
 
+  const getSectionAndGeneralSubjects = (subjectList) => {
+    const sectionSubjects = subjectList.filter(sub => sub.section);
+    const generalSubjects = subjectList.filter(sub => !sub.section);
+    return { sectionSubjects, generalSubjects };
+  };
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -1436,31 +1442,62 @@ const StudentList = () => {
                   <label className="text-[9px] font-semibold text-black dark:text-brand-300 uppercase tracking-tight block mb-0.5">
                     Subjects
                   </label>
-                  <div className="space-y-1 p-1.5 border-2 border-gray-300 dark:border-brand-700 rounded-lg bg-gray-50 dark:bg-brand-800 max-h-32 overflow-y-auto">
+                  <div className="space-y-2 p-1.5 border-2 border-gray-300 dark:border-brand-700 rounded-lg bg-gray-50 dark:bg-brand-800 max-h-40 overflow-y-auto">
                     {formData.studentClass && ["SSS 1", "SSS 2", "SSS 3"].includes(formData.studentClass)
-                      ? Object.entries(getGroupedSubjects(getSubjectsForClass())).map(([section, subs]) => (
-                          <div key={section} className="space-y-1">
-                            <h4 className="text-[8px] font-bold text-blue-600 dark:text-blue-400 uppercase">
-                              {section} Section
-                            </h4>
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-1">
-                              {subs.map((sub) => (
-                                <button
-                                  key={sub.id}
-                                  type="button"
-                                  onClick={() => handleSubjectToggle(sub.id)}
-                                  className={`p-1 rounded-lg border text-[8px] sm:text-[9px] font-semibold uppercase tracking-tight transition-all ${
-                                    formData.subjectIds.includes(sub.id)
-                                      ? "bg-blue-500 border-blue-600 shadow-sm text-white"
-                                      : "bg-white dark:bg-brand-700 border-gray-200 dark:border-brand-600 text-gray-700 dark:text-brand-300 hover:border-blue-400"
-                                  }`}
-                                >
-                                  {sub.name}
-                                </button>
+                      ? (() => {
+                          const { sectionSubjects, generalSubjects } = getSectionAndGeneralSubjects(getSubjectsForClass());
+                          const grouped = getGroupedSubjects(sectionSubjects);
+                          return (
+                            <>
+                              {Object.entries(grouped).map(([section, subs]) => (
+                                <div key={section} className="space-y-1">
+                                  <h4 className="text-[8px] font-bold text-blue-600 dark:text-blue-400 uppercase">
+                                    {section} Section
+                                  </h4>
+                                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-1">
+                                    {subs.map((sub) => (
+                                      <button
+                                        key={sub.id}
+                                        type="button"
+                                        onClick={() => handleSubjectToggle(sub.id)}
+                                        className={`p-1 rounded-lg border text-[8px] sm:text-[9px] font-semibold uppercase tracking-tight transition-all ${
+                                          formData.subjectIds.includes(sub.id)
+                                            ? "bg-blue-500 border-blue-600 shadow-sm text-white"
+                                            : "bg-white dark:bg-brand-700 border-gray-200 dark:border-brand-600 text-gray-700 dark:text-brand-300 hover:border-blue-400"
+                                        }`}
+                                      >
+                                        {sub.name}
+                                      </button>
+                                    ))}
+                                  </div>
+                                </div>
                               ))}
-                            </div>
-                          </div>
-                        ))
+                              {generalSubjects.length > 0 && (
+                                <div className="space-y-1 pt-1 border-t border-gray-300 dark:border-brand-600">
+                                  <h4 className="text-[8px] font-bold text-green-600 dark:text-green-400 uppercase">
+                                    Other Subjects
+                                  </h4>
+                                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-1">
+                                    {generalSubjects.map((sub) => (
+                                      <button
+                                        key={sub.id}
+                                        type="button"
+                                        onClick={() => handleSubjectToggle(sub.id)}
+                                        className={`p-1 rounded-lg border text-[8px] sm:text-[9px] font-semibold uppercase tracking-tight transition-all ${
+                                          formData.subjectIds.includes(sub.id)
+                                            ? "bg-green-500 border-green-600 shadow-sm text-white"
+                                            : "bg-white dark:bg-brand-700 border-gray-200 dark:border-brand-600 text-gray-700 dark:text-brand-300 hover:border-green-400"
+                                        }`}
+                                      >
+                                        {sub.name}
+                                      </button>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </>
+                          );
+                        })()
                       : (
                           <div className="grid grid-cols-1 sm:grid-cols-3 gap-1">
                             {getSubjectsForClass().map((sub) => (
@@ -1686,34 +1723,67 @@ const StudentList = () => {
                   </label>
                   <div className="space-y-3 p-3 border-2 border-gray-300 dark:border-brand-700 rounded-lg bg-gray-50 dark:bg-brand-800 max-h-48 overflow-y-auto">
                     {editingStudent.studentClass && ["SSS 1", "SSS 2", "SSS 3"].includes(editingStudent.studentClass)
-                      ? Object.entries(getGroupedSubjects(editingStudent.section 
-                          ? subjects.filter(s => s.category === "Secondary" && s.level === "Senior" && s.section === editingStudent.section)
-                          : subjects.filter(s => s.category === "Secondary" && s.level === "Senior")
-                        )).map(([section, subs]) => (
-                          <div key={section} className="space-y-2">
-                            <h4 className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">
-                              {section} Section
-                            </h4>
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                              {subs.map((sub) => (
-                                <button
-                                  key={sub.id}
-                                  type="button"
-                                  onClick={() => handleEditSubjectToggle(sub.id)}
-                                  className={`p-2 rounded-lg border text-[9px] sm:text-[10px] font-semibold uppercase tracking-tight transition-all ${
-                                    (editingStudent.Subjects || []).some(
-                                      (s) => s.id === sub.id,
-                                    )
-                                      ? "bg-blue-500 border-blue-600 shadow-sm text-white"
-                                      : "bg-white dark:bg-brand-700 border-gray-200 dark:border-brand-600 text-gray-700 dark:text-brand-300 hover:border-blue-400"
-                                  }`}
-                                >
-                                  {sub.name}
-                                </button>
+                      ? (() => {
+                          const filteredSubjects = editingStudent.section 
+                            ? subjects.filter(s => s.category === "Secondary" && s.level === "Senior" && s.section === editingStudent.section)
+                            : subjects.filter(s => s.category === "Secondary" && s.level === "Senior");
+                          const { sectionSubjects, generalSubjects } = getSectionAndGeneralSubjects(filteredSubjects);
+                          const grouped = getGroupedSubjects(sectionSubjects);
+                          return (
+                            <>
+                              {Object.entries(grouped).map(([section, subs]) => (
+                                <div key={section} className="space-y-2">
+                                  <h4 className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">
+                                    {section} Section
+                                  </h4>
+                                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                    {subs.map((sub) => (
+                                      <button
+                                        key={sub.id}
+                                        type="button"
+                                        onClick={() => handleEditSubjectToggle(sub.id)}
+                                        className={`p-2 rounded-lg border text-[9px] sm:text-[10px] font-semibold uppercase tracking-tight transition-all ${
+                                          (editingStudent.Subjects || []).some(
+                                            (s) => s.id === sub.id,
+                                          )
+                                            ? "bg-blue-500 border-blue-600 shadow-sm text-white"
+                                            : "bg-white dark:bg-brand-700 border-gray-200 dark:border-brand-600 text-gray-700 dark:text-brand-300 hover:border-blue-400"
+                                        }`}
+                                      >
+                                        {sub.name}
+                                      </button>
+                                    ))}
+                                  </div>
+                                </div>
                               ))}
-                            </div>
-                          </div>
-                        ))
+                              {generalSubjects.length > 0 && (
+                                <div className="space-y-2 pt-2 border-t border-gray-300 dark:border-brand-600">
+                                  <h4 className="text-[10px] font-bold text-green-600 dark:text-green-400 uppercase">
+                                    Other Subjects
+                                  </h4>
+                                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                    {generalSubjects.map((sub) => (
+                                      <button
+                                        key={sub.id}
+                                        type="button"
+                                        onClick={() => handleEditSubjectToggle(sub.id)}
+                                        className={`p-2 rounded-lg border text-[9px] sm:text-[10px] font-semibold uppercase tracking-tight transition-all ${
+                                          (editingStudent.Subjects || []).some(
+                                            (s) => s.id === sub.id,
+                                          )
+                                            ? "bg-green-500 border-green-600 shadow-sm text-white"
+                                            : "bg-white dark:bg-brand-700 border-gray-200 dark:border-brand-600 text-gray-700 dark:text-brand-300 hover:border-green-400"
+                                        }`}
+                                      >
+                                        {sub.name}
+                                      </button>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </>
+                          );
+                        })()
                       : (
                           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                             {subjects.map((sub) => (
