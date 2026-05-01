@@ -1,0 +1,220 @@
+/* Fade & Slide Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Card Animation */
+@keyframes cardFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Icon Animations */
+@keyframes iconBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounceSlow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Text Animations */
+@keyframes textFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Scale Pulse */
+@keyframes scalePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Pulse Glow */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
+  }
+}
+
+/* Shimmer Effect */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Apply animations via Tailwind classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-slide-right {
+  animation: slideRight 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-slide-left {
+  animation: slideLeft 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-card-fade {
+  animation: cardFade 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-icon-bounce {
+  animation: iconBounce 2s ease-in-out infinite;
+}
+
+.animate-rotate {
+  animation: rotate 0.6s ease-in-out;
+}
+
+.animate-rotate-slow {
+  animation: rotateSlow 8s linear infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounceSlow 3s ease-in-out infinite;
+}
+
+.animate-text-fade {
+  animation: textFade 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-scale-pulse {
+  animation: scalePulse 2s ease-in-out infinite !important;
+}
+
+.group-hover\:animate-pulse {
+  animation: pulseGlow 2s infinite;
+}
+
+/* Staggered animations with delays */
+.animate-card-fade:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.animate-card-fade:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.animate-card-fade:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* Mobile responsiveness */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+  .animate-fade-in-up,
+  .animate-slide-down,
+  .animate-slide-right,
+  .animate-slide-left,
+  .animate-card-fade {
+    will-change: opacity, transform;
+  }
+}

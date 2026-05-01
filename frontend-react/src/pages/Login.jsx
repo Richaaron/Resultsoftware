@@ -12,6 +12,7 @@ import {
   Book
 } from "lucide-react";
 import api from "../api";
+import "../styles/animations.css";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -48,59 +49,59 @@ const Login = () => {
   };
 
   const renderRoleSelection = () => (
-    <div className="w-full max-w-md mx-auto animate-fade-in-up space-y-4">
-      <h2 className="text-3xl font-extrabold text-white tracking-tight mb-2">Welcome back</h2>
-      <p className="text-brand-300 font-medium mb-10">Select your role to continue</p>
+    <div className="w-full max-w-md mx-auto space-y-4 animate-fade-in-up">
+      <h2 className="text-3xl font-extrabold text-white tracking-tight mb-2 animate-slide-down">Welcome back</h2>
+      <p className="text-brand-300 font-medium mb-10 animate-slide-down" style={{animationDelay: '0.1s'}}>Select your role to continue</p>
 
       {/* Admin Button */}
       <button
         onClick={() => setLoginType("ADMIN")}
-        className="w-full p-6 flex items-center justify-between group hover:-translate-y-1 transition-all duration-300 text-left bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 hover:border-accent-gold/40 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] cursor-pointer rounded-2xl"
+        className="w-full p-6 flex items-center justify-between group hover:-translate-y-2 transition-all duration-300 text-left bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 hover:border-accent-gold/40 hover:shadow-[0_0_30px_rgba(245,158,11,0.25)] cursor-pointer rounded-2xl animate-card-fade" style={{animationDelay: '0.1s'}}
       >
         <div className="flex items-center gap-5">
-          <div className="w-12 h-12 rounded-xl bg-accent-gold/10 text-accent-gold flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner border border-accent-gold/20">
-            <ShieldCheck size={24} />
+          <div className="w-12 h-12 rounded-xl bg-accent-gold/10 text-accent-gold flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner border border-accent-gold/20 animate-icon-bounce" style={{animationDelay: '0.2s'}}>
+            <ShieldCheck size={24} className="group-hover:animate-rotate" />
           </div>
           <div>
             <h3 className="text-lg font-bold text-white group-hover:text-accent-gold transition-colors">Admin Login</h3>
-            <p className="text-xs text-slate-400 mt-1 font-medium">Manage students, teachers and results</p>
+            <p className="text-xs text-slate-400 mt-1 font-medium animate-text-fade" style={{animationDelay: '0.3s'}}>Manage students, teachers and results</p>
           </div>
         </div>
-        <ChevronRight size={20} className="text-slate-500 group-hover:text-accent-gold transition-colors transform group-hover:translate-x-1" />
+        <ChevronRight size={20} className="text-slate-500 group-hover:text-accent-gold transition-colors transform group-hover:translate-x-2 group-hover:animate-pulse" />
       </button>
 
       {/* Teacher Button */}
       <button
         onClick={() => setLoginType("TEACHER")}
-        className="w-full p-6 flex items-center justify-between group hover:-translate-y-1 transition-all duration-300 text-left bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 hover:border-brand-400/40 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] cursor-pointer rounded-2xl"
+        className="w-full p-6 flex items-center justify-between group hover:-translate-y-2 transition-all duration-300 text-left bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 hover:border-brand-400/40 hover:shadow-[0_0_30px_rgba(59,130,246,0.25)] cursor-pointer rounded-2xl animate-card-fade" style={{animationDelay: '0.2s'}}
       >
         <div className="flex items-center gap-5">
-          <div className="w-12 h-12 rounded-xl bg-brand-400/10 text-brand-400 flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner border border-brand-400/20">
-            <Book size={24} />
+          <div className="w-12 h-12 rounded-xl bg-brand-400/10 text-brand-400 flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner border border-brand-400/20 animate-icon-bounce" style={{animationDelay: '0.3s'}}>
+            <Book size={24} className="group-hover:animate-rotate" />
           </div>
           <div>
             <h3 className="text-lg font-bold text-white group-hover:text-brand-400 transition-colors">Teacher Login</h3>
-            <p className="text-xs text-slate-400 mt-1 font-medium">Enter and manage subject results</p>
+            <p className="text-xs text-slate-400 mt-1 font-medium animate-text-fade" style={{animationDelay: '0.4s'}}>Enter and manage subject results</p>
           </div>
         </div>
-        <ChevronRight size={20} className="text-slate-500 group-hover:text-brand-400 transition-colors transform group-hover:translate-x-1" />
+        <ChevronRight size={20} className="text-slate-500 group-hover:text-brand-400 transition-colors transform group-hover:translate-x-2 group-hover:animate-pulse" />
       </button>
 
       {/* Parent Button */}
       <button
         onClick={() => setLoginType("PARENT")}
-        className="w-full p-6 flex items-center justify-between group hover:-translate-y-1 transition-all duration-300 text-left bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 hover:border-accent-green/40 hover:shadow-[0_0_20px_rgba(16,185,129,0.15)] cursor-pointer rounded-2xl"
+        className="w-full p-6 flex items-center justify-between group hover:-translate-y-2 transition-all duration-300 text-left bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 hover:border-accent-green/40 hover:shadow-[0_0_30px_rgba(16,185,129,0.25)] cursor-pointer rounded-2xl animate-card-fade" style={{animationDelay: '0.3s'}}
       >
         <div className="flex items-center gap-5">
-          <div className="w-12 h-12 rounded-xl bg-accent-green/10 text-accent-green flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner border border-accent-green/20">
-            <Users size={24} />
+          <div className="w-12 h-12 rounded-xl bg-accent-green/10 text-accent-green flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner border border-accent-green/20 animate-icon-bounce" style={{animationDelay: '0.4s'}}>
+            <Users size={24} className="group-hover:animate-rotate" />
           </div>
           <div>
             <h3 className="text-lg font-bold text-white group-hover:text-accent-green transition-colors">Parent Login</h3>
-            <p className="text-xs text-slate-400 mt-1 font-medium">View your child's progress</p>
+            <p className="text-xs text-slate-400 mt-1 font-medium animate-text-fade" style={{animationDelay: '0.5s'}}>View your child's progress</p>
           </div>
         </div>
-        <ChevronRight size={20} className="text-slate-500 group-hover:text-accent-green transition-colors transform group-hover:translate-x-1" />
+        <ChevronRight size={20} className="text-slate-500 group-hover:text-accent-green transition-colors transform group-hover:translate-x-2 group-hover:animate-pulse" />
       </button>
     </div>
   );
@@ -212,39 +213,39 @@ const Login = () => {
         </div>
 
         <div className="relative z-10 flex-1 flex flex-col justify-center">
-          <div className="w-20 h-20 bg-gradient-to-br from-brand-500 to-brand-700 rounded-2xl flex items-center justify-center text-white mb-10 shadow-xl border border-brand-400/20">
-            <GraduationCap size={40} strokeWidth={2.5} />
+          <div className="w-20 h-20 bg-gradient-to-br from-brand-500 to-brand-700 rounded-2xl flex items-center justify-center text-white mb-10 shadow-xl border border-brand-400/20 animate-bounce-slow">
+            <GraduationCap size={40} strokeWidth={2.5} className="animate-rotate-slow" />
           </div>
-          <h1 className="text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4 tracking-tight">
+          <h1 className="text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4 tracking-tight animate-slide-right">
             Folusho Victory
             <br />
             Schools
           </h1>
-          <p className="text-brand-300 text-lg lg:text-xl font-medium mb-12">
+          <p className="text-brand-300 text-lg lg:text-xl font-medium mb-12 animate-slide-right" style={{animationDelay: '0.1s'}}>
             Result Management System
           </p>
 
           <div className="space-y-6">
-            <div className="flex items-center gap-4 text-brand-100 group">
-              <div className="w-6 h-6 rounded-full bg-accent-gold/20 flex items-center justify-center border border-accent-gold/30 group-hover:bg-accent-gold/40 transition-colors">
+            <div className="flex items-center gap-4 text-brand-100 group animate-slide-right" style={{animationDelay: '0.2s'}}>
+              <div className="w-6 h-6 rounded-full bg-accent-gold/20 flex items-center justify-center border border-accent-gold/30 group-hover:bg-accent-gold/40 transition-colors group-hover:animate-scale-pulse">
                 <CheckCircle2 size={14} className="text-accent-gold" />
               </div>
               <span className="font-medium text-sm lg:text-base">Student result entry and management</span>
             </div>
-            <div className="flex items-center gap-4 text-brand-100 group">
-              <div className="w-6 h-6 rounded-full bg-accent-gold/20 flex items-center justify-center border border-accent-gold/30 group-hover:bg-accent-gold/40 transition-colors">
+            <div className="flex items-center gap-4 text-brand-100 group animate-slide-right" style={{animationDelay: '0.3s'}}>
+              <div className="w-6 h-6 rounded-full bg-accent-gold/20 flex items-center justify-center border border-accent-gold/30 group-hover:bg-accent-gold/40 transition-colors group-hover:animate-scale-pulse">
                 <CheckCircle2 size={14} className="text-accent-gold" />
               </div>
               <span className="font-medium text-sm lg:text-base">Automated report card generation</span>
             </div>
-            <div className="flex items-center gap-4 text-brand-100 group">
-              <div className="w-6 h-6 rounded-full bg-accent-gold/20 flex items-center justify-center border border-accent-gold/30 group-hover:bg-accent-gold/40 transition-colors">
+            <div className="flex items-center gap-4 text-brand-100 group animate-slide-right" style={{animationDelay: '0.4s'}}>
+              <div className="w-6 h-6 rounded-full bg-accent-gold/20 flex items-center justify-center border border-accent-gold/30 group-hover:bg-accent-gold/40 transition-colors group-hover:animate-scale-pulse">
                 <CheckCircle2 size={14} className="text-accent-gold" />
               </div>
               <span className="font-medium text-sm lg:text-base">Teacher and class management</span>
             </div>
-            <div className="flex items-center gap-4 text-brand-100 group">
-              <div className="w-6 h-6 rounded-full bg-accent-gold/20 flex items-center justify-center border border-accent-gold/30 group-hover:bg-accent-gold/40 transition-colors">
+            <div className="flex items-center gap-4 text-brand-100 group animate-slide-right" style={{animationDelay: '0.5s'}}>
+              <div className="w-6 h-6 rounded-full bg-accent-gold/20 flex items-center justify-center border border-accent-gold/30 group-hover:bg-accent-gold/40 transition-colors group-hover:animate-scale-pulse">
                 <CheckCircle2 size={14} className="text-accent-gold" />
               </div>
               <span className="font-medium text-sm lg:text-base">Real-time performance analytics</span>
