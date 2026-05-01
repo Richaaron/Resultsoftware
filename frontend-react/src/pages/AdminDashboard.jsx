@@ -368,16 +368,20 @@ const AdminSettings = () => {
         currentPassword: passwordData.currentPassword,
         newPassword: passwordData.newPassword,
       });
-      setMessage("Password changed successfully! 🔐");
+      setMessage("Password changed successfully! 🔐 You'll be logged out. Please log back in with your new password.");
       setPasswordData({
         currentPassword: "",
         newPassword: "",
         confirmPassword: "",
       });
-      setTimeout(() => setMessage(""), 3000);
+      // Log out after 2 seconds
+      setTimeout(() => {
+        localStorage.clear();
+        window.location.href = "/login";
+      }, 2000);
     } catch (err) {
-      setError(err.response?.data?.message || "Error changing password");
-      setTimeout(() => setError(""), 3000);
+      setError(err.response?.data?.error || err.response?.data?.message || "Error changing password");
+      setTimeout(() => setError(""), 5000);
     }
   };
 
