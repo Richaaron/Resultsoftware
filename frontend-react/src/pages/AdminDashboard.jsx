@@ -463,7 +463,7 @@ const AdminSettings = () => {
 
             <div className="space-y-2">
               <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
-                Head Teacher Name
+                Class Teacher/Form Teacher Name
               </label>
               <input
                 type="text"

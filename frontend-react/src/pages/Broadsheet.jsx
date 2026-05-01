@@ -453,9 +453,9 @@ const Broadsheet = () => {
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-xs font-bold text-brand-400 uppercase tracking-widest mb-2">Head Teacher</p>
+                <p className="text-xs font-bold text-brand-400 uppercase tracking-widest mb-2">Class Teacher/Form Teacher</p>
                 <p className="text-base font-bold text-white italic" style={{ fontFamily: 'cursive' }}>
-                  {settings?.headTeacherName || "Head Teacher Name"}
+                  {settings?.headTeacherName || "Class Teacher/Form Teacher Name"}
                 </p>
               </div>
               <div className="text-center">
@@ -651,19 +651,19 @@ const Broadsheet = () => {
                   </p>
                 </div>
 
-                {/* Head Teacher Signature */}
+                {/* Class Teacher/Form Teacher Signature */}
                 <div className="text-center">
                   <div className="h-20 flex items-center justify-center mb-4">
                     <p className="text-2xl font-bold text-white italic" style={{ fontFamily: 'cursive' }}>
-                      {settings?.headTeacherName || "Head Teacher"}
+                      {settings?.headTeacherName || "Class Teacher/Form Teacher"}
                     </p>
                   </div>
                   <div className="h-12 border-b-2 border-brand-900 mb-2"></div>
                   <p className="text-xs font-bold text-white uppercase tracking-widest">
-                    {settings?.headTeacherName || "Head Teacher"}
+                    {settings?.headTeacherName || "Class Teacher/Form Teacher"}
                   </p>
                   <p className="text-[10px] text-brand-400 font-bold uppercase tracking-widest mt-1">
-                    Head Teacher's Signature
+                    Class Teacher/Form Teacher's Signature
                   </p>
                 </div>
               </div>
