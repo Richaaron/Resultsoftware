@@ -1366,12 +1366,42 @@ const StudentList = () => {
                       className="input-field w-full text-xs py-1"
                       required
                       value={formData.studentClass}
-                      onChange={(e) =>
+                      onChange={(e) => {
+                        const selectedClass = e.target.value;
+                        const classToLevel = {
+                          "Pre-Nursery": { level: "Beginner", category: "Nursery" },
+                          "Nursery 1": { level: "Beginner", category: "Nursery" },
+                          "Nursery 2": { level: "Beginner", category: "Nursery" },
+                          "Primary 1": { level: "General", category: "Primary" },
+                          "Primary 2": { level: "General", category: "Primary" },
+                          "Primary 3": { level: "General", category: "Primary" },
+                          "Primary 4": { level: "General", category: "Primary" },
+                          "Primary 5": { level: "General", category: "Primary" },
+                          "Primary 6": { level: "General", category: "Primary" },
+                          "JSS 1": { level: "Junior", category: "Secondary" },
+                          "JSS 2": { level: "Junior", category: "Secondary" },
+                          "JSS 3": { level: "Junior", category: "Secondary" },
+                          "SSS 1": { level: "Senior", category: "Secondary" },
+                          "SSS 2": { level: "Senior", category: "Secondary" },
+                          "SSS 3": { level: "Senior", category: "Secondary" },
+                        };
+
+                        const classInfo = classToLevel[selectedClass];
+                        let autoSubjectIds = [];
+
+                        // Auto-select for Nursery, Primary and Junior Secondary
+                        if (classInfo && (selectedClass.includes("Nursery") || selectedClass.includes("Primary") || selectedClass.includes("JSS") || selectedClass.includes("Pre-Nursery"))) {
+                          autoSubjectIds = subjects
+                            .filter(s => s.category === classInfo.category && s.level === classInfo.level)
+                            .map(s => s.id);
+                        }
+
                         setFormData({
                           ...formData,
-                          studentClass: e.target.value,
-                        })
-                      }
+                          studentClass: selectedClass,
+                          subjectIds: autoSubjectIds
+                        });
+                      }}
                     >
                       <option value="">Pick a Class...</option>
                       {classes.map((c) => (
