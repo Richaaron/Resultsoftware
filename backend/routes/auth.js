@@ -79,43 +79,4 @@ router.get("/profile", auth, asyncHandler(async (req, res) => {
   });
 }));
 
-// Change password - available to all authenticated users
-router.put("/change-password", auth, asyncHandler(async (req, res) => {
-  const { currentPassword, newPassword, confirmPassword } = req.body;
-
-  // Validation
-  if (!currentPassword || !newPassword || !confirmPassword) {
-    return res.status(400).json({ error: "All fields are required" });
-  }
-
-  if (newPassword !== confirmPassword) {
-    return res.status(400).json({ error: "New passwords do not match" });
-  }
-
-  if (newPassword.length < 6) {
-    return res.status(400).json({ error: "Password must be at least 6 characters" });
-  }
-
-  if (currentPassword === newPassword) {
-    return res.status(400).json({ error: "New password must be different from current password" });
-  }
-
-  const user = await User.findByPk(req.user.id);
-  if (!user) {
-    return res.status(404).json({ error: "User not found" });
-  }
-
-  // Verify current password
-  const isMatch = await bcrypt.compare(currentPassword, user.password);
-  if (!isMatch) {
-    return res.status(401).json({ error: "Current password is incorrect" });
-  }
-
-  // Hash and update new password
-  user.password = await bcrypt.hash(newPassword, 8);
-  await user.save();
-
-  res.json({ message: "Password changed successfully" });
-}));
-
 module.exports = router;

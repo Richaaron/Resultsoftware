@@ -20,8 +20,6 @@ router.get("/", async (req, res) => {
       secondaryColor: settings.secondaryColor,
       principalName: settings.principalName,
       principalSignature: settings.principalSignature,
-      headTeacherName: settings.headTeacherName,
-      headTeacherSignature: settings.headTeacherSignature,
       proprietressName: settings.proprietressName,
       proprietressSignature: settings.proprietressSignature,
       schoolAddress: settings.schoolAddress,
@@ -100,6 +98,49 @@ router.put("/", auth, authorize(["ADMIN"]), async (req, res) => {
       currentTerm: settings.currentTerm,
       currentAcademicYear: settings.currentAcademicYear,
     });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Change password - available to all authenticated users
+router.put("/change-password", auth, async (req, res) => {
+  try {
+    const { currentPassword, newPassword, confirmPassword } = req.body;
+
+    // Validation
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
+    if (confirmPassword && newPassword !== confirmPassword) {
+      return res.status(400).json({ error: "New passwords do not match" });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({ error: "Password must be at least 6 characters" });
+    }
+
+    if (currentPassword === newPassword) {
+      return res.status(400).json({ error: "New password must be different from current password" });
+    }
+
+    const user = await User.findByPk(req.user.id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Verify current password
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ error: "Current password is incorrect" });
+    }
+
+    // Hash and update new password
+    user.password = await bcrypt.hash(newPassword, 8);
+    await user.save();
+
+    res.json({ message: "Password changed successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
