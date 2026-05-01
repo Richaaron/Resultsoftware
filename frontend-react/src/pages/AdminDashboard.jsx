@@ -278,7 +278,9 @@ const AdminSettings = () => {
     secondaryColor: "#ef4444",
     principalName: "",
     headTeacherName: "",
+    proprietressName: "",
     schoolAddress: "",
+    schoolPhoneNumber: "",
     currentTerm: "First",
     currentAcademicYear: "",
   });
@@ -304,7 +306,9 @@ const AdminSettings = () => {
         secondaryColor: "#ef4444",
         principalName: "",
         headTeacherName: "",
+        proprietressName: "",
         schoolAddress: "",
+        schoolPhoneNumber: "",
         currentTerm: "First",
         currentAcademicYear: "",
         ...res.data,
@@ -324,7 +328,9 @@ const AdminSettings = () => {
         secondaryColor: settings.secondaryColor,
         principalName: settings.principalName,
         headTeacherName: settings.headTeacherName,
+        proprietressName: settings.proprietressName,
         schoolAddress: settings.schoolAddress,
+        schoolPhoneNumber: settings.schoolPhoneNumber,
         currentTerm: settings.currentTerm,
         currentAcademicYear: settings.currentAcademicYear,
       });
@@ -472,6 +478,21 @@ const AdminSettings = () => {
 
             <div className="space-y-2">
               <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
+                Proprietress Name
+              </label>
+              <input
+                type="text"
+                className="input-field"
+                placeholder="e.g. Ms. Mary Johnson"
+                value={settings.proprietressName}
+                onChange={(e) =>
+                  setSettings({ ...settings, proprietressName: e.target.value })
+                }
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
                 School Address
               </label>
               <input
@@ -481,6 +502,21 @@ const AdminSettings = () => {
                 value={settings.schoolAddress}
                 onChange={(e) =>
                   setSettings({ ...settings, schoolAddress: e.target.value })
+                }
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
+                School Phone Number
+              </label>
+              <input
+                type="tel"
+                className="input-field"
+                placeholder="e.g. +234 800 000 0000"
+                value={settings.schoolPhoneNumber}
+                onChange={(e) =>
+                  setSettings({ ...settings, schoolPhoneNumber: e.target.value })
                 }
               />
             </div>

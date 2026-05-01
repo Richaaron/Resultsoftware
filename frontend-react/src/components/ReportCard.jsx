@@ -49,6 +49,9 @@ const ReportCard = React.forwardRef(({ student, settings, attendanceStats }, ref
               {settings.schoolName || "The Academy"}
             </h1>
             <p className="school-address">{settings.schoolAddress}</p>
+            {settings.schoolPhoneNumber && (
+              <p className="school-phone">{settings.schoolPhoneNumber}</p>
+            )}
             <h2 className="report-title">STUDENT TERMINAL REPORT</h2>
           </div>
           <div className="logo-container empty"></div>
@@ -200,6 +203,40 @@ const ReportCard = React.forwardRef(({ student, settings, attendanceStats }, ref
             <p className="signature-name">{settings.principalName || "Principal"}</p>
             <p className="signature-title">Principal / Administrator</p>
           </div>
+        </div>
+
+        {/* Proprietress Details Section */}
+        {settings.proprietressName && (
+          <div className="proprietress-section">
+            <div className="proprietress-container">
+              <div className="signature-box proprietress-box">
+                <div className="signature-display">
+                  {settings.proprietressSignature ? (
+                    <img src={settings.proprietressSignature} alt="Proprietress Sig" className="signature-img" />
+                  ) : (
+                    <div className="signature-name-styled">{settings.proprietressName || "Proprietress"}</div>
+                  )}
+                </div>
+                <div className="signature-line"></div>
+                <p className="signature-name">{settings.proprietressName || "Proprietress"}</p>
+                <p className="signature-title">School Proprietress</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* School Details Footer */}
+        <div className="school-details-footer">
+          <div className="footer-section">
+            <p className="footer-label">School Address:</p>
+            <p className="footer-value">{settings.schoolAddress || "N/A"}</p>
+          </div>
+          {settings.schoolPhoneNumber && (
+            <div className="footer-section">
+              <p className="footer-label">Contact:</p>
+              <p className="footer-value">{settings.schoolPhoneNumber}</p>
+            </div>
+          )}
         </div>
         
         {/* Footer */}

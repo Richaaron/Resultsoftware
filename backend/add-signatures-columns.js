@@ -40,6 +40,42 @@ async function runMigration() {
       }
     }
 
+    // Add proprietressName
+    try {
+      await sequelize.query('ALTER TABLE "Settings" ADD COLUMN "proprietressName" VARCHAR(255);');
+      console.log('Successfully added proprietressName column.');
+    } catch (err) {
+      if (err.message.includes('already exists')) {
+        console.log('proprietressName column already exists.');
+      } else {
+        console.error('Error adding proprietressName:', err.message);
+      }
+    }
+
+    // Add proprietressSignature
+    try {
+      await sequelize.query('ALTER TABLE "Settings" ADD COLUMN "proprietressSignature" TEXT;');
+      console.log('Successfully added proprietressSignature column.');
+    } catch (err) {
+      if (err.message.includes('already exists')) {
+        console.log('proprietressSignature column already exists.');
+      } else {
+        console.error('Error adding proprietressSignature:', err.message);
+      }
+    }
+
+    // Add schoolPhoneNumber
+    try {
+      await sequelize.query('ALTER TABLE "Settings" ADD COLUMN "schoolPhoneNumber" VARCHAR(255);');
+      console.log('Successfully added schoolPhoneNumber column.');
+    } catch (err) {
+      if (err.message.includes('already exists')) {
+        console.log('schoolPhoneNumber column already exists.');
+      } else {
+        console.error('Error adding schoolPhoneNumber:', err.message);
+      }
+    }
+
     console.log('Migration completed successfully.');
     process.exit(0);
   } catch (error) {

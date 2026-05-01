@@ -39,7 +39,19 @@ const Setting = sequelize.define("Setting", {
     type: DataTypes.TEXT,
     allowNull: true,
   },
+  proprietressName: {
+    type: DataTypes.STRING,
+    defaultValue: "",
+  },
+  proprietressSignature: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
   schoolAddress: {
+    type: DataTypes.STRING,
+    defaultValue: "",
+  },
+  schoolPhoneNumber: {
     type: DataTypes.STRING,
     defaultValue: "",
   },

@@ -91,7 +91,13 @@
 
   .school-address {
     font-size: 12px;
+    margin: 0 0 5px 0;
+  }
+
+  .school-phone {
+    font-size: 11px;
     margin: 0 0 10px 0;
+    font-weight: 600;
   }
 
   .report-title {
@@ -286,12 +292,60 @@
     transform: rotate(-15deg);
   }
 
+  /* Proprietress Section */
+  .proprietress-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    padding: 1rem 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .proprietress-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .proprietress-box {
+    width: 220px;
+  }
+
+  /* School Details Footer */
+  .school-details-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    font-size: 11px;
+  }
+
+  .footer-section {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .footer-label {
+    font-weight: bold;
+    min-width: 120px;
+    margin: 0;
+  }
+
+  .footer-value {
+    margin: 0;
+    color: #333;
+  }
+
   .report-footer {
     text-align: center;
     font-size: 10px;
     font-style: italic;
     color: #666;
-    margin-top: 2rem;
+    margin-top: 1rem;
     border-top: 1px dashed #ccc;
     padding-top: 5px;
   }
