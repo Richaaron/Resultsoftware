@@ -44,8 +44,6 @@ router.put("/", auth, authorize(["ADMIN"]), async (req, res) => {
       secondaryColor,
       principalName,
       principalSignature,
-      headTeacherName,
-      headTeacherSignature,
       proprietressName,
       proprietressSignature,
       schoolAddress,
@@ -63,8 +61,6 @@ router.put("/", auth, authorize(["ADMIN"]), async (req, res) => {
         secondaryColor,
         principalName,
         principalSignature,
-        headTeacherName,
-        headTeacherSignature,
         proprietressName,
         proprietressSignature,
         schoolAddress,
@@ -80,8 +76,6 @@ router.put("/", auth, authorize(["ADMIN"]), async (req, res) => {
         ...(secondaryColor !== undefined && { secondaryColor }),
         ...(principalName !== undefined && { principalName }),
         ...(principalSignature !== undefined && { principalSignature }),
-        ...(headTeacherName !== undefined && { headTeacherName }),
-        ...(headTeacherSignature !== undefined && { headTeacherSignature }),
         ...(proprietressName !== undefined && { proprietressName }),
         ...(proprietressSignature !== undefined && { proprietressSignature }),
         ...(schoolAddress !== undefined && { schoolAddress }),
@@ -99,8 +93,6 @@ router.put("/", auth, authorize(["ADMIN"]), async (req, res) => {
       secondaryColor: settings.secondaryColor,
       principalName: settings.principalName,
       principalSignature: settings.principalSignature,
-      headTeacherName: settings.headTeacherName,
-      headTeacherSignature: settings.headTeacherSignature,
       proprietressName: settings.proprietressName,
       proprietressSignature: settings.proprietressSignature,
       schoolAddress: settings.schoolAddress,
@@ -108,29 +100,6 @@ router.put("/", auth, authorize(["ADMIN"]), async (req, res) => {
       currentTerm: settings.currentTerm,
       currentAcademicYear: settings.currentAcademicYear,
     });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-// Change admin password
-router.put("/change-password", auth, authorize(["ADMIN"]), async (req, res) => {
-  try {
-    const { currentPassword, newPassword } = req.body;
-    const user = await User.findByPk(req.user.id);
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    const isMatch = await bcrypt.compare(currentPassword, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ message: "Current password incorrect" });
-    }
-
-    user.password = await bcrypt.hash(newPassword, 8);
-    await user.save();
-    res.json({ message: "Password updated successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

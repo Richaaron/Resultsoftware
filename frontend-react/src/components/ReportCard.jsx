@@ -198,7 +198,7 @@ const ReportCard = React.forwardRef(({ student, settings, attendanceStats }, ref
           <div className="authority-detail">
             <p className="authority-label">Class Teacher/Form Teacher:</p>
             <p className="authority-value" style={{ fontStyle: 'italic', fontFamily: 'cursive', fontSize: '16px', fontWeight: 'bold' }}>
-              {settings.headTeacherName || "Class Teacher/Form Teacher Name"}
+              {student.classTeacher || "Class Teacher/Form Teacher Name"}
             </p>
           </div>
           <div className="authority-detail">
@@ -328,14 +328,14 @@ const ReportCard = React.forwardRef(({ student, settings, attendanceStats }, ref
         <div className="signatures-section">
           <div className="signature-box">
             <div className="signature-display">
-              {settings.headTeacherSignature ? (
-                <img src={settings.headTeacherSignature} alt="Teacher Sig" className="signature-img" />
+              {student.classTeacherSignature ? (
+                <img src={student.classTeacherSignature} alt="Teacher Sig" className="signature-img" />
               ) : (
-                <div className="signature-name-styled">{settings.headTeacherName || "Class Teacher/Form Teacher"}</div>
+                <div className="signature-name-styled">{student.classTeacher || "Class Teacher/Form Teacher"}</div>
               )}
             </div>
             <div className="signature-line"></div>
-            <p className="signature-name">{settings.headTeacherName || "Class Teacher/Form Teacher"}</p>
+            <p className="signature-name">{student.classTeacher || "Class Teacher/Form Teacher"}</p>
             <p className="signature-title">Class Teacher / Form Teacher</p>
           </div>
           

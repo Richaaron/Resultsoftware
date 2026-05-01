@@ -31,14 +31,6 @@ const Setting = sequelize.define("Setting", {
     type: DataTypes.TEXT,
     allowNull: true,
   },
-  headTeacherName: {
-    type: DataTypes.STRING,
-    defaultValue: "",
-  },
-  headTeacherSignature: {
-    type: DataTypes.TEXT,
-    allowNull: true,
-  },
   proprietressName: {
     type: DataTypes.STRING,
     defaultValue: "",
