@@ -342,7 +342,19 @@ const seedData = async () => {
       { name: 'Commerce', category: 'Secondary', level: 'Senior', section: 'Commercial' },
       { name: 'Marketing', category: 'Secondary', level: 'Senior', section: 'Commercial' },
       { name: 'Christian Religious Studies', category: 'Secondary', level: 'Senior', section: 'Commercial' },
-      { name: 'Islamic Religious Studies', category: 'Secondary', level: 'Senior', section: 'Commercial' }
+      { name: 'Islamic Religious Studies', category: 'Secondary', level: 'Senior', section: 'Commercial' },
+      
+      // Senior Secondary - General/Other Subjects (taken by all sections)
+      { name: 'Physical & Health Education', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Computer Science', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'French Language', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Civic Education', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Agricultural Science', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Fine Arts', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Music', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Technical Drawing', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Home Economics', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Introductory Technology', category: 'Secondary', level: 'Senior', section: null }
     ];
     await Subject.bulkCreate(subjects);
     logger.info('Seed: Nigerian curriculum subjects added.');
