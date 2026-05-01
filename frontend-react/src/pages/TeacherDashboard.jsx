@@ -483,6 +483,56 @@ const RegisterStudent = () => {
     }));
   };
 
+  const getSubjectsForClass = () => {
+    if (!formData.studentClass) return subjects;
+
+    const classToLevel = {
+      "Pre-Nursery": { level: "General", category: "Primary" },
+      "Nursery 1": { level: "General", category: "Primary" },
+      "Nursery 2": { level: "General", category: "Primary" },
+      "Primary 1": { level: "General", category: "Primary" },
+      "Primary 2": { level: "General", category: "Primary" },
+      "Primary 3": { level: "General", category: "Primary" },
+      "Primary 4": { level: "General", category: "Primary" },
+      "Primary 5": { level: "General", category: "Primary" },
+      "Primary 6": { level: "General", category: "Primary" },
+      "JSS 1": { level: "Junior", category: "Secondary" },
+      "JSS 2": { level: "Junior", category: "Secondary" },
+      "JSS 3": { level: "Junior", category: "Secondary" },
+      "SSS 1": { level: "Senior", category: "Secondary" },
+      "SSS 2": { level: "Senior", category: "Secondary" },
+      "SSS 3": { level: "Senior", category: "Secondary" },
+    };
+
+    const classInfo = classToLevel[formData.studentClass];
+    if (!classInfo) return subjects;
+
+    // For Senior Secondary, show all senior subjects regardless of section
+    if (["SSS 1", "SSS 2", "SSS 3"].includes(formData.studentClass)) {
+      return subjects.filter((s) => s.category === "Secondary" && s.level === "Senior");
+    }
+
+    return subjects.filter(
+      (s) => s.category === classInfo.category && s.level === classInfo.level
+    );
+  };
+
+  const getGroupedSubjects = (subjectList) => {
+    const grouped = {};
+    subjectList.forEach((sub) => {
+      const key = sub.section || "General";
+      if (!grouped[key]) grouped[key] = [];
+      grouped[key].push(sub);
+    });
+    return grouped;
+  };
+
+  const getSectionAndGeneralSubjects = (subjectList) => {
+    const sectionSubjects = subjectList.filter((sub) => sub.section);
+    const generalSubjects = subjectList.filter((sub) => !sub.section);
+    return { sectionSubjects, generalSubjects };
+  };
+
   return (
     <div className="max-w-3xl professional-card p-6 bg-brand-50">
       <h2 className="text-3xl font-bold text-black mb-8 uppercase  tracking-tight text-gradient">
@@ -713,21 +763,80 @@ const RegisterStudent = () => {
           <label className="text-lg font-bold text-black uppercase tracking-tight block text-gradient">
             Assign Subjects
           </label>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-h-60 overflow-y-auto p-4 border border-brand-700/50 rounded-lg bg-gray-50 shadow-inner">
-            {subjects.map((subject) => (
-              <button
-                key={subject.id}
-                type="button"
-                onClick={() => handleSubjectToggle(subject.id)}
-                className={`p-3 rounded-xl border-2 font-bold text-xs transition-all ${
-                  formData.subjectIds.includes(subject.id)
-                    ? "bg-accent-gold border-brand-900 shadow-md -translate-y-1 text-black"
-                    : "bg-brand-50 border-gray-300 text-gray-600 hover:border-brand-900"
-                }`}
-              >
-                {subject.name}
-              </button>
-            ))}
+          <div className="space-y-4 p-4 border border-brand-700/50 rounded-lg bg-gray-50 shadow-inner max-h-80 overflow-y-auto">
+            {formData.studentClass && ["SSS 1", "SSS 2", "SSS 3"].includes(formData.studentClass)
+              ? (() => {
+                  const { sectionSubjects, generalSubjects } = getSectionAndGeneralSubjects(getSubjectsForClass());
+                  const grouped = getGroupedSubjects(sectionSubjects);
+                  return (
+                    <>
+                      {Object.entries(grouped).map(([section, subs]) => (
+                        <div key={section} className="space-y-2">
+                          <h4 className="text-sm font-bold text-blue-600 uppercase">
+                            {section} Section
+                          </h4>
+                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                            {subs.map((sub) => (
+                              <button
+                                key={sub.id}
+                                type="button"
+                                onClick={() => handleSubjectToggle(sub.id)}
+                                className={`p-3 rounded-xl border-2 font-bold text-xs transition-all ${
+                                  formData.subjectIds.includes(sub.id)
+                                    ? "bg-accent-gold border-brand-900 shadow-md -translate-y-1 text-black"
+                                    : "bg-brand-50 border-gray-300 text-gray-600 hover:border-brand-900"
+                                }`}
+                              >
+                                {sub.name}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                      {generalSubjects.length > 0 && (
+                        <div className="space-y-2 pt-2 border-t border-gray-300">
+                          <h4 className="text-sm font-bold text-green-600 uppercase">
+                            General Subjects
+                          </h4>
+                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                            {generalSubjects.map((sub) => (
+                              <button
+                                key={sub.id}
+                                type="button"
+                                onClick={() => handleSubjectToggle(sub.id)}
+                                className={`p-3 rounded-xl border-2 font-bold text-xs transition-all ${
+                                  formData.subjectIds.includes(sub.id)
+                                    ? "bg-accent-gold border-brand-900 shadow-md -translate-y-1 text-black"
+                                    : "bg-brand-50 border-gray-300 text-gray-600 hover:border-brand-900"
+                                }`}
+                              >
+                                {sub.name}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  );
+                })()
+              : (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    {getSubjectsForClass().map((subject) => (
+                      <button
+                        key={subject.id}
+                        type="button"
+                        onClick={() => handleSubjectToggle(subject.id)}
+                        className={`p-3 rounded-xl border-2 font-bold text-xs transition-all ${
+                          formData.subjectIds.includes(subject.id)
+                            ? "bg-accent-gold border-brand-900 shadow-md -translate-y-1 text-black"
+                            : "bg-brand-50 border-gray-300 text-gray-600 hover:border-brand-900"
+                        }`}
+                      >
+                        {subject.name}
+                      </button>
+                    ))}
+                  </div>
+                )}
           </div>
         </div>
 

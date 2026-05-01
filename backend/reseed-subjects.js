@@ -71,7 +71,25 @@ const reseedSubjects = async () => {
       { name: 'Civic Education', category: 'Secondary', level: 'Senior', section: null },
       { name: 'Economics', category: 'Secondary', level: 'Senior', section: null },
       { name: 'Geography', category: 'Secondary', level: 'Senior', section: null },
-      { name: 'Religious Studies', category: 'Secondary', level: 'Senior', section: null }
+      { name: 'Agricultural Science', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Computer Studies', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Data Processing', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Animal Husbandry', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Fishery', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Dyeing & Bleaching', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Catering Craft', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Physical & Health Education', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'French', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Food & Nutrition', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Home Management', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Further Mathematics', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'History', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Visual Arts', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Christian Religious Studies', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Islamic Religious Studies', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Book Keeping', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Office Practice', category: 'Secondary', level: 'Senior', section: null },
+      { name: 'Insurance', category: 'Secondary', level: 'Senior', section: null }
     ];
 
     console.log('Adding new subjects...');

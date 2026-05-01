@@ -964,9 +964,9 @@ const StudentList = () => {
       (s) => s.category === classInfo.category && s.level === classInfo.level
     );
 
-    // For Senior Secondary, filter by section if one is selected
-    if (["SSS 1", "SSS 2", "SSS 3"].includes(formData.studentClass) && formData.section) {
-      filtered = filtered.filter((s) => s.section === formData.section);
+    // For Senior Secondary, show all senior subjects regardless of section
+    if (["SSS 1", "SSS 2", "SSS 3"].includes(formData.studentClass)) {
+      filtered = subjects.filter((s) => s.category === "Secondary" && s.level === "Senior");
     }
 
     return filtered;
@@ -1724,9 +1724,7 @@ const StudentList = () => {
                   <div className="space-y-3 p-3 border-2 border-gray-300 dark:border-brand-700 rounded-lg bg-gray-50 dark:bg-brand-800 max-h-48 overflow-y-auto">
                     {editingStudent.studentClass && ["SSS 1", "SSS 2", "SSS 3"].includes(editingStudent.studentClass)
                       ? (() => {
-                          const filteredSubjects = editingStudent.section 
-                            ? subjects.filter(s => s.category === "Secondary" && s.level === "Senior" && s.section === editingStudent.section)
-                            : subjects.filter(s => s.category === "Secondary" && s.level === "Senior");
+                          const filteredSubjects = subjects.filter(s => s.category === "Secondary" && s.level === "Senior");
                           const { sectionSubjects, generalSubjects } = getSectionAndGeneralSubjects(filteredSubjects);
                           const grouped = getGroupedSubjects(sectionSubjects);
                           return (
