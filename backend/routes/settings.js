@@ -109,25 +109,20 @@ router.put("/change-password", auth, async (req, res) => {
   try {
     const { currentPassword, newPassword, confirmPassword } = req.body;
 
-    // Trim whitespace from passwords
-    const trimmedCurrent = currentPassword?.trim();
-    const trimmedNew = newPassword?.trim();
-    const trimmedConfirm = confirmPassword?.trim();
-
     // Validation
-    if (!trimmedCurrent || !trimmedNew) {
+    if (!currentPassword || !newPassword) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
-    if (trimmedConfirm && trimmedNew !== trimmedConfirm) {
+    if (confirmPassword && newPassword !== confirmPassword) {
       return res.status(400).json({ error: "New passwords do not match" });
     }
 
-    if (trimmedNew.length < 6) {
+    if (newPassword.length < 6) {
       return res.status(400).json({ error: "Password must be at least 6 characters" });
     }
 
-    if (trimmedCurrent === trimmedNew) {
+    if (currentPassword === newPassword) {
       return res.status(400).json({ error: "New password must be different from current password" });
     }
 
@@ -137,20 +132,24 @@ router.put("/change-password", auth, async (req, res) => {
     }
 
     // Verify current password
-    const isMatch = await bcrypt.compare(trimmedCurrent, user.password);
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
     if (!isMatch) {
       logger.warn(`Password change failed: Current password incorrect for user ${user.id}`);
       return res.status(401).json({ error: "Current password is incorrect" });
     }
 
     // Hash and update new password
-    const hashedPassword = await bcrypt.hash(trimmedNew, 8);
-    user.password = hashedPassword;
-    await user.save();
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    
+    // Use User.update to ensure the change is persisted directly
+    await User.update(
+      { password: hashedPassword },
+      { where: { id: user.id } }
+    );
 
-    // Verify password was saved correctly
+    // Verify password was saved correctly by fetching fresh from DB
     const verifyUser = await User.findByPk(user.id);
-    const verifyMatch = await bcrypt.compare(trimmedNew, verifyUser.password);
+    const verifyMatch = await bcrypt.compare(newPassword, verifyUser.password);
     
     if (!verifyMatch) {
       logger.error(`Password verification failed after save for user ${user.id}`);
@@ -164,6 +163,7 @@ router.put("/change-password", auth, async (req, res) => {
       action: "logout-and-relogin"
     });
   } catch (error) {
+    logger.error(`Password change error: ${error.message}`);
     res.status(500).json({ message: error.message });
   }
 });
