@@ -119,6 +119,36 @@ router.post("/", auth, authorize(["ADMIN", "TEACHER"]), async (req, res) => {
   }
 });
 
+// ---------- GET / — list results for a class (Form Teacher view) ----------
+router.get("/", auth, authorize(["ADMIN", "TEACHER"]), async (req, res) => {
+  try {
+    const { studentClass, term, academicYear } = req.query;
+
+    let where = {};
+    if (term) where.term = term;
+    if (academicYear) where.academicYear = academicYear;
+
+    let studentWhere = {};
+    if (studentClass) studentWhere.studentClass = studentClass;
+
+    const results = await Result.findAll({
+      where,
+      include: [
+        {
+          model: Student,
+          where: studentWhere,
+          required: true,
+        },
+      ],
+    });
+
+    res.send(results);
+  } catch (error) {
+    console.error("GET /results error:", error);
+    res.status(500).send({ error: "Failed to fetch results" });
+  }
+});
+
 // ---------- GET /student/:studentId ----------
 router.get("/student/:studentId", auth, async (req, res) => {
   try {
