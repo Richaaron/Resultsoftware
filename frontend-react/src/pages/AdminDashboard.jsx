@@ -364,21 +364,35 @@ const AdminSettings = () => {
       return;
     }
     try {
-      await api.put("/settings/change-password", {
+      const response = await api.put("/settings/change-password", {
         currentPassword: passwordData.currentPassword,
         newPassword: passwordData.newPassword,
       });
-      setMessage("Password changed successfully! 🔐 You'll be logged out. Please log back in with your new password.");
-      setPasswordData({
-        currentPassword: "",
-        newPassword: "",
-        confirmPassword: "",
-      });
-      // Log out after 2 seconds
-      setTimeout(() => {
-        localStorage.clear();
-        window.location.href = "/login";
-      }, 2000);
+      
+      // Verify password change was successful on backend
+      if (response.data.verified) {
+        setMessage("✓ Password changed successfully! 🔐\nLogging you out... Please log in with your new password.");
+        setPasswordData({
+          currentPassword: "",
+          newPassword: "",
+          confirmPassword: "",
+        });
+        
+        // Immediate logout and cache clear
+        setTimeout(() => {
+          // Clear all session data
+          localStorage.clear();
+          sessionStorage.clear();
+          
+          // Disable API interceptor
+          delete api.defaults.headers.common['Authorization'];
+          
+          // Force hard redirect to login with cache bust
+          window.location.href = `/login?nocache=${Date.now()}`;
+        }, 1500);
+      } else {
+        setError("Password change verification failed. Please try again.");
+      }
     } catch (err) {
       setError(err.response?.data?.error || err.response?.data?.message || "Error changing password");
       setTimeout(() => setError(""), 5000);
