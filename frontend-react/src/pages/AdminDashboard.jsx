@@ -1544,7 +1544,7 @@ const StudentList = () => {
 
       {editingStudent && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/60 backdrop-blur-sm overflow-y-auto">
-          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-4xl relative border border-brand-700/50 shadow-xl my-8 max-h-[95vh] flex flex-col">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-5xl relative border border-brand-700/50 shadow-xl my-8 max-h-[95vh] flex flex-col">
             <button
               onClick={() => setEditingStudent(null)}
               className="absolute top-4 right-4 text-black dark:text-brand-100 hover:rotate-90 transition-transform"
