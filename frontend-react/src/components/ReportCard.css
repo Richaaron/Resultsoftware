@@ -46,7 +46,7 @@
 }
 
 .report-card-wrapper {
-  padding: 1rem md:padding: 2rem;
+  padding: 1rem;
   font-family: 'Times New Roman', Times, serif;
   color: #000;
   max-width: 800px;
@@ -55,6 +55,12 @@
   min-height: 100vh;
   box-shadow: none;
   background-color: white;
+}
+
+@media (min-width: 768px) {
+  .report-card-wrapper {
+    padding: 2rem;
+  }
 }
 
 /* Responsive Table Helper */
