@@ -1224,22 +1224,22 @@ const StudentList = () => {
 
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/60 backdrop-blur-sm overflow-y-auto">
-          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-2xl relative border border-brand-700/50 shadow-xl my-8">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-3 w-full max-w-2xl relative border border-brand-700/50 shadow-xl my-4">
             <button
               onClick={() => setShowAddModal(false)}
-              className="absolute top-4 right-4 text-black dark:text-brand-100 hover:rotate-90 transition-transform"
+              className="absolute top-2 right-2 text-black dark:text-brand-100 hover:rotate-90 transition-transform"
             >
-              <X size={24} />
+              <X size={18} />
             </button>
-            <h3 className="text-2xl font-bold text-black dark:text-brand-100 uppercase  tracking-tight mb-6 text-gradient">
+            <h3 className="text-lg font-bold text-black dark:text-brand-100 uppercase  tracking-tight mb-2 text-gradient">
               Enroll New Legend ⭐
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="space-y-1">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
                 {/* Profile Image Section */}
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gray-100 dark:bg-brand-800 border-2 border-gray-300 dark:border-brand-700 rounded-lg overflow-hidden shadow-sm relative group">
+                <div className="flex flex-col items-center gap-0.5">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gray-100 dark:bg-brand-800 border-2 border-gray-300 dark:border-brand-700 rounded-lg overflow-hidden shadow-sm relative group">
                     {formData.profileImage ? (
                       <img
                         src={formData.profileImage}
@@ -1247,16 +1247,16 @@ const StudentList = () => {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full flex flex-col items-center justify-center text-gray-400 gap-1">
-                        <UserPlus size={24} className="sm:w-8 sm:h-8" />
-                        <span className="text-[8px] sm:text-xs font-semibold uppercase tracking-tight">
+                      <div className="w-full h-full flex flex-col items-center justify-center text-gray-400 gap-0.5">
+                        <UserPlus size={20} className="sm:w-6 sm:h-6" />
+                        <span className="text-[7px] sm:text-[9px] font-semibold uppercase tracking-tight">
                           Add Photo
                         </span>
                       </div>
                     )}
-                    <label className="absolute inset-0 bg-brand-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer gap-1">
-                      <Upload size={20} className="text-white sm:w-6 sm:h-6" />
-                      <span className="text-white font-semibold text-[8px] sm:text-xs uppercase tracking-tight">
+                    <label className="absolute inset-0 bg-brand-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer gap-0.5">
+                      <Upload size={18} className="text-white sm:w-5 sm:h-5" />
+                      <span className="text-white font-semibold text-[7px] sm:text-[9px] uppercase tracking-tight">
                         {formData.profileImage
                           ? "Change"
                           : "Upload"}
@@ -1269,8 +1269,8 @@ const StudentList = () => {
                       />
                     </label>
                   </div>
-                  <p className="text-xs font-bold uppercase tracking-widest text-gray-500">
-                    Student Avatar
+                  <p className="text-[8px] font-bold uppercase tracking-widest text-gray-500">
+                    Avatar
                   </p>
                   {formData.profileImage && (
                     <button
@@ -1278,22 +1278,22 @@ const StudentList = () => {
                       onClick={() =>
                         setFormData({ ...formData, profileImage: null })
                       }
-                      className="text-xs font-bold uppercase tracking-widest text-accent-red hover:underline"
+                      className="text-[8px] font-bold uppercase tracking-widest text-accent-red hover:underline"
                     >
-                      Remove Photo
+                      Remove
                     </button>
                   )}
                 </div>
 
-                <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
+                <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-1">
+                  <div>
+                    <label className="text-[9px] font-semibold text-black dark:text-brand-300 uppercase tracking-tight block mb-0.5">
                       First Name
                     </label>
                     <input
                       type="text"
                       required
-                      className="input-field w-full text-sm py-2"
+                      className="input-field w-full text-xs py-1"
                       placeholder="John"
                       value={formData.firstName}
                       onChange={(e) =>
@@ -1301,14 +1301,14 @@ const StudentList = () => {
                       }
                     />
                   </div>
-                  <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
+                  <div>
+                    <label className="text-[9px] font-semibold text-black dark:text-brand-300 uppercase tracking-tight block mb-0.5">
                       Last Name
                     </label>
                     <input
                       type="text"
                       required
-                      className="input-field w-full text-sm py-2"
+                      className="input-field w-full text-xs py-1"
                       placeholder="Doe"
                       value={formData.lastName}
                       onChange={(e) =>
@@ -1316,14 +1316,14 @@ const StudentList = () => {
                       }
                     />
                   </div>
-                  <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
+                  <div>
+                    <label className="text-[9px] font-semibold text-black dark:text-brand-300 uppercase tracking-tight block mb-0.5">
                       ID Number
                     </label>
                     <input
                       type="text"
                       required
-                      className="input-field w-full text-sm py-2"
+                      className="input-field w-full text-xs py-1"
                       placeholder="LEGEND-001"
                       value={formData.registrationNumber}
                       onChange={(e) =>
@@ -1334,12 +1334,12 @@ const StudentList = () => {
                       }
                     />
                   </div>
-                  <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
+                  <div>
+                    <label className="text-[9px] font-semibold text-black dark:text-brand-300 uppercase tracking-tight block mb-0.5">
                       Class
                     </label>
                     <select
-                      className="input-field w-full text-sm py-2"
+                      className="input-field w-full text-xs py-1"
                       required
                       value={formData.studentClass}
                       onChange={(e) =>
@@ -1358,12 +1358,12 @@ const StudentList = () => {
                     </select>
                   </div>
                   {formData.studentClass && ["SSS 1", "SSS 2", "SSS 3"].includes(formData.studentClass) && (
-                    <div className="space-y-1">
-                      <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
+                    <div>
+                      <label className="text-[9px] font-semibold text-black dark:text-brand-300 uppercase tracking-tight block mb-0.5">
                         Section 📚
                       </label>
                       <select
-                        className="input-field w-full text-sm py-2"
+                        className="input-field w-full text-xs py-1"
                         value={formData.section || ""}
                         onChange={(e) =>
                           setFormData({
@@ -1379,13 +1379,13 @@ const StudentList = () => {
                       </select>
                     </div>
                   )}
-                  <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
+                  <div>
+                    <label className="text-[9px] font-semibold text-black dark:text-brand-300 uppercase tracking-tight block mb-0.5">
                       Date of Birth 🎂
                     </label>
                     <input
                       type="date"
-                      className="input-field w-full text-sm py-2"
+                      className="input-field w-full text-xs py-1"
                       value={formData.dateOfBirth}
                       onChange={(e) =>
                         setFormData({
@@ -1395,13 +1395,13 @@ const StudentList = () => {
                       }
                     />
                   </div>
-                  <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
+                  <div>
+                    <label className="text-[9px] font-semibold text-black dark:text-brand-300 uppercase tracking-tight block mb-0.5">
                       Parent Email 📧
                     </label>
                     <input
                       type="email"
-                      className="input-field w-full text-sm py-2"
+                      className="input-field w-full text-xs py-1"
                       placeholder="parent@example.com"
                       value={formData.parentEmail}
                       onChange={(e) =>
@@ -1414,24 +1414,24 @@ const StudentList = () => {
                   </div>
                 </div>
 
-                <div className="md:col-span-2 space-y-2">
-                  <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
+                <div className="md:col-span-2">
+                  <label className="text-[9px] font-semibold text-black dark:text-brand-300 uppercase tracking-tight block mb-0.5">
                     Subjects
                   </label>
-                  <div className="space-y-3 p-3 border-2 border-gray-300 dark:border-brand-700 rounded-lg bg-gray-50 dark:bg-brand-800 max-h-48 overflow-y-auto">
+                  <div className="space-y-1 p-1.5 border-2 border-gray-300 dark:border-brand-700 rounded-lg bg-gray-50 dark:bg-brand-800 max-h-32 overflow-y-auto">
                     {formData.studentClass && ["SSS 1", "SSS 2", "SSS 3"].includes(formData.studentClass)
                       ? Object.entries(getGroupedSubjects(getSubjectsForClass())).map(([section, subs]) => (
-                          <div key={section} className="space-y-2">
-                            <h4 className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">
+                          <div key={section} className="space-y-1">
+                            <h4 className="text-[8px] font-bold text-blue-600 dark:text-blue-400 uppercase">
                               {section} Section
                             </h4>
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-1">
                               {subs.map((sub) => (
                                 <button
                                   key={sub.id}
                                   type="button"
                                   onClick={() => handleSubjectToggle(sub.id)}
-                                  className={`p-2 rounded-lg border text-[9px] sm:text-[10px] font-semibold uppercase tracking-tight transition-all ${
+                                  className={`p-1 rounded-lg border text-[8px] sm:text-[9px] font-semibold uppercase tracking-tight transition-all ${
                                     formData.subjectIds.includes(sub.id)
                                       ? "bg-blue-500 border-blue-600 shadow-sm text-white"
                                       : "bg-white dark:bg-brand-700 border-gray-200 dark:border-brand-600 text-gray-700 dark:text-brand-300 hover:border-blue-400"
@@ -1444,13 +1444,13 @@ const StudentList = () => {
                           </div>
                         ))
                       : (
-                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-1">
                             {getSubjectsForClass().map((sub) => (
                               <button
                                 key={sub.id}
                                 type="button"
                                 onClick={() => handleSubjectToggle(sub.id)}
-                                className={`p-2 rounded-lg border text-[9px] sm:text-[10px] font-semibold uppercase tracking-tight transition-all ${
+                                className={`p-1 rounded-lg border text-[8px] sm:text-[9px] font-semibold uppercase tracking-tight transition-all ${
                                   formData.subjectIds.includes(sub.id)
                                     ? "bg-blue-500 border-blue-600 shadow-sm text-white"
                                     : "bg-white dark:bg-brand-700 border-gray-200 dark:border-brand-600 text-gray-700 dark:text-brand-300 hover:border-blue-400"
@@ -1465,20 +1465,20 @@ const StudentList = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 mt-2">
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="btn-secondary w-full py-4 text-lg border border-brand-700/50 bg-brand-200 dark:bg-brand-700 hover:bg-brand-300 dark:hover:bg-brand-600 text-black dark:text-white flex items-center justify-center gap-2 font-bold"
+                  className="btn-secondary w-full py-1.5 text-xs border border-brand-700/50 bg-brand-200 dark:bg-brand-700 hover:bg-brand-300 dark:hover:bg-brand-600 text-black dark:text-white flex items-center justify-center gap-1 font-bold"
                 >
-                  <X size={20} />
+                  <X size={14} />
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="btn-primary w-full py-4 text-lg bg-accent-gold flex items-center justify-center gap-2"
+                  className="btn-primary w-full py-1.5 text-xs bg-accent-gold flex items-center justify-center gap-1"
                 >
-                  <Sparkles size={20} />
+                  <Sparkles size={14} />
                   Enroll Legend! 🚀
                 </button>
               </div>
