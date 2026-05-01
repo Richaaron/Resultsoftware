@@ -219,11 +219,7 @@ const seedData = async () => {
       }
     });
     
-    // Update password if user already existed
-    if (!adminCreated) {
-      await adminUser.update({ password: hashedAdminPassword });
-      logger.info('Seed: Admin password updated.');
-    } else {
+    if (adminCreated) {
       logger.info('Seed: Admin user created.');
     }
 
@@ -240,11 +236,7 @@ const seedData = async () => {
       }
     });
     
-    // Update password if user already existed
-    if (!teacherCreated) {
-      await teacherUser.update({ password: hashedTeacherPassword });
-      logger.info('Seed: Teacher password updated.');
-    } else {
+    if (teacherCreated) {
       logger.info('Seed: Teacher user created.');
     }
 
