@@ -97,7 +97,7 @@ const reseedSubjects = async () => {
       { name: 'Music', category: 'Secondary', level: 'Senior', section: null },
       { name: 'Technical Drawing', category: 'Secondary', level: 'Senior', section: null },
       { name: 'Home Economics', category: 'Secondary', level: 'Senior', section: null },
-      { name: 'Introductory Technology', category: 'Secondary', level: 'Senior', section: null }
+      { name: 'Basic Technology', category: 'Secondary', level: 'Senior', section: null }
     ];
 
     console.log('Adding new subjects...');

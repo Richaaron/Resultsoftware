@@ -354,7 +354,7 @@ const seedData = async () => {
       { name: 'Music', category: 'Secondary', level: 'Senior', section: null },
       { name: 'Technical Drawing', category: 'Secondary', level: 'Senior', section: null },
       { name: 'Home Economics', category: 'Secondary', level: 'Senior', section: null },
-      { name: 'Introductory Technology', category: 'Secondary', level: 'Senior', section: null }
+      { name: 'Basic Technology', category: 'Secondary', level: 'Senior', section: null }
     ];
     await Subject.bulkCreate(subjects);
     logger.info('Seed: Nigerian curriculum subjects added.');
