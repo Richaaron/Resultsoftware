@@ -93,6 +93,17 @@ exports.handler = async (event, context) => {
     };
   }
   
+  // Fix Netlify base64 encoded bodies for serverless-http
+  if (event.body && event.isBase64Encoded) {
+    try {
+      event.body = Buffer.from(event.body, 'base64').toString('utf8');
+      event.isBase64Encoded = false;
+      console.log(`[netlify-function] Decoded base64 body`);
+    } catch (e) {
+      console.error(`[netlify-function] Failed to decode base64 body`, e);
+    }
+  }
+
   // Process API request through Express
   console.log(`[netlify-function] Processing API request: ${method} ${requestPath}`);
   try {
