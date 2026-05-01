@@ -12,13 +12,22 @@ const { logActivity } = require("../utils/activityTracker");
 router.post("/login", validate(schemas.login), asyncHandler(async (req, res) => {
   const { username, password } = req.body;
 
-  const user = await User.findOne({ where: { username } });
+  // Case-insensitive username search
+  const user = await User.findOne({ 
+    where: sequelize.where(
+      sequelize.fn('lower', sequelize.col('username')), 
+      sequelize.fn('lower', username)
+    )
+  });
+
   if (!user) {
+    logger.warn(`Login attempt failed: User not found - ${username}`);
     return res.status(401).json({ error: "Invalid login credentials" });
   }
 
   const passwordMatch = await bcrypt.compare(password, user.password);
   if (!passwordMatch) {
+    logger.warn(`Login attempt failed: Password mismatch for user - ${user.username}`);
     return res.status(401).json({ error: "Invalid login credentials" });
   }
 
