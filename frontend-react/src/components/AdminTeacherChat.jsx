@@ -79,13 +79,13 @@ const AdminTeacherChat = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-3xl border-4 border-black shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col">
+      <div className="bg-white rounded-xl border border-slate-700/50 shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b-4 border-black bg-slate-800">
           <div className="flex items-center gap-3">
             <MessageCircle size={28} className="text-accent-gold" />
-            <h2 className="text-2xl font-black text-white uppercase tracking-tighter">
-              Teacher Chat 💬
+            <h2 className="text-2xl font-bold text-white uppercase tracking-tight">
+              Teacher Chat
             </h2>
           </div>
           <button
@@ -111,11 +111,11 @@ const AdminTeacherChat = ({ onClose }) => {
                     onClick={() => setSelectedTeacher(teacher)}
                     className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
                       selectedTeacher?.id === teacher.id
-                        ? "bg-accent-gold border-black shadow-cartoon-sm"
+                        ? "bg-accent-gold border-black shadow-md"
                         : "bg-white border-gray-300 hover:border-black"
                     }`}
                   >
-                    <p className="font-black text-sm uppercase tracking-tight">
+                    <p className="font-bold text-sm uppercase tracking-tight">
                       {teacher.fullName}
                     </p>
                     <p className="text-xs text-gray-600 mt-1">
@@ -133,7 +133,7 @@ const AdminTeacherChat = ({ onClose }) => {
               <>
                 {/* Selected Teacher Info */}
                 <div className="p-6 border-b-4 border-black bg-slate-100">
-                  <h3 className="text-lg font-black text-black uppercase tracking-tighter">
+                  <h3 className="text-lg font-bold text-black uppercase tracking-tight">
                     {selectedTeacher.fullName}
                   </h3>
                   <p className="text-sm text-gray-600 mt-1">
@@ -168,7 +168,7 @@ const AdminTeacherChat = ({ onClose }) => {
                         }`}
                       >
                         <div
-                          className={`max-w-sm px-6 py-4 rounded-2xl border-2 ${
+                          className={`max-w-sm px-6 py-4 rounded-lg border-2 ${
                             msg.senderId === JSON.parse(localStorage.getItem("user")).id
                               ? "bg-accent-gold border-black"
                               : `bg-slate-100 border-gray-300 ${!msg.isRead ? "border-accent-red border-4" : ""}`
@@ -176,7 +176,7 @@ const AdminTeacherChat = ({ onClose }) => {
                         >
                           <div className="flex items-center gap-2 mb-2">
                             <User size={16} />
-                            <p className="text-xs font-black text-gray-600 uppercase">
+                            <p className="text-xs font-bold text-gray-600 uppercase">
                               {msg.subject}
                             </p>
                           </div>
@@ -194,7 +194,7 @@ const AdminTeacherChat = ({ onClose }) => {
                             msg.recipientId === JSON.parse(localStorage.getItem("user")).id && (
                               <button
                                 onClick={() => markAsRead(msg.id)}
-                                className="mt-2 text-xs font-black text-accent-red hover:text-black transition"
+                                className="mt-2 text-xs font-bold text-accent-red hover:text-black transition"
                               >
                                 Mark as Read
                               </button>
@@ -229,7 +229,7 @@ const AdminTeacherChat = ({ onClose }) => {
                       />
                       <button
                         type="submit"
-                        className="bg-accent-gold border-2 border-black px-6 py-3 rounded-lg font-black hover:bg-black hover:text-accent-gold transition shadow-cartoon-sm hover:-translate-y-1"
+                        className="bg-accent-gold border border-slate-700/50 px-6 py-3 rounded-lg font-bold hover:bg-black hover:text-accent-gold transition shadow-md hover:-translate-y-1"
                       >
                         <Send size={20} />
                       </button>
@@ -239,7 +239,7 @@ const AdminTeacherChat = ({ onClose }) => {
               </>
             ) : (
               <div className="flex-1 flex items-center justify-center text-gray-500">
-                <p className="font-black text-lg uppercase tracking-tight">
+                <p className="font-bold text-lg uppercase tracking-tight">
                   Select a teacher to start chatting 👈
                 </p>
               </div>

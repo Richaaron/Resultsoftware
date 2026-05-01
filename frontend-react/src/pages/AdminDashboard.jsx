@@ -72,7 +72,7 @@ const AdminDashboard = () => {
       <div className="md:hidden flex items-center justify-between bg-slate-900 border-b-4 border-black p-4 sticky top-0 z-50">
         <div className="flex items-center gap-2">
           <LayoutDashboard size={24} className="text-accent-gold" />
-          <h1 className="text-lg font-black text-white uppercase">Admin Hub</h1>
+          <h1 className="text-lg font-bold text-white uppercase">Admin Dashboard</h1>
         </div>
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -92,13 +92,13 @@ const AdminDashboard = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed md:relative md:flex w-64 md:w-72 h-[calc(100vh-64px)] md:h-screen bg-slate-900 border-r-4 border-black p-4 md:p-8 flex flex-col shadow-cartoon z-40 overflow-y-auto transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
+        className={`fixed md:relative md:flex w-64 md:w-72 h-[calc(100vh-64px)] md:h-screen bg-slate-900 border-r-4 border-black p-4 md:p-8 flex flex-col shadow-xl z-40 overflow-y-auto transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
       >
         <div className="hidden md:flex items-center gap-3 mb-8 md:mb-12">
-          <div className="w-12 h-12 bg-accent-gold border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm transform -rotate-3">
+          <div className="w-12 h-12 bg-accent-gold border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md transform">
             <LayoutDashboard size={24} className="text-black" />
           </div>
-          <h2 className="text-xl md:text-2xl font-black tracking-tighter uppercase italic text-white text-3d">
+          <h2 className="text-xl md:text-2xl font-bold tracking-tight uppercase  text-white text-gradient">
             Admin <span className="text-accent-red">Hub</span>
           </h2>
         </div>
@@ -109,27 +109,27 @@ const AdminDashboard = () => {
             end
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center p-3 md:p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
             }
           >
             <LayoutDashboard className="mr-2 md:mr-3" size={18} />
-            <span>Control Room</span>
+            <span>Overview</span>
           </NavLink>
           <NavLink
             to="/admin/students"
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center p-3 md:p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-red/30" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
+              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-red/30" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
             }
           >
             <Users className="mr-2 md:mr-3" size={18} />
-            <span>The Squad</span>
+            <span>Students</span>
           </NavLink>
           <NavLink
             to="/admin/subjects"
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center p-3 md:p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
             }
           >
             <BookOpen className="mr-2 md:mr-3" size={18} />
@@ -139,7 +139,7 @@ const AdminDashboard = () => {
             to="/admin/teachers"
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center p-3 md:p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-red/30" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
+              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-red/30" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
             }
           >
             <UserCircle className="mr-2 md:mr-3" size={18} />
@@ -149,7 +149,7 @@ const AdminDashboard = () => {
             to="/broadsheet"
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center p-3 md:p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
             }
           >
             <FileSpreadsheet className="mr-2 md:mr-3" size={18} />
@@ -159,7 +159,7 @@ const AdminDashboard = () => {
             to="/admin/settings"
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center p-3 md:p-4 rounded-2xl border-4 transition-all group font-black uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-red/30" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
+              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-red/30" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
             }
           >
             <Settings className="mr-2 md:mr-3" size={18} />
@@ -175,10 +175,10 @@ const AdminDashboard = () => {
               setShowChat(true);
               setSidebarOpen(false);
             }}
-            className="w-full flex items-center p-3 md:p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-black uppercase tracking-tight text-white text-sm md:text-base"
+            className="w-full flex items-center p-3 md:p-4 rounded-lg border border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base"
           >
             <MessageCircle className="mr-2 md:mr-3" size={18} />
-            <span>Chat 💬</span>
+            <span>Chat</span>
           </button>
 
           <button
@@ -186,10 +186,10 @@ const AdminDashboard = () => {
               setShowActivityTracker(true);
               setSidebarOpen(false);
             }}
-            className="w-full flex items-center p-3 md:p-4 rounded-2xl border-4 border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-black uppercase tracking-tight text-white text-sm md:text-base"
+            className="w-full flex items-center p-3 md:p-4 rounded-lg border border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base"
           >
             <Activity className="mr-2 md:mr-3" size={18} />
-            <span>Activity 📊</span>
+            <span>Activity Logs</span>
           </button>
         </nav>
 
@@ -197,14 +197,14 @@ const AdminDashboard = () => {
         {showScrollTop && (
           <button
             onClick={scrollToTop}
-            className="flex items-center p-3 md:p-4 rounded-2xl border-4 border-black bg-accent-gold shadow-cartoon-sm hover:-translate-y-1 transition-all group mt-auto mb-3 text-sm md:text-base"
+            className="flex items-center p-3 md:p-4 rounded-lg border border-slate-700/50 bg-accent-gold shadow-md hover:-translate-y-1 transition-all group mt-auto mb-3 text-sm md:text-base"
           >
             <ChevronUp
               size={18}
               className="mr-2 md:mr-3 text-black group-hover:scale-125 transition-transform"
             />
-            <span className="font-black text-black uppercase tracking-tight">
-              Top ⬆
+            <span className="font-bold text-black uppercase tracking-tight">
+              Top
             </span>
           </button>
         )}
@@ -212,14 +212,14 @@ const AdminDashboard = () => {
         {/* Logout Button */}
         <button
           onClick={handleLogout}
-          className="flex items-center p-3 md:p-4 rounded-2xl border-4 border-black bg-accent-red shadow-cartoon-sm hover:-translate-y-1 transition-all group mt-4 text-sm md:text-base"
+          className="flex items-center p-3 md:p-4 rounded-lg border border-slate-700/50 bg-accent-red shadow-md hover:-translate-y-1 transition-all group mt-4 text-sm md:text-base"
         >
           <LogOut
             size={18}
             className="mr-2 md:mr-3 text-white group-hover:rotate-12 transition-transform"
           />
-          <span className="font-black text-white uppercase tracking-tight">
-            Sign Out! 🚪
+          <span className="font-bold text-white uppercase tracking-tight">
+            Sign Out
           </span>
         </button>
       </div>
@@ -234,23 +234,23 @@ const AdminDashboard = () => {
       <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-10">
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-10 gap-4">
           <div>
-            <h1 className="text-2xl md:text-4xl font-black text-white tracking-tighter uppercase italic text-3d-lg">
-              Hi, {user?.fullName?.split(" ")[0]}! 👋
+            <h1 className="text-2xl md:text-4xl font-bold text-white tracking-tight uppercase  text-gradient">
+              Welcome, {user?.fullName?.split(" ")[0]}
             </h1>
             <p className="text-sm md:text-lg text-slate-400 mt-2 font-bold underline decoration-4 decoration-accent-gold">
-              Ready to rule the academy today?
+              Welcome to the administration dashboard.
             </p>
           </div>
           <div className="flex items-center gap-4 w-full md:w-auto">
             <div className="text-right flex-1 md:flex-none">
-              <p className="text-base md:text-xl font-black text-white uppercase tracking-tighter text-3d truncate">
+              <p className="text-base md:text-xl font-bold text-white uppercase tracking-tight text-gradient truncate">
                 {user?.fullName}
               </p>
               <p className="text-xs md:text-sm font-bold text-accent-red uppercase tracking-widest">
                 {user?.role} Mode
               </p>
             </div>
-            <div className="w-12 md:w-16 h-12 md:h-16 bg-slate-800 border-4 border-black rounded-3xl flex items-center justify-center font-black text-lg md:text-2xl shadow-cartoon transform rotate-3 text-white flex-shrink-0">
+            <div className="w-12 md:w-16 h-12 md:h-16 bg-slate-800 border border-slate-700/50 rounded-xl flex items-center justify-center font-bold text-lg md:text-2xl shadow-xl transform text-white flex-shrink-0">
               {user?.fullName?.charAt(0)}
             </div>
           </div>
@@ -390,24 +390,24 @@ const AdminSettings = () => {
     <div className="space-y-10 pb-20">
       <div className="flex justify-between items-end mb-10 border-b-4 border-black pb-8">
         <div>
-          <h2 className="text-4xl font-black text-white uppercase italic tracking-tighter text-3d mb-2">
-            Control Panel ⚙️
+          <h2 className="text-4xl font-bold text-white uppercase  tracking-tight text-gradient mb-2">
+            System Settings
           </h2>
-          <p className="text-xl font-black text-accent-red uppercase tracking-tight">
-            Customize your academy's identity!
+          <p className="text-xl font-bold text-accent-red uppercase tracking-tight">
+            Manage global application settings.
           </p>
         </div>
       </div>
 
       {message && (
-        <div className="p-4 bg-accent-gold border-4 border-black text-black font-black rounded-2xl shadow-cartoon-sm flex items-center gap-3 animate-in fade-in slide-in-from-top-4">
+        <div className="p-4 bg-accent-gold border border-slate-700/50 text-black font-bold rounded-lg shadow-md flex items-center gap-3 animate-in fade-in slide-in-from-top-4">
           <CheckCircle size={24} />
           {message}
         </div>
       )}
 
       {error && (
-        <div className="p-4 bg-accent-red border-4 border-black text-white font-black rounded-2xl shadow-cartoon-sm flex items-center gap-3 animate-in fade-in slide-in-from-top-4">
+        <div className="p-4 bg-accent-red border border-slate-700/50 text-white font-bold rounded-lg shadow-md flex items-center gap-3 animate-in fade-in slide-in-from-top-4">
           <ShieldAlert size={24} />
           {error}
         </div>
@@ -415,24 +415,24 @@ const AdminSettings = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* School Identity */}
-        <div className="cartoon-card p-8 bg-slate-900">
+        <div className="professional-card p-8 bg-slate-900">
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-12 bg-accent-gold border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm">
+            <div className="w-12 h-12 bg-accent-gold border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md">
               <Sparkles size={24} className="text-black" />
             </div>
-            <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter text-3d">
+            <h3 className="text-2xl font-bold text-white uppercase  tracking-tight text-gradient">
               School Identity
             </h3>
           </div>
 
           <form onSubmit={handleUpdateSettings} className="space-y-6">
             <div className="space-y-2">
-              <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
                 School Name
               </label>
               <input
                 type="text"
-                className="input-cartoon"
+                className="input-field"
                 value={settings.schoolName}
                 onChange={(e) =>
                   setSettings({ ...settings, schoolName: e.target.value })
@@ -441,12 +441,12 @@ const AdminSettings = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
                 Principal Name
               </label>
               <input
                 type="text"
-                className="input-cartoon"
+                className="input-field"
                 placeholder="e.g. Mr. John Smith"
                 value={settings.principalName}
                 onChange={(e) =>
@@ -456,12 +456,12 @@ const AdminSettings = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
                 Head Teacher Name
               </label>
               <input
                 type="text"
-                className="input-cartoon"
+                className="input-field"
                 placeholder="e.g. Mrs. Jane Doe"
                 value={settings.headTeacherName}
                 onChange={(e) =>
@@ -471,12 +471,12 @@ const AdminSettings = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
                 School Address
               </label>
               <input
                 type="text"
-                className="input-cartoon"
+                className="input-field"
                 placeholder="e.g. 123 Academy Road, Lagos"
                 value={settings.schoolAddress}
                 onChange={(e) =>
@@ -487,11 +487,11 @@ const AdminSettings = () => {
 
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+                <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
                   Current Term
                 </label>
                 <select
-                  className="input-cartoon"
+                  className="input-field"
                   value={settings.currentTerm}
                   onChange={(e) =>
                     setSettings({ ...settings, currentTerm: e.target.value })
@@ -503,12 +503,12 @@ const AdminSettings = () => {
                 </select>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+                <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
                   Academic Year
                 </label>
                 <input
                   type="text"
-                  className="input-cartoon"
+                  className="input-field"
                   placeholder="e.g. 2024/2025"
                   value={settings.currentAcademicYear}
                   onChange={(e) =>
@@ -522,18 +522,18 @@ const AdminSettings = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
                 School Logo
               </label>
-              <div className="flex items-center gap-6 p-6 bg-slate-800 border-4 border-black border-dashed rounded-2xl">
+              <div className="flex items-center gap-6 p-6 bg-slate-800 border border-slate-700/50 border-dashed rounded-lg">
                 {settings.logo ? (
                   <img
                     src={settings.logo}
                     alt="Logo"
-                    className="w-20 h-20 object-contain bg-slate-50 p-2 rounded-xl border-2 border-black"
+                    className="w-20 h-20 object-contain bg-slate-50 p-2 rounded-xl border border-slate-700/50"
                   />
                 ) : (
-                  <div className="w-20 h-20 bg-slate-700 border-2 border-black rounded-xl flex items-center justify-center text-slate-500">
+                  <div className="w-20 h-20 bg-slate-700 border border-slate-700/50 rounded-xl flex items-center justify-center text-slate-500">
                     <Upload size={32} />
                   </div>
                 )}
@@ -547,7 +547,7 @@ const AdminSettings = () => {
                   />
                   <label
                     htmlFor="logo-upload"
-                    className="btn-cartoon-primary bg-accent-gold text-xs py-2 px-4 inline-flex items-center gap-2 cursor-pointer"
+                    className="btn-primary text-xs py-2 px-4 inline-flex items-center gap-2 cursor-pointer"
                   >
                     <Upload size={14} /> Upload New
                   </label>
@@ -560,13 +560,13 @@ const AdminSettings = () => {
 
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+                <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
                   Primary Color
                 </label>
                 <div className="flex items-center gap-3">
                   <input
                     type="color"
-                    className="w-12 h-12 bg-transparent border-4 border-black rounded-xl cursor-pointer"
+                    className="w-12 h-12 bg-transparent border border-slate-700/50 rounded-xl cursor-pointer"
                     value={settings.primaryColor}
                     onChange={(e) =>
                       setSettings({ ...settings, primaryColor: e.target.value })
@@ -578,13 +578,13 @@ const AdminSettings = () => {
                 </div>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+                <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
                   Secondary Color
                 </label>
                 <div className="flex items-center gap-3">
                   <input
                     type="color"
-                    className="w-12 h-12 bg-transparent border-4 border-black rounded-xl cursor-pointer"
+                    className="w-12 h-12 bg-transparent border border-slate-700/50 rounded-xl cursor-pointer"
                     value={settings.secondaryColor}
                     onChange={(e) =>
                       setSettings({
@@ -602,7 +602,7 @@ const AdminSettings = () => {
 
             <button
               type="submit"
-              className="w-full btn-cartoon-primary bg-accent-gold py-4 flex items-center justify-center gap-3 text-lg mt-4"
+              className="w-full btn-primary py-4 flex items-center justify-center gap-3 text-lg mt-4"
             >
               <Save size={24} />
               Save Identity
@@ -611,24 +611,24 @@ const AdminSettings = () => {
         </div>
 
         {/* Security Settings */}
-        <div className="cartoon-card p-8 bg-slate-900">
+        <div className="professional-card p-8 bg-slate-900">
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-12 bg-accent-red border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm">
+            <div className="w-12 h-12 bg-accent-red border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md">
               <Lock size={24} className="text-white" />
             </div>
-            <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter text-3d">
+            <h3 className="text-2xl font-bold text-white uppercase  tracking-tight text-gradient">
               Security
             </h3>
           </div>
 
           <form onSubmit={handleChangePassword} className="space-y-6">
             <div className="space-y-2">
-              <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
                 Current Password
               </label>
               <input
                 type="password"
-                className="input-cartoon"
+                className="input-field"
                 placeholder="••••••••"
                 value={passwordData.currentPassword}
                 onChange={(e) =>
@@ -642,12 +642,12 @@ const AdminSettings = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
                 New Password
               </label>
               <input
                 type="password"
-                className="input-cartoon"
+                className="input-field"
                 placeholder="••••••••"
                 value={passwordData.newPassword}
                 onChange={(e) =>
@@ -661,12 +661,12 @@ const AdminSettings = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-black text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
                 Confirm New Password
               </label>
               <input
                 type="password"
-                className="input-cartoon"
+                className="input-field"
                 placeholder="••••••••"
                 value={passwordData.confirmPassword}
                 onChange={(e) =>
@@ -681,16 +681,16 @@ const AdminSettings = () => {
 
             <button
               type="submit"
-              className="w-full btn-cartoon-accent bg-accent-red text-white py-4 flex items-center justify-center gap-3 text-lg mt-4"
+              className="w-full btn-accent text-white py-4 flex items-center justify-center gap-3 text-lg mt-4"
             >
               <ShieldAlert size={24} />
               Change Password
             </button>
           </form>
 
-          <div className="mt-10 p-6 bg-accent-red/10 border-4 border-black border-dotted rounded-2xl">
-            <h4 className="text-accent-red font-black uppercase italic tracking-tight mb-2">
-              Pro Tip! 💡
+          <div className="mt-10 p-6 bg-accent-red/10 border border-slate-700/50 border-dotted rounded-lg">
+            <h4 className="text-accent-red font-bold uppercase  tracking-tight mb-2">
+              Security Tip
             </h4>
             <p className="text-xs text-slate-400 font-bold leading-relaxed">
               Use a strong password with symbols and numbers to keep the hackers
@@ -720,101 +720,101 @@ const AdminOverview = () => {
   return (
     <div className="space-y-10">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-        <div className="cartoon-card p-8 cartoon-card-hover group bg-accent-gold/20 dark:bg-accent-gold/10">
-          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
+        <div className="professional-card p-8 hover:-translate-y-1 group bg-accent-gold/20 dark:bg-accent-gold/10">
+          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
             <Users size={28} className="text-black dark:text-white" />
           </div>
-          <h3 className="text-black dark:text-slate-300 uppercase text-sm font-black tracking-widest mb-2 italic">
-            Total Legends
+          <h3 className="text-black dark:text-slate-300 uppercase text-sm font-bold tracking-widest mb-2 ">
+            Total Students
           </h3>
-          <p className="text-6xl font-black text-black dark:text-white tracking-tighter text-3d-lg">
+          <p className="text-6xl font-bold text-black dark:text-white tracking-tight text-gradient">
             {stats.studentCount}
           </p>
-          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
-            Students ⚡
+          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-full text-xs font-bold uppercase tracking-tight dark:text-slate-300">
+            Students
           </div>
         </div>
 
-        <div className="cartoon-card p-8 cartoon-card-hover group bg-accent-red/20 dark:bg-accent-red/10">
-          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
+        <div className="professional-card p-8 hover:-translate-y-1 group bg-accent-red/20 dark:bg-accent-red/10">
+          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
             <BookOpen size={28} className="text-black dark:text-white" />
           </div>
-          <h3 className="text-black dark:text-slate-300 uppercase text-sm font-black tracking-widest mb-2 italic">
-            Knowledge Cubes
+          <h3 className="text-black dark:text-slate-300 uppercase text-sm font-bold tracking-widest mb-2 ">
+            Subjects
           </h3>
-          <p className="text-6xl font-black text-black dark:text-white tracking-tighter text-3d-lg">
+          <p className="text-6xl font-bold text-black dark:text-white tracking-tight text-gradient">
             {stats.subjectCount}
           </p>
-          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
-            Subjects 📚
+          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-full text-xs font-bold uppercase tracking-tight dark:text-slate-300">
+            Subjects
           </div>
         </div>
 
-        <div className="cartoon-card p-8 cartoon-card-hover group bg-accent-gold/20 dark:bg-accent-gold/10">
-          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
+        <div className="professional-card p-8 hover:-translate-y-1 group bg-accent-gold/20 dark:bg-accent-gold/10">
+          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
             <UserCircle size={28} className="text-black dark:text-white" />
           </div>
-          <h3 className="text-black dark:text-slate-300 uppercase text-sm font-black tracking-widest mb-2 italic">
+          <h3 className="text-black dark:text-slate-300 uppercase text-sm font-bold tracking-widest mb-2 ">
             Educators
           </h3>
-          <p className="text-6xl font-black text-black dark:text-white tracking-tighter text-3d-lg">
+          <p className="text-6xl font-bold text-black dark:text-white tracking-tight text-gradient">
             {stats.teacherCount}
           </p>
-          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
-            Teachers 🍎
+          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-full text-xs font-bold uppercase tracking-tight dark:text-slate-300">
+            Teachers
           </div>
         </div>
 
-        <div className="cartoon-card p-8 cartoon-card-hover group bg-accent-gold/10 dark:bg-accent-gold/5">
-          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-2xl flex items-center justify-center mb-6 shadow-cartoon-sm group-hover:scale-110 transition-transform">
+        <div className="professional-card p-8 hover:-translate-y-1 group bg-accent-gold/10 dark:bg-accent-gold/5">
+          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
             <Sparkles size={28} className="text-black dark:text-white" />
           </div>
-          <h3 className="text-black dark:text-slate-300 uppercase text-sm font-black tracking-widest mb-2 italic">
+          <h3 className="text-black dark:text-slate-300 uppercase text-sm font-bold tracking-widest mb-2 ">
             System Health
           </h3>
-          <p className="text-6xl font-black text-black dark:text-white tracking-tighter text-3d-lg">
+          <p className="text-6xl font-bold text-black dark:text-white tracking-tight text-gradient">
             100%
           </p>
-          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-full text-xs font-black uppercase tracking-tighter dark:text-slate-300">
-            All Systems Go! 🚀
+          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-full text-xs font-bold uppercase tracking-tight dark:text-slate-300">
+            Operational
           </div>
         </div>
       </div>
 
-      <div className="cartoon-card p-10 bg-slate-50 dark:bg-slate-900 border-4 border-black shadow-cartoon">
+      <div className="professional-card p-10 bg-slate-50 dark:bg-slate-900 border border-slate-700/50 shadow-xl">
         <div className="flex items-center gap-4 mb-8">
-          <div className="w-12 h-12 bg-accent-gold border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm rotate-6">
+          <div className="w-12 h-12 bg-accent-gold border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md">
             <ClipboardCheck size={24} className="text-black" />
           </div>
-          <h3 className="text-3xl font-black text-black dark:text-white uppercase italic tracking-tighter text-3d">
-            Quick Actions ⚡
+          <h3 className="text-3xl font-bold text-black dark:text-white uppercase  tracking-tight text-gradient">
+            Quick Actions
           </h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Link
             to="/admin/students"
-            className="btn-cartoon-primary bg-accent-gold text-xl py-6 flex items-center justify-center gap-3"
+            className="btn-primary text-xl py-6 flex items-center justify-center gap-3"
           >
             <Users size={24} />
-            Manage the Squad
+            Manage Students
           </Link>
           <Link
             to="/admin/subjects"
-            className="btn-cartoon-accent bg-accent-red text-xl py-6 flex items-center justify-center gap-3"
+            className="btn-accent text-xl py-6 flex items-center justify-center gap-3"
           >
             <BookOpen size={24} />
             Update Knowledge
           </Link>
           <Link
             to="/admin/teachers"
-            className="btn-cartoon-primary bg-accent-black text-accent-gold text-xl py-6 flex items-center justify-center gap-3"
+            className="btn-primary bg-accent-black text-accent-gold text-xl py-6 flex items-center justify-center gap-3"
           >
             <UserCircle size={24} />
             Manage Educators
           </Link>
           <Link
             to="/broadsheet"
-            className="btn-cartoon-accent bg-accent-gold text-xl py-6 flex items-center justify-center gap-3 border-4 border-black shadow-cartoon-sm"
+            className="btn-accent bg-accent-gold text-xl py-6 flex items-center justify-center gap-3 border border-slate-700/50 shadow-md"
           >
             <FileSpreadsheet size={24} />
             Class Broadsheet
@@ -1050,16 +1050,16 @@ const StudentList = () => {
   });
 
   return (
-    <div className="cartoon-card p-10 bg-slate-50 dark:bg-slate-900">
+    <div className="professional-card p-10 bg-slate-50 dark:bg-slate-900">
       {/* Confirm Delete Modal */}
       {confirmDelete.show && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
-          <div className="cartoon-card bg-slate-50 dark:bg-slate-900 border-4 border-black shadow-cartoon p-8 w-full max-w-sm mx-4 rounded-3xl">
+          <div className="professional-card bg-slate-50 dark:bg-slate-900 border border-slate-700/50 shadow-xl p-8 w-full max-w-sm mx-4 rounded-xl">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-accent-red border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm">
+              <div className="w-12 h-12 bg-accent-red border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md">
                 <Trash2 size={22} className="text-white" />
               </div>
-              <h3 className="text-xl font-black text-black dark:text-white uppercase italic tracking-tighter text-3d">
+              <h3 className="text-xl font-bold text-black dark:text-white uppercase  tracking-tight text-gradient">
                 Are you sure?
               </h3>
             </div>
@@ -1073,7 +1073,7 @@ const StudentList = () => {
                   executeDeleteStudent(confirmDelete.id);
                   setConfirmDelete({ show: false, id: null, type: "" });
                 }}
-                className="flex-1 py-3 bg-accent-red border-4 border-black rounded-2xl font-black text-white uppercase tracking-tight shadow-cartoon-sm hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
+                className="flex-1 py-3 bg-accent-red border border-slate-700/50 rounded-lg font-bold text-white uppercase tracking-tight shadow-md hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
               >
                 <Trash2 size={16} /> Confirm
               </button>
@@ -1081,7 +1081,7 @@ const StudentList = () => {
                 onClick={() =>
                   setConfirmDelete({ show: false, id: null, type: "" })
                 }
-                className="flex-1 py-3 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-2xl font-black text-black dark:text-white uppercase tracking-tight shadow-cartoon-sm hover:-translate-y-1 transition-all"
+                className="flex-1 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-lg font-bold text-black dark:text-white uppercase tracking-tight shadow-md hover:-translate-y-1 transition-all"
               >
                 Cancel
               </button>
@@ -1091,10 +1091,10 @@ const StudentList = () => {
       )}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b-4 border-black pb-8 gap-6">
         <div>
-          <h2 className="text-4xl font-black text-black dark:text-white uppercase italic tracking-tighter text-3d mb-2">
-            The Squad Roster 📜
+          <h2 className="text-4xl font-bold text-black dark:text-white uppercase  tracking-tight text-gradient mb-2">
+            Students Roster 📜
           </h2>
-          <p className="text-xl font-black text-accent-red uppercase tracking-tight">
+          <p className="text-xl font-bold text-accent-red uppercase tracking-tight">
             Behold the future legends!
           </p>
         </div>
@@ -1102,7 +1102,7 @@ const StudentList = () => {
         <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
           <button
             onClick={() => setShowAddModal(true)}
-            className="btn-cartoon-primary bg-accent-gold px-6 py-3 flex items-center justify-center gap-2"
+            className="btn-primary px-6 py-3 flex items-center justify-center gap-2"
           >
             <UserPlus size={20} />
             Add Legend
@@ -1115,13 +1115,13 @@ const StudentList = () => {
             <input
               type="text"
               placeholder="Search name or ID..."
-              className="input-cartoon pl-12 py-3 text-sm"
+              className="input-field pl-12 py-3 text-sm"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
           <select
-            className="input-cartoon py-3 text-sm sm:w-48 appearance-none"
+            className="input-field py-3 text-sm sm:w-48 appearance-none"
             value={filterClass}
             onChange={(e) => setFilterClass(e.target.value)}
           >
@@ -1137,12 +1137,12 @@ const StudentList = () => {
 
       {message && (
         <div
-          className={`p-6 mb-8 border-4 border-black rounded-2xl flex items-center gap-4 ${message.includes("Error") ? "bg-accent-red/20" : "bg-accent-gold/20"}`}
+          className={`p-6 mb-8 border border-slate-700/50 rounded-lg flex items-center gap-4 ${message.includes("Error") ? "bg-accent-red/20" : "bg-accent-gold/20"}`}
         >
           <div
-            className={`w-4 h-4 rounded-full border-2 border-black ${message.includes("Error") ? "bg-accent-red" : "bg-accent-gold"}`}
+            className={`w-4 h-4 rounded-full border border-slate-700/50 ${message.includes("Error") ? "bg-accent-red" : "bg-accent-gold"}`}
           ></div>
-          <span className="font-black uppercase tracking-tight text-black dark:text-white">
+          <span className="font-bold uppercase tracking-tight text-black dark:text-white">
             {message}
           </span>
           {parentCreds && (
@@ -1160,25 +1160,25 @@ const StudentList = () => {
       )}
 
       {parentCreds && (
-        <div className="p-8 mb-10 bg-accent-gold border-4 border-black rounded-3xl shadow-cartoon animate-in zoom-in-95 duration-300">
-          <div className="flex items-center gap-3 mb-6 text-black font-black uppercase italic tracking-tight text-xl text-3d">
+        <div className="p-8 mb-10 bg-accent-gold border border-slate-700/50 rounded-xl shadow-xl animate-in zoom-in-95 duration-300">
+          <div className="flex items-center gap-3 mb-6 text-black font-bold uppercase  tracking-tight text-xl text-gradient">
             <CheckCircle size={28} />
             <span>Parent Access Keys Generated! 🔑</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="bg-accent-black p-4 rounded-2xl border-4 border-black shadow-cartoon-sm">
-              <p className="text-xs text-accent-gold/60 uppercase font-black tracking-widest mb-2">
+            <div className="bg-accent-black p-4 rounded-lg border border-slate-700/50 shadow-md">
+              <p className="text-xs text-accent-gold/60 uppercase font-bold tracking-widest mb-2">
                 Username
               </p>
-              <p className="font-mono font-black text-xl text-accent-gold select-all">
+              <p className="font-mono font-bold text-xl text-accent-gold select-all">
                 {parentCreds.username}
               </p>
             </div>
-            <div className="bg-accent-black p-4 rounded-2xl border-4 border-black shadow-cartoon-sm">
-              <p className="text-xs text-accent-gold/60 uppercase font-black tracking-widest mb-2">
+            <div className="bg-accent-black p-4 rounded-lg border border-slate-700/50 shadow-md">
+              <p className="text-xs text-accent-gold/60 uppercase font-bold tracking-widest mb-2">
                 Password
               </p>
-              <p className="font-mono font-black text-xl text-accent-gold select-all">
+              <p className="font-mono font-bold text-xl text-accent-gold select-all">
                 {parentCreds.password}
               </p>
             </div>
@@ -1188,14 +1188,14 @@ const StudentList = () => {
 
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
-          <div className="cartoon-card bg-slate-50 dark:bg-slate-900 p-6 w-full max-w-2xl relative border-4 border-black shadow-cartoon my-8">
+          <div className="professional-card bg-slate-50 dark:bg-slate-900 p-6 w-full max-w-2xl relative border border-slate-700/50 shadow-xl my-8">
             <button
               onClick={() => setShowAddModal(false)}
               className="absolute top-4 right-4 text-black dark:text-slate-100 hover:rotate-90 transition-transform"
             >
               <X size={24} />
             </button>
-            <h3 className="text-2xl font-black text-black dark:text-slate-100 uppercase italic tracking-tighter mb-6 text-3d">
+            <h3 className="text-2xl font-bold text-black dark:text-slate-100 uppercase  tracking-tight mb-6 text-gradient">
               Enroll New Legend ⭐
             </h3>
 
@@ -1203,7 +1203,7 @@ const StudentList = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Profile Image Section */}
                 <div className="flex flex-col items-center gap-2">
-                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gray-100 dark:bg-slate-800 border-2 border-gray-300 dark:border-slate-700 rounded-2xl overflow-hidden shadow-sm relative group">
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gray-100 dark:bg-slate-800 border-2 border-gray-300 dark:border-slate-700 rounded-lg overflow-hidden shadow-sm relative group">
                     {formData.profileImage ? (
                       <img
                         src={formData.profileImage}
@@ -1233,7 +1233,7 @@ const StudentList = () => {
                       />
                     </label>
                   </div>
-                  <p className="text-xs font-black uppercase tracking-widest text-gray-500">
+                  <p className="text-xs font-bold uppercase tracking-widest text-gray-500">
                     Student Avatar
                   </p>
                   {formData.profileImage && (
@@ -1242,7 +1242,7 @@ const StudentList = () => {
                       onClick={() =>
                         setFormData({ ...formData, profileImage: null })
                       }
-                      className="text-xs font-black uppercase tracking-widest text-accent-red hover:underline"
+                      className="text-xs font-bold uppercase tracking-widest text-accent-red hover:underline"
                     >
                       Remove Photo
                     </button>
@@ -1257,7 +1257,7 @@ const StudentList = () => {
                     <input
                       type="text"
                       required
-                      className="input-cartoon w-full text-sm py-2"
+                      className="input-field w-full text-sm py-2"
                       placeholder="John"
                       value={formData.firstName}
                       onChange={(e) =>
@@ -1272,7 +1272,7 @@ const StudentList = () => {
                     <input
                       type="text"
                       required
-                      className="input-cartoon w-full text-sm py-2"
+                      className="input-field w-full text-sm py-2"
                       placeholder="Doe"
                       value={formData.lastName}
                       onChange={(e) =>
@@ -1287,7 +1287,7 @@ const StudentList = () => {
                     <input
                       type="text"
                       required
-                      className="input-cartoon w-full text-sm py-2"
+                      className="input-field w-full text-sm py-2"
                       placeholder="LEGEND-001"
                       value={formData.registrationNumber}
                       onChange={(e) =>
@@ -1303,7 +1303,7 @@ const StudentList = () => {
                       Class
                     </label>
                     <select
-                      className="input-cartoon w-full text-sm py-2"
+                      className="input-field w-full text-sm py-2"
                       required
                       value={formData.studentClass}
                       onChange={(e) =>
@@ -1327,7 +1327,7 @@ const StudentList = () => {
                         Section 📚
                       </label>
                       <select
-                        className="input-cartoon w-full text-sm py-2"
+                        className="input-field w-full text-sm py-2"
                         value={formData.section || ""}
                         onChange={(e) =>
                           setFormData({
@@ -1349,7 +1349,7 @@ const StudentList = () => {
                     </label>
                     <input
                       type="date"
-                      className="input-cartoon w-full text-sm py-2"
+                      className="input-field w-full text-sm py-2"
                       value={formData.dateOfBirth}
                       onChange={(e) =>
                         setFormData({
@@ -1365,7 +1365,7 @@ const StudentList = () => {
                     </label>
                     <input
                       type="email"
-                      className="input-cartoon w-full text-sm py-2"
+                      className="input-field w-full text-sm py-2"
                       placeholder="parent@example.com"
                       value={formData.parentEmail}
                       onChange={(e) =>
@@ -1433,14 +1433,14 @@ const StudentList = () => {
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="btn-cartoon-secondary w-full py-4 text-lg border-4 border-black bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-black dark:text-white flex items-center justify-center gap-2 font-black"
+                  className="btn-secondary w-full py-4 text-lg border border-slate-700/50 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-black dark:text-white flex items-center justify-center gap-2 font-bold"
                 >
                   <X size={20} />
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="btn-cartoon-primary w-full py-4 text-lg bg-accent-gold flex items-center justify-center gap-2"
+                  className="btn-primary w-full py-4 text-lg bg-accent-gold flex items-center justify-center gap-2"
                 >
                   <Sparkles size={20} />
                   Enroll Legend! 🚀
@@ -1453,14 +1453,14 @@ const StudentList = () => {
 
       {editingStudent && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
-          <div className="cartoon-card bg-slate-50 dark:bg-slate-900 p-6 w-full max-w-2xl relative border-4 border-black shadow-cartoon my-8">
+          <div className="professional-card bg-slate-50 dark:bg-slate-900 p-6 w-full max-w-2xl relative border border-slate-700/50 shadow-xl my-8">
             <button
               onClick={() => setEditingStudent(null)}
               className="absolute top-4 right-4 text-black dark:text-slate-100 hover:rotate-90 transition-transform"
             >
               <X size={24} />
             </button>
-            <h3 className="text-2xl font-black text-black dark:text-slate-100 uppercase italic tracking-tighter mb-6 text-3d">
+            <h3 className="text-2xl font-bold text-black dark:text-slate-100 uppercase  tracking-tight mb-6 text-gradient">
               Modify Legend 🛠️
             </h3>
 
@@ -1468,7 +1468,7 @@ const StudentList = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {/* Profile Image Section */}
                 <div className="md:row-span-2 flex flex-col items-center gap-2">
-                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gray-100 dark:bg-slate-800 border-2 border-gray-300 dark:border-slate-700 rounded-2xl overflow-hidden shadow-sm relative group">
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gray-100 dark:bg-slate-800 border-2 border-gray-300 dark:border-slate-700 rounded-lg overflow-hidden shadow-sm relative group">
                     {editingStudent.profileImage ? (
                       <img
                         src={editingStudent.profileImage}
@@ -1503,7 +1503,7 @@ const StudentList = () => {
                     <input
                       type="text"
                       required
-                      className="input-cartoon w-full text-sm py-2"
+                      className="input-field w-full text-sm py-2"
                       value={editingStudent.firstName}
                       onChange={(e) =>
                         setEditingStudent({
@@ -1520,7 +1520,7 @@ const StudentList = () => {
                     <input
                       type="text"
                       required
-                      className="input-cartoon w-full text-sm py-2"
+                      className="input-field w-full text-sm py-2"
                       value={editingStudent.lastName}
                       onChange={(e) =>
                         setEditingStudent({
@@ -1537,7 +1537,7 @@ const StudentList = () => {
                     <input
                       type="text"
                       required
-                      className="input-cartoon w-full text-sm py-2"
+                      className="input-field w-full text-sm py-2"
                       value={editingStudent.registrationNumber}
                       onChange={(e) =>
                         setEditingStudent({
@@ -1552,7 +1552,7 @@ const StudentList = () => {
                       Class
                     </label>
                     <select
-                      className="input-cartoon w-full text-sm py-2"
+                      className="input-field w-full text-sm py-2"
                       required
                       value={editingStudent.studentClass}
                       onChange={(e) =>
@@ -1575,7 +1575,7 @@ const StudentList = () => {
                         Section 📚
                       </label>
                       <select
-                        className="input-cartoon w-full text-sm py-2"
+                        className="input-field w-full text-sm py-2"
                         value={editingStudent.section || ""}
                         onChange={(e) =>
                           setEditingStudent({
@@ -1597,7 +1597,7 @@ const StudentList = () => {
                     </label>
                     <input
                       type="date"
-                      className="input-cartoon w-full text-sm py-2"
+                      className="input-field w-full text-sm py-2"
                       value={editingStudent.dateOfBirth || ""}
                       onChange={(e) =>
                         setEditingStudent({
@@ -1613,7 +1613,7 @@ const StudentList = () => {
                     </label>
                     <input
                       type="email"
-                      className="input-cartoon w-full text-sm py-2"
+                      className="input-field w-full text-sm py-2"
                       placeholder="parent@example.com"
                       value={editingStudent.parentEmail || ""}
                       onChange={(e) =>
@@ -1688,14 +1688,14 @@ const StudentList = () => {
                 <button
                   type="button"
                   onClick={() => setEditingStudent(null)}
-                  className="btn-cartoon-secondary w-full py-4 text-lg border-4 border-black bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-black dark:text-white flex items-center justify-center gap-2 font-black"
+                  className="btn-secondary w-full py-4 text-lg border border-slate-700/50 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-black dark:text-white flex items-center justify-center gap-2 font-bold"
                 >
                   <X size={20} />
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="btn-cartoon-primary w-full py-6 text-2xl bg-accent-gold flex items-center justify-center gap-3"
+                  className="btn-primary w-full py-6 text-2xl bg-accent-gold flex items-center justify-center gap-3"
                 >
                   <Save size={28} />
                   Save Changes! ✨
@@ -1710,16 +1710,16 @@ const StudentList = () => {
         <table className="w-full">
           <thead>
             <tr className="text-left border-b-4 border-black">
-              <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm">
+              <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm">
                 Superstar
               </th>
-              <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm">
+              <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm">
                 ID Card
               </th>
-              <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm">
+              <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm">
                 Class
               </th>
-              <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm text-right">
+              <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm text-right">
                 Action
               </th>
             </tr>
@@ -1732,7 +1732,7 @@ const StudentList = () => {
               >
                 <td className="py-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-2xl flex items-center justify-center overflow-hidden shadow-cartoon-sm group-hover:rotate-3 transition-transform">
+                    <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-lg flex items-center justify-center overflow-hidden shadow-md group-hover:rotate-3 transition-transform">
                       {s.profileImage ? (
                         <img
                           src={s.profileImage}
@@ -1740,12 +1740,12 @@ const StudentList = () => {
                           className="w-full h-full object-cover"
                         />
                       ) : (
-                        <span className="font-black text-2xl text-black dark:text-white">
+                        <span className="font-bold text-2xl text-black dark:text-white">
                           {s.firstName.charAt(0)}
                         </span>
                       )}
                     </div>
-                    <span className="font-black text-xl text-black dark:text-white uppercase tracking-tight">
+                    <span className="font-bold text-xl text-black dark:text-white uppercase tracking-tight">
                       {s.firstName} {s.lastName}
                     </span>
                   </div>
@@ -1756,7 +1756,7 @@ const StudentList = () => {
                   </span>
                 </td>
                 <td className="py-6">
-                  <span className="bg-accent-gold border-2 border-black px-3 py-1 rounded-lg font-black uppercase text-xs tracking-widest text-black shadow-cartoon-xs">
+                  <span className="bg-accent-gold border border-slate-700/50 px-3 py-1 rounded-lg font-bold uppercase text-xs tracking-widest text-black shadow-xl-xs">
                     {s.studentClass}
                   </span>
                 </td>
@@ -1764,13 +1764,13 @@ const StudentList = () => {
                   <div className="flex justify-end gap-2">
                     <button
                       onClick={() => setEditingStudent(s)}
-                      className="p-3 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-xl hover:bg-accent-gold transition-all shadow-cartoon-xs"
+                      className="p-3 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-xl hover:bg-accent-gold transition-all shadow-xl-xs"
                     >
                       <Edit3 size={18} />
                     </button>
                     <button
                       onClick={() => handleDeleteStudent(s.id)}
-                      className="p-3 bg-accent-red text-white border-2 border-black rounded-xl hover:scale-110 transition-all shadow-cartoon-xs"
+                      className="p-3 bg-accent-red text-white border border-slate-700/50 rounded-xl hover:scale-110 transition-all shadow-xl-xs"
                     >
                       <Trash2 size={18} />
                     </button>
@@ -1782,7 +1782,7 @@ const StudentList = () => {
         </table>
         {filteredStudents.length === 0 && (
           <div className="py-20 text-center">
-            <p className="text-2xl font-black text-gray-300 uppercase italic tracking-widest">
+            <p className="text-2xl font-bold text-gray-300 uppercase  tracking-widest">
               No legends found matching your quest! 🔍
             </p>
           </div>
@@ -1825,34 +1825,34 @@ const SubjectList = () => {
   };
 
   return (
-    <div className="cartoon-card p-10 bg-slate-50 dark:bg-slate-900">
+    <div className="professional-card p-10 bg-slate-50 dark:bg-slate-900">
       <div className="flex justify-between items-end mb-10 border-b-4 border-black pb-8">
         <div>
-          <h2 className="text-4xl font-black text-black dark:text-white uppercase italic tracking-tighter text-3d mb-2">
+          <h2 className="text-4xl font-bold text-black dark:text-white uppercase  tracking-tight text-gradient mb-2">
             Knowledge Vault 📚
           </h2>
-          <p className="text-xl font-black text-accent-gold uppercase tracking-tight">
+          <p className="text-xl font-bold text-accent-gold uppercase tracking-tight">
             The secret formulas of wisdom!
           </p>
         </div>
         <div className="flex gap-4">
           <button
             onClick={() => setShowAddModal(true)}
-            className="w-16 h-16 bg-accent-gold border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm hover:-translate-y-1 transition-all group"
+            className="w-16 h-16 bg-accent-gold border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md hover:-translate-y-1 transition-all group"
           >
             <Plus
               size={32}
               className="text-black group-hover:scale-110 transition-transform"
             />
           </button>
-          <div className="w-16 h-16 bg-accent-red border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm rotate-6">
+          <div className="w-16 h-16 bg-accent-red border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md">
             <BookOpen size={32} className="text-black" />
           </div>
         </div>
       </div>
 
       {message && (
-        <div className="p-4 mb-8 bg-accent-gold/20 border-4 border-black rounded-2xl font-black uppercase tracking-tight text-black dark:text-white flex items-center gap-3">
+        <div className="p-4 mb-8 bg-accent-gold/20 border border-slate-700/50 rounded-lg font-bold uppercase tracking-tight text-black dark:text-white flex items-center gap-3">
           <Sparkles size={20} className="text-accent-gold" />
           {message}
         </div>
@@ -1861,25 +1861,25 @@ const SubjectList = () => {
       {/* Add Subject Modal */}
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="cartoon-card bg-slate-50 dark:bg-slate-900 p-8 w-full max-w-md relative border-4 border-black shadow-cartoon">
+          <div className="professional-card bg-slate-50 dark:bg-slate-900 p-8 w-full max-w-md relative border border-slate-700/50 shadow-xl">
             <button
               onClick={() => setShowAddModal(false)}
               className="absolute top-4 right-4 text-black dark:text-white hover:rotate-90 transition-transform"
             >
               <X size={24} />
             </button>
-            <h3 className="text-2xl font-black text-black dark:text-white uppercase italic tracking-tighter mb-6">
+            <h3 className="text-2xl font-bold text-black dark:text-white uppercase  tracking-tight mb-6">
               New Wisdom Cube 🧪
             </h3>
             <form onSubmit={handleAddSubject} className="space-y-6">
               <div className="space-y-2">
-                <label className="text-sm font-black text-black dark:text-slate-300 uppercase tracking-widest">
+                <label className="text-sm font-bold text-black dark:text-slate-300 uppercase tracking-widest">
                   Subject Name
                 </label>
                 <input
                   type="text"
                   required
-                  className="input-cartoon w-full"
+                  className="input-field w-full"
                   placeholder="e.g. Quantum Physics"
                   value={newSubject.name}
                   onChange={(e) =>
@@ -1888,11 +1888,11 @@ const SubjectList = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-black text-black dark:text-slate-300 uppercase tracking-widest">
+                <label className="text-sm font-bold text-black dark:text-slate-300 uppercase tracking-widest">
                   Category
                 </label>
                 <select
-                  className="input-cartoon w-full"
+                  className="input-field w-full"
                   value={newSubject.category}
                   onChange={(e) =>
                     setNewSubject({ ...newSubject, category: e.target.value })
@@ -1904,11 +1904,11 @@ const SubjectList = () => {
                 </select>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-black text-black dark:text-slate-300 uppercase tracking-widest">
+                <label className="text-sm font-bold text-black dark:text-slate-300 uppercase tracking-widest">
                   Level
                 </label>
                 <select
-                  className="input-cartoon w-full"
+                  className="input-field w-full"
                   value={newSubject.level}
                   onChange={(e) =>
                     setNewSubject({ ...newSubject, level: e.target.value })
@@ -1922,7 +1922,7 @@ const SubjectList = () => {
               </div>
               <button
                 type="submit"
-                className="btn-cartoon-primary w-full py-4 text-lg"
+                className="btn-primary w-full py-4 text-lg"
               >
                 Add to Vault! 🚀
               </button>
@@ -1935,19 +1935,19 @@ const SubjectList = () => {
         {subjects.map((sub) => (
           <div
             key={sub.id}
-            className="cartoon-card p-8 bg-slate-50 dark:bg-slate-800 border-4 border-black shadow-cartoon-sm hover:-translate-y-2 transition-transform group cursor-pointer"
+            className="professional-card p-8 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 shadow-md hover:-translate-y-2 transition-transform group cursor-pointer"
           >
-            <div className="w-14 h-14 bg-accent-gold/10 dark:bg-accent-gold/5 border-4 border-black rounded-2xl mb-6 flex items-center justify-center group-hover:bg-accent-gold transition-colors">
+            <div className="w-14 h-14 bg-accent-gold/10 dark:bg-accent-gold/5 border border-slate-700/50 rounded-lg mb-6 flex items-center justify-center group-hover:bg-accent-gold transition-colors">
               <BookOpen size={28} className="text-black dark:text-white" />
             </div>
-            <h4 className="text-2xl font-black text-black dark:text-white uppercase italic tracking-tighter text-3d mb-4">
+            <h4 className="text-2xl font-bold text-black dark:text-white uppercase  tracking-tight text-gradient mb-4">
               {sub.name}
             </h4>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="bg-black text-white px-3 py-1 rounded-lg font-black uppercase text-[10px] tracking-widest border border-white/20">
+              <span className="bg-black text-white px-3 py-1 rounded-lg font-bold uppercase text-[10px] tracking-widest border border-white/20">
                 {sub.category}
               </span>
-              <span className="bg-accent-gold border-2 border-black px-3 py-1 rounded-lg font-black uppercase text-[10px] tracking-widest">
+              <span className="bg-accent-gold border border-slate-700/50 px-3 py-1 rounded-lg font-bold uppercase text-[10px] tracking-widest">
                 {sub.level}
               </span>
             </div>
@@ -2133,12 +2133,12 @@ const TeacherManagement = () => {
       {/* Confirm Delete Modal */}
       {confirmDelete.show && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
-          <div className="cartoon-card bg-slate-50 dark:bg-slate-900 border-4 border-black shadow-cartoon p-8 w-full max-w-sm mx-4 rounded-3xl">
+          <div className="professional-card bg-slate-50 dark:bg-slate-900 border border-slate-700/50 shadow-xl p-8 w-full max-w-sm mx-4 rounded-xl">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-accent-red border-4 border-black rounded-2xl flex items-center justify-center shadow-cartoon-sm">
+              <div className="w-12 h-12 bg-accent-red border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md">
                 <Trash2 size={22} className="text-white" />
               </div>
-              <h3 className="text-xl font-black text-black dark:text-white uppercase italic tracking-tighter text-3d">
+              <h3 className="text-xl font-bold text-black dark:text-white uppercase  tracking-tight text-gradient">
                 Are you sure?
               </h3>
             </div>
@@ -2152,7 +2152,7 @@ const TeacherManagement = () => {
                   executeDeleteTeacher(confirmDelete.id);
                   setConfirmDelete({ show: false, id: null, type: "" });
                 }}
-                className="flex-1 py-3 bg-accent-red border-4 border-black rounded-2xl font-black text-white uppercase tracking-tight shadow-cartoon-sm hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
+                className="flex-1 py-3 bg-accent-red border border-slate-700/50 rounded-lg font-bold text-white uppercase tracking-tight shadow-md hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
               >
                 <Trash2 size={16} /> Confirm
               </button>
@@ -2160,7 +2160,7 @@ const TeacherManagement = () => {
                 onClick={() =>
                   setConfirmDelete({ show: false, id: null, type: "" })
                 }
-                className="flex-1 py-3 bg-slate-50 dark:bg-slate-800 border-4 border-black rounded-2xl font-black text-black dark:text-white uppercase tracking-tight shadow-cartoon-sm hover:-translate-y-1 transition-all"
+                className="flex-1 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-lg font-bold text-black dark:text-white uppercase tracking-tight shadow-md hover:-translate-y-1 transition-all"
               >
                 Cancel
               </button>
@@ -2170,15 +2170,15 @@ const TeacherManagement = () => {
       )}
 
       {/* Teacher Count Banner */}
-      <div className="flex items-center gap-4 px-6 py-4 bg-accent-gold/20 border-4 border-black rounded-2xl shadow-cartoon-sm">
-        <div className="w-10 h-10 bg-accent-gold border-4 border-black rounded-xl flex items-center justify-center shadow-cartoon-sm">
+      <div className="flex items-center gap-4 px-6 py-4 bg-accent-gold/20 border border-slate-700/50 rounded-lg shadow-md">
+        <div className="w-10 h-10 bg-accent-gold border border-slate-700/50 rounded-xl flex items-center justify-center shadow-md">
           <UserCircle size={20} className="text-black" />
         </div>
         <div>
-          <p className="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+          <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
             Total Educators on Roster
           </p>
-          <p className="text-2xl font-black text-black dark:text-white tracking-tighter text-3d">
+          <p className="text-2xl font-bold text-black dark:text-white tracking-tight text-gradient">
             {teachers.length}{" "}
             <span className="text-base font-bold text-accent-red uppercase tracking-tight">
               Teacher{teachers.length !== 1 ? "s" : ""}
@@ -2187,14 +2187,14 @@ const TeacherManagement = () => {
         </div>
       </div>
 
-      <div className="cartoon-card p-10 bg-slate-50 dark:bg-slate-900">
+      <div className="professional-card p-10 bg-slate-50 dark:bg-slate-900">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl font-black text-black dark:text-white uppercase italic tracking-tighter text-3d">
+          <h2 className="text-3xl font-bold text-black dark:text-white uppercase  tracking-tight text-gradient">
             Hire New Educator! 🍎
           </h2>
           <button
             onClick={() => setShowTeacherForm(true)}
-            className="btn-cartoon-primary bg-accent-gold text-black py-3 px-6 flex items-center gap-2 font-black uppercase tracking-tight"
+            className="btn-primary text-black py-3 px-6 flex items-center gap-2 font-bold uppercase tracking-tight"
           >
             <Plus size={20} />
             Add Teacher
@@ -2204,7 +2204,7 @@ const TeacherManagement = () => {
 
       {showTeacherForm && (
       <div className="fixed inset-0 z-40 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-        <div className="cartoon-card bg-slate-50 dark:bg-slate-900 p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto border-4 border-black shadow-cartoon relative">
+        <div className="professional-card bg-slate-50 dark:bg-slate-900 p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-slate-700/50 shadow-xl relative">
           <button
             onClick={() => {
               setFormData({
@@ -2225,44 +2225,44 @@ const TeacherManagement = () => {
             <X size={24} />
           </button>
 
-          <h2 className="text-3xl font-black text-black dark:text-white mb-8 uppercase italic tracking-tighter text-3d pr-8">
+          <h2 className="text-3xl font-bold text-black dark:text-white mb-8 uppercase  tracking-tight text-gradient pr-8">
             Hire New Educator! 🍎
           </h2>
 
           {message && (
             <div
-              className={`p-6 mb-8 border-4 border-black rounded-2xl flex items-center gap-4 ${message.includes("Error") ? "bg-accent-red/20" : "bg-accent-gold/20"}`}
+              className={`p-6 mb-8 border border-slate-700/50 rounded-lg flex items-center gap-4 ${message.includes("Error") ? "bg-accent-red/20" : "bg-accent-gold/20"}`}
             >
               <div
-                className={`w-4 h-4 rounded-full border-2 border-black flex-shrink-0 ${message.includes("Error") ? "bg-accent-red" : "bg-accent-gold"}`}
+                className={`w-4 h-4 rounded-full border border-slate-700/50 flex-shrink-0 ${message.includes("Error") ? "bg-accent-red" : "bg-accent-gold"}`}
               ></div>
-              <span className="font-black uppercase tracking-tight text-black dark:text-white text-sm">
+              <span className="font-bold uppercase tracking-tight text-black dark:text-white text-sm">
                 {message}
               </span>
             </div>
           )}
 
           {creds && (
-            <div className="p-8 mb-10 bg-accent-gold border-4 border-black rounded-3xl shadow-cartoon">
-              <div className="flex items-center gap-3 mb-6 text-black font-black uppercase italic tracking-tight text-lg text-3d">
+            <div className="p-8 mb-10 bg-accent-gold border border-slate-700/50 rounded-xl shadow-xl">
+              <div className="flex items-center gap-3 mb-6 text-black font-bold uppercase  tracking-tight text-lg text-gradient">
                 <CheckCircle size={28} />
                 <span>Teacher Keys Generated! 🔑</span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-black p-4 rounded-2xl border-4 border-black shadow-cartoon-sm">
-                  <p className="text-xs text-accent-gold/60 uppercase font-black tracking-widest mb-2">
+                <div className="bg-black p-4 rounded-lg border border-slate-700/50 shadow-md">
+                  <p className="text-xs text-accent-gold/60 uppercase font-bold tracking-widest mb-2">
                     Login Username
                   </p>
-                  <p className="font-mono font-black text-sm text-accent-gold select-all break-all">
+                  <p className="font-mono font-bold text-sm text-accent-gold select-all break-all">
                     {creds.username}
                   </p>
                 </div>
-                <div className="bg-black p-4 rounded-2xl border-4 border-black shadow-cartoon-sm relative">
-                  <p className="text-xs text-accent-gold/60 uppercase font-black tracking-widest mb-2">
+                <div className="bg-black p-4 rounded-lg border border-slate-700/50 shadow-md relative">
+                  <p className="text-xs text-accent-gold/60 uppercase font-bold tracking-widest mb-2">
                     Login Password
                   </p>
                   <div className="flex items-center justify-between">
-                    <p className="font-mono font-black text-sm text-accent-gold select-all break-all">
+                    <p className="font-mono font-bold text-sm text-accent-gold select-all break-all">
                       {showPassword ? creds.password : "••••••••"}
                     </p>
                     <button
@@ -2274,7 +2274,7 @@ const TeacherManagement = () => {
                   </div>
                 </div>
               </div>
-              <p className="text-sm mt-6 text-black font-bold italic">
+              <p className="text-sm mt-6 text-black font-bold ">
                 🚀 Mission: Share these keys with the new educator immediately!
               </p>
             </div>
@@ -2285,7 +2285,7 @@ const TeacherManagement = () => {
             className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
           <div className="md:col-span-2 flex flex-col items-center gap-3 mb-4">
-            <div className="w-24 h-24 bg-gray-100 dark:bg-slate-800 border-4 border-black rounded-2xl overflow-hidden shadow-cartoon-sm relative group">
+            <div className="w-24 h-24 bg-gray-100 dark:bg-slate-800 border border-slate-700/50 rounded-lg overflow-hidden shadow-md relative group">
               {formData.profileImage ? (
                 <img
                   src={formData.profileImage}
@@ -2295,14 +2295,14 @@ const TeacherManagement = () => {
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center text-gray-400 gap-2">
                   <UserPlus size={28} />
-                  <span className="text-xs font-black uppercase tracking-widest">
+                  <span className="text-xs font-bold uppercase tracking-widest">
                     Add Photo
                   </span>
                 </div>
               )}
               <label className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer gap-2">
                 <Upload size={24} className="text-white" />
-                <span className="text-white font-black text-xs uppercase tracking-widest">
+                <span className="text-white font-bold text-xs uppercase tracking-widest">
                   {formData.profileImage ? "Change" : "Upload"}
                 </span>
                 <input
@@ -2313,14 +2313,14 @@ const TeacherManagement = () => {
                 />
               </label>
             </div>
-            <p className="text-xs font-black uppercase tracking-widest text-gray-500">
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-500">
               Avatar (Optional)
             </p>
             {formData.profileImage && (
               <button
                 type="button"
                 onClick={() => setFormData({ ...formData, profileImage: null })}
-                className="text-xs font-black uppercase tracking-widest text-accent-red hover:underline"
+                className="text-xs font-bold uppercase tracking-widest text-accent-red hover:underline"
               >
                 Remove Photo
               </button>
@@ -2328,12 +2328,12 @@ const TeacherManagement = () => {
           </div>
 
           <div className="space-y-2">
-            <label className="text-base font-black text-black dark:text-slate-300 uppercase tracking-tight text-3d">
+            <label className="text-base font-bold text-black dark:text-slate-300 uppercase tracking-tight text-gradient">
               Full Name
             </label>
             <input
               type="text"
-              className="input-cartoon w-full"
+              className="input-field w-full"
               placeholder="e.g. Professor X"
               value={formData.fullName}
               onChange={(e) =>
@@ -2343,12 +2343,12 @@ const TeacherManagement = () => {
             />
           </div>
           <div className="space-y-2">
-            <label className="text-base font-black text-black dark:text-slate-300 uppercase tracking-tight text-3d">
+            <label className="text-base font-bold text-black dark:text-slate-300 uppercase tracking-tight text-gradient">
               Email Address
             </label>
             <input
               type="email"
-              className="input-cartoon w-full"
+              className="input-field w-full"
               placeholder="e.g. pro@academy.com"
               value={formData.email}
               onChange={(e) =>
@@ -2359,11 +2359,11 @@ const TeacherManagement = () => {
           </div>
 
           <div className="space-y-2">
-            <label className="text-base font-black text-black dark:text-slate-300 uppercase tracking-tight text-3d">
+            <label className="text-base font-bold text-black dark:text-slate-300 uppercase tracking-tight text-gradient">
               Assign Class (Optional)
             </label>
             <select
-              className="input-cartoon w-full"
+              className="input-field w-full"
               value={formData.assignedClass}
               onChange={(e) =>
                 setFormData({ ...formData, assignedClass: e.target.value })
@@ -2379,18 +2379,18 @@ const TeacherManagement = () => {
           </div>
 
           <div className="space-y-2 md:col-span-2">
-            <label className="text-base font-black text-black dark:text-slate-300 uppercase tracking-tight text-3d">
+            <label className="text-base font-bold text-black dark:text-slate-300 uppercase tracking-tight text-gradient">
               Assign Subjects (Select Multiple)
             </label>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 p-4 border-4 border-black rounded-2xl bg-gray-50 dark:bg-slate-800 shadow-inner max-h-56 overflow-y-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 p-4 border border-slate-700/50 rounded-lg bg-gray-50 dark:bg-slate-800 shadow-inner max-h-56 overflow-y-auto">
               {subjects.map((s) => (
                 <button
                   key={s.id}
                   type="button"
                   onClick={() => handleSubjectToggle(s.name)}
-                  className={`p-3 rounded-xl border-2 font-black text-[10px] uppercase tracking-tighter transition-all ${
+                  className={`p-3 rounded-xl border-2 font-bold text-[10px] uppercase tracking-tight transition-all ${
                     formData.assignedSubject.includes(s.name)
-                      ? "bg-accent-gold border-black shadow-cartoon-xs -translate-y-1 text-black"
+                      ? "bg-accent-gold border-black shadow-xl-xs -translate-y-1 text-black"
                       : "bg-slate-50 dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-400 dark:text-slate-500 hover:border-black"
                   }`}
                 >
@@ -2414,10 +2414,10 @@ const TeacherManagement = () => {
                     })
                   }
                 />
-                <div className="w-14 h-8 bg-gray-200 border-4 border-black rounded-full peer peer-checked:bg-accent-gold transition-all"></div>
-                <div className="absolute left-1 top-1 w-6 h-6 bg-slate-50 border-2 border-black rounded-full transition-all peer-checked:translate-x-6"></div>
+                <div className="w-14 h-8 bg-gray-200 border border-slate-700/50 rounded-full peer peer-checked:bg-accent-gold transition-all"></div>
+                <div className="absolute left-1 top-1 w-6 h-6 bg-slate-50 border border-slate-700/50 rounded-full transition-all peer-checked:translate-x-6"></div>
               </div>
-              <span className="font-black uppercase tracking-tight text-black dark:text-slate-300 text-sm group-hover:text-accent-red transition-colors">
+              <span className="font-bold uppercase tracking-tight text-black dark:text-slate-300 text-sm group-hover:text-accent-red transition-colors">
                 Form Teacher
               </span>
             </label>
@@ -2435,10 +2435,10 @@ const TeacherManagement = () => {
                     })
                   }
                 />
-                <div className="w-14 h-8 bg-gray-200 border-4 border-black rounded-full peer peer-checked:bg-accent-red transition-all"></div>
-                <div className="absolute left-1 top-1 w-6 h-6 bg-slate-50 border-2 border-black rounded-full transition-all peer-checked:translate-x-6"></div>
+                <div className="w-14 h-8 bg-gray-200 border border-slate-700/50 rounded-full peer peer-checked:bg-accent-red transition-all"></div>
+                <div className="absolute left-1 top-1 w-6 h-6 bg-slate-50 border border-slate-700/50 rounded-full transition-all peer-checked:translate-x-6"></div>
               </div>
-              <span className="font-black uppercase tracking-tight text-black dark:text-slate-300 text-sm group-hover:text-accent-gold transition-colors">
+              <span className="font-bold uppercase tracking-tight text-black dark:text-slate-300 text-sm group-hover:text-accent-gold transition-colors">
                 Subject Teacher
               </span>
             </label>
@@ -2447,7 +2447,7 @@ const TeacherManagement = () => {
           <div className="md:col-span-2 flex gap-4">
             <button
               type="submit"
-              className="flex-1 btn-cartoon-primary bg-accent-gold text-accent-black py-4 text-lg flex items-center justify-center gap-3"
+              className="flex-1 btn-primary text-accent-black py-4 text-lg flex items-center justify-center gap-3"
             >
               <UserPlus size={24} />
               Onboard Teacher! 🚀
@@ -2468,7 +2468,7 @@ const TeacherManagement = () => {
                 setCreds(null);
                 setShowTeacherForm(false);
               }}
-              className="flex-1 btn-cartoon-primary bg-slate-300 dark:bg-slate-700 text-black dark:text-white py-4 text-lg flex items-center justify-center gap-3 border-4 border-black"
+              className="flex-1 btn-primary bg-slate-300 dark:bg-slate-700 text-black dark:text-white py-4 text-lg flex items-center justify-center gap-3 border border-slate-700/50"
             >
               <X size={24} />
               Cancel
@@ -2479,27 +2479,27 @@ const TeacherManagement = () => {
       </div>
       )}
 
-      <div className="cartoon-card p-10 bg-slate-50 dark:bg-slate-900">
-        <h2 className="text-3xl font-black text-black dark:text-white mb-8 uppercase italic tracking-tighter text-3d">
+      <div className="professional-card p-10 bg-slate-50 dark:bg-slate-900">
+        <h2 className="text-3xl font-bold text-black dark:text-white mb-8 uppercase  tracking-tight text-gradient">
           The Educators Squad 🎓
         </h2>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="text-left border-b-4 border-black">
-                <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm">
+                <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm">
                   Full Name
                 </th>
-                <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm">
+                <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm">
                   Username
                 </th>
-                <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm text-center">
+                <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm text-center">
                   Roles
                 </th>
-                <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm text-center">
+                <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm text-center">
                   Assignment
                 </th>
-                <th className="py-6 font-black text-black dark:text-slate-300 uppercase tracking-widest text-sm text-right">
+                <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm text-right">
                   Actions
                 </th>
               </tr>
@@ -2510,9 +2510,9 @@ const TeacherManagement = () => {
                   key={t.id}
                   className="group hover:bg-accent-gold/5 transition-colors"
                 >
-                  <td className="py-6 font-black text-lg text-black dark:text-white uppercase tracking-tight italic">
+                  <td className="py-6 font-bold text-lg text-black dark:text-white uppercase tracking-tight ">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 border-2 border-black rounded-xl flex items-center justify-center overflow-hidden shadow-cartoon-sm group-hover:rotate-3 transition-transform">
+                      <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-xl flex items-center justify-center overflow-hidden shadow-md group-hover:rotate-3 transition-transform">
                         {t.profileImage ? (
                           <img
                             src={t.profileImage}
@@ -2520,7 +2520,7 @@ const TeacherManagement = () => {
                             className="w-full h-full object-cover"
                           />
                         ) : (
-                          <span className="font-black text-xl text-black dark:text-white">
+                          <span className="font-bold text-xl text-black dark:text-white">
                             {t.fullName?.charAt(0)}
                           </span>
                         )}
@@ -2528,18 +2528,18 @@ const TeacherManagement = () => {
                       {t.fullName}
                     </div>
                   </td>
-                  <td className="py-6 font-mono font-black text-accent-red text-sm uppercase">
+                  <td className="py-6 font-mono font-bold text-accent-red text-sm uppercase">
                     {t.username}
                   </td>
                   <td className="py-6">
                     <div className="flex flex-wrap justify-center gap-2">
                       {t.isFormTeacher && (
-                        <span className="bg-accent-gold text-black border-2 border-black px-2 py-1 rounded-lg font-black uppercase text-[10px] tracking-tighter">
+                        <span className="bg-accent-gold text-black border border-slate-700/50 px-2 py-1 rounded-lg font-bold uppercase text-[10px] tracking-tight">
                           Form
                         </span>
                       )}
                       {t.isSubjectTeacher && (
-                        <span className="bg-accent-red text-white border-2 border-black px-2 py-1 rounded-lg font-black uppercase text-[10px] tracking-tighter">
+                        <span className="bg-accent-red text-white border border-slate-700/50 px-2 py-1 rounded-lg font-bold uppercase text-[10px] tracking-tight">
                           Subject
                         </span>
                       )}
@@ -2548,7 +2548,7 @@ const TeacherManagement = () => {
                   <td className="py-6 text-center">
                     <div className="flex flex-col items-center gap-2">
                       {t.assignedClass && (
-                        <span className="bg-black text-accent-gold px-2 py-1 rounded-md font-black uppercase text-[10px] tracking-widest border border-accent-gold shadow-cartoon-xs">
+                        <span className="bg-black text-accent-gold px-2 py-1 rounded-md font-bold uppercase text-[10px] tracking-widest border border-accent-gold shadow-xl-xs">
                           {t.assignedClass}
                         </span>
                       )}
@@ -2557,14 +2557,14 @@ const TeacherManagement = () => {
                           t.assignedSubject.split(", ").map((sub, idx) => (
                             <span
                               key={idx}
-                              className="bg-slate-50 dark:bg-slate-800 text-black dark:text-white px-2 py-0.5 rounded-md font-black uppercase text-[8px] tracking-widest border border-black whitespace-nowrap"
+                              className="bg-slate-50 dark:bg-slate-800 text-black dark:text-white px-2 py-0.5 rounded-md font-bold uppercase text-[8px] tracking-widest border border-black whitespace-nowrap"
                             >
                               {sub}
                             </span>
                           ))}
                       </div>
                       {!t.assignedClass && !t.assignedSubject && (
-                        <span className="text-gray-400 font-black uppercase text-[10px] tracking-widest italic">
+                        <span className="text-gray-400 font-bold uppercase text-[10px] tracking-widest ">
                           Not Assigned
                         </span>
                       )}
@@ -2574,13 +2574,13 @@ const TeacherManagement = () => {
                     <div className="flex justify-end gap-2">
                       <button
                         onClick={() => setEditingTeacher(t)}
-                        className="p-2 bg-accent-gold border-2 border-black rounded-xl hover:-translate-y-1 transition-all"
+                        className="p-2 bg-accent-gold border border-slate-700/50 rounded-xl hover:-translate-y-1 transition-all"
                       >
                         <Edit3 size={18} className="text-black" />
                       </button>
                       <button
                         onClick={() => handleDelete(t.id)}
-                        className="p-2 bg-accent-red border-2 border-black rounded-xl hover:-translate-y-1 transition-all"
+                        className="p-2 bg-accent-red border border-slate-700/50 rounded-xl hover:-translate-y-1 transition-all"
                       >
                         <Trash2 size={18} className="text-white" />
                       </button>
@@ -2596,14 +2596,14 @@ const TeacherManagement = () => {
       {/* Edit Teacher Modal */}
       {editingTeacher && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="cartoon-card bg-slate-50 dark:bg-slate-900 p-8 w-full max-w-2xl relative border-4 border-black shadow-cartoon">
+          <div className="professional-card bg-slate-50 dark:bg-slate-900 p-8 w-full max-w-2xl relative border border-slate-700/50 shadow-xl">
             <button
               onClick={() => setEditingTeacher(null)}
               className="absolute top-4 right-4 text-black dark:text-white hover:rotate-90 transition-transform"
             >
               <X size={24} />
             </button>
-            <h3 className="text-2xl font-black text-black dark:text-white uppercase italic tracking-tighter mb-6">
+            <h3 className="text-2xl font-bold text-black dark:text-white uppercase  tracking-tight mb-6">
               Modify Educator 🛠️
             </h3>
             <form
@@ -2611,7 +2611,7 @@ const TeacherManagement = () => {
               className="grid grid-cols-1 md:grid-cols-2 gap-6"
             >
               <div className="md:col-span-2 flex flex-col items-center gap-4 mb-2">
-                <div className="w-24 h-24 bg-gray-100 dark:bg-slate-800 border-4 border-black rounded-2xl overflow-hidden shadow-cartoon-sm relative group">
+                <div className="w-24 h-24 bg-gray-100 dark:bg-slate-800 border border-slate-700/50 rounded-lg overflow-hidden shadow-md relative group">
                   {editingTeacher.profileImage ? (
                     <img
                       src={editingTeacher.profileImage}
@@ -2619,7 +2619,7 @@ const TeacherManagement = () => {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-400 font-black text-2xl">
+                    <div className="w-full h-full flex items-center justify-center text-gray-400 font-bold text-2xl">
                       {editingTeacher.fullName?.charAt(0)}
                     </div>
                   )}
@@ -2636,13 +2636,13 @@ const TeacherManagement = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-black text-black dark:text-slate-300 uppercase tracking-widest">
+                <label className="text-sm font-bold text-black dark:text-slate-300 uppercase tracking-widest">
                   Full Name
                 </label>
                 <input
                   type="text"
                   required
-                  className="input-cartoon w-full"
+                  className="input-field w-full"
                   value={editingTeacher.fullName}
                   onChange={(e) =>
                     setEditingTeacher({
@@ -2653,13 +2653,13 @@ const TeacherManagement = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-black text-black dark:text-slate-300 uppercase tracking-widest">
+                <label className="text-sm font-bold text-black dark:text-slate-300 uppercase tracking-widest">
                   Email Address
                 </label>
                 <input
                   type="email"
                   required
-                  className="input-cartoon w-full"
+                  className="input-field w-full"
                   value={editingTeacher.email}
                   onChange={(e) =>
                     setEditingTeacher({
@@ -2670,11 +2670,11 @@ const TeacherManagement = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-black text-black dark:text-slate-300 uppercase tracking-widest">
+                <label className="text-sm font-bold text-black dark:text-slate-300 uppercase tracking-widest">
                   Assign Class
                 </label>
                 <select
-                  className="input-cartoon w-full"
+                  className="input-field w-full"
                   value={editingTeacher.assignedClass || ""}
                   onChange={(e) =>
                     setEditingTeacher({
@@ -2692,20 +2692,20 @@ const TeacherManagement = () => {
                 </select>
               </div>
               <div className="space-y-2 md:col-span-2">
-                <label className="text-sm font-black text-black dark:text-slate-300 uppercase tracking-widest">
+                <label className="text-sm font-bold text-black dark:text-slate-300 uppercase tracking-widest">
                   Assign Subjects (Select Multiple)
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4 border-4 border-black rounded-2xl bg-gray-50 dark:bg-slate-800 shadow-inner max-h-40 overflow-y-auto">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4 border border-slate-700/50 rounded-lg bg-gray-50 dark:bg-slate-800 shadow-inner max-h-40 overflow-y-auto">
                   {subjects.map((s) => (
                     <button
                       key={s.id}
                       type="button"
                       onClick={() => handleEditSubjectToggle(s.name)}
-                      className={`p-2 rounded-xl border-2 font-black text-[10px] uppercase tracking-tighter transition-all ${
+                      className={`p-2 rounded-xl border-2 font-bold text-[10px] uppercase tracking-tight transition-all ${
                         (editingTeacher.assignedSubject || "")
                           .split(", ")
                           .includes(s.name)
-                          ? "bg-accent-gold border-black shadow-cartoon-xs -translate-y-1 text-black"
+                          ? "bg-accent-gold border-black shadow-xl-xs -translate-y-1 text-black"
                           : "bg-slate-50 dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-400 dark:text-slate-500 hover:border-black"
                       }`}
                     >
@@ -2718,7 +2718,7 @@ const TeacherManagement = () => {
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="checkbox"
-                    className="w-6 h-6 border-4 border-black rounded-lg checked:bg-accent-gold"
+                    className="w-6 h-6 border border-slate-700/50 rounded-lg checked:bg-accent-gold"
                     checked={editingTeacher.isFormTeacher}
                     onChange={(e) =>
                       setEditingTeacher({
@@ -2727,14 +2727,14 @@ const TeacherManagement = () => {
                       })
                     }
                   />
-                  <span className="font-black uppercase tracking-tight text-black dark:text-slate-300">
+                  <span className="font-bold uppercase tracking-tight text-black dark:text-slate-300">
                     Form Teacher
                   </span>
                 </label>
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="checkbox"
-                    className="w-6 h-6 border-4 border-black rounded-lg checked:bg-accent-red"
+                    className="w-6 h-6 border border-slate-700/50 rounded-lg checked:bg-accent-red"
                     checked={editingTeacher.isSubjectTeacher}
                     onChange={(e) =>
                       setEditingTeacher({
@@ -2743,14 +2743,14 @@ const TeacherManagement = () => {
                       })
                     }
                   />
-                  <span className="font-black uppercase tracking-tight text-black dark:text-slate-300">
+                  <span className="font-bold uppercase tracking-tight text-black dark:text-slate-300">
                     Subject Teacher
                   </span>
                 </label>
               </div>
               <button
                 type="submit"
-                className="btn-cartoon-primary md:col-span-2 py-4 text-lg"
+                className="btn-primary md:col-span-2 py-4 text-lg"
               >
                 Save Changes ✨
               </button>

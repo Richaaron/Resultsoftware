@@ -119,36 +119,36 @@ const FormTeacherResultEntry = ({ user }) => {
     <div className="space-y-8">
       {message && (
         <div
-          className={`p-6 border-4 border-black rounded-2xl flex items-center gap-4 ${
+          className={`p-6 border border-slate-700/50 rounded-lg flex items-center gap-4 ${
             message.includes("Error") ? "bg-accent-red/20" : "bg-accent-green/20"
           }`}
         >
           <div
-            className={`w-4 h-4 rounded-full border-2 border-black ${
+            className={`w-4 h-4 rounded-full border border-slate-700/50 ${
               message.includes("Error") ? "bg-accent-red" : "bg-accent-green"
             }`}
           ></div>
-          <span className="font-black uppercase tracking-tight text-black">
+          <span className="font-bold uppercase tracking-tight text-black">
             {message}
           </span>
         </div>
       )}
 
       {/* Filters */}
-      <div className="cartoon-card bg-slate-700 p-6 space-y-4">
-        <h3 className="text-lg font-black text-white uppercase tracking-tighter">
+      <div className="professional-card bg-slate-700 p-6 space-y-4">
+        <h3 className="text-lg font-bold text-white uppercase tracking-tight">
           📝 Result Entry for {user?.assignedClass}
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="space-y-2">
-            <label className="text-sm font-black text-white uppercase">
+            <label className="text-sm font-bold text-white uppercase">
               Term
             </label>
             <select
               value={term}
               onChange={(e) => setTerm(e.target.value)}
-              className="input-cartoon"
+              className="input-field"
             >
               <option value="First">First Term</option>
               <option value="Second">Second Term</option>
@@ -156,13 +156,13 @@ const FormTeacherResultEntry = ({ user }) => {
             </select>
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-black text-white uppercase">
+            <label className="text-sm font-bold text-white uppercase">
               Academic Year
             </label>
             <select
               value={academicYear}
               onChange={(e) => setAcademicYear(e.target.value)}
-              className="input-cartoon"
+              className="input-field"
             >
               {ACADEMIC_YEARS.map((year) => (
                 <option key={year} value={year}>
@@ -175,7 +175,7 @@ const FormTeacherResultEntry = ({ user }) => {
             <button
               onClick={fetchData}
               disabled={loading}
-              className="w-full btn-cartoon-primary bg-accent-gold disabled:opacity-50 py-3"
+              className="w-full btn-primary disabled:opacity-50 py-3"
             >
               {loading ? "Loading..." : "Refresh"}
             </button>
@@ -186,11 +186,11 @@ const FormTeacherResultEntry = ({ user }) => {
       {/* Results Entry Tables */}
       <div className="space-y-8">
         {students.map((student) => (
-          <div key={student.id} className="cartoon-card bg-slate-800 p-6">
+          <div key={student.id} className="professional-card bg-slate-800 p-6">
             {/* Student Header */}
             <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-slate-600">
               <div>
-                <p className="text-lg font-black text-white uppercase tracking-tighter">
+                <p className="text-lg font-bold text-white uppercase tracking-tight">
                   {student.firstName} {student.lastName}
                 </p>
                 <p className="text-sm text-gray-400">
@@ -203,7 +203,7 @@ const FormTeacherResultEntry = ({ user }) => {
                     editingStudentId === student.id ? null : student.id
                   )
                 }
-                className="p-3 bg-accent-gold border-2 border-black rounded-lg font-black hover:bg-black hover:text-accent-gold transition"
+                className="p-3 bg-accent-gold border border-slate-700/50 rounded-lg font-bold hover:bg-black hover:text-accent-gold transition"
               >
                 {editingStudentId === student.id ? <X size={20} /> : <Edit3 size={20} />}
               </button>
@@ -230,13 +230,13 @@ const FormTeacherResultEntry = ({ user }) => {
                       key={subject.id}
                       className="p-5 bg-slate-700 rounded-lg border-2 border-slate-600 space-y-4"
                     >
-                      <h4 className="font-black text-white uppercase tracking-tight">
+                      <h4 className="font-bold text-white uppercase tracking-tight">
                         {subject.name}
                       </h4>
 
                       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                         <div className="space-y-2">
-                          <label className="text-xs font-black text-gray-300 uppercase">
+                          <label className="text-xs font-bold text-gray-300 uppercase">
                             1st CA (20)
                           </label>
                           <input
@@ -252,12 +252,12 @@ const FormTeacherResultEntry = ({ user }) => {
                                 e.target.value
                               )
                             }
-                            className="input-cartoon text-center"
+                            className="input-field text-center"
                           />
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-xs font-black text-gray-300 uppercase">
+                          <label className="text-xs font-bold text-gray-300 uppercase">
                             2nd CA (20)
                           </label>
                           <input
@@ -273,12 +273,12 @@ const FormTeacherResultEntry = ({ user }) => {
                                 e.target.value
                               )
                             }
-                            className="input-cartoon text-center"
+                            className="input-field text-center"
                           />
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-xs font-black text-gray-300 uppercase">
+                          <label className="text-xs font-bold text-gray-300 uppercase">
                             Exam (60)
                           </label>
                           <input
@@ -294,21 +294,21 @@ const FormTeacherResultEntry = ({ user }) => {
                                 e.target.value
                               )
                             }
-                            className="input-cartoon text-center"
+                            className="input-field text-center"
                           />
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-xs font-black text-accent-gold uppercase">
+                          <label className="text-xs font-bold text-accent-gold uppercase">
                             Total
                           </label>
-                          <div className="p-3 bg-slate-600 rounded-lg font-black text-white text-center border-2 border-accent-gold">
+                          <div className="p-3 bg-slate-600 rounded-lg font-bold text-white text-center border-2 border-accent-gold">
                             {total}
                           </div>
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-xs font-black text-gray-300 uppercase">
+                          <label className="text-xs font-bold text-gray-300 uppercase">
                             Remark
                           </label>
                           <input
@@ -323,14 +323,14 @@ const FormTeacherResultEntry = ({ user }) => {
                                 e.target.value
                               )
                             }
-                            className="input-cartoon text-center text-xs"
+                            className="input-field text-center text-xs"
                           />
                         </div>
                       </div>
 
                       <button
                         onClick={() => handleSaveResult(student.id, subject.id)}
-                        className="w-full mt-4 py-2 bg-accent-gold border-2 border-black rounded-lg font-black text-black hover:bg-black hover:text-accent-gold transition flex items-center justify-center gap-2"
+                        className="w-full mt-4 py-2 bg-accent-gold border border-slate-700/50 rounded-lg font-bold text-black hover:bg-black hover:text-accent-gold transition flex items-center justify-center gap-2"
                       >
                         <Save size={18} />
                         Save Result
@@ -354,7 +354,7 @@ const FormTeacherResultEntry = ({ user }) => {
                       key={subject.id}
                       className="p-4 bg-slate-700 rounded-lg border-2 border-slate-600 flex items-center justify-between"
                     >
-                      <span className="font-black text-white">{subject.name}</span>
+                      <span className="font-bold text-white">{subject.name}</span>
                       {resultData ? (
                         <div className="flex items-center gap-6">
                           <div className="text-right">
@@ -362,7 +362,7 @@ const FormTeacherResultEntry = ({ user }) => {
                               CA1 | CA2 | Exam
                             </p>
                             <p
-                              className={`font-black text-lg ${getScoreColor(total)}`}
+                              className={`font-bold text-lg ${getScoreColor(total)}`}
                             >
                               {resultData.ca1Score} | {resultData.ca2Score} |{" "}
                               {resultData.examScore}
@@ -371,7 +371,7 @@ const FormTeacherResultEntry = ({ user }) => {
                           <div className="text-right">
                             <p className="text-xs text-gray-400 uppercase">Total</p>
                             <p
-                              className={`font-black text-2xl ${getScoreColor(total)}`}
+                              className={`font-bold text-2xl ${getScoreColor(total)}`}
                             >
                               {total}
                             </p>
@@ -384,7 +384,7 @@ const FormTeacherResultEntry = ({ user }) => {
                       ) : (
                         <div className="flex items-center gap-2">
                           <AlertCircle size={20} className="text-accent-red" />
-                          <span className="font-black text-accent-red uppercase text-sm">
+                          <span className="font-bold text-accent-red uppercase text-sm">
                             No Data
                           </span>
                         </div>
@@ -399,8 +399,8 @@ const FormTeacherResultEntry = ({ user }) => {
       </div>
 
       {students.length === 0 && !loading && (
-        <div className="cartoon-card bg-slate-800 p-12 text-center border-4 border-dashed border-black/20">
-          <p className="text-xl font-black text-white/50 uppercase italic tracking-widest">
+        <div className="professional-card bg-slate-800 p-12 text-center border-4 border-dashed border-black/20">
+          <p className="text-xl font-bold text-white/50 uppercase  tracking-widest">
             No students in your class
           </p>
         </div>

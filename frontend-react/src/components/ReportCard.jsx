@@ -102,13 +102,13 @@ const ReportCard = React.forwardRef(({ student, settings, attendanceStats }, ref
                       <td className="text-center">{result.examScore || 0}</td>
                       <td className="text-center font-bold">{result.totalScore || 0}</td>
                       <td className={`text-center font-bold ${color}`}>{grade}</td>
-                      <td className={`text-left italic ${color}`}>{remarks}</td>
+                      <td className={`text-left  ${color}`}>{remarks}</td>
                     </tr>
                   );
                 })
               ) : (
                 <tr>
-                  <td colSpan="6" className="text-center py-8 text-gray-400 italic">
+                  <td colSpan="6" className="text-center py-8 text-gray-400 ">
                     No results found for this term.
                   </td>
                 </tr>

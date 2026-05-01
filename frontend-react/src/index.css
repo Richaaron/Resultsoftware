@@ -120,23 +120,6 @@
     @apply text-slate-400 opacity-100;
   }
 
-  .input-cartoon {
-    @apply w-full px-4 py-3 bg-slate-200 dark:bg-slate-700 text-black dark:text-slate-100 border-4 border-black rounded-2xl font-black uppercase tracking-tight shadow-md focus:outline-none focus:ring-2 focus:ring-accent-gold transition-all;
-  }
-
-  .input-cartoon::placeholder {
-    @apply text-gray-600 dark:text-gray-400;
-  }
-
-  /* Light mode select inside light backgrounds */
-  .cartoon-card .input-cartoon {
-    @apply bg-slate-100 dark:bg-slate-700 text-black dark:text-slate-100;
-  }
-
-  .cartoon-card .input-cartoon::placeholder {
-    @apply text-gray-600 dark:text-gray-400;
-  }
-
   .badge {
     @apply inline-flex items-center px-3 py-1.5 rounded-full text-sm font-bold;
   }

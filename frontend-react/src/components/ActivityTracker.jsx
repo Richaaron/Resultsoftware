@@ -81,12 +81,12 @@ const ActivityTracker = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-3xl border-4 border-black shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col">
+      <div className="bg-white rounded-xl border border-slate-700/50 shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b-4 border-black bg-slate-800">
           <div className="flex items-center gap-3">
             <Activity size={28} className="text-accent-gold" />
-            <h2 className="text-2xl font-black text-white uppercase tracking-tighter">
+            <h2 className="text-2xl font-bold text-white uppercase tracking-tight">
               Teacher Activity Tracker 📊
             </h2>
           </div>
@@ -102,7 +102,7 @@ const ActivityTracker = ({ onClose }) => {
           {/* Teachers List */}
           <div className="w-64 border-r-4 border-black bg-slate-50 overflow-y-auto">
             <div className="p-4">
-              <p className="text-xs font-black text-gray-600 uppercase mb-4">
+              <p className="text-xs font-bold text-gray-600 uppercase mb-4">
                 Select Teacher
               </p>
               <div className="space-y-2">
@@ -117,11 +117,11 @@ const ActivityTracker = ({ onClose }) => {
                       onClick={() => setSelectedTeacher(teacher)}
                       className={`w-full p-3 rounded-lg border-2 text-left transition-all ${
                         selectedTeacher?.id === teacher.id
-                          ? "bg-accent-red text-white border-black shadow-cartoon-sm"
+                          ? "bg-accent-red text-white border-black shadow-md"
                           : "bg-white border-gray-300 hover:border-black"
                       }`}
                     >
-                      <p className="font-black text-sm uppercase tracking-tight">
+                      <p className="font-bold text-sm uppercase tracking-tight">
                         {teacher.fullName.split(" ")[0]}
                       </p>
                       <p className="text-xs opacity-75 mt-1">
@@ -141,7 +141,7 @@ const ActivityTracker = ({ onClose }) => {
                 {/* Teacher Info & Filter */}
                 <div className="p-6 border-b-4 border-black bg-slate-100 space-y-4">
                   <div>
-                    <h3 className="text-lg font-black text-black uppercase tracking-tighter">
+                    <h3 className="text-lg font-bold text-black uppercase tracking-tight">
                       {selectedTeacher.fullName}
                     </h3>
                     <p className="text-sm text-gray-600 mt-1">
@@ -158,7 +158,7 @@ const ActivityTracker = ({ onClose }) => {
                           onClick={() => {
                             setFilterBySeverity(severity);
                           }}
-                          className={`px-4 py-2 rounded-lg border-2 font-black text-xs uppercase transition ${
+                          className={`px-4 py-2 rounded-lg border-2 font-bold text-xs uppercase transition ${
                             filterBySeverity === severity
                               ? "bg-black text-white border-black"
                               : "bg-white border-gray-300 text-gray-700 hover:border-black"
@@ -193,10 +193,10 @@ const ActivityTracker = ({ onClose }) => {
                           </div>
                           <div className="flex-1">
                             <div className="flex items-center justify-between gap-4">
-                              <p className="font-black uppercase text-sm tracking-tight">
+                              <p className="font-bold uppercase text-sm tracking-tight">
                                 {activity.activityType}
                               </p>
-                              <span className={`px-3 py-1 rounded-full text-xs font-black uppercase border-2 border-current`}>
+                              <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase border-2 border-current`}>
                                 {activity.severity}
                               </span>
                             </div>
@@ -228,7 +228,7 @@ const ActivityTracker = ({ onClose }) => {
               </>
             ) : (
               <div className="flex-1 flex items-center justify-center text-gray-500">
-                <p className="font-black text-lg uppercase tracking-tight">
+                <p className="font-bold text-lg uppercase tracking-tight">
                   Select a teacher to view activities 👈
                 </p>
               </div>

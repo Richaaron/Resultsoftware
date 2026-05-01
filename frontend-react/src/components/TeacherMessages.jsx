@@ -44,17 +44,17 @@ const TeacherMessages = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-3xl border-4 border-black shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col">
+      <div className="bg-white rounded-xl border border-slate-700/50 shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b-4 border-black bg-slate-800">
           <div className="flex items-center gap-3">
             <MessageCircle size={28} className="text-accent-gold" />
             <div>
-              <h2 className="text-2xl font-black text-white uppercase tracking-tighter">
+              <h2 className="text-2xl font-bold text-white uppercase tracking-tight">
                 My Messages 💬
               </h2>
               {unreadCount > 0 && (
-                <p className="text-sm text-accent-gold font-black">
+                <p className="text-sm text-accent-gold font-bold">
                   {unreadCount} unread message{unreadCount !== 1 ? "s" : ""}
                 </p>
               )}
@@ -75,7 +75,7 @@ const TeacherMessages = ({ onClose }) => {
           ) : messages.length === 0 ? (
             <div className="text-center text-gray-500 py-12">
               <MessageCircle size={48} className="mx-auto mb-4 opacity-30" />
-              <p className="font-black text-lg uppercase">No messages yet</p>
+              <p className="font-bold text-lg uppercase">No messages yet</p>
               <p className="text-sm mt-2">Check back later for updates from admin</p>
             </div>
           ) : (
@@ -86,9 +86,9 @@ const TeacherMessages = ({ onClose }) => {
               return (
                 <div
                   key={msg.id}
-                  className={`p-5 rounded-2xl border-4 ${
+                  className={`p-5 rounded-lg border-4 ${
                     isUnread
-                      ? "bg-yellow-50 border-accent-gold shadow-cartoon-sm"
+                      ? "bg-yellow-50 border-accent-gold shadow-md"
                       : "bg-slate-50 border-gray-300"
                   }`}
                 >
@@ -96,11 +96,11 @@ const TeacherMessages = ({ onClose }) => {
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
                       <User size={16} className="text-gray-600" />
-                      <p className="font-black text-sm text-gray-700 uppercase">
+                      <p className="font-bold text-sm text-gray-700 uppercase">
                         {msg.sender?.fullName || "Admin"}
                       </p>
                       {isUnread && (
-                        <span className="bg-accent-gold text-black px-2 py-1 rounded-lg text-xs font-black">
+                        <span className="bg-accent-gold text-black px-2 py-1 rounded-lg text-xs font-bold">
                           NEW
                         </span>
                       )}
@@ -112,7 +112,7 @@ const TeacherMessages = ({ onClose }) => {
                   </div>
 
                   {/* Subject */}
-                  <p className="font-black text-sm text-gray-700 uppercase tracking-tight mb-2 bg-white px-3 py-2 rounded-lg border-2 border-gray-300">
+                  <p className="font-bold text-sm text-gray-700 uppercase tracking-tight mb-2 bg-white px-3 py-2 rounded-lg border-2 border-gray-300">
                     {msg.subject}
                   </p>
 
@@ -125,7 +125,7 @@ const TeacherMessages = ({ onClose }) => {
                   {isUnread && (
                     <button
                       onClick={() => markAsRead(msg.id)}
-                      className="mt-4 px-4 py-2 bg-accent-gold border-2 border-black rounded-lg font-black text-xs uppercase hover:bg-black hover:text-accent-gold transition"
+                      className="mt-4 px-4 py-2 bg-accent-gold border border-slate-700/50 rounded-lg font-bold text-xs uppercase hover:bg-black hover:text-accent-gold transition"
                     >
                       Mark as Read
                     </button>

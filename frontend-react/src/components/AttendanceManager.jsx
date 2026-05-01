@@ -82,8 +82,8 @@ const AttendanceManager = ({ user }) => {
 
   if (!user?.assignedClass) {
     return (
-      <div className="cartoon-card p-10 bg-slate-50 text-center">
-        <h2 className="text-2xl font-black uppercase text-slate-400">
+      <div className="professional-card p-10 bg-slate-50 text-center">
+        <h2 className="text-2xl font-bold uppercase text-slate-400">
           No Class Assigned
         </h2>
         <p className="text-gray-500 font-bold">You need to be assigned as a form teacher to mark attendance.</p>
@@ -92,10 +92,10 @@ const AttendanceManager = ({ user }) => {
   }
 
   return (
-    <div className="cartoon-card p-6 md:p-10 bg-slate-50">
+    <div className="professional-card p-6 md:p-10 bg-slate-50">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
-          <h2 className="text-3xl font-black text-black uppercase italic tracking-tighter text-3d">
+          <h2 className="text-3xl font-bold text-black uppercase  tracking-tight text-gradient">
             Attendance Book 📋
           </h2>
           <p className="text-gray-600 font-bold uppercase tracking-widest text-sm mt-1">
@@ -104,10 +104,10 @@ const AttendanceManager = ({ user }) => {
         </div>
         
         <div className="flex items-center gap-4 w-full md:w-auto">
-          <label className="font-black uppercase tracking-tight">Date:</label>
+          <label className="font-bold uppercase tracking-tight">Date:</label>
           <input
             type="date"
-            className="input-cartoon flex-1 md:w-48"
+            className="input-field flex-1 md:w-48"
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
@@ -115,27 +115,27 @@ const AttendanceManager = ({ user }) => {
       </div>
 
       {message && (
-        <div className={`p-4 mb-6 border-4 border-black rounded-xl font-black uppercase tracking-tight text-white ${message.includes('✅') ? 'bg-green-500' : 'bg-red-500'}`}>
+        <div className={`p-4 mb-6 border border-slate-700/50 rounded-xl font-bold uppercase tracking-tight text-white ${message.includes('✅') ? 'bg-green-500' : 'bg-red-500'}`}>
           {message}
         </div>
       )}
 
       {loading ? (
         <div className="text-center py-10">
-          <p className="text-xl font-black uppercase tracking-widest text-gray-400 animate-pulse">Loading Roll Call...</p>
+          <p className="text-xl font-bold uppercase tracking-widest text-gray-400 animate-pulse">Loading Roll Call...</p>
         </div>
       ) : students.length === 0 ? (
         <div className="text-center py-10">
-          <p className="text-xl font-black uppercase tracking-widest text-gray-400">No students found in this class.</p>
+          <p className="text-xl font-bold uppercase tracking-widest text-gray-400">No students found in this class.</p>
         </div>
       ) : (
         <>
-          <div className="overflow-x-auto mb-8 border-4 border-black rounded-3xl bg-white">
+          <div className="overflow-x-auto mb-8 border border-slate-700/50 rounded-xl bg-white">
             <table className="w-full text-left">
               <thead className="bg-slate-900 border-b-4 border-black">
                 <tr>
-                  <th className="p-4 font-black uppercase text-white tracking-widest">Student Name</th>
-                  <th className="p-4 font-black uppercase text-white tracking-widest text-center">Status</th>
+                  <th className="p-4 font-bold uppercase text-white tracking-widest">Student Name</th>
+                  <th className="p-4 font-bold uppercase text-white tracking-widest text-center">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y-2 divide-black/10">
@@ -148,9 +148,9 @@ const AttendanceManager = ({ user }) => {
                       <div className="flex items-center justify-center gap-2">
                         <button
                           onClick={() => handleStatusChange(student.id, "PRESENT")}
-                          className={`flex-1 py-2 px-3 rounded-xl border-2 font-black text-xs uppercase flex items-center justify-center gap-1 transition-all ${
+                          className={`flex-1 py-2 px-3 rounded-xl border-2 font-bold text-xs uppercase flex items-center justify-center gap-1 transition-all ${
                             attendanceRecords[student.id] === "PRESENT"
-                              ? "bg-green-500 border-black text-white shadow-cartoon-sm -translate-y-1"
+                              ? "bg-green-500 border-black text-white shadow-md -translate-y-1"
                               : "bg-white border-gray-300 text-gray-500 hover:border-black hover:bg-green-100"
                           }`}
                         >
@@ -158,9 +158,9 @@ const AttendanceManager = ({ user }) => {
                         </button>
                         <button
                           onClick={() => handleStatusChange(student.id, "LATE")}
-                          className={`flex-1 py-2 px-3 rounded-xl border-2 font-black text-xs uppercase flex items-center justify-center gap-1 transition-all ${
+                          className={`flex-1 py-2 px-3 rounded-xl border-2 font-bold text-xs uppercase flex items-center justify-center gap-1 transition-all ${
                             attendanceRecords[student.id] === "LATE"
-                              ? "bg-yellow-400 border-black text-black shadow-cartoon-sm -translate-y-1"
+                              ? "bg-yellow-400 border-black text-black shadow-md -translate-y-1"
                               : "bg-white border-gray-300 text-gray-500 hover:border-black hover:bg-yellow-100"
                           }`}
                         >
@@ -168,9 +168,9 @@ const AttendanceManager = ({ user }) => {
                         </button>
                         <button
                           onClick={() => handleStatusChange(student.id, "ABSENT")}
-                          className={`flex-1 py-2 px-3 rounded-xl border-2 font-black text-xs uppercase flex items-center justify-center gap-1 transition-all ${
+                          className={`flex-1 py-2 px-3 rounded-xl border-2 font-bold text-xs uppercase flex items-center justify-center gap-1 transition-all ${
                             attendanceRecords[student.id] === "ABSENT"
-                              ? "bg-red-500 border-black text-white shadow-cartoon-sm -translate-y-1"
+                              ? "bg-red-500 border-black text-white shadow-md -translate-y-1"
                               : "bg-white border-gray-300 text-gray-500 hover:border-black hover:bg-red-100"
                           }`}
                         >
@@ -187,7 +187,7 @@ const AttendanceManager = ({ user }) => {
           <button
             onClick={handleSaveAttendance}
             disabled={loading}
-            className="w-full btn-cartoon-primary bg-accent-gold py-5 text-xl flex items-center justify-center gap-3"
+            className="w-full btn-primary py-5 text-xl flex items-center justify-center gap-3"
           >
             <Save size={24} />
             Save Today's Attendance!
