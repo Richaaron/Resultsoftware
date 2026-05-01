@@ -76,10 +76,10 @@ router.post('/', auth, authorize(['ADMIN', 'TEACHER']), validate(schemas.createS
   });
 }));
 
-// Get all students
+// Get all active students
 router.get('/', auth, authorize(['ADMIN', 'TEACHER']), asyncHandler(async (req, res) => {
   const { studentClass, subjectName } = req.query;
-  let where = {};
+  let where = { isActive: true };
   let include = [{ model: Subject }];
 
   if (studentClass) {
@@ -95,6 +95,18 @@ router.get('/', auth, authorize(['ADMIN', 'TEACHER']), asyncHandler(async (req, 
   }
 
   const students = await Student.findAll({ where, include, order: [['lastName', 'ASC'], ['firstName', 'ASC']] });
+  res.json(students);
+}));
+
+// Get archived/inactive students (Admin only)
+router.get('/archived/list', auth, authorize(['ADMIN']), asyncHandler(async (req, res) => {
+  const students = await Student.findAll({ 
+    where: { isActive: false },
+    attributes: {
+      include: ['id', 'firstName', 'lastName', 'registrationNumber', 'studentClass', 'createdAt', 'updatedAt', 'isActive']
+    },
+    order: [['lastName', 'ASC'], ['firstName', 'ASC']] 
+  });
   res.json(students);
 }));
 
@@ -125,7 +137,7 @@ router.post('/subjects', auth, authorize(['ADMIN']), asyncHandler(async (req, re
   res.status(201).json(subject);
 }));
 
-// Release/hold results for students
+// Release/hold results for active students
 router.patch('/release-results', auth, authorize(['ADMIN', 'TEACHER']), asyncHandler(async (req, res) => {
   const { studentIds, released } = req.body;
   
@@ -135,15 +147,15 @@ router.patch('/release-results', auth, authorize(['ADMIN', 'TEACHER']), asyncHan
 
   await Student.update(
     { resultsReleased: released === true },
-    { where: { id: studentIds } }
+    { where: { id: studentIds, isActive: true } }
   );
 
   res.json({ 
-    message: `Results ${released ? 'released' : 'held'} for ${studentIds.length} students` 
+    message: `Results ${released ? 'released' : 'held'} for active students` 
   });
 }));
 
-// Update fee status for students
+// Update fee status for active students
 router.patch('/update-fees', auth, authorize(['ADMIN']), asyncHandler(async (req, res) => {
   const { studentIds, feesPaid } = req.body;
   
@@ -153,11 +165,11 @@ router.patch('/update-fees', auth, authorize(['ADMIN']), asyncHandler(async (req
 
   await Student.update(
     { feesPaid: feesPaid === true },
-    { where: { id: studentIds } }
+    { where: { id: studentIds, isActive: true } }
   );
 
   res.json({ 
-    message: `Fee status updated for ${studentIds.length} students` 
+    message: `Fee status updated for active students` 
   });
 }));
 
@@ -192,22 +204,58 @@ router.patch('/:id', auth, authorize(['ADMIN', 'TEACHER']), asyncHandler(async (
   res.json(student);
 }));
 
-// Delete student
+// Deactivate student (Admin only) - Soft delete
 router.delete('/:id', auth, authorize(['ADMIN']), asyncHandler(async (req, res) => {
   const student = await Student.findByPk(req.params.id);
   if (!student) {
     return res.status(404).json({ error: 'Student not found' });
   }
 
-  // Delete parent account if exists
-  if (student.parentId) {
-    await User.destroy({ where: { id: student.parentId } });
+  if (!student.isActive) {
+    return res.status(400).json({ error: 'Student is already deactivated' });
   }
 
-  await student.destroy();
-  logger.info({ studentId: student.id, action: 'student_deleted' });
+  student.isActive = false;
+  await student.save();
+  logger.info({ studentId: student.id, action: 'student_deactivated' });
 
-  res.json({ message: 'Student deleted successfully' });
+  res.json({ 
+    message: 'Student deactivated successfully',
+    student: {
+      id: student.id,
+      firstName: student.firstName,
+      lastName: student.lastName,
+      registrationNumber: student.registrationNumber,
+      isActive: student.isActive
+    }
+  });
+}));
+
+// Reactivate student (Admin only)
+router.post('/:id/reactivate', auth, authorize(['ADMIN']), asyncHandler(async (req, res) => {
+  const student = await Student.findByPk(req.params.id);
+  if (!student) {
+    return res.status(404).json({ error: 'Student not found' });
+  }
+
+  if (student.isActive) {
+    return res.status(400).json({ error: 'Student is already active' });
+  }
+
+  student.isActive = true;
+  await student.save();
+  logger.info({ studentId: student.id, action: 'student_reactivated' });
+
+  res.json({ 
+    message: 'Student reactivated successfully',
+    student: {
+      id: student.id,
+      firstName: student.firstName,
+      lastName: student.lastName,
+      registrationNumber: student.registrationNumber,
+      isActive: student.isActive
+    }
+  });
 }));
 
 // Update subject

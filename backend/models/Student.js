@@ -65,6 +65,11 @@ const Student = sequelize.define("Student", {
       isEmail: true,
     },
   },
+  isActive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true,
+    comment: 'Soft delete flag - set to false to deactivate without losing data'
+  },
 });
 
 Student.belongsTo(User, { as: "Parent", foreignKey: "parentId" });
