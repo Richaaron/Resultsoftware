@@ -33,13 +33,13 @@ const getRankLabel = (rank) => {
 const RankBadge = ({ rank }) => {
   let badgeClass = "";
   if (rank === 1) {
-    badgeClass = "bg-yellow-400 text-black border border-slate-700/50";
+    badgeClass = "bg-yellow-400 text-black border border-brand-700/50";
   } else if (rank === 2) {
-    badgeClass = "bg-gray-300 text-black border border-slate-700/50";
+    badgeClass = "bg-gray-300 text-black border border-brand-700/50";
   } else if (rank === 3) {
-    badgeClass = "bg-amber-600 text-white border border-slate-700/50";
+    badgeClass = "bg-amber-600 text-white border border-brand-700/50";
   } else {
-    badgeClass = "bg-slate-700 text-white border border-slate-700/50/30";
+    badgeClass = "bg-brand-700 text-white border border-brand-700/50/30";
   }
   return (
     <span
@@ -330,7 +330,7 @@ const Broadsheet = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0f172a] relative overflow-hidden p-6 lg:p-10">
+    <div className="min-h-screen bg-transparent relative overflow-hidden p-6 lg:p-10">
       <AcademicBackground />
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -343,11 +343,11 @@ const Broadsheet = () => {
         </button>
 
         {/* Fix #3: Filter controls get no-print */}
-        <div className="no-print professional-card bg-slate-900 p-8 mb-10">
+        <div className="no-print professional-card bg-brand-900 p-8 mb-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
-                <label className="text-sm font-bold uppercase tracking-widest text-slate-400">
+                <label className="text-sm font-bold uppercase tracking-widest text-brand-400">
                   Select Class
                 </label>
                 <select
@@ -364,7 +364,7 @@ const Broadsheet = () => {
                 </select>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-bold uppercase tracking-widest text-slate-400">
+                <label className="text-sm font-bold uppercase tracking-widest text-brand-400">
                   Select Term
                 </label>
                 <select
@@ -379,7 +379,7 @@ const Broadsheet = () => {
               </div>
               {/* Fix #6: dynamic academic years */}
               <div className="space-y-2">
-                <label className="text-sm font-bold uppercase tracking-widest text-slate-400">
+                <label className="text-sm font-bold uppercase tracking-widest text-brand-400">
                   Academic Year
                 </label>
                 <select
@@ -407,8 +407,8 @@ const Broadsheet = () => {
         </div>
 
         {broadsheetData.length > 0 ? (
-          <div className="professional-card bg-slate-900 p-8 overflow-hidden print-full">
-            <div className="flex justify-between items-center mb-8 border-b-4 border-black pb-6">
+          <div className="professional-card bg-brand-900 p-8 overflow-hidden print-full">
+            <div className="flex justify-between items-center mb-8 border-b-4 border-brand-900 pb-6">
               <div>
                 <h2 className="text-3xl font-bold text-white uppercase  tracking-tight text-gradient mb-2">
                   {settings?.schoolName || "The Academy"}
@@ -421,7 +421,7 @@ const Broadsheet = () => {
                 >
                   Class Broadsheet: {studentClass}
                 </h3>
-                <p className="text-slate-400 font-bold uppercase tracking-tight text-xs">
+                <p className="text-brand-400 font-bold uppercase tracking-tight text-xs">
                   {term} Term | {academicYear}
                 </p>
               </div>
@@ -429,14 +429,14 @@ const Broadsheet = () => {
               <div className="no-print flex gap-4">
                 <button
                   onClick={handlePrint}
-                  className="p-4 bg-slate-800 border border-slate-700/50 rounded-lg shadow-md hover:-translate-y-1 transition-all text-white"
+                  className="p-4 bg-brand-800 border border-brand-700/50 rounded-lg shadow-md hover:-translate-y-1 transition-all text-white"
                   title="Print Broadsheet"
                 >
                   <Printer size={24} />
                 </button>
                 <button
                   onClick={downloadCSV}
-                  className="p-4 bg-accent-gold border border-slate-700/50 rounded-lg shadow-md hover:-translate-y-1 transition-all text-black"
+                  className="p-4 bg-accent-gold border border-brand-700/50 rounded-lg shadow-md hover:-translate-y-1 transition-all text-black"
                   title="Download CSV"
                 >
                   <Download size={24} />
@@ -447,14 +447,14 @@ const Broadsheet = () => {
             <div className="overflow-x-auto print-full">
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="border-b-4 border-black">
+                  <tr className="border-b-4 border-brand-900">
                     {/* Fix #2: Rank column header */}
-                    <th className="p-4 text-center font-bold uppercase tracking-widest text-xs bg-slate-800 text-white border-r-2 border-black min-w-[60px]">
+                    <th className="p-4 text-center font-bold uppercase tracking-widest text-xs bg-brand-800 text-white border-r-2 border-brand-900 min-w-[60px]">
                       Rank
                     </th>
                     {/* Fix #5: sortable Student Name header */}
                     <th
-                      className="p-4 text-left font-bold uppercase tracking-widest text-xs bg-slate-800 text-white border-r-2 border-black sticky left-0 z-20 cursor-pointer select-none hover:bg-slate-700 transition-colors"
+                      className="p-4 text-left font-bold uppercase tracking-widest text-xs bg-brand-800 text-white border-r-2 border-brand-900 sticky left-0 z-20 cursor-pointer select-none hover:bg-brand-700 transition-colors"
                       onClick={() => handleSort("name")}
                     >
                       Student Name <SortIcon column="name" />
@@ -463,41 +463,41 @@ const Broadsheet = () => {
                       <th
                         key={subject.id}
                         colSpan="6"
-                        className="p-4 text-center font-bold uppercase tracking-widest text-[10px] border-r-2 border-black/10 text-slate-300 border-b-2"
+                        className="p-4 text-center font-bold uppercase tracking-widest text-[10px] border-r-2 border-brand-900/10 text-brand-300 border-b-2"
                       >
                         {subject.name}
                       </th>
                     ))}
                   </tr>
-                  <tr className="border-b-4 border-black">
+                  <tr className="border-b-4 border-brand-900">
                     {/* Empty header for Rank and Student Name */}
                     <th></th>
                     <th></th>
                     {/* Sub-headers for each subject */}
                     {subjects.map((subject) => (
                       <React.Fragment key={subject.id}>
-                        <th className="p-2 text-center font-bold uppercase tracking-widest text-[9px] bg-slate-800 text-white border-r-2 border-black/10 text-accent-gold">
+                        <th className="p-2 text-center font-bold uppercase tracking-widest text-[9px] bg-brand-800 text-white border-r-2 border-brand-900/10 text-accent-gold">
                           1st CA
                         </th>
-                        <th className="p-2 text-center font-bold uppercase tracking-widest text-[9px] bg-slate-800 text-white border-r-2 border-black/10 text-accent-gold">
+                        <th className="p-2 text-center font-bold uppercase tracking-widest text-[9px] bg-brand-800 text-white border-r-2 border-brand-900/10 text-accent-gold">
                           2nd CA
                         </th>
-                        <th className="p-2 text-center font-bold uppercase tracking-widest text-[9px] bg-slate-800 text-white border-r-2 border-black/10 text-accent-gold">
+                        <th className="p-2 text-center font-bold uppercase tracking-widest text-[9px] bg-brand-800 text-white border-r-2 border-brand-900/10 text-accent-gold">
                           Exam
                         </th>
-                        <th className="p-2 text-center font-bold uppercase tracking-widest text-[9px] bg-slate-800 text-white border-r-2 border-black/10 text-accent-gold">
+                        <th className="p-2 text-center font-bold uppercase tracking-widest text-[9px] bg-brand-800 text-white border-r-2 border-brand-900/10 text-accent-gold">
                           Total
                         </th>
-                        <th className="p-2 text-center font-bold uppercase tracking-widest text-[9px] bg-slate-800 text-white border-r-2 border-black/10 text-accent-gold">
+                        <th className="p-2 text-center font-bold uppercase tracking-widest text-[9px] bg-brand-800 text-white border-r-2 border-brand-900/10 text-accent-gold">
                           Avg
                         </th>
-                        <th className="p-2 text-center font-bold uppercase tracking-widest text-[9px] bg-slate-800 text-white border-r-2 border-black/10 text-accent-red">
+                        <th className="p-2 text-center font-bold uppercase tracking-widest text-[9px] bg-brand-800 text-white border-r-2 border-brand-900/10 text-accent-red">
                           Pos
                         </th>
                       </React.Fragment>
                     ))}
                     <th
-                      className="p-4 text-center font-bold uppercase tracking-widest text-xs border-r-2 border-black/10"
+                      className="p-4 text-center font-bold uppercase tracking-widest text-xs border-r-2 border-brand-900/10"
                       style={{
                         backgroundColor: settings?.primaryColor
                           ? `${settings.primaryColor}20`
@@ -530,13 +530,13 @@ const Broadsheet = () => {
                       // Fix #1: removed invalid style={{ hover: ... }}, use Tailwind hover class
                       <tr
                         key={student.id}
-                        className="border-b-2 border-black/5 transition-colors group hover:bg-accent-gold/5"
+                        className="border-b-2 border-brand-900/5 transition-colors group hover:bg-accent-gold/5"
                       >
                         {/* Fix #2: Rank badge cell */}
-                        <td className="p-4 text-center border-r-2 border-black/10">
+                        <td className="p-4 text-center border-r-2 border-brand-900/10">
                           <RankBadge rank={student.rank} />
                         </td>
-                        <td className="p-4 font-bold text-white uppercase tracking-tight sticky left-0 bg-slate-900 group-hover:bg-slate-800 border-r-2 border-black z-10">
+                        <td className="p-4 font-bold text-white uppercase tracking-tight sticky left-0 bg-brand-900 group-hover:bg-brand-800 border-r-2 border-brand-900 z-10">
                           {student.lastName} {student.firstName}
                         </td>
                         {subjects.map((subject) => {
@@ -547,41 +547,41 @@ const Broadsheet = () => {
                           if (!details) {
                             return (
                               <React.Fragment key={subject.id}>
-                                <td className="p-2 text-center text-gray-500 border-r-2 border-black/5 text-xs">-</td>
-                                <td className="p-2 text-center text-gray-500 border-r-2 border-black/5 text-xs">-</td>
-                                <td className="p-2 text-center text-gray-500 border-r-2 border-black/5 text-xs">-</td>
-                                <td className="p-2 text-center text-gray-500 border-r-2 border-black/5 text-xs">-</td>
-                                <td className="p-2 text-center text-gray-500 border-r-2 border-black/5 text-xs">-</td>
-                                <td className="p-2 text-center text-gray-500 border-r-2 border-black/5 text-xs">-</td>
+                                <td className="p-2 text-center text-gray-500 border-r-2 border-brand-900/5 text-xs">-</td>
+                                <td className="p-2 text-center text-gray-500 border-r-2 border-brand-900/5 text-xs">-</td>
+                                <td className="p-2 text-center text-gray-500 border-r-2 border-brand-900/5 text-xs">-</td>
+                                <td className="p-2 text-center text-gray-500 border-r-2 border-brand-900/5 text-xs">-</td>
+                                <td className="p-2 text-center text-gray-500 border-r-2 border-brand-900/5 text-xs">-</td>
+                                <td className="p-2 text-center text-gray-500 border-r-2 border-brand-900/5 text-xs">-</td>
                               </React.Fragment>
                             );
                           }
 
                           return (
                             <React.Fragment key={subject.id}>
-                              <td className="p-2 text-center font-bold text-white text-sm border-r-2 border-black/5 bg-slate-800/30">
+                              <td className="p-2 text-center font-bold text-white text-sm border-r-2 border-brand-900/5 bg-brand-800/30">
                                 {details.ca1}
                               </td>
-                              <td className="p-2 text-center font-bold text-white text-sm border-r-2 border-black/5 bg-slate-800/30">
+                              <td className="p-2 text-center font-bold text-white text-sm border-r-2 border-brand-900/5 bg-brand-800/30">
                                 {details.ca2}
                               </td>
-                              <td className="p-2 text-center font-bold text-white text-sm border-r-2 border-black/5 bg-slate-800/30">
+                              <td className="p-2 text-center font-bold text-white text-sm border-r-2 border-brand-900/5 bg-brand-800/30">
                                 {details.exam}
                               </td>
-                              <td className="p-2 text-center font-bold text-accent-gold text-sm border-r-2 border-black/5 bg-slate-700/50">
+                              <td className="p-2 text-center font-bold text-accent-gold text-sm border-r-2 border-brand-900/5 bg-brand-700/50">
                                 {details.total}
                               </td>
-                              <td className="p-2 text-center font-bold text-accent-gold text-sm border-r-2 border-black/5 bg-slate-700/50">
+                              <td className="p-2 text-center font-bold text-accent-gold text-sm border-r-2 border-brand-900/5 bg-brand-700/50">
                                 {details.average.toFixed(1)}
                               </td>
-                              <td className="p-2 text-center font-bold text-accent-red text-sm border-r-2 border-black/5 bg-accent-red/10">
+                              <td className="p-2 text-center font-bold text-accent-red text-sm border-r-2 border-brand-900/5 bg-accent-red/10">
                                 {position}
                               </td>
                             </React.Fragment>
                           );
                         })}
                         <td
-                          className="p-4 text-center font-bold text-lg border-r-2 border-black/5 text-white"
+                          className="p-4 text-center font-bold text-lg border-r-2 border-brand-900/5 text-white"
                           style={{
                             backgroundColor: settings?.primaryColor
                               ? `${settings.primaryColor}10`
@@ -608,29 +608,29 @@ const Broadsheet = () => {
             </div>
 
             {/* Signatures Section */}
-            <div className="mt-16 pt-12 border-t-4 border-black">
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-12">
+            <div className="mt-16 pt-12 border-t-4 border-brand-900">
+              <p className="text-xs font-bold text-brand-400 uppercase tracking-widest mb-12">
                 Authorized Signatures
               </p>
               <div className="grid grid-cols-2 gap-12">
                 {/* Principal Signature */}
                 <div className="text-center">
-                  <div className="h-24 border-b-2 border-black mb-2"></div>
+                  <div className="h-24 border-b-2 border-brand-900 mb-2"></div>
                   <p className="text-xs font-bold text-white uppercase tracking-widest">
                     {settings?.principalName || "Principal"}
                   </p>
-                  <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">
+                  <p className="text-[10px] text-brand-400 font-bold uppercase tracking-widest mt-1">
                     Principal's Signature
                   </p>
                 </div>
 
                 {/* Head Teacher Signature */}
                 <div className="text-center">
-                  <div className="h-24 border-b-2 border-black mb-2"></div>
+                  <div className="h-24 border-b-2 border-brand-900 mb-2"></div>
                   <p className="text-xs font-bold text-white uppercase tracking-widest">
                     {settings?.headTeacherName || "Head Teacher"}
                   </p>
-                  <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">
+                  <p className="text-[10px] text-brand-400 font-bold uppercase tracking-widest mt-1">
                     Head Teacher's Signature
                   </p>
                 </div>
@@ -638,7 +638,7 @@ const Broadsheet = () => {
             </div>
           </div>
         ) : !loading && studentClass ? (
-          <div className="professional-card bg-slate-900 p-20 text-center border-4 border-dashed border-black/20">
+          <div className="professional-card bg-brand-900 p-20 text-center border-4 border-dashed border-brand-900/20">
             <FileSpreadsheet
               size={64}
               className="mx-auto text-white/10 mb-6"

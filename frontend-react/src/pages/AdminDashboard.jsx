@@ -65,18 +65,18 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-[#0f172a] relative overflow-hidden transition-colors duration-300">
+    <div className="flex flex-col md:flex-row h-screen bg-transparent relative overflow-hidden transition-colors duration-300">
       <AcademicBackground />
 
       {/* Mobile Header */}
-      <div className="md:hidden flex items-center justify-between bg-slate-900 border-b-4 border-black p-4 sticky top-0 z-50">
+      <div className="md:hidden flex items-center justify-between bg-brand-900 border-b-4 border-brand-900 p-4 sticky top-0 z-50">
         <div className="flex items-center gap-2">
           <LayoutDashboard size={24} className="text-accent-gold" />
           <h1 className="text-lg font-bold text-white uppercase">Admin Dashboard</h1>
         </div>
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="p-2 hover:bg-slate-800 rounded-lg"
+          className="p-2 hover:bg-brand-800 rounded-lg"
         >
           {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -85,17 +85,17 @@ const AdminDashboard = () => {
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/50 md:hidden z-30"
+          className="fixed inset-0 bg-brand-950/50 md:hidden z-30"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
       <div
-        className={`fixed md:relative md:flex w-64 md:w-72 h-[calc(100vh-64px)] md:h-screen bg-slate-900 border-r-4 border-black p-4 md:p-8 flex flex-col shadow-xl z-40 overflow-y-auto transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
+        className={`fixed md:relative md:flex w-64 md:w-72 h-[calc(100vh-64px)] md:h-screen bg-brand-900 border-r-4 border-brand-900 p-4 md:p-8 flex flex-col shadow-xl z-40 overflow-y-auto transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
       >
         <div className="hidden md:flex items-center gap-3 mb-8 md:mb-12">
-          <div className="w-12 h-12 bg-accent-gold border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md transform">
+          <div className="w-12 h-12 bg-accent-gold border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md transform">
             <LayoutDashboard size={24} className="text-black" />
           </div>
           <h2 className="text-xl md:text-2xl font-bold tracking-tight uppercase  text-white text-gradient">
@@ -109,7 +109,7 @@ const AdminDashboard = () => {
             end
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-brand-900 bg-accent-gold/30" : "border-transparent hover:border-brand-900 hover:bg-accent-gold/20"}`
             }
           >
             <LayoutDashboard className="mr-2 md:mr-3" size={18} />
@@ -119,7 +119,7 @@ const AdminDashboard = () => {
             to="/admin/students"
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-red/30" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
+              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-brand-900 bg-accent-red/30" : "border-transparent hover:border-brand-900 hover:bg-accent-red/10"}`
             }
           >
             <Users className="mr-2 md:mr-3" size={18} />
@@ -129,7 +129,7 @@ const AdminDashboard = () => {
             to="/admin/subjects"
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-brand-900 bg-accent-gold/30" : "border-transparent hover:border-brand-900 hover:bg-accent-gold/20"}`
             }
           >
             <BookOpen className="mr-2 md:mr-3" size={18} />
@@ -139,7 +139,7 @@ const AdminDashboard = () => {
             to="/admin/teachers"
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-red/30" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
+              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-brand-900 bg-accent-red/30" : "border-transparent hover:border-brand-900 hover:bg-accent-red/10"}`
             }
           >
             <UserCircle className="mr-2 md:mr-3" size={18} />
@@ -149,7 +149,7 @@ const AdminDashboard = () => {
             to="/broadsheet"
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-brand-900 bg-accent-gold/30" : "border-transparent hover:border-brand-900 hover:bg-accent-gold/20"}`
             }
           >
             <FileSpreadsheet className="mr-2 md:mr-3" size={18} />
@@ -159,7 +159,7 @@ const AdminDashboard = () => {
             to="/admin/settings"
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-red/30" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
+              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-brand-900 bg-accent-red/30" : "border-transparent hover:border-brand-900 hover:bg-accent-red/10"}`
             }
           >
             <Settings className="mr-2 md:mr-3" size={18} />
@@ -167,7 +167,7 @@ const AdminDashboard = () => {
           </NavLink>
 
           {/* Divider */}
-          <div className="my-4 border-t-2 border-slate-700"></div>
+          <div className="my-4 border-t-2 border-brand-700"></div>
 
           {/* Chat & Activity Buttons */}
           <button
@@ -175,7 +175,7 @@ const AdminDashboard = () => {
               setShowChat(true);
               setSidebarOpen(false);
             }}
-            className="w-full flex items-center p-3 md:p-4 rounded-lg border border-transparent hover:border-black hover:bg-accent-gold/20 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base"
+            className="w-full flex items-center p-3 md:p-4 rounded-lg border border-transparent hover:border-brand-900 hover:bg-accent-gold/20 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base"
           >
             <MessageCircle className="mr-2 md:mr-3" size={18} />
             <span>Chat</span>
@@ -186,7 +186,7 @@ const AdminDashboard = () => {
               setShowActivityTracker(true);
               setSidebarOpen(false);
             }}
-            className="w-full flex items-center p-3 md:p-4 rounded-lg border border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base"
+            className="w-full flex items-center p-3 md:p-4 rounded-lg border border-transparent hover:border-brand-900 hover:bg-accent-red/10 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base"
           >
             <Activity className="mr-2 md:mr-3" size={18} />
             <span>Activity Logs</span>
@@ -197,7 +197,7 @@ const AdminDashboard = () => {
         {showScrollTop && (
           <button
             onClick={scrollToTop}
-            className="flex items-center p-3 md:p-4 rounded-lg border border-slate-700/50 bg-accent-gold shadow-md hover:-translate-y-1 transition-all group mt-auto mb-3 text-sm md:text-base"
+            className="flex items-center p-3 md:p-4 rounded-lg border border-brand-700/50 bg-accent-gold shadow-md hover:-translate-y-1 transition-all group mt-auto mb-3 text-sm md:text-base"
           >
             <ChevronUp
               size={18}
@@ -212,7 +212,7 @@ const AdminDashboard = () => {
         {/* Logout Button */}
         <button
           onClick={handleLogout}
-          className="flex items-center p-3 md:p-4 rounded-lg border border-slate-700/50 bg-accent-red shadow-md hover:-translate-y-1 transition-all group mt-4 text-sm md:text-base"
+          className="flex items-center p-3 md:p-4 rounded-lg border border-brand-700/50 bg-accent-red shadow-md hover:-translate-y-1 transition-all group mt-4 text-sm md:text-base"
         >
           <LogOut
             size={18}
@@ -237,7 +237,7 @@ const AdminDashboard = () => {
             <h1 className="text-2xl md:text-4xl font-bold text-white tracking-tight uppercase  text-gradient">
               Welcome, {user?.fullName?.split(" ")[0]}
             </h1>
-            <p className="text-sm md:text-lg text-slate-400 mt-2 font-bold underline decoration-4 decoration-accent-gold">
+            <p className="text-sm md:text-lg text-brand-400 mt-2 font-bold underline decoration-4 decoration-accent-gold">
               Welcome to the administration dashboard.
             </p>
           </div>
@@ -250,7 +250,7 @@ const AdminDashboard = () => {
                 {user?.role} Mode
               </p>
             </div>
-            <div className="w-12 md:w-16 h-12 md:h-16 bg-slate-800 border border-slate-700/50 rounded-xl flex items-center justify-center font-bold text-lg md:text-2xl shadow-xl transform text-white flex-shrink-0">
+            <div className="w-12 md:w-16 h-12 md:h-16 bg-brand-800 border border-brand-700/50 rounded-xl flex items-center justify-center font-bold text-lg md:text-2xl shadow-xl transform text-white flex-shrink-0">
               {user?.fullName?.charAt(0)}
             </div>
           </div>
@@ -388,7 +388,7 @@ const AdminSettings = () => {
 
   return (
     <div className="space-y-10 pb-20">
-      <div className="flex justify-between items-end mb-10 border-b-4 border-black pb-8">
+      <div className="flex justify-between items-end mb-10 border-b-4 border-brand-900 pb-8">
         <div>
           <h2 className="text-4xl font-bold text-white uppercase  tracking-tight text-gradient mb-2">
             System Settings
@@ -400,14 +400,14 @@ const AdminSettings = () => {
       </div>
 
       {message && (
-        <div className="p-4 bg-accent-gold border border-slate-700/50 text-black font-bold rounded-lg shadow-md flex items-center gap-3 animate-in fade-in slide-in-from-top-4">
+        <div className="p-4 bg-accent-gold border border-brand-700/50 text-black font-bold rounded-lg shadow-md flex items-center gap-3 animate-in fade-in slide-in-from-top-4">
           <CheckCircle size={24} />
           {message}
         </div>
       )}
 
       {error && (
-        <div className="p-4 bg-accent-red border border-slate-700/50 text-white font-bold rounded-lg shadow-md flex items-center gap-3 animate-in fade-in slide-in-from-top-4">
+        <div className="p-4 bg-accent-red border border-brand-700/50 text-white font-bold rounded-lg shadow-md flex items-center gap-3 animate-in fade-in slide-in-from-top-4">
           <ShieldAlert size={24} />
           {error}
         </div>
@@ -415,9 +415,9 @@ const AdminSettings = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* School Identity */}
-        <div className="professional-card p-8 bg-slate-900">
+        <div className="professional-card p-8 bg-brand-900">
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-12 bg-accent-gold border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md">
+            <div className="w-12 h-12 bg-accent-gold border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md">
               <Sparkles size={24} className="text-black" />
             </div>
             <h3 className="text-2xl font-bold text-white uppercase  tracking-tight text-gradient">
@@ -427,7 +427,7 @@ const AdminSettings = () => {
 
           <form onSubmit={handleUpdateSettings} className="space-y-6">
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
                 School Name
               </label>
               <input
@@ -441,7 +441,7 @@ const AdminSettings = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
                 Principal Name
               </label>
               <input
@@ -456,7 +456,7 @@ const AdminSettings = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
                 Head Teacher Name
               </label>
               <input
@@ -471,7 +471,7 @@ const AdminSettings = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
                 School Address
               </label>
               <input
@@ -487,7 +487,7 @@ const AdminSettings = () => {
 
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+                <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
                   Current Term
                 </label>
                 <select
@@ -503,7 +503,7 @@ const AdminSettings = () => {
                 </select>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+                <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
                   Academic Year
                 </label>
                 <input
@@ -522,18 +522,18 @@ const AdminSettings = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
                 School Logo
               </label>
-              <div className="flex items-center gap-6 p-6 bg-slate-800 border border-slate-700/50 border-dashed rounded-lg">
+              <div className="flex items-center gap-6 p-6 bg-brand-800 border border-brand-700/50 border-dashed rounded-lg">
                 {settings.logo ? (
                   <img
                     src={settings.logo}
                     alt="Logo"
-                    className="w-20 h-20 object-contain bg-slate-50 p-2 rounded-xl border border-slate-700/50"
+                    className="w-20 h-20 object-contain bg-brand-50 p-2 rounded-xl border border-brand-700/50"
                   />
                 ) : (
-                  <div className="w-20 h-20 bg-slate-700 border border-slate-700/50 rounded-xl flex items-center justify-center text-slate-500">
+                  <div className="w-20 h-20 bg-brand-700 border border-brand-700/50 rounded-xl flex items-center justify-center text-brand-500">
                     <Upload size={32} />
                   </div>
                 )}
@@ -551,7 +551,7 @@ const AdminSettings = () => {
                   >
                     <Upload size={14} /> Upload New
                   </label>
-                  <p className="text-[10px] text-slate-500 mt-2 font-bold uppercase">
+                  <p className="text-[10px] text-brand-500 mt-2 font-bold uppercase">
                     PNG, JPG recommended
                   </p>
                 </div>
@@ -560,13 +560,13 @@ const AdminSettings = () => {
 
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+                <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
                   Primary Color
                 </label>
                 <div className="flex items-center gap-3">
                   <input
                     type="color"
-                    className="w-12 h-12 bg-transparent border border-slate-700/50 rounded-xl cursor-pointer"
+                    className="w-12 h-12 bg-transparent border border-brand-700/50 rounded-xl cursor-pointer"
                     value={settings.primaryColor}
                     onChange={(e) =>
                       setSettings({ ...settings, primaryColor: e.target.value })
@@ -578,13 +578,13 @@ const AdminSettings = () => {
                 </div>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+                <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
                   Secondary Color
                 </label>
                 <div className="flex items-center gap-3">
                   <input
                     type="color"
-                    className="w-12 h-12 bg-transparent border border-slate-700/50 rounded-xl cursor-pointer"
+                    className="w-12 h-12 bg-transparent border border-brand-700/50 rounded-xl cursor-pointer"
                     value={settings.secondaryColor}
                     onChange={(e) =>
                       setSettings({
@@ -611,9 +611,9 @@ const AdminSettings = () => {
         </div>
 
         {/* Security Settings */}
-        <div className="professional-card p-8 bg-slate-900">
+        <div className="professional-card p-8 bg-brand-900">
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-12 bg-accent-red border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md">
+            <div className="w-12 h-12 bg-accent-red border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md">
               <Lock size={24} className="text-white" />
             </div>
             <h3 className="text-2xl font-bold text-white uppercase  tracking-tight text-gradient">
@@ -623,7 +623,7 @@ const AdminSettings = () => {
 
           <form onSubmit={handleChangePassword} className="space-y-6">
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
                 Current Password
               </label>
               <input
@@ -642,7 +642,7 @@ const AdminSettings = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
                 New Password
               </label>
               <input
@@ -661,7 +661,7 @@ const AdminSettings = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
                 Confirm New Password
               </label>
               <input
@@ -688,11 +688,11 @@ const AdminSettings = () => {
             </button>
           </form>
 
-          <div className="mt-10 p-6 bg-accent-red/10 border border-slate-700/50 border-dotted rounded-lg">
+          <div className="mt-10 p-6 bg-accent-red/10 border border-brand-700/50 border-dotted rounded-lg">
             <h4 className="text-accent-red font-bold uppercase  tracking-tight mb-2">
               Security Tip
             </h4>
-            <p className="text-xs text-slate-400 font-bold leading-relaxed">
+            <p className="text-xs text-brand-400 font-bold leading-relaxed">
               Use a strong password with symbols and numbers to keep the hackers
               away from your academy's secrets!
             </p>
@@ -721,69 +721,69 @@ const AdminOverview = () => {
     <div className="space-y-10">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         <div className="professional-card p-8 hover:-translate-y-1 group bg-accent-gold/20 dark:bg-accent-gold/10">
-          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
+          <div className="w-14 h-14 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
             <Users size={28} className="text-black dark:text-white" />
           </div>
-          <h3 className="text-black dark:text-slate-300 uppercase text-sm font-bold tracking-widest mb-2 ">
+          <h3 className="text-black dark:text-brand-300 uppercase text-sm font-bold tracking-widest mb-2 ">
             Total Students
           </h3>
           <p className="text-6xl font-bold text-black dark:text-white tracking-tight text-gradient">
             {stats.studentCount}
           </p>
-          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-full text-xs font-bold uppercase tracking-tight dark:text-slate-300">
+          <div className="mt-4 inline-flex items-center px-3 py-1 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-full text-xs font-bold uppercase tracking-tight dark:text-brand-300">
             Students
           </div>
         </div>
 
         <div className="professional-card p-8 hover:-translate-y-1 group bg-accent-red/20 dark:bg-accent-red/10">
-          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
+          <div className="w-14 h-14 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
             <BookOpen size={28} className="text-black dark:text-white" />
           </div>
-          <h3 className="text-black dark:text-slate-300 uppercase text-sm font-bold tracking-widest mb-2 ">
+          <h3 className="text-black dark:text-brand-300 uppercase text-sm font-bold tracking-widest mb-2 ">
             Subjects
           </h3>
           <p className="text-6xl font-bold text-black dark:text-white tracking-tight text-gradient">
             {stats.subjectCount}
           </p>
-          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-full text-xs font-bold uppercase tracking-tight dark:text-slate-300">
+          <div className="mt-4 inline-flex items-center px-3 py-1 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-full text-xs font-bold uppercase tracking-tight dark:text-brand-300">
             Subjects
           </div>
         </div>
 
         <div className="professional-card p-8 hover:-translate-y-1 group bg-accent-gold/20 dark:bg-accent-gold/10">
-          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
+          <div className="w-14 h-14 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
             <UserCircle size={28} className="text-black dark:text-white" />
           </div>
-          <h3 className="text-black dark:text-slate-300 uppercase text-sm font-bold tracking-widest mb-2 ">
+          <h3 className="text-black dark:text-brand-300 uppercase text-sm font-bold tracking-widest mb-2 ">
             Educators
           </h3>
           <p className="text-6xl font-bold text-black dark:text-white tracking-tight text-gradient">
             {stats.teacherCount}
           </p>
-          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-full text-xs font-bold uppercase tracking-tight dark:text-slate-300">
+          <div className="mt-4 inline-flex items-center px-3 py-1 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-full text-xs font-bold uppercase tracking-tight dark:text-brand-300">
             Teachers
           </div>
         </div>
 
         <div className="professional-card p-8 hover:-translate-y-1 group bg-accent-gold/10 dark:bg-accent-gold/5">
-          <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
+          <div className="w-14 h-14 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-lg flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
             <Sparkles size={28} className="text-black dark:text-white" />
           </div>
-          <h3 className="text-black dark:text-slate-300 uppercase text-sm font-bold tracking-widest mb-2 ">
+          <h3 className="text-black dark:text-brand-300 uppercase text-sm font-bold tracking-widest mb-2 ">
             System Health
           </h3>
           <p className="text-6xl font-bold text-black dark:text-white tracking-tight text-gradient">
             100%
           </p>
-          <div className="mt-4 inline-flex items-center px-3 py-1 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-full text-xs font-bold uppercase tracking-tight dark:text-slate-300">
+          <div className="mt-4 inline-flex items-center px-3 py-1 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-full text-xs font-bold uppercase tracking-tight dark:text-brand-300">
             Operational
           </div>
         </div>
       </div>
 
-      <div className="professional-card p-10 bg-slate-50 dark:bg-slate-900 border border-slate-700/50 shadow-xl">
+      <div className="professional-card p-10 bg-brand-50 dark:bg-brand-900 border border-brand-700/50 shadow-xl">
         <div className="flex items-center gap-4 mb-8">
-          <div className="w-12 h-12 bg-accent-gold border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md">
+          <div className="w-12 h-12 bg-accent-gold border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md">
             <ClipboardCheck size={24} className="text-black" />
           </div>
           <h3 className="text-3xl font-bold text-black dark:text-white uppercase  tracking-tight text-gradient">
@@ -814,7 +814,7 @@ const AdminOverview = () => {
           </Link>
           <Link
             to="/broadsheet"
-            className="btn-accent bg-accent-gold text-xl py-6 flex items-center justify-center gap-3 border border-slate-700/50 shadow-md"
+            className="btn-accent bg-accent-gold text-xl py-6 flex items-center justify-center gap-3 border border-brand-700/50 shadow-md"
           >
             <FileSpreadsheet size={24} />
             Class Broadsheet
@@ -1050,20 +1050,20 @@ const StudentList = () => {
   });
 
   return (
-    <div className="professional-card p-10 bg-slate-50 dark:bg-slate-900">
+    <div className="professional-card p-10 bg-brand-50 dark:bg-brand-900">
       {/* Confirm Delete Modal */}
       {confirmDelete.show && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
-          <div className="professional-card bg-slate-50 dark:bg-slate-900 border border-slate-700/50 shadow-xl p-8 w-full max-w-sm mx-4 rounded-xl">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-brand-950/60 backdrop-blur-sm">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 border border-brand-700/50 shadow-xl p-8 w-full max-w-sm mx-4 rounded-xl">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-accent-red border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md">
+              <div className="w-12 h-12 bg-accent-red border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md">
                 <Trash2 size={22} className="text-white" />
               </div>
               <h3 className="text-xl font-bold text-black dark:text-white uppercase  tracking-tight text-gradient">
                 Are you sure?
               </h3>
             </div>
-            <p className="text-sm font-bold text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+            <p className="text-sm font-bold text-brand-500 dark:text-brand-400 mb-6 leading-relaxed">
               This will permanently remove the legend from the squad. There's no
               undo! 💥
             </p>
@@ -1073,7 +1073,7 @@ const StudentList = () => {
                   executeDeleteStudent(confirmDelete.id);
                   setConfirmDelete({ show: false, id: null, type: "" });
                 }}
-                className="flex-1 py-3 bg-accent-red border border-slate-700/50 rounded-lg font-bold text-white uppercase tracking-tight shadow-md hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
+                className="flex-1 py-3 bg-accent-red border border-brand-700/50 rounded-lg font-bold text-white uppercase tracking-tight shadow-md hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
               >
                 <Trash2 size={16} /> Confirm
               </button>
@@ -1081,7 +1081,7 @@ const StudentList = () => {
                 onClick={() =>
                   setConfirmDelete({ show: false, id: null, type: "" })
                 }
-                className="flex-1 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-lg font-bold text-black dark:text-white uppercase tracking-tight shadow-md hover:-translate-y-1 transition-all"
+                className="flex-1 py-3 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-lg font-bold text-black dark:text-white uppercase tracking-tight shadow-md hover:-translate-y-1 transition-all"
               >
                 Cancel
               </button>
@@ -1089,7 +1089,7 @@ const StudentList = () => {
           </div>
         </div>
       )}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b-4 border-black pb-8 gap-6">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b-4 border-brand-900 pb-8 gap-6">
         <div>
           <h2 className="text-4xl font-bold text-black dark:text-white uppercase  tracking-tight text-gradient mb-2">
             Students Roster 📜
@@ -1137,10 +1137,10 @@ const StudentList = () => {
 
       {message && (
         <div
-          className={`p-6 mb-8 border border-slate-700/50 rounded-lg flex items-center gap-4 ${message.includes("Error") ? "bg-accent-red/20" : "bg-accent-gold/20"}`}
+          className={`p-6 mb-8 border border-brand-700/50 rounded-lg flex items-center gap-4 ${message.includes("Error") ? "bg-accent-red/20" : "bg-accent-gold/20"}`}
         >
           <div
-            className={`w-4 h-4 rounded-full border border-slate-700/50 ${message.includes("Error") ? "bg-accent-red" : "bg-accent-gold"}`}
+            className={`w-4 h-4 rounded-full border border-brand-700/50 ${message.includes("Error") ? "bg-accent-red" : "bg-accent-gold"}`}
           ></div>
           <span className="font-bold uppercase tracking-tight text-black dark:text-white">
             {message}
@@ -1160,13 +1160,13 @@ const StudentList = () => {
       )}
 
       {parentCreds && (
-        <div className="p-8 mb-10 bg-accent-gold border border-slate-700/50 rounded-xl shadow-xl animate-in zoom-in-95 duration-300">
+        <div className="p-8 mb-10 bg-accent-gold border border-brand-700/50 rounded-xl shadow-xl animate-in zoom-in-95 duration-300">
           <div className="flex items-center gap-3 mb-6 text-black font-bold uppercase  tracking-tight text-xl text-gradient">
             <CheckCircle size={28} />
             <span>Parent Access Keys Generated! 🔑</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="bg-accent-black p-4 rounded-lg border border-slate-700/50 shadow-md">
+            <div className="bg-accent-black p-4 rounded-lg border border-brand-700/50 shadow-md">
               <p className="text-xs text-accent-gold/60 uppercase font-bold tracking-widest mb-2">
                 Username
               </p>
@@ -1174,7 +1174,7 @@ const StudentList = () => {
                 {parentCreds.username}
               </p>
             </div>
-            <div className="bg-accent-black p-4 rounded-lg border border-slate-700/50 shadow-md">
+            <div className="bg-accent-black p-4 rounded-lg border border-brand-700/50 shadow-md">
               <p className="text-xs text-accent-gold/60 uppercase font-bold tracking-widest mb-2">
                 Password
               </p>
@@ -1187,15 +1187,15 @@ const StudentList = () => {
       )}
 
       {showAddModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
-          <div className="professional-card bg-slate-50 dark:bg-slate-900 p-6 w-full max-w-2xl relative border border-slate-700/50 shadow-xl my-8">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/60 backdrop-blur-sm overflow-y-auto">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-2xl relative border border-brand-700/50 shadow-xl my-8">
             <button
               onClick={() => setShowAddModal(false)}
-              className="absolute top-4 right-4 text-black dark:text-slate-100 hover:rotate-90 transition-transform"
+              className="absolute top-4 right-4 text-black dark:text-brand-100 hover:rotate-90 transition-transform"
             >
               <X size={24} />
             </button>
-            <h3 className="text-2xl font-bold text-black dark:text-slate-100 uppercase  tracking-tight mb-6 text-gradient">
+            <h3 className="text-2xl font-bold text-black dark:text-brand-100 uppercase  tracking-tight mb-6 text-gradient">
               Enroll New Legend ⭐
             </h3>
 
@@ -1203,7 +1203,7 @@ const StudentList = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Profile Image Section */}
                 <div className="flex flex-col items-center gap-2">
-                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gray-100 dark:bg-slate-800 border-2 border-gray-300 dark:border-slate-700 rounded-lg overflow-hidden shadow-sm relative group">
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gray-100 dark:bg-brand-800 border-2 border-gray-300 dark:border-brand-700 rounded-lg overflow-hidden shadow-sm relative group">
                     {formData.profileImage ? (
                       <img
                         src={formData.profileImage}
@@ -1218,7 +1218,7 @@ const StudentList = () => {
                         </span>
                       </div>
                     )}
-                    <label className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer gap-1">
+                    <label className="absolute inset-0 bg-brand-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer gap-1">
                       <Upload size={20} className="text-white sm:w-6 sm:h-6" />
                       <span className="text-white font-semibold text-[8px] sm:text-xs uppercase tracking-tight">
                         {formData.profileImage
@@ -1251,7 +1251,7 @@ const StudentList = () => {
 
                 <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
                       First Name
                     </label>
                     <input
@@ -1266,7 +1266,7 @@ const StudentList = () => {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
                       Last Name
                     </label>
                     <input
@@ -1281,7 +1281,7 @@ const StudentList = () => {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
                       ID Number
                     </label>
                     <input
@@ -1299,7 +1299,7 @@ const StudentList = () => {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
                       Class
                     </label>
                     <select
@@ -1323,7 +1323,7 @@ const StudentList = () => {
                   </div>
                   {formData.studentClass && ["SSS 1", "SSS 2", "SSS 3"].includes(formData.studentClass) && (
                     <div className="space-y-1">
-                      <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                      <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
                         Section 📚
                       </label>
                       <select
@@ -1344,7 +1344,7 @@ const StudentList = () => {
                     </div>
                   )}
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
                       Date of Birth 🎂
                     </label>
                     <input
@@ -1360,7 +1360,7 @@ const StudentList = () => {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
                       Parent Email 📧
                     </label>
                     <input
@@ -1379,10 +1379,10 @@ const StudentList = () => {
                 </div>
 
                 <div className="md:col-span-2 space-y-2">
-                  <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                  <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
                     Subjects
                   </label>
-                  <div className="space-y-3 p-3 border-2 border-gray-300 dark:border-slate-700 rounded-lg bg-gray-50 dark:bg-slate-800 max-h-48 overflow-y-auto">
+                  <div className="space-y-3 p-3 border-2 border-gray-300 dark:border-brand-700 rounded-lg bg-gray-50 dark:bg-brand-800 max-h-48 overflow-y-auto">
                     {formData.studentClass && ["SSS 1", "SSS 2", "SSS 3"].includes(formData.studentClass)
                       ? Object.entries(getGroupedSubjects(getSubjectsForClass())).map(([section, subs]) => (
                           <div key={section} className="space-y-2">
@@ -1398,7 +1398,7 @@ const StudentList = () => {
                                   className={`p-2 rounded-lg border text-[9px] sm:text-[10px] font-semibold uppercase tracking-tight transition-all ${
                                     formData.subjectIds.includes(sub.id)
                                       ? "bg-blue-500 border-blue-600 shadow-sm text-white"
-                                      : "bg-white dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-700 dark:text-slate-300 hover:border-blue-400"
+                                      : "bg-white dark:bg-brand-700 border-gray-200 dark:border-brand-600 text-gray-700 dark:text-brand-300 hover:border-blue-400"
                                   }`}
                                 >
                                   {sub.name}
@@ -1417,7 +1417,7 @@ const StudentList = () => {
                                 className={`p-2 rounded-lg border text-[9px] sm:text-[10px] font-semibold uppercase tracking-tight transition-all ${
                                   formData.subjectIds.includes(sub.id)
                                     ? "bg-blue-500 border-blue-600 shadow-sm text-white"
-                                    : "bg-white dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-700 dark:text-slate-300 hover:border-blue-400"
+                                    : "bg-white dark:bg-brand-700 border-gray-200 dark:border-brand-600 text-gray-700 dark:text-brand-300 hover:border-blue-400"
                                 }`}
                               >
                                 {sub.name}
@@ -1433,7 +1433,7 @@ const StudentList = () => {
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="btn-secondary w-full py-4 text-lg border border-slate-700/50 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-black dark:text-white flex items-center justify-center gap-2 font-bold"
+                  className="btn-secondary w-full py-4 text-lg border border-brand-700/50 bg-brand-200 dark:bg-brand-700 hover:bg-brand-300 dark:hover:bg-brand-600 text-black dark:text-white flex items-center justify-center gap-2 font-bold"
                 >
                   <X size={20} />
                   Cancel
@@ -1452,15 +1452,15 @@ const StudentList = () => {
       )}
 
       {editingStudent && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
-          <div className="professional-card bg-slate-50 dark:bg-slate-900 p-6 w-full max-w-2xl relative border border-slate-700/50 shadow-xl my-8">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/60 backdrop-blur-sm overflow-y-auto">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-2xl relative border border-brand-700/50 shadow-xl my-8">
             <button
               onClick={() => setEditingStudent(null)}
-              className="absolute top-4 right-4 text-black dark:text-slate-100 hover:rotate-90 transition-transform"
+              className="absolute top-4 right-4 text-black dark:text-brand-100 hover:rotate-90 transition-transform"
             >
               <X size={24} />
             </button>
-            <h3 className="text-2xl font-bold text-black dark:text-slate-100 uppercase  tracking-tight mb-6 text-gradient">
+            <h3 className="text-2xl font-bold text-black dark:text-brand-100 uppercase  tracking-tight mb-6 text-gradient">
               Modify Legend 🛠️
             </h3>
 
@@ -1468,7 +1468,7 @@ const StudentList = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {/* Profile Image Section */}
                 <div className="md:row-span-2 flex flex-col items-center gap-2">
-                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gray-100 dark:bg-slate-800 border-2 border-gray-300 dark:border-slate-700 rounded-lg overflow-hidden shadow-sm relative group">
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gray-100 dark:bg-brand-800 border-2 border-gray-300 dark:border-brand-700 rounded-lg overflow-hidden shadow-sm relative group">
                     {editingStudent.profileImage ? (
                       <img
                         src={editingStudent.profileImage}
@@ -1480,7 +1480,7 @@ const StudentList = () => {
                         {editingStudent.firstName?.charAt(0)}
                       </div>
                     )}
-                    <label className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
+                    <label className="absolute inset-0 bg-brand-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
                       <Upload size={20} className="text-white sm:w-6 sm:h-6" />
                       <input
                         type="file"
@@ -1497,7 +1497,7 @@ const StudentList = () => {
 
                 <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
                       First Name
                     </label>
                     <input
@@ -1514,7 +1514,7 @@ const StudentList = () => {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
                       Last Name
                     </label>
                     <input
@@ -1531,7 +1531,7 @@ const StudentList = () => {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
                       ID Number
                     </label>
                     <input
@@ -1548,7 +1548,7 @@ const StudentList = () => {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
                       Class
                     </label>
                     <select
@@ -1571,7 +1571,7 @@ const StudentList = () => {
                   </div>
                   {editingStudent.studentClass && ["SSS 1", "SSS 2", "SSS 3"].includes(editingStudent.studentClass) && (
                     <div className="space-y-1">
-                      <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                      <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
                         Section 📚
                       </label>
                       <select
@@ -1592,7 +1592,7 @@ const StudentList = () => {
                     </div>
                   )}
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
                       Date of Birth 🎂
                     </label>
                     <input
@@ -1608,7 +1608,7 @@ const StudentList = () => {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                    <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
                       Parent Email 📧
                     </label>
                     <input
@@ -1627,10 +1627,10 @@ const StudentList = () => {
                 </div>
 
                 <div className="md:col-span-2 space-y-2">
-                  <label className="text-xs font-semibold text-black dark:text-slate-300 uppercase tracking-tight">
+                  <label className="text-xs font-semibold text-black dark:text-brand-300 uppercase tracking-tight">
                     Subjects
                   </label>
-                  <div className="space-y-3 p-3 border-2 border-gray-300 dark:border-slate-700 rounded-lg bg-gray-50 dark:bg-slate-800 max-h-48 overflow-y-auto">
+                  <div className="space-y-3 p-3 border-2 border-gray-300 dark:border-brand-700 rounded-lg bg-gray-50 dark:bg-brand-800 max-h-48 overflow-y-auto">
                     {editingStudent.studentClass && ["SSS 1", "SSS 2", "SSS 3"].includes(editingStudent.studentClass)
                       ? Object.entries(getGroupedSubjects(editingStudent.section 
                           ? subjects.filter(s => s.category === "Secondary" && s.level === "Senior" && s.section === editingStudent.section)
@@ -1651,7 +1651,7 @@ const StudentList = () => {
                                       (s) => s.id === sub.id,
                                     )
                                       ? "bg-blue-500 border-blue-600 shadow-sm text-white"
-                                      : "bg-white dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-700 dark:text-slate-300 hover:border-blue-400"
+                                      : "bg-white dark:bg-brand-700 border-gray-200 dark:border-brand-600 text-gray-700 dark:text-brand-300 hover:border-blue-400"
                                   }`}
                                 >
                                   {sub.name}
@@ -1672,7 +1672,7 @@ const StudentList = () => {
                                     (s) => s.id === sub.id,
                                   )
                                     ? "bg-blue-500 border-blue-600 shadow-sm text-white"
-                                    : "bg-white dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-700 dark:text-slate-300 hover:border-blue-400"
+                                    : "bg-white dark:bg-brand-700 border-gray-200 dark:border-brand-600 text-gray-700 dark:text-brand-300 hover:border-blue-400"
                                 }`}
                               >
                                 {sub.name}
@@ -1688,7 +1688,7 @@ const StudentList = () => {
                 <button
                   type="button"
                   onClick={() => setEditingStudent(null)}
-                  className="btn-secondary w-full py-4 text-lg border border-slate-700/50 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-black dark:text-white flex items-center justify-center gap-2 font-bold"
+                  className="btn-secondary w-full py-4 text-lg border border-brand-700/50 bg-brand-200 dark:bg-brand-700 hover:bg-brand-300 dark:hover:bg-brand-600 text-black dark:text-white flex items-center justify-center gap-2 font-bold"
                 >
                   <X size={20} />
                   Cancel
@@ -1709,17 +1709,17 @@ const StudentList = () => {
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="text-left border-b-4 border-black">
-              <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm">
+            <tr className="text-left border-b-4 border-brand-900">
+              <th className="py-6 font-bold text-black dark:text-brand-300 uppercase tracking-widest text-sm">
                 Superstar
               </th>
-              <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm">
+              <th className="py-6 font-bold text-black dark:text-brand-300 uppercase tracking-widest text-sm">
                 ID Card
               </th>
-              <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm">
+              <th className="py-6 font-bold text-black dark:text-brand-300 uppercase tracking-widest text-sm">
                 Class
               </th>
-              <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm text-right">
+              <th className="py-6 font-bold text-black dark:text-brand-300 uppercase tracking-widest text-sm text-right">
                 Action
               </th>
             </tr>
@@ -1732,7 +1732,7 @@ const StudentList = () => {
               >
                 <td className="py-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-lg flex items-center justify-center overflow-hidden shadow-md group-hover:rotate-3 transition-transform">
+                    <div className="w-14 h-14 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-lg flex items-center justify-center overflow-hidden shadow-md group-hover:rotate-3 transition-transform">
                       {s.profileImage ? (
                         <img
                           src={s.profileImage}
@@ -1751,12 +1751,12 @@ const StudentList = () => {
                   </div>
                 </td>
                 <td className="py-6">
-                  <span className="font-mono font-bold text-gray-500 dark:text-slate-400">
+                  <span className="font-mono font-bold text-gray-500 dark:text-brand-400">
                     #{s.registrationNumber}
                   </span>
                 </td>
                 <td className="py-6">
-                  <span className="bg-accent-gold border border-slate-700/50 px-3 py-1 rounded-lg font-bold uppercase text-xs tracking-widest text-black shadow-xl-xs">
+                  <span className="bg-accent-gold border border-brand-700/50 px-3 py-1 rounded-lg font-bold uppercase text-xs tracking-widest text-black shadow-xl-xs">
                     {s.studentClass}
                   </span>
                 </td>
@@ -1764,13 +1764,13 @@ const StudentList = () => {
                   <div className="flex justify-end gap-2">
                     <button
                       onClick={() => setEditingStudent(s)}
-                      className="p-3 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-xl hover:bg-accent-gold transition-all shadow-xl-xs"
+                      className="p-3 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-xl hover:bg-accent-gold transition-all shadow-xl-xs"
                     >
                       <Edit3 size={18} />
                     </button>
                     <button
                       onClick={() => handleDeleteStudent(s.id)}
-                      className="p-3 bg-accent-red text-white border border-slate-700/50 rounded-xl hover:scale-110 transition-all shadow-xl-xs"
+                      className="p-3 bg-accent-red text-white border border-brand-700/50 rounded-xl hover:scale-110 transition-all shadow-xl-xs"
                     >
                       <Trash2 size={18} />
                     </button>
@@ -1825,8 +1825,8 @@ const SubjectList = () => {
   };
 
   return (
-    <div className="professional-card p-10 bg-slate-50 dark:bg-slate-900">
-      <div className="flex justify-between items-end mb-10 border-b-4 border-black pb-8">
+    <div className="professional-card p-10 bg-brand-50 dark:bg-brand-900">
+      <div className="flex justify-between items-end mb-10 border-b-4 border-brand-900 pb-8">
         <div>
           <h2 className="text-4xl font-bold text-black dark:text-white uppercase  tracking-tight text-gradient mb-2">
             Knowledge Vault 📚
@@ -1838,21 +1838,21 @@ const SubjectList = () => {
         <div className="flex gap-4">
           <button
             onClick={() => setShowAddModal(true)}
-            className="w-16 h-16 bg-accent-gold border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md hover:-translate-y-1 transition-all group"
+            className="w-16 h-16 bg-accent-gold border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md hover:-translate-y-1 transition-all group"
           >
             <Plus
               size={32}
               className="text-black group-hover:scale-110 transition-transform"
             />
           </button>
-          <div className="w-16 h-16 bg-accent-red border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md">
+          <div className="w-16 h-16 bg-accent-red border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md">
             <BookOpen size={32} className="text-black" />
           </div>
         </div>
       </div>
 
       {message && (
-        <div className="p-4 mb-8 bg-accent-gold/20 border border-slate-700/50 rounded-lg font-bold uppercase tracking-tight text-black dark:text-white flex items-center gap-3">
+        <div className="p-4 mb-8 bg-accent-gold/20 border border-brand-700/50 rounded-lg font-bold uppercase tracking-tight text-black dark:text-white flex items-center gap-3">
           <Sparkles size={20} className="text-accent-gold" />
           {message}
         </div>
@@ -1860,8 +1860,8 @@ const SubjectList = () => {
 
       {/* Add Subject Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="professional-card bg-slate-50 dark:bg-slate-900 p-8 w-full max-w-md relative border border-slate-700/50 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/50 backdrop-blur-sm">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-8 w-full max-w-md relative border border-brand-700/50 shadow-xl">
             <button
               onClick={() => setShowAddModal(false)}
               className="absolute top-4 right-4 text-black dark:text-white hover:rotate-90 transition-transform"
@@ -1873,7 +1873,7 @@ const SubjectList = () => {
             </h3>
             <form onSubmit={handleAddSubject} className="space-y-6">
               <div className="space-y-2">
-                <label className="text-sm font-bold text-black dark:text-slate-300 uppercase tracking-widest">
+                <label className="text-sm font-bold text-black dark:text-brand-300 uppercase tracking-widest">
                   Subject Name
                 </label>
                 <input
@@ -1888,7 +1888,7 @@ const SubjectList = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-bold text-black dark:text-slate-300 uppercase tracking-widest">
+                <label className="text-sm font-bold text-black dark:text-brand-300 uppercase tracking-widest">
                   Category
                 </label>
                 <select
@@ -1904,7 +1904,7 @@ const SubjectList = () => {
                 </select>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-bold text-black dark:text-slate-300 uppercase tracking-widest">
+                <label className="text-sm font-bold text-black dark:text-brand-300 uppercase tracking-widest">
                   Level
                 </label>
                 <select
@@ -1935,19 +1935,19 @@ const SubjectList = () => {
         {subjects.map((sub) => (
           <div
             key={sub.id}
-            className="professional-card p-8 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 shadow-md hover:-translate-y-2 transition-transform group cursor-pointer"
+            className="professional-card p-8 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 shadow-md hover:-translate-y-2 transition-transform group cursor-pointer"
           >
-            <div className="w-14 h-14 bg-accent-gold/10 dark:bg-accent-gold/5 border border-slate-700/50 rounded-lg mb-6 flex items-center justify-center group-hover:bg-accent-gold transition-colors">
+            <div className="w-14 h-14 bg-accent-gold/10 dark:bg-accent-gold/5 border border-brand-700/50 rounded-lg mb-6 flex items-center justify-center group-hover:bg-accent-gold transition-colors">
               <BookOpen size={28} className="text-black dark:text-white" />
             </div>
             <h4 className="text-2xl font-bold text-black dark:text-white uppercase  tracking-tight text-gradient mb-4">
               {sub.name}
             </h4>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="bg-black text-white px-3 py-1 rounded-lg font-bold uppercase text-[10px] tracking-widest border border-white/20">
+              <span className="bg-brand-950 text-white px-3 py-1 rounded-lg font-bold uppercase text-[10px] tracking-widest border border-white/20">
                 {sub.category}
               </span>
-              <span className="bg-accent-gold border border-slate-700/50 px-3 py-1 rounded-lg font-bold uppercase text-[10px] tracking-widest">
+              <span className="bg-accent-gold border border-brand-700/50 px-3 py-1 rounded-lg font-bold uppercase text-[10px] tracking-widest">
                 {sub.level}
               </span>
             </div>
@@ -2132,17 +2132,17 @@ const TeacherManagement = () => {
     <div className="space-y-10">
       {/* Confirm Delete Modal */}
       {confirmDelete.show && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
-          <div className="professional-card bg-slate-50 dark:bg-slate-900 border border-slate-700/50 shadow-xl p-8 w-full max-w-sm mx-4 rounded-xl">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-brand-950/60 backdrop-blur-sm">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 border border-brand-700/50 shadow-xl p-8 w-full max-w-sm mx-4 rounded-xl">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-accent-red border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md">
+              <div className="w-12 h-12 bg-accent-red border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md">
                 <Trash2 size={22} className="text-white" />
               </div>
               <h3 className="text-xl font-bold text-black dark:text-white uppercase  tracking-tight text-gradient">
                 Are you sure?
               </h3>
             </div>
-            <p className="text-sm font-bold text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+            <p className="text-sm font-bold text-brand-500 dark:text-brand-400 mb-6 leading-relaxed">
               This will permanently eject this educator from the academy. No
               take-backs! 🚀
             </p>
@@ -2152,7 +2152,7 @@ const TeacherManagement = () => {
                   executeDeleteTeacher(confirmDelete.id);
                   setConfirmDelete({ show: false, id: null, type: "" });
                 }}
-                className="flex-1 py-3 bg-accent-red border border-slate-700/50 rounded-lg font-bold text-white uppercase tracking-tight shadow-md hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
+                className="flex-1 py-3 bg-accent-red border border-brand-700/50 rounded-lg font-bold text-white uppercase tracking-tight shadow-md hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
               >
                 <Trash2 size={16} /> Confirm
               </button>
@@ -2160,7 +2160,7 @@ const TeacherManagement = () => {
                 onClick={() =>
                   setConfirmDelete({ show: false, id: null, type: "" })
                 }
-                className="flex-1 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-lg font-bold text-black dark:text-white uppercase tracking-tight shadow-md hover:-translate-y-1 transition-all"
+                className="flex-1 py-3 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-lg font-bold text-black dark:text-white uppercase tracking-tight shadow-md hover:-translate-y-1 transition-all"
               >
                 Cancel
               </button>
@@ -2170,12 +2170,12 @@ const TeacherManagement = () => {
       )}
 
       {/* Teacher Count Banner */}
-      <div className="flex items-center gap-4 px-6 py-4 bg-accent-gold/20 border border-slate-700/50 rounded-lg shadow-md">
-        <div className="w-10 h-10 bg-accent-gold border border-slate-700/50 rounded-xl flex items-center justify-center shadow-md">
+      <div className="flex items-center gap-4 px-6 py-4 bg-accent-gold/20 border border-brand-700/50 rounded-lg shadow-md">
+        <div className="w-10 h-10 bg-accent-gold border border-brand-700/50 rounded-xl flex items-center justify-center shadow-md">
           <UserCircle size={20} className="text-black" />
         </div>
         <div>
-          <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+          <p className="text-xs font-bold text-brand-500 dark:text-brand-400 uppercase tracking-widest">
             Total Educators on Roster
           </p>
           <p className="text-2xl font-bold text-black dark:text-white tracking-tight text-gradient">
@@ -2187,7 +2187,7 @@ const TeacherManagement = () => {
         </div>
       </div>
 
-      <div className="professional-card p-10 bg-slate-50 dark:bg-slate-900">
+      <div className="professional-card p-10 bg-brand-50 dark:bg-brand-900">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-3xl font-bold text-black dark:text-white uppercase  tracking-tight text-gradient">
             Hire New Educator! 🍎
@@ -2203,8 +2203,8 @@ const TeacherManagement = () => {
       </div>
 
       {showTeacherForm && (
-      <div className="fixed inset-0 z-40 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-        <div className="professional-card bg-slate-50 dark:bg-slate-900 p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-slate-700/50 shadow-xl relative">
+      <div className="fixed inset-0 z-40 flex items-center justify-center p-4 bg-brand-950/50 backdrop-blur-sm">
+        <div className="professional-card bg-brand-50 dark:bg-brand-900 p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-brand-700/50 shadow-xl relative">
           <button
             onClick={() => {
               setFormData({
@@ -2231,10 +2231,10 @@ const TeacherManagement = () => {
 
           {message && (
             <div
-              className={`p-6 mb-8 border border-slate-700/50 rounded-lg flex items-center gap-4 ${message.includes("Error") ? "bg-accent-red/20" : "bg-accent-gold/20"}`}
+              className={`p-6 mb-8 border border-brand-700/50 rounded-lg flex items-center gap-4 ${message.includes("Error") ? "bg-accent-red/20" : "bg-accent-gold/20"}`}
             >
               <div
-                className={`w-4 h-4 rounded-full border border-slate-700/50 flex-shrink-0 ${message.includes("Error") ? "bg-accent-red" : "bg-accent-gold"}`}
+                className={`w-4 h-4 rounded-full border border-brand-700/50 flex-shrink-0 ${message.includes("Error") ? "bg-accent-red" : "bg-accent-gold"}`}
               ></div>
               <span className="font-bold uppercase tracking-tight text-black dark:text-white text-sm">
                 {message}
@@ -2243,13 +2243,13 @@ const TeacherManagement = () => {
           )}
 
           {creds && (
-            <div className="p-8 mb-10 bg-accent-gold border border-slate-700/50 rounded-xl shadow-xl">
+            <div className="p-8 mb-10 bg-accent-gold border border-brand-700/50 rounded-xl shadow-xl">
               <div className="flex items-center gap-3 mb-6 text-black font-bold uppercase  tracking-tight text-lg text-gradient">
                 <CheckCircle size={28} />
                 <span>Teacher Keys Generated! 🔑</span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-black p-4 rounded-lg border border-slate-700/50 shadow-md">
+                <div className="bg-brand-950 p-4 rounded-lg border border-brand-700/50 shadow-md">
                   <p className="text-xs text-accent-gold/60 uppercase font-bold tracking-widest mb-2">
                     Login Username
                   </p>
@@ -2257,7 +2257,7 @@ const TeacherManagement = () => {
                     {creds.username}
                   </p>
                 </div>
-                <div className="bg-black p-4 rounded-lg border border-slate-700/50 shadow-md relative">
+                <div className="bg-brand-950 p-4 rounded-lg border border-brand-700/50 shadow-md relative">
                   <p className="text-xs text-accent-gold/60 uppercase font-bold tracking-widest mb-2">
                     Login Password
                   </p>
@@ -2285,7 +2285,7 @@ const TeacherManagement = () => {
             className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
           <div className="md:col-span-2 flex flex-col items-center gap-3 mb-4">
-            <div className="w-24 h-24 bg-gray-100 dark:bg-slate-800 border border-slate-700/50 rounded-lg overflow-hidden shadow-md relative group">
+            <div className="w-24 h-24 bg-gray-100 dark:bg-brand-800 border border-brand-700/50 rounded-lg overflow-hidden shadow-md relative group">
               {formData.profileImage ? (
                 <img
                   src={formData.profileImage}
@@ -2300,7 +2300,7 @@ const TeacherManagement = () => {
                   </span>
                 </div>
               )}
-              <label className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer gap-2">
+              <label className="absolute inset-0 bg-brand-950/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer gap-2">
                 <Upload size={24} className="text-white" />
                 <span className="text-white font-bold text-xs uppercase tracking-widest">
                   {formData.profileImage ? "Change" : "Upload"}
@@ -2328,7 +2328,7 @@ const TeacherManagement = () => {
           </div>
 
           <div className="space-y-2">
-            <label className="text-base font-bold text-black dark:text-slate-300 uppercase tracking-tight text-gradient">
+            <label className="text-base font-bold text-black dark:text-brand-300 uppercase tracking-tight text-gradient">
               Full Name
             </label>
             <input
@@ -2343,7 +2343,7 @@ const TeacherManagement = () => {
             />
           </div>
           <div className="space-y-2">
-            <label className="text-base font-bold text-black dark:text-slate-300 uppercase tracking-tight text-gradient">
+            <label className="text-base font-bold text-black dark:text-brand-300 uppercase tracking-tight text-gradient">
               Email Address
             </label>
             <input
@@ -2359,7 +2359,7 @@ const TeacherManagement = () => {
           </div>
 
           <div className="space-y-2">
-            <label className="text-base font-bold text-black dark:text-slate-300 uppercase tracking-tight text-gradient">
+            <label className="text-base font-bold text-black dark:text-brand-300 uppercase tracking-tight text-gradient">
               Assign Class (Optional)
             </label>
             <select
@@ -2379,10 +2379,10 @@ const TeacherManagement = () => {
           </div>
 
           <div className="space-y-2 md:col-span-2">
-            <label className="text-base font-bold text-black dark:text-slate-300 uppercase tracking-tight text-gradient">
+            <label className="text-base font-bold text-black dark:text-brand-300 uppercase tracking-tight text-gradient">
               Assign Subjects (Select Multiple)
             </label>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 p-4 border border-slate-700/50 rounded-lg bg-gray-50 dark:bg-slate-800 shadow-inner max-h-56 overflow-y-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 p-4 border border-brand-700/50 rounded-lg bg-gray-50 dark:bg-brand-800 shadow-inner max-h-56 overflow-y-auto">
               {subjects.map((s) => (
                 <button
                   key={s.id}
@@ -2390,8 +2390,8 @@ const TeacherManagement = () => {
                   onClick={() => handleSubjectToggle(s.name)}
                   className={`p-3 rounded-xl border-2 font-bold text-[10px] uppercase tracking-tight transition-all ${
                     formData.assignedSubject.includes(s.name)
-                      ? "bg-accent-gold border-black shadow-xl-xs -translate-y-1 text-black"
-                      : "bg-slate-50 dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-400 dark:text-slate-500 hover:border-black"
+                      ? "bg-accent-gold border-brand-900 shadow-xl-xs -translate-y-1 text-black"
+                      : "bg-brand-50 dark:bg-brand-700 border-gray-200 dark:border-brand-600 text-gray-400 dark:text-brand-500 hover:border-brand-900"
                   }`}
                 >
                   {s.name}
@@ -2414,10 +2414,10 @@ const TeacherManagement = () => {
                     })
                   }
                 />
-                <div className="w-14 h-8 bg-gray-200 border border-slate-700/50 rounded-full peer peer-checked:bg-accent-gold transition-all"></div>
-                <div className="absolute left-1 top-1 w-6 h-6 bg-slate-50 border border-slate-700/50 rounded-full transition-all peer-checked:translate-x-6"></div>
+                <div className="w-14 h-8 bg-gray-200 border border-brand-700/50 rounded-full peer peer-checked:bg-accent-gold transition-all"></div>
+                <div className="absolute left-1 top-1 w-6 h-6 bg-brand-50 border border-brand-700/50 rounded-full transition-all peer-checked:translate-x-6"></div>
               </div>
-              <span className="font-bold uppercase tracking-tight text-black dark:text-slate-300 text-sm group-hover:text-accent-red transition-colors">
+              <span className="font-bold uppercase tracking-tight text-black dark:text-brand-300 text-sm group-hover:text-accent-red transition-colors">
                 Form Teacher
               </span>
             </label>
@@ -2435,10 +2435,10 @@ const TeacherManagement = () => {
                     })
                   }
                 />
-                <div className="w-14 h-8 bg-gray-200 border border-slate-700/50 rounded-full peer peer-checked:bg-accent-red transition-all"></div>
-                <div className="absolute left-1 top-1 w-6 h-6 bg-slate-50 border border-slate-700/50 rounded-full transition-all peer-checked:translate-x-6"></div>
+                <div className="w-14 h-8 bg-gray-200 border border-brand-700/50 rounded-full peer peer-checked:bg-accent-red transition-all"></div>
+                <div className="absolute left-1 top-1 w-6 h-6 bg-brand-50 border border-brand-700/50 rounded-full transition-all peer-checked:translate-x-6"></div>
               </div>
-              <span className="font-bold uppercase tracking-tight text-black dark:text-slate-300 text-sm group-hover:text-accent-gold transition-colors">
+              <span className="font-bold uppercase tracking-tight text-black dark:text-brand-300 text-sm group-hover:text-accent-gold transition-colors">
                 Subject Teacher
               </span>
             </label>
@@ -2468,7 +2468,7 @@ const TeacherManagement = () => {
                 setCreds(null);
                 setShowTeacherForm(false);
               }}
-              className="flex-1 btn-primary bg-slate-300 dark:bg-slate-700 text-black dark:text-white py-4 text-lg flex items-center justify-center gap-3 border border-slate-700/50"
+              className="flex-1 btn-primary bg-brand-300 dark:bg-brand-700 text-black dark:text-white py-4 text-lg flex items-center justify-center gap-3 border border-brand-700/50"
             >
               <X size={24} />
               Cancel
@@ -2479,27 +2479,27 @@ const TeacherManagement = () => {
       </div>
       )}
 
-      <div className="professional-card p-10 bg-slate-50 dark:bg-slate-900">
+      <div className="professional-card p-10 bg-brand-50 dark:bg-brand-900">
         <h2 className="text-3xl font-bold text-black dark:text-white mb-8 uppercase  tracking-tight text-gradient">
           The Educators Squad 🎓
         </h2>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="text-left border-b-4 border-black">
-                <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm">
+              <tr className="text-left border-b-4 border-brand-900">
+                <th className="py-6 font-bold text-black dark:text-brand-300 uppercase tracking-widest text-sm">
                   Full Name
                 </th>
-                <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm">
+                <th className="py-6 font-bold text-black dark:text-brand-300 uppercase tracking-widest text-sm">
                   Username
                 </th>
-                <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm text-center">
+                <th className="py-6 font-bold text-black dark:text-brand-300 uppercase tracking-widest text-sm text-center">
                   Roles
                 </th>
-                <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm text-center">
+                <th className="py-6 font-bold text-black dark:text-brand-300 uppercase tracking-widest text-sm text-center">
                   Assignment
                 </th>
-                <th className="py-6 font-bold text-black dark:text-slate-300 uppercase tracking-widest text-sm text-right">
+                <th className="py-6 font-bold text-black dark:text-brand-300 uppercase tracking-widest text-sm text-right">
                   Actions
                 </th>
               </tr>
@@ -2512,7 +2512,7 @@ const TeacherManagement = () => {
                 >
                   <td className="py-6 font-bold text-lg text-black dark:text-white uppercase tracking-tight ">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 border border-slate-700/50 rounded-xl flex items-center justify-center overflow-hidden shadow-md group-hover:rotate-3 transition-transform">
+                      <div className="w-12 h-12 bg-brand-50 dark:bg-brand-800 border border-brand-700/50 rounded-xl flex items-center justify-center overflow-hidden shadow-md group-hover:rotate-3 transition-transform">
                         {t.profileImage ? (
                           <img
                             src={t.profileImage}
@@ -2534,12 +2534,12 @@ const TeacherManagement = () => {
                   <td className="py-6">
                     <div className="flex flex-wrap justify-center gap-2">
                       {t.isFormTeacher && (
-                        <span className="bg-accent-gold text-black border border-slate-700/50 px-2 py-1 rounded-lg font-bold uppercase text-[10px] tracking-tight">
+                        <span className="bg-accent-gold text-black border border-brand-700/50 px-2 py-1 rounded-lg font-bold uppercase text-[10px] tracking-tight">
                           Form
                         </span>
                       )}
                       {t.isSubjectTeacher && (
-                        <span className="bg-accent-red text-white border border-slate-700/50 px-2 py-1 rounded-lg font-bold uppercase text-[10px] tracking-tight">
+                        <span className="bg-accent-red text-white border border-brand-700/50 px-2 py-1 rounded-lg font-bold uppercase text-[10px] tracking-tight">
                           Subject
                         </span>
                       )}
@@ -2548,7 +2548,7 @@ const TeacherManagement = () => {
                   <td className="py-6 text-center">
                     <div className="flex flex-col items-center gap-2">
                       {t.assignedClass && (
-                        <span className="bg-black text-accent-gold px-2 py-1 rounded-md font-bold uppercase text-[10px] tracking-widest border border-accent-gold shadow-xl-xs">
+                        <span className="bg-brand-950 text-accent-gold px-2 py-1 rounded-md font-bold uppercase text-[10px] tracking-widest border border-accent-gold shadow-xl-xs">
                           {t.assignedClass}
                         </span>
                       )}
@@ -2557,7 +2557,7 @@ const TeacherManagement = () => {
                           t.assignedSubject.split(", ").map((sub, idx) => (
                             <span
                               key={idx}
-                              className="bg-slate-50 dark:bg-slate-800 text-black dark:text-white px-2 py-0.5 rounded-md font-bold uppercase text-[8px] tracking-widest border border-black whitespace-nowrap"
+                              className="bg-brand-50 dark:bg-brand-800 text-black dark:text-white px-2 py-0.5 rounded-md font-bold uppercase text-[8px] tracking-widest border border-brand-900 whitespace-nowrap"
                             >
                               {sub}
                             </span>
@@ -2574,13 +2574,13 @@ const TeacherManagement = () => {
                     <div className="flex justify-end gap-2">
                       <button
                         onClick={() => setEditingTeacher(t)}
-                        className="p-2 bg-accent-gold border border-slate-700/50 rounded-xl hover:-translate-y-1 transition-all"
+                        className="p-2 bg-accent-gold border border-brand-700/50 rounded-xl hover:-translate-y-1 transition-all"
                       >
                         <Edit3 size={18} className="text-black" />
                       </button>
                       <button
                         onClick={() => handleDelete(t.id)}
-                        className="p-2 bg-accent-red border border-slate-700/50 rounded-xl hover:-translate-y-1 transition-all"
+                        className="p-2 bg-accent-red border border-brand-700/50 rounded-xl hover:-translate-y-1 transition-all"
                       >
                         <Trash2 size={18} className="text-white" />
                       </button>
@@ -2595,8 +2595,8 @@ const TeacherManagement = () => {
 
       {/* Edit Teacher Modal */}
       {editingTeacher && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="professional-card bg-slate-50 dark:bg-slate-900 p-8 w-full max-w-2xl relative border border-slate-700/50 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/50 backdrop-blur-sm">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-8 w-full max-w-2xl relative border border-brand-700/50 shadow-xl">
             <button
               onClick={() => setEditingTeacher(null)}
               className="absolute top-4 right-4 text-black dark:text-white hover:rotate-90 transition-transform"
@@ -2611,7 +2611,7 @@ const TeacherManagement = () => {
               className="grid grid-cols-1 md:grid-cols-2 gap-6"
             >
               <div className="md:col-span-2 flex flex-col items-center gap-4 mb-2">
-                <div className="w-24 h-24 bg-gray-100 dark:bg-slate-800 border border-slate-700/50 rounded-lg overflow-hidden shadow-md relative group">
+                <div className="w-24 h-24 bg-gray-100 dark:bg-brand-800 border border-brand-700/50 rounded-lg overflow-hidden shadow-md relative group">
                   {editingTeacher.profileImage ? (
                     <img
                       src={editingTeacher.profileImage}
@@ -2623,7 +2623,7 @@ const TeacherManagement = () => {
                       {editingTeacher.fullName?.charAt(0)}
                     </div>
                   )}
-                  <label className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
+                  <label className="absolute inset-0 bg-brand-950/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
                     <Upload size={20} className="text-white" />
                     <input
                       type="file"
@@ -2636,7 +2636,7 @@ const TeacherManagement = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-bold text-black dark:text-slate-300 uppercase tracking-widest">
+                <label className="text-sm font-bold text-black dark:text-brand-300 uppercase tracking-widest">
                   Full Name
                 </label>
                 <input
@@ -2653,7 +2653,7 @@ const TeacherManagement = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-bold text-black dark:text-slate-300 uppercase tracking-widest">
+                <label className="text-sm font-bold text-black dark:text-brand-300 uppercase tracking-widest">
                   Email Address
                 </label>
                 <input
@@ -2670,7 +2670,7 @@ const TeacherManagement = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-bold text-black dark:text-slate-300 uppercase tracking-widest">
+                <label className="text-sm font-bold text-black dark:text-brand-300 uppercase tracking-widest">
                   Assign Class
                 </label>
                 <select
@@ -2692,10 +2692,10 @@ const TeacherManagement = () => {
                 </select>
               </div>
               <div className="space-y-2 md:col-span-2">
-                <label className="text-sm font-bold text-black dark:text-slate-300 uppercase tracking-widest">
+                <label className="text-sm font-bold text-black dark:text-brand-300 uppercase tracking-widest">
                   Assign Subjects (Select Multiple)
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4 border border-slate-700/50 rounded-lg bg-gray-50 dark:bg-slate-800 shadow-inner max-h-40 overflow-y-auto">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4 border border-brand-700/50 rounded-lg bg-gray-50 dark:bg-brand-800 shadow-inner max-h-40 overflow-y-auto">
                   {subjects.map((s) => (
                     <button
                       key={s.id}
@@ -2705,8 +2705,8 @@ const TeacherManagement = () => {
                         (editingTeacher.assignedSubject || "")
                           .split(", ")
                           .includes(s.name)
-                          ? "bg-accent-gold border-black shadow-xl-xs -translate-y-1 text-black"
-                          : "bg-slate-50 dark:bg-slate-700 border-gray-200 dark:border-slate-600 text-gray-400 dark:text-slate-500 hover:border-black"
+                          ? "bg-accent-gold border-brand-900 shadow-xl-xs -translate-y-1 text-black"
+                          : "bg-brand-50 dark:bg-brand-700 border-gray-200 dark:border-brand-600 text-gray-400 dark:text-brand-500 hover:border-brand-900"
                       }`}
                     >
                       {s.name}
@@ -2718,7 +2718,7 @@ const TeacherManagement = () => {
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="checkbox"
-                    className="w-6 h-6 border border-slate-700/50 rounded-lg checked:bg-accent-gold"
+                    className="w-6 h-6 border border-brand-700/50 rounded-lg checked:bg-accent-gold"
                     checked={editingTeacher.isFormTeacher}
                     onChange={(e) =>
                       setEditingTeacher({
@@ -2727,14 +2727,14 @@ const TeacherManagement = () => {
                       })
                     }
                   />
-                  <span className="font-bold uppercase tracking-tight text-black dark:text-slate-300">
+                  <span className="font-bold uppercase tracking-tight text-black dark:text-brand-300">
                     Form Teacher
                   </span>
                 </label>
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="checkbox"
-                    className="w-6 h-6 border border-slate-700/50 rounded-lg checked:bg-accent-red"
+                    className="w-6 h-6 border border-brand-700/50 rounded-lg checked:bg-accent-red"
                     checked={editingTeacher.isSubjectTeacher}
                     onChange={(e) =>
                       setEditingTeacher({
@@ -2743,7 +2743,7 @@ const TeacherManagement = () => {
                       })
                     }
                   />
-                  <span className="font-bold uppercase tracking-tight text-black dark:text-slate-300">
+                  <span className="font-bold uppercase tracking-tight text-black dark:text-brand-300">
                     Subject Teacher
                   </span>
                 </label>

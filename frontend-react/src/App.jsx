@@ -14,13 +14,13 @@ import ParentDashboard from "./pages/ParentDashboard";
 import Broadsheet from "./pages/Broadsheet";
 
 const NotFound = () => (
-  <div className="min-h-screen flex flex-col items-center justify-center bg-slate-950 text-white gap-6">
+  <div className="min-h-screen flex flex-col items-center justify-center bg-brand-950 text-white gap-6">
     <div className="text-center">
       <h1 className="text-7xl font-bold text-accent-gold mb-2">404</h1>
-      <p className="text-2xl font-semibold text-slate-200 mb-2">
+      <p className="text-2xl font-semibold text-brand-200 mb-2">
         Page Not Found
       </p>
-      <p className="text-slate-400 font-medium mb-8">
+      <p className="text-brand-400 font-medium mb-8">
         Oops! This page doesn't exist or was moved.
       </p>
       <Link
@@ -93,10 +93,10 @@ function App() {
 
   if (settingsLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-950">
+      <div className="min-h-screen flex items-center justify-center bg-brand-950">
         <div className="text-center">
-          <div className="w-12 h-12 border-3 border-slate-600 border-t-accent-gold rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-300 font-semibold text-sm">
+          <div className="w-12 h-12 border-3 border-brand-600 border-t-accent-gold rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-brand-300 font-semibold text-sm">
             Loading...
           </p>
         </div>

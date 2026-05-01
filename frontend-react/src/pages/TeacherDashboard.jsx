@@ -70,18 +70,18 @@ const TeacherDashboard = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-[#0f172a] relative overflow-hidden">
+    <div className="flex flex-col md:flex-row h-screen bg-transparent relative overflow-hidden">
       <AcademicBackground />
 
       {/* Mobile Header */}
-      <div className="md:hidden flex items-center justify-between bg-slate-900 border-b-4 border-black p-4 sticky top-0 z-50">
+      <div className="md:hidden flex items-center justify-between bg-brand-900 border-b-4 border-brand-900 p-4 sticky top-0 z-50">
         <div className="flex items-center gap-2">
           <LayoutDashboard size={24} className="text-accent-gold" />
-          <h1 className="text-lg font-bold text-slate-100 uppercase">Teacher Hub</h1>
+          <h1 className="text-lg font-bold text-brand-100 uppercase">Teacher Hub</h1>
         </div>
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="p-2 hover:bg-slate-800 rounded-lg"
+          className="p-2 hover:bg-brand-800 rounded-lg"
         >
           {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -90,20 +90,20 @@ const TeacherDashboard = () => {
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/50 md:hidden z-30"
+          className="fixed inset-0 bg-brand-950/50 md:hidden z-30"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
       <div
-        className={`fixed md:relative md:flex w-64 md:w-72 h-[calc(100vh-64px)] md:h-screen bg-slate-900 border-r-4 border-black p-4 md:p-8 flex flex-col shadow-xl z-40 overflow-y-auto transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
+        className={`fixed md:relative md:flex w-64 md:w-72 h-[calc(100vh-64px)] md:h-screen bg-brand-900 border-r-4 border-brand-900 p-4 md:p-8 flex flex-col shadow-xl z-40 overflow-y-auto transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
       >
         <div className="hidden md:flex items-center gap-3 mb-8 md:mb-12">
-          <div className="w-12 h-12 bg-accent-gold border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md transform">
+          <div className="w-12 h-12 bg-accent-gold border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md transform">
             <LayoutDashboard size={24} className="text-black" />
           </div>
-          <h2 className="text-xl md:text-2xl font-bold tracking-tight uppercase  text-slate-100 text-gradient">
+          <h2 className="text-xl md:text-2xl font-bold tracking-tight uppercase  text-brand-100 text-gradient">
             Teacher <span className="text-accent-red">Hub</span>
           </h2>
         </div>
@@ -113,7 +113,7 @@ const TeacherDashboard = () => {
             end
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-brand-900 bg-accent-gold/30" : "border-transparent hover:border-brand-900 hover:bg-accent-gold/20"}`
             }
           >
             <LayoutDashboard className="mr-2 md:mr-3" size={18} />
@@ -124,7 +124,7 @@ const TeacherDashboard = () => {
               to="/teacher/register-student"
               onClick={() => setSidebarOpen(false)}
               className={({ isActive }) =>
-                `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-red/20" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
+                `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-brand-900 bg-accent-red/20" : "border-transparent hover:border-brand-900 hover:bg-accent-red/10"}`
               }
             >
               <UserPlus className="mr-2 md:mr-3" size={18} />
@@ -135,7 +135,7 @@ const TeacherDashboard = () => {
             to="/teacher/record-results"
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-brand-900 bg-accent-gold/30" : "border-transparent hover:border-brand-900 hover:bg-accent-gold/20"}`
             }
           >
             <FileText className="mr-2 md:mr-3" size={18} />
@@ -145,7 +145,7 @@ const TeacherDashboard = () => {
             to="/teacher/release-results"
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-brand-900 bg-accent-gold/30" : "border-transparent hover:border-brand-900 hover:bg-accent-gold/20"}`
             }
           >
             <Unlock className="mr-2 md:mr-3" size={18} />
@@ -155,7 +155,7 @@ const TeacherDashboard = () => {
             to="/broadsheet"
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-brand-900 bg-accent-gold/30" : "border-transparent hover:border-brand-900 hover:bg-accent-gold/20"}`
             }
           >
             <FileSpreadsheet className="mr-2 md:mr-3" size={18} />
@@ -166,7 +166,7 @@ const TeacherDashboard = () => {
               to="/teacher/subject-broadsheet"
               onClick={() => setSidebarOpen(false)}
               className={({ isActive }) =>
-                `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+                `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-brand-900 bg-accent-gold/30" : "border-transparent hover:border-brand-900 hover:bg-accent-gold/20"}`
               }
             >
               <FileSpreadsheet className="mr-2 md:mr-3" size={18} />
@@ -178,7 +178,7 @@ const TeacherDashboard = () => {
               to="/teacher/enter-results"
               onClick={() => setSidebarOpen(false)}
               className={({ isActive }) =>
-                `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-red/20" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
+                `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-brand-900 bg-accent-red/20" : "border-transparent hover:border-brand-900 hover:bg-accent-red/10"}`
               }
             >
               <FileText className="mr-2 md:mr-3" size={18} />
@@ -190,7 +190,7 @@ const TeacherDashboard = () => {
               to="/teacher/attendance"
               onClick={() => setSidebarOpen(false)}
               className={({ isActive }) =>
-                `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-red/20" : "border-transparent hover:border-black hover:bg-accent-red/10"}`
+                `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-brand-900 bg-accent-red/20" : "border-transparent hover:border-brand-900 hover:bg-accent-red/10"}`
               }
             >
               <CheckCircle className="mr-2 md:mr-3" size={18} />
@@ -201,7 +201,7 @@ const TeacherDashboard = () => {
             to="/teacher/settings"
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-black bg-accent-gold/30" : "border-transparent hover:border-black hover:bg-accent-gold/20"}`
+              `flex items-center p-3 md:p-4 rounded-lg border-4 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base ${isActive ? "border-brand-900 bg-accent-gold/30" : "border-transparent hover:border-brand-900 hover:bg-accent-gold/20"}`
             }
           >
             <Settings className="mr-2 md:mr-3" size={18} />
@@ -214,7 +214,7 @@ const TeacherDashboard = () => {
               setShowMessages(true);
               setSidebarOpen(false);
             }}
-            className="w-full flex items-center p-3 md:p-4 rounded-lg border border-transparent hover:border-black hover:bg-accent-red/10 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base"
+            className="w-full flex items-center p-3 md:p-4 rounded-lg border border-transparent hover:border-brand-900 hover:bg-accent-red/10 transition-all group font-bold uppercase tracking-tight text-white text-sm md:text-base"
           >
             <MessageCircle className="mr-2 md:mr-3" size={18} />
             <span>Messages 💬</span>
@@ -224,7 +224,7 @@ const TeacherDashboard = () => {
         {showScrollTop && (
           <button
             onClick={scrollToTop}
-            className="flex items-center p-3 md:p-4 rounded-lg border border-slate-700/50 bg-accent-gold shadow-md hover:-translate-y-1 transition-all group mt-auto mb-3 text-sm md:text-base"
+            className="flex items-center p-3 md:p-4 rounded-lg border border-brand-700/50 bg-accent-gold shadow-md hover:-translate-y-1 transition-all group mt-auto mb-3 text-sm md:text-base"
           >
             <ChevronUp
               size={18}
@@ -239,7 +239,7 @@ const TeacherDashboard = () => {
         {/* Logout Button */}
         <button
           onClick={handleLogout}
-          className="flex items-center p-3 md:p-4 rounded-lg border border-slate-700/50 bg-accent-red shadow-md hover:-translate-y-1 transition-all group mt-4 text-sm md:text-base"
+          className="flex items-center p-3 md:p-4 rounded-lg border border-brand-700/50 bg-accent-red shadow-md hover:-translate-y-1 transition-all group mt-4 text-sm md:text-base"
         >
           <LogOut
             size={18}
@@ -261,7 +261,7 @@ const TeacherDashboard = () => {
             <h1 className="text-2xl md:text-4xl font-bold text-white tracking-tight uppercase  text-gradient">
               Welcome, {user?.fullName?.split(" ")[0]}
             </h1>
-            <p className="text-sm md:text-lg text-slate-400 mt-2 font-bold underline decoration-4 decoration-accent-gold">
+            <p className="text-sm md:text-lg text-brand-400 mt-2 font-bold underline decoration-4 decoration-accent-gold">
               Ready to teach and inspire?
             </p>
           </div>
@@ -274,7 +274,7 @@ const TeacherDashboard = () => {
                 {user?.role} Mode
               </p>
             </div>
-            <div className="w-12 md:w-16 h-12 md:h-16 bg-slate-800 border border-slate-700/50 rounded-xl flex items-center justify-center font-bold text-lg md:text-2xl shadow-xl transform text-white flex-shrink-0">
+            <div className="w-12 md:w-16 h-12 md:h-16 bg-brand-800 border border-brand-700/50 rounded-xl flex items-center justify-center font-bold text-lg md:text-2xl shadow-xl transform text-white flex-shrink-0">
               {user?.fullName?.charAt(0)}
             </div>
           </div>
@@ -303,7 +303,7 @@ const TeacherDashboard = () => {
         {showScrollTop && (
           <button
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 flex items-center p-4 rounded-lg border border-slate-700/50 bg-accent-gold shadow-md hover:-translate-y-1 transition-all group"
+            className="fixed bottom-8 right-8 flex items-center p-4 rounded-lg border border-brand-700/50 bg-accent-gold shadow-md hover:-translate-y-1 transition-all group"
           >
             <ChevronUp
               className="mr-3 text-black group-hover:scale-125 transition-transform"
@@ -348,7 +348,7 @@ const TeacherOverview = ({ user }) => {
     : [];
 
   return (
-    <div className="professional-card p-10 bg-slate-50">
+    <div className="professional-card p-10 bg-brand-50">
       <h2 className="text-3xl font-bold text-black mb-6 uppercase  tracking-tight text-gradient">
         Classroom Command Center 🚀
       </h2>
@@ -361,7 +361,7 @@ const TeacherOverview = ({ user }) => {
       {/* Live Stat Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         {user?.assignedClass && (
-          <div className="p-6 bg-accent-gold/20 border border-slate-700/50 rounded-xl shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center">
+          <div className="p-6 bg-accent-gold/20 border border-brand-700/50 rounded-xl shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center">
             <span className="text-5xl font-bold text-black text-gradient mb-2">
               {classStudentCount !== null ? classStudentCount : "—"}
             </span>
@@ -373,7 +373,7 @@ const TeacherOverview = ({ user }) => {
             </p>
           </div>
         )}
-        <div className="p-6 bg-accent-red/10 border border-slate-700/50 rounded-xl shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center">
+        <div className="p-6 bg-accent-red/10 border border-brand-700/50 rounded-xl shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center">
           <span className="text-5xl font-bold text-black text-gradient mb-2">
             {subjectList.length > 0 ? subjectList.length : "—"}
           </span>
@@ -384,7 +384,7 @@ const TeacherOverview = ({ user }) => {
             {subjectList.length > 0 ? subjectList.join(", ") : "None assigned"}
           </p>
         </div>
-        <div className="p-6 bg-slate-100 border border-slate-700/50 rounded-xl shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center">
+        <div className="p-6 bg-brand-100 border border-brand-700/50 rounded-xl shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center">
           <span className="text-5xl font-bold text-black text-gradient mb-2">
             {totalStudentCount !== null ? totalStudentCount : "—"}
           </span>
@@ -398,7 +398,7 @@ const TeacherOverview = ({ user }) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-        <div className="p-8 bg-accent-gold/20 border border-slate-700/50 rounded-xl shadow-md hover:-translate-y-1 transition-all">
+        <div className="p-8 bg-accent-gold/20 border border-brand-700/50 rounded-xl shadow-md hover:-translate-y-1 transition-all">
           <h4 className="font-bold text-black text-xl mb-3 uppercase tracking-tight ">
             Teacher's Tip 💡
           </h4>
@@ -407,7 +407,7 @@ const TeacherOverview = ({ user }) => {
             exploring with your students!
           </p>
         </div>
-        <div className="p-8 bg-accent-red/20 border border-slate-700/50 rounded-xl shadow-md hover:-translate-y-1 transition-all">
+        <div className="p-8 bg-accent-red/20 border border-brand-700/50 rounded-xl shadow-md hover:-translate-y-1 transition-all">
           <h4 className="font-bold text-black text-xl mb-3 uppercase tracking-tight ">
             Upcoming Goals 🎯
           </h4>
@@ -484,17 +484,17 @@ const RegisterStudent = () => {
   };
 
   return (
-    <div className="max-w-3xl professional-card p-10 bg-slate-50">
+    <div className="max-w-3xl professional-card p-10 bg-brand-50">
       <h2 className="text-3xl font-bold text-black mb-8 uppercase  tracking-tight text-gradient">
         Register New Superstar! ⭐
       </h2>
 
       {message && (
         <div
-          className={`p-6 mb-8 border border-slate-700/50 rounded-lg flex items-center gap-4 ${message.includes("Error") ? "bg-accent-red/20" : "bg-accent-gold/20"}`}
+          className={`p-6 mb-8 border border-brand-700/50 rounded-lg flex items-center gap-4 ${message.includes("Error") ? "bg-accent-red/20" : "bg-accent-gold/20"}`}
         >
           <div
-            className={`w-4 h-4 rounded-full border border-slate-700/50 ${message.includes("Error") ? "bg-accent-red" : "bg-accent-gold"}`}
+            className={`w-4 h-4 rounded-full border border-brand-700/50 ${message.includes("Error") ? "bg-accent-red" : "bg-accent-gold"}`}
           ></div>
           <span className="font-bold uppercase tracking-tight text-black">
             {message}
@@ -503,13 +503,13 @@ const RegisterStudent = () => {
       )}
 
       {parentCreds && (
-        <div className="p-8 mb-10 bg-accent-gold border border-slate-700/50 rounded-xl shadow-xl">
+        <div className="p-8 mb-10 bg-accent-gold border border-brand-700/50 rounded-xl shadow-xl">
           <div className="flex items-center gap-3 mb-6 text-black font-bold uppercase  tracking-tight text-xl text-gradient">
             <CheckCircle size={28} />
             <span>Parent Keys Ready! 🔑</span>
           </div>
           <div className="grid grid-cols-2 gap-6">
-            <div className="bg-accent-black p-4 rounded-lg border border-slate-700/50 shadow-md">
+            <div className="bg-accent-black p-4 rounded-lg border border-brand-700/50 shadow-md">
               <p className="text-xs text-accent-gold/60 uppercase font-bold tracking-widest mb-2">
                 Secret Username
               </p>
@@ -517,7 +517,7 @@ const RegisterStudent = () => {
                 {parentCreds.username}
               </p>
             </div>
-            <div className="bg-accent-black p-4 rounded-lg border border-slate-700/50 shadow-md">
+            <div className="bg-accent-black p-4 rounded-lg border border-brand-700/50 shadow-md">
               <p className="text-xs text-accent-gold/60 uppercase font-bold tracking-widest mb-2">
                 Secret Password
               </p>
@@ -539,7 +539,7 @@ const RegisterStudent = () => {
           <label className="text-lg font-bold text-black uppercase tracking-tight text-gradient">
             Student Photo
           </label>
-          <div className="relative w-36 h-36 bg-gray-100 border border-slate-700/50 rounded-xl overflow-hidden shadow-md group cursor-pointer">
+          <div className="relative w-36 h-36 bg-gray-100 border border-brand-700/50 rounded-xl overflow-hidden shadow-md group cursor-pointer">
             {formData.profileImage ? (
               <img
                 src={formData.profileImage}
@@ -554,7 +554,7 @@ const RegisterStudent = () => {
                 </span>
               </div>
             )}
-            <label className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer gap-2">
+            <label className="absolute inset-0 bg-brand-950/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer gap-2">
               <Upload size={28} className="text-white" />
               <span className="text-white font-bold text-xs uppercase tracking-widest">
                 {formData.profileImage ? "Change" : "Upload"}
@@ -631,7 +631,7 @@ const RegisterStudent = () => {
           <input
             type="checkbox"
             id="feesPaid"
-            className="w-6 h-6 border border-slate-700/50 rounded-md accent-accent-gold cursor-pointer mt-8"
+            className="w-6 h-6 border border-brand-700/50 rounded-md accent-accent-gold cursor-pointer mt-8"
             checked={formData.feesPaid}
             onChange={(e) =>
               setFormData({ ...formData, feesPaid: e.target.checked })
@@ -713,7 +713,7 @@ const RegisterStudent = () => {
           <label className="text-lg font-bold text-black uppercase tracking-tight block text-gradient">
             Assign Subjects
           </label>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-h-60 overflow-y-auto p-4 border border-slate-700/50 rounded-lg bg-gray-50 shadow-inner">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-h-60 overflow-y-auto p-4 border border-brand-700/50 rounded-lg bg-gray-50 shadow-inner">
             {subjects.map((subject) => (
               <button
                 key={subject.id}
@@ -721,8 +721,8 @@ const RegisterStudent = () => {
                 onClick={() => handleSubjectToggle(subject.id)}
                 className={`p-3 rounded-xl border-2 font-bold text-xs transition-all ${
                   formData.subjectIds.includes(subject.id)
-                    ? "bg-accent-gold border-black shadow-md -translate-y-1 text-black"
-                    : "bg-slate-50 border-gray-300 text-gray-600 hover:border-black"
+                    ? "bg-accent-gold border-brand-900 shadow-md -translate-y-1 text-black"
+                    : "bg-brand-50 border-gray-300 text-gray-600 hover:border-brand-900"
                 }`}
               >
                 {subject.name}
@@ -925,14 +925,14 @@ const RecordResults = ({ user }) => {
   };
 
   return (
-    <div className="professional-card p-10 bg-slate-700 max-w-4xl">
+    <div className="professional-card p-10 bg-brand-700 max-w-4xl">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
         <h2 className="text-3xl font-bold text-white uppercase  tracking-tight text-gradient">
           Record Achievement! 🏆
         </h2>
 
         {/* Mode Toggles */}
-        <div className="flex bg-slate-600 p-2 rounded-lg border-4 border-white shadow-inner">
+        <div className="flex bg-brand-600 p-2 rounded-lg border-4 border-white shadow-inner">
           {user?.isFormTeacher && (
             <button
               onClick={() => {
@@ -942,7 +942,7 @@ const RecordResults = ({ user }) => {
               }}
               className={`px-6 py-2 rounded-xl font-bold uppercase text-xs tracking-widest transition-all ${
                 recordingMode === "class"
-                  ? "bg-accent-gold text-black border border-slate-700/50 shadow-xl-xs -translate-y-1"
+                  ? "bg-accent-gold text-black border border-brand-700/50 shadow-xl-xs -translate-y-1"
                   : "text-gray-300 hover:text-white"
               }`}
             >
@@ -958,7 +958,7 @@ const RecordResults = ({ user }) => {
               }}
               className={`px-6 py-2 rounded-xl font-bold uppercase text-xs tracking-widest transition-all ${
                 recordingMode === "subject"
-                  ? "bg-accent-red text-white border border-slate-700/50 shadow-xl-xs -translate-y-1"
+                  ? "bg-accent-red text-white border border-brand-700/50 shadow-xl-xs -translate-y-1"
                   : "text-gray-300 hover:text-white"
               }`}
             >
@@ -970,10 +970,10 @@ const RecordResults = ({ user }) => {
 
       {message && (
         <div
-          className={`p-6 mb-8 border border-slate-700/50 rounded-lg flex items-center gap-4 ${message.includes("Error") ? "bg-accent-pink/20" : "bg-accent-green/20"}`}
+          className={`p-6 mb-8 border border-brand-700/50 rounded-lg flex items-center gap-4 ${message.includes("Error") ? "bg-accent-pink/20" : "bg-accent-green/20"}`}
         >
           <div
-            className={`w-4 h-4 rounded-full border border-slate-700/50 ${message.includes("Error") ? "bg-accent-pink" : "bg-accent-green"}`}
+            className={`w-4 h-4 rounded-full border border-brand-700/50 ${message.includes("Error") ? "bg-accent-pink" : "bg-accent-green"}`}
           ></div>
           <span className="font-bold uppercase tracking-tight text-black">
             {message}
@@ -1043,8 +1043,8 @@ const RecordResults = ({ user }) => {
           onSubmit={handleSubmit}
           className="space-y-10 animate-in fade-in slide-in-from-top-4 duration-500"
         >
-          <div className="p-8 bg-accent-gold/10 border border-slate-700/50 rounded-xl flex items-center gap-6 shadow-md">
-            <div className="w-20 h-20 bg-white border border-slate-700/50 rounded-lg flex items-center justify-center text-black font-bold text-3xl shadow-md overflow-hidden">
+          <div className="p-8 bg-accent-gold/10 border border-brand-700/50 rounded-xl flex items-center gap-6 shadow-md">
+            <div className="w-20 h-20 bg-white border border-brand-700/50 rounded-lg flex items-center justify-center text-black font-bold text-3xl shadow-md overflow-hidden">
               {selectedStudent.profileImage ? (
                 <img
                   src={selectedStudent.profileImage}
@@ -1060,10 +1060,10 @@ const RecordResults = ({ user }) => {
                 {selectedStudent.firstName} {selectedStudent.lastName}
               </p>
               <div className="flex items-center gap-3">
-                <span className="bg-black text-white px-3 py-1 rounded-lg font-bold uppercase text-xs tracking-widest">
+                <span className="bg-brand-950 text-white px-3 py-1 rounded-lg font-bold uppercase text-xs tracking-widest">
                   {selectedStudent.studentClass}
                 </span>
-                <span className="bg-white border border-slate-700/50 text-black px-3 py-1 rounded-lg font-bold uppercase text-xs tracking-widest">
+                <span className="bg-white border border-brand-700/50 text-black px-3 py-1 rounded-lg font-bold uppercase text-xs tracking-widest">
                   {selectedStudent.registrationNumber}
                 </span>
               </div>
@@ -1206,7 +1206,7 @@ const RecordResults = ({ user }) => {
           <div className="flex gap-4">
             <button
               type="submit"
-              className={`flex-1 btn-primary py-5 text-2xl flex items-center justify-center gap-3 ${editMode ? "bg-accent-red text-white hover:bg-black hover:text-accent-red" : "bg-accent-gold text-accent-black hover:bg-accent-black hover:text-accent-gold"}`}
+              className={`flex-1 btn-primary py-5 text-2xl flex items-center justify-center gap-3 ${editMode ? "bg-accent-red text-white hover:bg-brand-950 hover:text-accent-red" : "bg-accent-gold text-accent-black hover:bg-accent-black hover:text-accent-gold"}`}
             >
               <CheckCircle size={28} />
               {editMode ? "Update Result ✏️" : "Lock in Results! 🏆"}
@@ -1215,7 +1215,7 @@ const RecordResults = ({ user }) => {
               <button
                 type="button"
                 onClick={handleCancelEdit}
-                className="px-8 py-5 border border-slate-700/50 rounded-lg font-bold uppercase tracking-tight text-black bg-gray-100 hover:bg-gray-200 transition-all shadow-md hover:-translate-y-1"
+                className="px-8 py-5 border border-brand-700/50 rounded-lg font-bold uppercase tracking-tight text-black bg-gray-100 hover:bg-gray-200 transition-all shadow-md hover:-translate-y-1"
               >
                 Cancel Edit
               </button>
@@ -1223,7 +1223,7 @@ const RecordResults = ({ user }) => {
           </div>
         </form>
       ) : (
-        <div className="py-20 border-4 border-dashed border-gray-400 rounded-xl text-center bg-slate-600">
+        <div className="py-20 border-4 border-dashed border-gray-400 rounded-xl text-center bg-brand-600">
           <p className="font-bold text-gray-300 uppercase tracking-widest text-xl">
             Select a superstar above to record their glory! ✨
           </p>
@@ -1233,13 +1233,13 @@ const RecordResults = ({ user }) => {
       {/* Existing Results Table */}
       {selectedStudent && existingResults.length > 0 && (
         <div className="mt-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <h3 className="text-2xl font-bold text-black uppercase  tracking-tight text-gradient mb-6 border-t-4 border-black pt-8">
+          <h3 className="text-2xl font-bold text-black uppercase  tracking-tight text-gradient mb-6 border-t-4 border-brand-900 pt-8">
             Past Results for {selectedStudent.firstName} 📋
           </h3>
           <div className="overflow-x-auto">
-            <table className="w-full border border-slate-700/50 rounded-lg overflow-hidden">
+            <table className="w-full border border-brand-700/50 rounded-lg overflow-hidden">
               <thead>
-                <tr className="bg-black text-white">
+                <tr className="bg-brand-950 text-white">
                   <th className="py-4 px-4 text-left font-bold uppercase tracking-widest text-xs">
                     Subject
                   </th>
@@ -1279,7 +1279,7 @@ const RecordResults = ({ user }) => {
                         {result.Subject?.name || result.subjectName || "—"}
                       </td>
                       <td className="py-4 px-4 text-center">
-                        <span className="bg-black text-white px-2 py-1 rounded-lg font-bold uppercase text-xs tracking-widest">
+                        <span className="bg-brand-950 text-white px-2 py-1 rounded-lg font-bold uppercase text-xs tracking-widest">
                           {result.term}
                         </span>
                       </td>
@@ -1302,7 +1302,7 @@ const RecordResults = ({ user }) => {
                       <td className="py-4 px-4 text-center">
                         <button
                           onClick={() => handleEditResult(result)}
-                          className="px-4 py-2 bg-accent-gold border border-slate-700/50 rounded-xl text-xs font-bold uppercase tracking-widest text-black hover:shadow-md hover:-translate-y-1 active:translate-y-0 transition-all"
+                          className="px-4 py-2 bg-accent-gold border border-brand-700/50 rounded-xl text-xs font-bold uppercase tracking-widest text-black hover:shadow-md hover:-translate-y-1 active:translate-y-0 transition-all"
                         >
                           Edit ✏️
                         </button>
@@ -1416,8 +1416,8 @@ const ResultReleaseManager = ({ user }) => {
   });
 
   return (
-    <div className="professional-card p-10 bg-slate-50">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b-4 border-black pb-8 gap-6">
+    <div className="professional-card p-10 bg-brand-50">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b-4 border-brand-900 pb-8 gap-6">
         <div>
           <h2 className="text-4xl font-bold text-black uppercase  tracking-tight text-gradient mb-2">
             Result Release Gate 🛡️
@@ -1457,8 +1457,8 @@ const ResultReleaseManager = ({ user }) => {
       </div>
 
       {message && (
-        <div className="p-6 mb-8 bg-accent-gold/20 border border-slate-700/50 rounded-lg flex items-center gap-4 animate-in fade-in duration-300">
-          <div className="w-4 h-4 bg-accent-gold border border-slate-700/50 rounded-full animate-pulse"></div>
+        <div className="p-6 mb-8 bg-accent-gold/20 border border-brand-700/50 rounded-lg flex items-center gap-4 animate-in fade-in duration-300">
+          <div className="w-4 h-4 bg-accent-gold border border-brand-700/50 rounded-full animate-pulse"></div>
           <span className="font-bold uppercase tracking-tight text-black">
             {message}
           </span>
@@ -1485,11 +1485,11 @@ const ResultReleaseManager = ({ user }) => {
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="text-left border-b-4 border-black">
+            <tr className="text-left border-b-4 border-brand-900">
               <th className="py-6 px-4">
                 <input
                   type="checkbox"
-                  className="w-6 h-6 border border-slate-700/50 rounded cursor-pointer accent-accent-gold"
+                  className="w-6 h-6 border border-brand-700/50 rounded cursor-pointer accent-accent-gold"
                   checked={
                     selectedIds.length === filteredStudents.length &&
                     filteredStudents.length > 0
@@ -1520,14 +1520,14 @@ const ResultReleaseManager = ({ user }) => {
                 <td className="py-6 px-4">
                   <input
                     type="checkbox"
-                    className="w-6 h-6 border border-slate-700/50 rounded cursor-pointer accent-accent-gold"
+                    className="w-6 h-6 border border-brand-700/50 rounded cursor-pointer accent-accent-gold"
                     checked={selectedIds.includes(s.id)}
                     onChange={() => handleToggleSelect(s.id)}
                   />
                 </td>
                 <td className="py-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-slate-50 border border-slate-700/50 rounded-xl flex items-center justify-center font-bold text-black shadow-xl-xs group-hover:rotate-3 transition-transform overflow-hidden">
+                    <div className="w-12 h-12 bg-brand-50 border border-brand-700/50 rounded-xl flex items-center justify-center font-bold text-black shadow-xl-xs group-hover:rotate-3 transition-transform overflow-hidden">
                       {s.profileImage ? (
                         <img
                           src={s.profileImage}
@@ -1567,8 +1567,8 @@ const ResultReleaseManager = ({ user }) => {
                       onClick={() => handleToggleFeeStatus(s)}
                       className={`px-3 py-1 rounded-lg font-bold uppercase text-xs tracking-widest transition-all shadow-md hover:-translate-y-1 active:translate-y-0 ${
                         s.feesPaid
-                          ? "bg-accent-green text-white border border-slate-700/50"
-                          : "bg-accent-red text-white border border-slate-700/50"
+                          ? "bg-accent-green text-white border border-brand-700/50"
+                          : "bg-accent-red text-white border border-brand-700/50"
                       }`}
                     >
                       {s.feesPaid ? "Paid 💰" : "Unpaid ❌"}
@@ -1576,7 +1576,7 @@ const ResultReleaseManager = ({ user }) => {
                   </div>
                 </td>
                 <td className="py-6 text-right">
-                  <span className="bg-black text-white px-3 py-1 rounded-lg font-bold uppercase text-xs tracking-widest">
+                  <span className="bg-brand-950 text-white px-3 py-1 rounded-lg font-bold uppercase text-xs tracking-widest">
                     {s.studentClass}
                   </span>
                 </td>
@@ -1651,7 +1651,7 @@ const TeacherSettings = ({ user, setUser }) => {
 
   return (
     <div className="space-y-10 pb-20">
-      <div className="flex justify-between items-end mb-10 border-b-4 border-black pb-8">
+      <div className="flex justify-between items-end mb-10 border-b-4 border-brand-900 pb-8">
         <div>
           <h2 className="text-4xl font-bold text-white uppercase  tracking-tight text-gradient mb-2">
             My Profile 👤
@@ -1663,14 +1663,14 @@ const TeacherSettings = ({ user, setUser }) => {
       </div>
 
       {message && (
-        <div className="p-4 bg-accent-gold border border-slate-700/50 text-black font-bold rounded-lg shadow-md flex items-center gap-3 animate-in fade-in slide-in-from-top-4">
+        <div className="p-4 bg-accent-gold border border-brand-700/50 text-black font-bold rounded-lg shadow-md flex items-center gap-3 animate-in fade-in slide-in-from-top-4">
           <CheckCircle size={24} />
           {message}
         </div>
       )}
 
       {error && (
-        <div className="p-4 bg-accent-red border border-slate-700/50 text-white font-bold rounded-lg shadow-md flex items-center gap-3 animate-in fade-in slide-in-from-top-4">
+        <div className="p-4 bg-accent-red border border-brand-700/50 text-white font-bold rounded-lg shadow-md flex items-center gap-3 animate-in fade-in slide-in-from-top-4">
           <Unlock size={24} />
           {error}
         </div>
@@ -1678,9 +1678,9 @@ const TeacherSettings = ({ user, setUser }) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* Profile Avatar */}
-        <div className="professional-card p-8 bg-slate-900">
+        <div className="professional-card p-8 bg-brand-900">
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-12 bg-accent-gold border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md">
+            <div className="w-12 h-12 bg-accent-gold border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md">
               <UserCircle size={24} className="text-black" />
             </div>
             <h3 className="text-2xl font-bold text-white uppercase  tracking-tight text-gradient">
@@ -1690,7 +1690,7 @@ const TeacherSettings = ({ user, setUser }) => {
 
           <form onSubmit={handleUpdateProfile} className="space-y-8">
             <div className="flex flex-col items-center gap-6">
-              <div className="w-48 h-48 bg-slate-800 border border-slate-700/50 rounded-xl overflow-hidden shadow-xl relative group transform -rotate-2">
+              <div className="w-48 h-48 bg-brand-800 border border-brand-700/50 rounded-xl overflow-hidden shadow-xl relative group transform -rotate-2">
                 {profileImage ? (
                   <img
                     src={profileImage}
@@ -1702,7 +1702,7 @@ const TeacherSettings = ({ user, setUser }) => {
                     {user?.fullName?.charAt(0)}
                   </div>
                 )}
-                <label className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer gap-2">
+                <label className="absolute inset-0 bg-brand-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer gap-2">
                   <Upload size={32} className="text-white" />
                   <span className="text-white font-bold text-xs uppercase tracking-widest">
                     Upload New
@@ -1736,9 +1736,9 @@ const TeacherSettings = ({ user, setUser }) => {
         </div>
 
         {/* Security */}
-        <div className="professional-card p-8 bg-slate-900">
+        <div className="professional-card p-8 bg-brand-900">
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-12 bg-accent-red border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md">
+            <div className="w-12 h-12 bg-accent-red border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md">
               <Lock size={24} className="text-white" />
             </div>
             <h3 className="text-2xl font-bold text-white uppercase  tracking-tight text-gradient">
@@ -1748,7 +1748,7 @@ const TeacherSettings = ({ user, setUser }) => {
 
           <form onSubmit={handleChangePassword} className="space-y-6">
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
                 Current Password
               </label>
               <input
@@ -1767,7 +1767,7 @@ const TeacherSettings = ({ user, setUser }) => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
                 New Password
               </label>
               <input
@@ -1786,7 +1786,7 @@ const TeacherSettings = ({ user, setUser }) => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+              <label className="text-sm font-bold text-brand-400 uppercase tracking-widest">
                 Confirm New Password
               </label>
               <input

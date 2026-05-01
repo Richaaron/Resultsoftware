@@ -102,7 +102,7 @@ const ParentDashboard = () => {
     : attendance.slice(0, 8);
 
   return (
-    <div className="min-h-screen bg-[#0f172a] relative overflow-hidden">
+    <div className="min-h-screen bg-transparent relative overflow-hidden">
       <AcademicBackground />
       
       {/* Hidden Print Component */}
@@ -123,11 +123,11 @@ const ParentDashboard = () => {
       {/* Contact Modal */}
       {showContactModal && (
         <div
-          className="fixed inset-0 bg-black/70 z-[100] flex items-center justify-center p-4"
+          className="fixed inset-0 bg-brand-950/70 z-[100] flex items-center justify-center p-4"
           onClick={() => setShowContactModal(false)}
         >
           <div
-            className="professional-card bg-slate-50 p-10 max-w-md w-full relative"
+            className="professional-card bg-brand-50 p-10 max-w-md w-full relative"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -137,7 +137,7 @@ const ParentDashboard = () => {
               ✕
             </button>
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 bg-accent-gold border border-slate-700/50 rounded-lg flex items-center justify-center shadow-md">
+              <div className="w-14 h-14 bg-accent-gold border border-brand-700/50 rounded-lg flex items-center justify-center shadow-md">
                 <Mail size={28} className="text-black" />
               </div>
               <div>
@@ -149,7 +149,7 @@ const ParentDashboard = () => {
                 </p>
               </div>
             </div>
-            <div className="space-y-3 text-sm font-bold text-black/70 border border-slate-700/50 rounded-lg p-6 bg-accent-gold/5">
+            <div className="space-y-3 text-sm font-bold text-black/70 border border-brand-700/50 rounded-lg p-6 bg-accent-gold/5">
               {settings?.schoolName && (
                 <p className="text-lg font-bold text-black uppercase  tracking-tight">
                   {settings.schoolName}
@@ -179,17 +179,17 @@ const ParentDashboard = () => {
       )}
 
       {/* Top Navigation */}
-      <nav className="bg-slate-900 border-b-4 border-black sticky top-0 z-50">
+      <nav className="bg-brand-900 border-b-4 border-brand-900 sticky top-0 z-50">
         <div className="container mx-auto px-6 h-24 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-accent-gold border border-slate-700/50 rounded-lg flex items-center justify-center text-black shadow-md transform">
+            <div className="w-14 h-14 bg-accent-gold border border-brand-700/50 rounded-lg flex items-center justify-center text-black shadow-md transform">
               <User size={28} />
             </div>
             <div>
               <h1 className="text-3xl font-bold text-white tracking-tight uppercase  text-gradient">
                 Parent <span className="text-accent-red">Zone</span>
               </h1>
-              <p className="text-xs text-slate-400 uppercase font-bold tracking-widest">
+              <p className="text-xs text-brand-400 uppercase font-bold tracking-widest">
                 Watching them grow! 🌱
               </p>
             </div>
@@ -205,7 +205,7 @@ const ParentDashboard = () => {
             </div>
             <button
               onClick={handleLogout}
-              className="flex items-center gap-2 bg-slate-800 hover:bg-accent-red/10 text-white border border-slate-700/50 px-6 py-3 rounded-lg transition-all font-bold uppercase tracking-tight shadow-md hover:-translate-x-1 hover:-translate-y-1 hover:shadow-xl active:translate-x-0 active:translate-y-0 active:shadow-none"
+              className="flex items-center gap-2 bg-brand-800 hover:bg-accent-red/10 text-white border border-brand-700/50 px-6 py-3 rounded-lg transition-all font-bold uppercase tracking-tight shadow-md hover:-translate-x-1 hover:-translate-y-1 hover:shadow-xl active:translate-x-0 active:translate-y-0 active:shadow-none"
             >
               <LogOut size={20} />
               <span>Bye! 🚀</span>
@@ -218,8 +218,8 @@ const ParentDashboard = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Children Selection */}
           <div className="lg:col-span-3 space-y-8">
-            <div className="professional-card p-8 bg-slate-900">
-              <h2 className="text-lg font-bold text-white uppercase tracking-widest mb-6  border-b-4 border-black pb-2">
+            <div className="professional-card p-8 bg-brand-900">
+              <h2 className="text-lg font-bold text-white uppercase tracking-widest mb-6  border-b-4 border-brand-900 pb-2">
                 My Superstars ⭐
               </h2>
               <div className="space-y-4">
@@ -229,15 +229,15 @@ const ParentDashboard = () => {
                     onClick={() => handleChildSelect(child)}
                     className={`w-full group flex items-center gap-4 p-4 rounded-lg border-4 transition-all ${
                       selectedChild?.id === child.id
-                        ? "bg-accent-gold border-black shadow-md -translate-y-1"
-                        : "bg-slate-800 border-transparent hover:border-black hover:bg-accent-gold/10"
+                        ? "bg-accent-gold border-brand-900 shadow-md -translate-y-1"
+                        : "bg-brand-800 border-transparent hover:border-brand-900 hover:bg-accent-gold/10"
                     }`}
                   >
                     <div
                       className={`w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl border-4 ${
                         selectedChild?.id === child.id
-                          ? "bg-slate-50 border-black transform"
-                          : "bg-slate-900 border-transparent text-accent-gold group-hover:border-black"
+                          ? "bg-brand-50 border-brand-900 transform"
+                          : "bg-brand-900 border-transparent text-accent-gold group-hover:border-brand-900"
                       }`}
                     >
                       {child.firstName.charAt(0)}
@@ -256,7 +256,7 @@ const ParentDashboard = () => {
                         className={`text-xs font-bold  ${
                           selectedChild?.id === child.id
                             ? "text-accent-red"
-                            : "text-slate-400"
+                            : "text-brand-400"
                         }`}
                       >
                         {child.studentClass}
@@ -268,17 +268,17 @@ const ParentDashboard = () => {
             </div>
 
             {/* Ping Us card */}
-            <div className="p-8 bg-slate-900/50 border border-slate-700/50 rounded-xl shadow-md relative overflow-hidden group">
+            <div className="p-8 bg-brand-900/50 border border-brand-700/50 rounded-xl shadow-md relative overflow-hidden group">
               <div className="relative z-10">
                 <h4 className="font-bold text-white text-xl mb-2 uppercase  tracking-tight text-gradient">
                   Need Help? 🆘
                 </h4>
-                <p className="text-sm font-bold text-slate-400 mb-6 leading-relaxed ">
+                <p className="text-sm font-bold text-brand-400 mb-6 leading-relaxed ">
                   The school team is here to help your champion succeed!
                 </p>
                 <button
                   onClick={handlePingUs}
-                  className="w-full bg-accent-gold border border-slate-700/50 text-black text-xs font-bold py-3 rounded-xl uppercase tracking-widest hover:bg-black hover:text-white transition-all shadow-md"
+                  className="w-full bg-accent-gold border border-brand-700/50 text-black text-xs font-bold py-3 rounded-xl uppercase tracking-widest hover:bg-brand-950 hover:text-white transition-all shadow-md"
                 >
                   Ping Us! 📨
                 </button>
@@ -292,13 +292,13 @@ const ParentDashboard = () => {
             {selectedChild ? (
               <>
                 {/* Student Header */}
-                <div className="professional-card p-10 bg-slate-900 flex flex-col md:flex-row md:items-center justify-between gap-8 border-l-[12px] border-l-accent-gold">
+                <div className="professional-card p-10 bg-brand-900 flex flex-col md:flex-row md:items-center justify-between gap-8 border-l-[12px] border-l-accent-gold">
                   <div>
                     <h2 className="text-4xl font-bold text-white uppercase  tracking-tight text-gradient mb-2">
                       {selectedChild.firstName} {selectedChild.lastName}
                     </h2>
                     <div className="flex items-center gap-4">
-                      <span className="px-4 py-1.5 bg-black text-white rounded-full text-xs font-bold uppercase tracking-widest">
+                      <span className="px-4 py-1.5 bg-brand-950 text-white rounded-full text-xs font-bold uppercase tracking-widest">
                         #{selectedChild.registrationNumber}
                       </span>
                       <span className="text-xl font-bold text-accent-red uppercase tracking-tight ">
@@ -307,16 +307,16 @@ const ParentDashboard = () => {
                     </div>
                   </div>
                   <div className="flex gap-6">
-                    <div className="bg-slate-800 p-5 rounded-lg text-center min-w-[120px] border border-slate-700/50 shadow-md transform rotate-2">
-                      <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1 opacity-50">
+                    <div className="bg-brand-800 p-5 rounded-lg text-center min-w-[120px] border border-brand-700/50 shadow-md transform rotate-2">
+                      <p className="text-[10px] text-brand-400 font-bold uppercase tracking-widest mb-1 opacity-50">
                         Status
                       </p>
                       <p className="text-xl font-bold text-white uppercase">
                         Active ✨
                       </p>
                     </div>
-                    <div className="bg-slate-800 p-5 rounded-lg text-center min-w-[120px] border border-slate-700/50 shadow-md transform -rotate-2">
-                      <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1 opacity-50">
+                    <div className="bg-brand-800 p-5 rounded-lg text-center min-w-[120px] border border-brand-700/50 shadow-md transform -rotate-2">
+                      <p className="text-[10px] text-brand-400 font-bold uppercase tracking-widest mb-1 opacity-50">
                         Progress
                       </p>
                       <p className="text-xl font-bold text-white uppercase">
@@ -328,14 +328,14 @@ const ParentDashboard = () => {
 
                 {/* Fee Blocking Logic */}
                 {!selectedChild.feesPaid ? (
-                  <div className="professional-card p-16 bg-accent-red/10 border border-slate-700/50 text-center shadow-xl transform rotate-1">
-                    <div className="w-24 h-24 bg-accent-red border border-slate-700/50 rounded-xl flex items-center justify-center mx-auto mb-8 shadow-md transform">
+                  <div className="professional-card p-16 bg-accent-red/10 border border-brand-700/50 text-center shadow-xl transform rotate-1">
+                    <div className="w-24 h-24 bg-accent-red border border-brand-700/50 rounded-xl flex items-center justify-center mx-auto mb-8 shadow-md transform">
                       <Lock size={48} className="text-white" />
                     </div>
                     <h2 className="text-4xl font-bold text-black dark:text-white mb-4 uppercase  tracking-tight text-gradient">
                       Access Denied ❌
                     </h2>
-                    <p className="text-xl font-bold text-black/60 dark:text-slate-400 max-w-md mx-auto ">
+                    <p className="text-xl font-bold text-black/60 dark:text-brand-400 max-w-md mx-auto ">
                       Please clear outstanding school fees to view {selectedChild.firstName}'s results and attendance records. Contact the admin for assistance.
                     </p>
                   </div>
@@ -351,7 +351,7 @@ const ParentDashboard = () => {
                           <select
                             value={selectedTerm}
                             onChange={(e) => setSelectedTerm(e.target.value)}
-                            className="appearance-none bg-slate-800 border border-slate-700/50 text-white font-bold text-xs uppercase tracking-widest px-4 py-2 pr-8 rounded-xl shadow-md focus:outline-none focus:border-accent-gold cursor-pointer"
+                            className="appearance-none bg-brand-800 border border-brand-700/50 text-white font-bold text-xs uppercase tracking-widest px-4 py-2 pr-8 rounded-xl shadow-md focus:outline-none focus:border-accent-gold cursor-pointer"
                           >
                             {availableTerms.map((t) => (
                               <option key={t} value={t}>
@@ -374,7 +374,7 @@ const ParentDashboard = () => {
                           <select
                             value={selectedYear}
                             onChange={(e) => setSelectedYear(e.target.value)}
-                            className="appearance-none bg-slate-800 border border-slate-700/50 text-white font-bold text-xs uppercase tracking-widest px-4 py-2 pr-8 rounded-xl shadow-md focus:outline-none focus:border-accent-gold cursor-pointer"
+                            className="appearance-none bg-brand-800 border border-brand-700/50 text-white font-bold text-xs uppercase tracking-widest px-4 py-2 pr-8 rounded-xl shadow-md focus:outline-none focus:border-accent-gold cursor-pointer"
                           >
                             {availableYears.map((y) => (
                               <option key={y} value={y}>
@@ -404,8 +404,8 @@ const ParentDashboard = () => {
 
                     <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
                       {/* Results Card */}
-                      <div className="professional-card bg-slate-50 p-10">
-                        <div className="flex items-center justify-between mb-8 border-b-4 border-black pb-4">
+                      <div className="professional-card bg-brand-50 p-10">
+                        <div className="flex items-center justify-between mb-8 border-b-4 border-brand-900 pb-4">
                           <h3 className="text-2xl font-bold text-black uppercase  tracking-tight text-gradient flex items-center gap-3">
                             <Trophy className="text-accent-gold" size={28} />{" "}
                             Achievement!
@@ -423,7 +423,7 @@ const ParentDashboard = () => {
                             filteredResults.map((r) => (
                               <div
                                 key={r.id}
-                                className="p-6 rounded-lg border border-slate-700/50 bg-accent-gold/5 hover:bg-accent-gold/10 transition-all group"
+                                className="p-6 rounded-lg border border-brand-700/50 bg-accent-gold/5 hover:bg-accent-gold/10 transition-all group"
                               >
                                 <div className="flex justify-between items-start mb-4">
                                   <div>
@@ -436,12 +436,12 @@ const ParentDashboard = () => {
                                     </p>
                                   </div>
                                   <div
-                                    className={`w-14 h-14 rounded-lg flex flex-col items-center justify-center border border-slate-700/50 transition-transform group-hover:scale-110 duration-300 shadow-md ${
+                                    className={`w-14 h-14 rounded-lg flex flex-col items-center justify-center border border-brand-700/50 transition-transform group-hover:scale-110 duration-300 shadow-md ${
                                       r.totalScore >= 70
                                         ? "bg-accent-gold text-black"
                                         : r.totalScore >= 50
                                           ? "bg-accent-red text-white"
-                                          : "bg-black text-white"
+                                          : "bg-brand-950 text-white"
                                     }`}
                                   >
                                     <span className="text-[10px] font-bold opacity-50 leading-none mb-0.5">
@@ -458,9 +458,9 @@ const ParentDashboard = () => {
                                     <span>CA2: {r.ca2Score}</span>
                                     <span>Exam: {r.examScore}</span>
                                   </div>
-                                  <div className="h-4 bg-slate-50 border border-slate-700/50 rounded-full overflow-hidden">
+                                  <div className="h-4 bg-brand-50 border border-brand-700/50 rounded-full overflow-hidden">
                                     <div
-                                      className={`h-full rounded-full border-r-2 border-black transition-all duration-1000 ${
+                                      className={`h-full rounded-full border-r-2 border-brand-900 transition-all duration-1000 ${
                                         r.totalScore >= 50
                                           ? "bg-accent-gold"
                                           : "bg-accent-red"
@@ -490,13 +490,13 @@ const ParentDashboard = () => {
                       </div>
 
                       {/* Attendance Card */}
-                      <div className="professional-card bg-slate-50 p-10">
-                        <div className="flex items-center justify-between mb-8 border-b-4 border-black pb-4">
+                      <div className="professional-card bg-brand-50 p-10">
+                        <div className="flex items-center justify-between mb-8 border-b-4 border-brand-900 pb-4">
                           <h3 className="text-2xl font-bold text-black uppercase  tracking-tight text-gradient flex items-center gap-3">
                             <Target className="text-accent-red" size={28} /> Daily
                             Quests
                           </h3>
-                          <span className="px-3 py-1 bg-black text-white rounded-full text-[10px] font-bold uppercase tracking-widest">
+                          <span className="px-3 py-1 bg-brand-950 text-white rounded-full text-[10px] font-bold uppercase tracking-widest">
                             On Time!
                           </span>
                         </div>
@@ -505,7 +505,7 @@ const ParentDashboard = () => {
                             attendanceToShow.map((a) => (
                               <div
                                 key={a.id}
-                                className="p-4 bg-slate-50 border border-slate-700/50 rounded-lg text-center group hover:bg-accent-gold/10 transition-all shadow-md"
+                                className="p-4 bg-brand-50 border border-brand-700/50 rounded-lg text-center group hover:bg-accent-gold/10 transition-all shadow-md"
                               >
                                 <p className="text-[10px] font-bold text-black/40 uppercase tracking-widest mb-2">
                                   {new Date(a.date).toLocaleDateString("en-US", {
@@ -514,12 +514,12 @@ const ParentDashboard = () => {
                                   })}
                                 </p>
                                 <div
-                                  className={`text-xs font-bold py-1.5 px-4 rounded-xl border border-slate-700/50 inline-block uppercase tracking-widest ${
+                                  className={`text-xs font-bold py-1.5 px-4 rounded-xl border border-brand-700/50 inline-block uppercase tracking-widest ${
                                     a.status === "Present"
                                       ? "bg-accent-gold"
                                       : a.status === "Absent"
                                         ? "bg-accent-red text-white"
-                                        : "bg-black text-white"
+                                        : "bg-brand-950 text-white"
                                   }`}
                                 >
                                   {a.status}
@@ -540,7 +540,7 @@ const ParentDashboard = () => {
                           <div className="mt-6 text-center">
                             <button
                               onClick={() => setShowAllAttendance((prev) => !prev)}
-                              className="text-xs font-bold uppercase tracking-widest border border-slate-700/50 px-6 py-2 rounded-xl bg-slate-50 hover:bg-accent-gold transition-all shadow-md"
+                              className="text-xs font-bold uppercase tracking-widest border border-brand-700/50 px-6 py-2 rounded-xl bg-brand-50 hover:bg-accent-gold transition-all shadow-md"
                             >
                               {showAllAttendance
                                 ? `Show Less ▲`
@@ -550,7 +550,7 @@ const ParentDashboard = () => {
                         )}
 
                         {attendance.length > 0 && (
-                          <div className="mt-10 p-6 bg-accent-gold border border-slate-700/50 rounded-lg flex items-center justify-between shadow-md">
+                          <div className="mt-10 p-6 bg-accent-gold border border-brand-700/50 rounded-lg flex items-center justify-between shadow-md">
                             <span className="text-sm font-bold text-black uppercase tracking-widest">
                               Success Rate:
                             </span>
@@ -571,8 +571,8 @@ const ParentDashboard = () => {
                 )}
               </>
             ) : (
-              <div className="professional-card p-24 bg-slate-50 text-center">
-                <div className="w-24 h-24 bg-accent-gold/20 border border-slate-700/50 rounded-xl flex items-center justify-center mx-auto mb-8 shadow-xl transform">
+              <div className="professional-card p-24 bg-brand-50 text-center">
+                <div className="w-24 h-24 bg-accent-gold/20 border border-brand-700/50 rounded-xl flex items-center justify-center mx-auto mb-8 shadow-xl transform">
                   <User size={48} className="text-black" />
                 </div>
                 <h2 className="text-4xl font-bold text-black mb-4 uppercase  tracking-tight text-gradient">

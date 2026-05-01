@@ -82,8 +82,8 @@ const AttendanceManager = ({ user }) => {
 
   if (!user?.assignedClass) {
     return (
-      <div className="professional-card p-10 bg-slate-50 text-center">
-        <h2 className="text-2xl font-bold uppercase text-slate-400">
+      <div className="professional-card p-10 bg-brand-50 text-center">
+        <h2 className="text-2xl font-bold uppercase text-brand-400">
           No Class Assigned
         </h2>
         <p className="text-gray-500 font-bold">You need to be assigned as a form teacher to mark attendance.</p>
@@ -92,7 +92,7 @@ const AttendanceManager = ({ user }) => {
   }
 
   return (
-    <div className="professional-card p-6 md:p-10 bg-slate-50">
+    <div className="professional-card p-6 md:p-10 bg-brand-50">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
           <h2 className="text-3xl font-bold text-black uppercase  tracking-tight text-gradient">
@@ -115,7 +115,7 @@ const AttendanceManager = ({ user }) => {
       </div>
 
       {message && (
-        <div className={`p-4 mb-6 border border-slate-700/50 rounded-xl font-bold uppercase tracking-tight text-white ${message.includes('✅') ? 'bg-green-500' : 'bg-red-500'}`}>
+        <div className={`p-4 mb-6 border border-brand-700/50 rounded-xl font-bold uppercase tracking-tight text-white ${message.includes('✅') ? 'bg-green-500' : 'bg-red-500'}`}>
           {message}
         </div>
       )}
@@ -130,9 +130,9 @@ const AttendanceManager = ({ user }) => {
         </div>
       ) : (
         <>
-          <div className="overflow-x-auto mb-8 border border-slate-700/50 rounded-xl bg-white">
+          <div className="overflow-x-auto mb-8 border border-brand-700/50 rounded-xl bg-white">
             <table className="w-full text-left">
-              <thead className="bg-slate-900 border-b-4 border-black">
+              <thead className="bg-brand-900 border-b-4 border-brand-900">
                 <tr>
                   <th className="p-4 font-bold uppercase text-white tracking-widest">Student Name</th>
                   <th className="p-4 font-bold uppercase text-white tracking-widest text-center">Status</th>
@@ -140,7 +140,7 @@ const AttendanceManager = ({ user }) => {
               </thead>
               <tbody className="divide-y-2 divide-black/10">
                 {students.map((student) => (
-                  <tr key={student.id} className="hover:bg-slate-50 transition-colors">
+                  <tr key={student.id} className="hover:bg-brand-50 transition-colors">
                     <td className="p-4 font-bold text-lg">
                       {student.lastName} {student.firstName}
                     </td>
@@ -150,8 +150,8 @@ const AttendanceManager = ({ user }) => {
                           onClick={() => handleStatusChange(student.id, "PRESENT")}
                           className={`flex-1 py-2 px-3 rounded-xl border-2 font-bold text-xs uppercase flex items-center justify-center gap-1 transition-all ${
                             attendanceRecords[student.id] === "PRESENT"
-                              ? "bg-green-500 border-black text-white shadow-md -translate-y-1"
-                              : "bg-white border-gray-300 text-gray-500 hover:border-black hover:bg-green-100"
+                              ? "bg-green-500 border-brand-900 text-white shadow-md -translate-y-1"
+                              : "bg-white border-gray-300 text-gray-500 hover:border-brand-900 hover:bg-green-100"
                           }`}
                         >
                           <CheckCircle size={16} /> Present
@@ -160,8 +160,8 @@ const AttendanceManager = ({ user }) => {
                           onClick={() => handleStatusChange(student.id, "LATE")}
                           className={`flex-1 py-2 px-3 rounded-xl border-2 font-bold text-xs uppercase flex items-center justify-center gap-1 transition-all ${
                             attendanceRecords[student.id] === "LATE"
-                              ? "bg-yellow-400 border-black text-black shadow-md -translate-y-1"
-                              : "bg-white border-gray-300 text-gray-500 hover:border-black hover:bg-yellow-100"
+                              ? "bg-yellow-400 border-brand-900 text-black shadow-md -translate-y-1"
+                              : "bg-white border-gray-300 text-gray-500 hover:border-brand-900 hover:bg-yellow-100"
                           }`}
                         >
                           <Clock size={16} /> Late
@@ -170,8 +170,8 @@ const AttendanceManager = ({ user }) => {
                           onClick={() => handleStatusChange(student.id, "ABSENT")}
                           className={`flex-1 py-2 px-3 rounded-xl border-2 font-bold text-xs uppercase flex items-center justify-center gap-1 transition-all ${
                             attendanceRecords[student.id] === "ABSENT"
-                              ? "bg-red-500 border-black text-white shadow-md -translate-y-1"
-                              : "bg-white border-gray-300 text-gray-500 hover:border-black hover:bg-red-100"
+                              ? "bg-red-500 border-brand-900 text-white shadow-md -translate-y-1"
+                              : "bg-white border-gray-300 text-gray-500 hover:border-brand-900 hover:bg-red-100"
                           }`}
                         >
                           <XCircle size={16} /> Absent

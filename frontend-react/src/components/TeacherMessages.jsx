@@ -43,10 +43,10 @@ const TeacherMessages = ({ onClose }) => {
   const unreadCount = messages.filter((m) => !m.isRead && m.recipientId === user.id).length;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl border border-slate-700/50 shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col">
+    <div className="fixed inset-0 bg-brand-950/50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-xl border border-brand-700/50 shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b-4 border-black bg-slate-800">
+        <div className="flex items-center justify-between p-6 border-b-4 border-brand-900 bg-brand-800">
           <div className="flex items-center gap-3">
             <MessageCircle size={28} className="text-accent-gold" />
             <div>
@@ -62,7 +62,7 @@ const TeacherMessages = ({ onClose }) => {
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-slate-700 rounded-lg text-white"
+            className="p-2 hover:bg-brand-700 rounded-lg text-white"
           >
             <X size={24} />
           </button>
@@ -89,7 +89,7 @@ const TeacherMessages = ({ onClose }) => {
                   className={`p-5 rounded-lg border-4 ${
                     isUnread
                       ? "bg-yellow-50 border-accent-gold shadow-md"
-                      : "bg-slate-50 border-gray-300"
+                      : "bg-brand-50 border-gray-300"
                   }`}
                 >
                   {/* Message Header */}
@@ -125,7 +125,7 @@ const TeacherMessages = ({ onClose }) => {
                   {isUnread && (
                     <button
                       onClick={() => markAsRead(msg.id)}
-                      className="mt-4 px-4 py-2 bg-accent-gold border border-slate-700/50 rounded-lg font-bold text-xs uppercase hover:bg-black hover:text-accent-gold transition"
+                      className="mt-4 px-4 py-2 bg-accent-gold border border-brand-700/50 rounded-lg font-bold text-xs uppercase hover:bg-brand-950 hover:text-accent-gold transition"
                     >
                       Mark as Read
                     </button>

@@ -36,13 +36,13 @@ const SubjectTeacherBroadsheet = () => {
   const RankBadge = ({ rank }) => {
     let badgeClass = "";
     if (rank === 1) {
-      badgeClass = "bg-yellow-400 text-black border border-slate-700/50";
+      badgeClass = "bg-yellow-400 text-black border border-brand-700/50";
     } else if (rank === 2) {
-      badgeClass = "bg-gray-300 text-black border border-slate-700/50";
+      badgeClass = "bg-gray-300 text-black border border-brand-700/50";
     } else if (rank === 3) {
-      badgeClass = "bg-amber-600 text-white border border-slate-700/50";
+      badgeClass = "bg-amber-600 text-white border border-brand-700/50";
     } else {
-      badgeClass = "bg-slate-700 text-white border border-slate-700/50/30";
+      badgeClass = "bg-brand-700 text-white border border-brand-700/50/30";
     }
     return (
       <span
@@ -218,7 +218,7 @@ const SubjectTeacherBroadsheet = () => {
   const groupedByClass = Object.groupBy(sortedData, (s) => s.className);
 
   return (
-    <div className="min-h-screen bg-[#0f172a] relative overflow-hidden p-6 lg:p-10">
+    <div className="min-h-screen bg-transparent relative overflow-hidden p-6 lg:p-10">
       <AcademicBackground />
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -229,11 +229,11 @@ const SubjectTeacherBroadsheet = () => {
           <ArrowLeft size={20} /> Back to Dashboard
         </button>
 
-        <div className="no-print professional-card bg-slate-900 p-8 mb-10">
+        <div className="no-print professional-card bg-brand-900 p-8 mb-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-sm font-bold uppercase tracking-widest text-slate-400">
+                <label className="text-sm font-bold uppercase tracking-widest text-brand-400">
                   Select Term
                 </label>
                 <select
@@ -247,7 +247,7 @@ const SubjectTeacherBroadsheet = () => {
                 </select>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-bold uppercase tracking-widest text-slate-400">
+                <label className="text-sm font-bold uppercase tracking-widest text-brand-400">
                   Academic Year
                 </label>
                 <select
@@ -277,8 +277,8 @@ const SubjectTeacherBroadsheet = () => {
         {broadsheetData.length > 0 ? (
           <div className="space-y-10">
             {Object.entries(groupedByClass).map(([className, classStudents]) => (
-              <div key={className} className="professional-card bg-slate-900 p-8">
-                <div className="flex justify-between items-center mb-8 border-b-4 border-black pb-6">
+              <div key={className} className="professional-card bg-brand-900 p-8">
+                <div className="flex justify-between items-center mb-8 border-b-4 border-brand-900 pb-6">
                   <div>
                     <h2 className="text-3xl font-bold text-white uppercase  tracking-tight text-gradient mb-2">
                       {settings?.schoolName || "The Academy"}
@@ -291,21 +291,21 @@ const SubjectTeacherBroadsheet = () => {
                     >
                       {user.assignedSubject} - {className}
                     </h3>
-                    <p className="text-slate-400 font-bold uppercase tracking-tight text-xs">
+                    <p className="text-brand-400 font-bold uppercase tracking-tight text-xs">
                       {term} Term | {academicYear}
                     </p>
                   </div>
                   <div className="no-print flex gap-4">
                     <button
                       onClick={handlePrint}
-                      className="p-4 bg-slate-800 border border-slate-700/50 rounded-lg shadow-md hover:-translate-y-1 transition-all text-white"
+                      className="p-4 bg-brand-800 border border-brand-700/50 rounded-lg shadow-md hover:-translate-y-1 transition-all text-white"
                       title="Print Results"
                     >
                       <Printer size={24} />
                     </button>
                     <button
                       onClick={downloadCSV}
-                      className="p-4 bg-accent-gold border border-slate-700/50 rounded-lg shadow-md hover:-translate-y-1 transition-all text-black"
+                      className="p-4 bg-accent-gold border border-brand-700/50 rounded-lg shadow-md hover:-translate-y-1 transition-all text-black"
                       title="Download CSV"
                     >
                       <Download size={24} />
@@ -316,29 +316,29 @@ const SubjectTeacherBroadsheet = () => {
                 <div className="overflow-x-auto print-full">
                   <table className="w-full border-collapse">
                     <thead>
-                      <tr className="border-b-4 border-black">
+                      <tr className="border-b-4 border-brand-900">
                         <th
-                          className="p-4 text-center font-bold uppercase tracking-widest text-xs bg-slate-800 text-white border-r-2 border-black min-w-[60px]"
+                          className="p-4 text-center font-bold uppercase tracking-widest text-xs bg-brand-800 text-white border-r-2 border-brand-900 min-w-[60px]"
                         >
                           Rank
                         </th>
                         <th
-                          className="p-4 text-left font-bold uppercase tracking-widest text-xs bg-slate-800 text-white border-r-2 border-black sticky left-0 z-20 cursor-pointer select-none hover:bg-slate-700"
+                          className="p-4 text-left font-bold uppercase tracking-widest text-xs bg-brand-800 text-white border-r-2 border-brand-900 sticky left-0 z-20 cursor-pointer select-none hover:bg-brand-700"
                           onClick={() => handleSort("name")}
                         >
                           Student Name <SortIcon column="name" />
                         </th>
-                        <th className="p-4 text-center font-bold uppercase tracking-widest text-xs bg-slate-800 text-white border-r-2 border-black">
+                        <th className="p-4 text-center font-bold uppercase tracking-widest text-xs bg-brand-800 text-white border-r-2 border-brand-900">
                           1st CA
                         </th>
-                        <th className="p-4 text-center font-bold uppercase tracking-widest text-xs bg-slate-800 text-white border-r-2 border-black">
+                        <th className="p-4 text-center font-bold uppercase tracking-widest text-xs bg-brand-800 text-white border-r-2 border-brand-900">
                           2nd CA
                         </th>
-                        <th className="p-4 text-center font-bold uppercase tracking-widest text-xs bg-slate-800 text-white border-r-2 border-black">
+                        <th className="p-4 text-center font-bold uppercase tracking-widest text-xs bg-brand-800 text-white border-r-2 border-brand-900">
                           Exam
                         </th>
                         <th
-                          className="p-4 text-center font-bold uppercase tracking-widest text-xs border-r-2 border-black/10 cursor-pointer select-none hover:opacity-80"
+                          className="p-4 text-center font-bold uppercase tracking-widest text-xs border-r-2 border-brand-900/10 cursor-pointer select-none hover:opacity-80"
                           style={{
                             backgroundColor: settings?.primaryColor ? `${settings.primaryColor}20` : "rgba(255, 215, 0, 0.1)",
                             color: settings?.primaryColor || "var(--color-accent-gold)",
@@ -362,25 +362,25 @@ const SubjectTeacherBroadsheet = () => {
                       {classStudents.map((student) => (
                         <tr
                           key={student.id}
-                          className="border-b-2 border-black/5 transition-colors group hover:bg-accent-gold/5"
+                          className="border-b-2 border-brand-900/5 transition-colors group hover:bg-accent-gold/5"
                         >
-                          <td className="p-4 text-center border-r-2 border-black/10">
+                          <td className="p-4 text-center border-r-2 border-brand-900/10">
                             <RankBadge rank={student.position} />
                           </td>
-                          <td className="p-4 font-bold text-white uppercase tracking-tight sticky left-0 bg-slate-900 group-hover:bg-slate-800 border-r-2 border-black z-10">
+                          <td className="p-4 font-bold text-white uppercase tracking-tight sticky left-0 bg-brand-900 group-hover:bg-brand-800 border-r-2 border-brand-900 z-10">
                             {student.lastName} {student.firstName}
                           </td>
-                          <td className="p-4 text-center font-bold text-white text-sm border-r-2 border-black/5 bg-slate-800/30">
+                          <td className="p-4 text-center font-bold text-white text-sm border-r-2 border-brand-900/5 bg-brand-800/30">
                             {student.ca1}
                           </td>
-                          <td className="p-4 text-center font-bold text-white text-sm border-r-2 border-black/5 bg-slate-800/30">
+                          <td className="p-4 text-center font-bold text-white text-sm border-r-2 border-brand-900/5 bg-brand-800/30">
                             {student.ca2}
                           </td>
-                          <td className="p-4 text-center font-bold text-white text-sm border-r-2 border-black/5 bg-slate-800/30">
+                          <td className="p-4 text-center font-bold text-white text-sm border-r-2 border-brand-900/5 bg-brand-800/30">
                             {student.exam}
                           </td>
                           <td
-                            className="p-4 text-center font-bold text-lg border-r-2 border-black/5 text-white"
+                            className="p-4 text-center font-bold text-lg border-r-2 border-brand-900/5 text-white"
                             style={{
                               backgroundColor: settings?.primaryColor ? `${settings.primaryColor}10` : "rgba(255,215,0,0.06)",
                             }}
@@ -405,7 +405,7 @@ const SubjectTeacherBroadsheet = () => {
           </div>
         ) : (
           !loading && (
-            <div className="professional-card bg-slate-900 p-20 text-center border-4 border-dashed border-black/20">
+            <div className="professional-card bg-brand-900 p-20 text-center border-4 border-dashed border-brand-900/20">
               <FileSpreadsheet size={64} className="mx-auto text-white/10 mb-6" />
               <p className="text-2xl font-bold text-white/20 uppercase  tracking-widest">
                 No results found!

@@ -80,10 +80,10 @@ const ActivityTracker = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl border border-slate-700/50 shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col">
+    <div className="fixed inset-0 bg-brand-950/50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-xl border border-brand-700/50 shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b-4 border-black bg-slate-800">
+        <div className="flex items-center justify-between p-6 border-b-4 border-brand-900 bg-brand-800">
           <div className="flex items-center gap-3">
             <Activity size={28} className="text-accent-gold" />
             <h2 className="text-2xl font-bold text-white uppercase tracking-tight">
@@ -92,7 +92,7 @@ const ActivityTracker = ({ onClose }) => {
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-slate-700 rounded-lg text-white"
+            className="p-2 hover:bg-brand-700 rounded-lg text-white"
           >
             <X size={24} />
           </button>
@@ -100,7 +100,7 @@ const ActivityTracker = ({ onClose }) => {
 
         <div className="flex flex-1 overflow-hidden">
           {/* Teachers List */}
-          <div className="w-64 border-r-4 border-black bg-slate-50 overflow-y-auto">
+          <div className="w-64 border-r-4 border-brand-900 bg-brand-50 overflow-y-auto">
             <div className="p-4">
               <p className="text-xs font-bold text-gray-600 uppercase mb-4">
                 Select Teacher
@@ -117,8 +117,8 @@ const ActivityTracker = ({ onClose }) => {
                       onClick={() => setSelectedTeacher(teacher)}
                       className={`w-full p-3 rounded-lg border-2 text-left transition-all ${
                         selectedTeacher?.id === teacher.id
-                          ? "bg-accent-red text-white border-black shadow-md"
-                          : "bg-white border-gray-300 hover:border-black"
+                          ? "bg-accent-red text-white border-brand-900 shadow-md"
+                          : "bg-white border-gray-300 hover:border-brand-900"
                       }`}
                     >
                       <p className="font-bold text-sm uppercase tracking-tight">
@@ -139,7 +139,7 @@ const ActivityTracker = ({ onClose }) => {
             {selectedTeacher ? (
               <>
                 {/* Teacher Info & Filter */}
-                <div className="p-6 border-b-4 border-black bg-slate-100 space-y-4">
+                <div className="p-6 border-b-4 border-brand-900 bg-brand-100 space-y-4">
                   <div>
                     <h3 className="text-lg font-bold text-black uppercase tracking-tight">
                       {selectedTeacher.fullName}
@@ -160,8 +160,8 @@ const ActivityTracker = ({ onClose }) => {
                           }}
                           className={`px-4 py-2 rounded-lg border-2 font-bold text-xs uppercase transition ${
                             filterBySeverity === severity
-                              ? "bg-black text-white border-black"
-                              : "bg-white border-gray-300 text-gray-700 hover:border-black"
+                              ? "bg-brand-950 text-white border-brand-900"
+                              : "bg-white border-gray-300 text-gray-700 hover:border-brand-900"
                           }`}
                         >
                           {severity}

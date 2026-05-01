@@ -119,12 +119,12 @@ const FormTeacherResultEntry = ({ user }) => {
     <div className="space-y-8">
       {message && (
         <div
-          className={`p-6 border border-slate-700/50 rounded-lg flex items-center gap-4 ${
+          className={`p-6 border border-brand-700/50 rounded-lg flex items-center gap-4 ${
             message.includes("Error") ? "bg-accent-red/20" : "bg-accent-green/20"
           }`}
         >
           <div
-            className={`w-4 h-4 rounded-full border border-slate-700/50 ${
+            className={`w-4 h-4 rounded-full border border-brand-700/50 ${
               message.includes("Error") ? "bg-accent-red" : "bg-accent-green"
             }`}
           ></div>
@@ -135,7 +135,7 @@ const FormTeacherResultEntry = ({ user }) => {
       )}
 
       {/* Filters */}
-      <div className="professional-card bg-slate-700 p-6 space-y-4">
+      <div className="professional-card bg-brand-700 p-6 space-y-4">
         <h3 className="text-lg font-bold text-white uppercase tracking-tight">
           📝 Result Entry for {user?.assignedClass}
         </h3>
@@ -186,9 +186,9 @@ const FormTeacherResultEntry = ({ user }) => {
       {/* Results Entry Tables */}
       <div className="space-y-8">
         {students.map((student) => (
-          <div key={student.id} className="professional-card bg-slate-800 p-6">
+          <div key={student.id} className="professional-card bg-brand-800 p-6">
             {/* Student Header */}
-            <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-slate-600">
+            <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-brand-600">
               <div>
                 <p className="text-lg font-bold text-white uppercase tracking-tight">
                   {student.firstName} {student.lastName}
@@ -203,7 +203,7 @@ const FormTeacherResultEntry = ({ user }) => {
                     editingStudentId === student.id ? null : student.id
                   )
                 }
-                className="p-3 bg-accent-gold border border-slate-700/50 rounded-lg font-bold hover:bg-black hover:text-accent-gold transition"
+                className="p-3 bg-accent-gold border border-brand-700/50 rounded-lg font-bold hover:bg-brand-950 hover:text-accent-gold transition"
               >
                 {editingStudentId === student.id ? <X size={20} /> : <Edit3 size={20} />}
               </button>
@@ -228,7 +228,7 @@ const FormTeacherResultEntry = ({ user }) => {
                   return (
                     <div
                       key={subject.id}
-                      className="p-5 bg-slate-700 rounded-lg border-2 border-slate-600 space-y-4"
+                      className="p-5 bg-brand-700 rounded-lg border-2 border-brand-600 space-y-4"
                     >
                       <h4 className="font-bold text-white uppercase tracking-tight">
                         {subject.name}
@@ -302,7 +302,7 @@ const FormTeacherResultEntry = ({ user }) => {
                           <label className="text-xs font-bold text-accent-gold uppercase">
                             Total
                           </label>
-                          <div className="p-3 bg-slate-600 rounded-lg font-bold text-white text-center border-2 border-accent-gold">
+                          <div className="p-3 bg-brand-600 rounded-lg font-bold text-white text-center border-2 border-accent-gold">
                             {total}
                           </div>
                         </div>
@@ -330,7 +330,7 @@ const FormTeacherResultEntry = ({ user }) => {
 
                       <button
                         onClick={() => handleSaveResult(student.id, subject.id)}
-                        className="w-full mt-4 py-2 bg-accent-gold border border-slate-700/50 rounded-lg font-bold text-black hover:bg-black hover:text-accent-gold transition flex items-center justify-center gap-2"
+                        className="w-full mt-4 py-2 bg-accent-gold border border-brand-700/50 rounded-lg font-bold text-black hover:bg-brand-950 hover:text-accent-gold transition flex items-center justify-center gap-2"
                       >
                         <Save size={18} />
                         Save Result
@@ -352,7 +352,7 @@ const FormTeacherResultEntry = ({ user }) => {
                   return (
                     <div
                       key={subject.id}
-                      className="p-4 bg-slate-700 rounded-lg border-2 border-slate-600 flex items-center justify-between"
+                      className="p-4 bg-brand-700 rounded-lg border-2 border-brand-600 flex items-center justify-between"
                     >
                       <span className="font-bold text-white">{subject.name}</span>
                       {resultData ? (
@@ -399,7 +399,7 @@ const FormTeacherResultEntry = ({ user }) => {
       </div>
 
       {students.length === 0 && !loading && (
-        <div className="professional-card bg-slate-800 p-12 text-center border-4 border-dashed border-black/20">
+        <div className="professional-card bg-brand-800 p-12 text-center border-4 border-dashed border-brand-900/20">
           <p className="text-xl font-bold text-white/50 uppercase  tracking-widest">
             No students in your class
           </p>

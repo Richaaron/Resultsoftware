@@ -19,7 +19,7 @@ const ResponsiveTable = ({ headers, rows, className = "" }) => {
           </thead>
           <tbody>
             {rows.map((row, rowIdx) => (
-              <tr key={rowIdx} className="hover:bg-slate-700/20 transition-colors">
+              <tr key={rowIdx} className="hover:bg-brand-700/20 transition-colors">
                 {row.map((cell, cellIdx) => (
                   <td
                     key={cellIdx}

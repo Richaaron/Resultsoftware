@@ -51,17 +51,17 @@ const Login = () => {
   };
 
   const renderLoginButtons = () => (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 animate-fade-in-up">
       <button
         onClick={() => setLoginType("ADMIN")}
-        className="professional-card flex flex-col items-center justify-center gap-3 p-6 md:p-8 group h-full bg-slate-800/60 border-slate-600/60 hover:shadow-xl"
+        className="glass-panel flex flex-col items-center justify-center gap-3 p-6 md:p-8 group h-full transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(245,158,11,0.25)] hover:border-accent-gold/40 cursor-pointer"
       >
-        <div className="w-12 md:w-16 h-12 md:h-16 bg-slate-700 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+        <div className="w-12 md:w-16 h-12 md:h-16 bg-brand-800/50 backdrop-blur-sm border border-brand-700/50 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-brand-700 transition-all duration-300">
           <ShieldCheck size={32} className="text-accent-gold" />
         </div>
-        <div className="text-center">
-          <span className="text-lg md:text-xl font-bold block text-white">Admin</span>
-          <span className="text-xs font-semibold text-slate-300">
+        <div className="text-center mt-2">
+          <span className="text-lg md:text-xl font-bold block text-white group-hover:text-accent-gold transition-colors">Admin</span>
+          <span className="text-xs font-semibold text-brand-300 uppercase tracking-wider mt-1 block">
             Full Access
           </span>
         </div>
@@ -69,14 +69,14 @@ const Login = () => {
 
       <button
         onClick={() => setLoginType("TEACHER")}
-        className="professional-card flex flex-col items-center justify-center gap-3 p-6 md:p-8 group h-full bg-slate-800/60 border-slate-600/60 hover:shadow-xl"
+        className="glass-panel flex flex-col items-center justify-center gap-3 p-6 md:p-8 group h-full transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(59,130,246,0.25)] hover:border-brand-400/40 cursor-pointer"
       >
-        <div className="w-12 md:w-16 h-12 md:h-16 bg-slate-700 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-          <UserCircle size={32} className="text-accent-gold" />
+        <div className="w-12 md:w-16 h-12 md:h-16 bg-brand-800/50 backdrop-blur-sm border border-brand-700/50 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-brand-700 transition-all duration-300">
+          <UserCircle size={32} className="text-brand-400" />
         </div>
-        <div className="text-center">
-          <span className="text-lg md:text-xl font-bold block text-white">Teacher</span>
-          <span className="text-xs font-semibold text-slate-300">
+        <div className="text-center mt-2">
+          <span className="text-lg md:text-xl font-bold block text-white group-hover:text-brand-400 transition-colors">Teacher</span>
+          <span className="text-xs font-semibold text-brand-300 uppercase tracking-wider mt-1 block">
             Records
           </span>
         </div>
@@ -84,14 +84,14 @@ const Login = () => {
 
       <button
         onClick={() => setLoginType("PARENT")}
-        className="professional-card flex flex-col items-center justify-center gap-3 p-6 md:p-8 group h-full bg-slate-800/60 border-slate-600/60 hover:shadow-xl"
+        className="glass-panel flex flex-col items-center justify-center gap-3 p-6 md:p-8 group h-full transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(16,185,129,0.25)] hover:border-accent-green/40 cursor-pointer"
       >
-        <div className="w-12 md:w-16 h-12 md:h-16 bg-slate-700 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-          <Users size={32} className="text-accent-gold" />
+        <div className="w-12 md:w-16 h-12 md:h-16 bg-brand-800/50 backdrop-blur-sm border border-brand-700/50 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-brand-700 transition-all duration-300">
+          <Users size={32} className="text-accent-green" />
         </div>
-        <div className="text-center">
-          <span className="text-lg md:text-xl font-bold block text-white">Parent</span>
-          <span className="text-xs font-semibold text-slate-300">
+        <div className="text-center mt-2">
+          <span className="text-lg md:text-xl font-bold block text-white group-hover:text-accent-green transition-colors">Parent</span>
+          <span className="text-xs font-semibold text-brand-300 uppercase tracking-wider mt-1 block">
             Results
           </span>
         </div>
@@ -109,12 +109,12 @@ const Login = () => {
           setPassword("");
           setShowPassword(false);
         }}
-        className="mb-4 text-slate-300 font-medium text-sm flex items-center gap-2 hover:text-white transition-colors"
+        className="mb-4 text-brand-300 font-medium text-sm flex items-center gap-2 hover:text-white transition-colors hover:translate-x-[-4px]"
       >
         ← Go Back
       </button>
 
-      <div className="professional-card p-4 mb-5 flex items-center gap-3 bg-slate-800/60 border-slate-600/60">
+      <div className="glass-panel p-5 mb-6 flex items-center gap-4">
         {loginType === "ADMIN" ? (
           <ShieldCheck size={24} className="text-accent-gold flex-shrink-0" />
         ) : loginType === "TEACHER" ? (
@@ -123,10 +123,10 @@ const Login = () => {
           <Users size={24} className="text-accent-gold flex-shrink-0" />
         )}
         <div>
-          <h3 className="text-base md:text-xl font-bold text-white">
-            {loginType} Login
+          <h3 className="text-lg md:text-xl font-extrabold text-white tracking-tight">
+            {loginType} Access
           </h3>
-          <p className="text-xs font-medium text-slate-300">
+          <p className="text-xs font-medium text-brand-300 uppercase tracking-wider mt-0.5">
             Enter your credentials
           </p>
         </div>
@@ -138,9 +138,9 @@ const Login = () => {
         </div>
       )}
 
-      <form onSubmit={handleLogin} className="space-y-4">
+      <form onSubmit={handleLogin} className="space-y-5">
         <div className="relative group">
-          <label className="block text-sm font-bold text-white mb-1.5">
+          <label className="block text-sm font-bold text-brand-100 mb-2 uppercase tracking-wide">
             Username
           </label>
           <input
@@ -155,7 +155,7 @@ const Login = () => {
           />
         </div>
         <div className="relative group">
-          <label className="block text-sm font-bold text-white mb-1.5">
+          <label className="block text-sm font-bold text-brand-100 mb-2 uppercase tracking-wide">
             Password
           </label>
           <div className="relative">
@@ -170,7 +170,7 @@ const Login = () => {
             <button
               type="button"
               onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-accent-gold transition-colors focus:outline-none"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-brand-400 hover:text-accent-gold transition-colors focus:outline-none"
               tabIndex={-1}
               aria-label={showPassword ? "Hide password" : "Show password"}
             >
@@ -181,39 +181,39 @@ const Login = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full btn-primary text-base py-2.5 mt-5 disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full btn-primary text-base py-3.5 mt-6 disabled:opacity-60 disabled:cursor-not-allowed uppercase tracking-wider"
         >
-          {loading ? "Accessing..." : "Access portal"}
+          {loading ? "Authenticating..." : "Access Portal"}
         </button>
       </form>
     </div>
   );
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-slate-950 relative overflow-hidden p-4">
+    <div className="flex items-center justify-center min-h-screen bg-brand-950 relative overflow-hidden p-4 sm:p-8">
       <AcademicBackground />
 
-      <div className="professional-card p-6 md:p-8 w-full max-w-xl relative z-10 bg-slate-900/85 border-slate-600/60 shadow-2xl">
-        <div className="mb-6 md:mb-8 text-center relative">
-          <div className="w-12 md:w-16 h-12 md:h-16 bg-accent-gold rounded-lg flex items-center justify-center text-slate-950 mx-auto mb-4 shadow-lg">
-            <GraduationCap size={32} strokeWidth={2.5} />
+      <div className="glass-premium p-8 md:p-10 w-full max-w-xl relative z-10 animate-fade-in-up">
+        <div className="mb-8 md:mb-10 text-center relative">
+          <div className="w-16 md:w-20 h-16 md:h-20 bg-gradient-to-br from-accent-gold to-yellow-500 rounded-2xl flex items-center justify-center text-brand-950 mx-auto mb-6 shadow-[0_0_30px_rgba(245,158,11,0.4)] animate-pulse-glow">
+            <GraduationCap size={40} strokeWidth={2.5} />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
-            Folusho Victory School
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-3 tracking-tight">
+            Folusho Victory
             <br />
-            <span className="text-accent-gold">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-gold to-yellow-300">
               Result Portal
             </span>
           </h2>
-          <p className="text-slate-300 font-medium text-sm md:text-base">
+          <p className="text-brand-300 font-medium text-sm md:text-base tracking-wide uppercase">
             Select your role to continue
           </p>
         </div>
 
         {!loginType ? renderLoginButtons() : renderLoginForm()}
 
-        <div className="mt-8 md:mt-12 text-center">
-          <p className="text-slate-500 text-xs font-medium">
+        <div className="mt-10 md:mt-12 text-center border-t border-brand-800/40 pt-6">
+          <p className="text-brand-400/60 text-xs font-semibold tracking-wider uppercase">
             Folusho Victory School Result Portal v2.0
           </p>
         </div>

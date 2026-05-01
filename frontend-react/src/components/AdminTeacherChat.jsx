@@ -78,10 +78,10 @@ const AdminTeacherChat = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl border border-slate-700/50 shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col">
+    <div className="fixed inset-0 bg-brand-950/50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-xl border border-brand-700/50 shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b-4 border-black bg-slate-800">
+        <div className="flex items-center justify-between p-6 border-b-4 border-brand-900 bg-brand-800">
           <div className="flex items-center gap-3">
             <MessageCircle size={28} className="text-accent-gold" />
             <h2 className="text-2xl font-bold text-white uppercase tracking-tight">
@@ -90,7 +90,7 @@ const AdminTeacherChat = ({ onClose }) => {
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-slate-700 rounded-lg text-white"
+            className="p-2 hover:bg-brand-700 rounded-lg text-white"
           >
             <X size={24} />
           </button>
@@ -98,7 +98,7 @@ const AdminTeacherChat = ({ onClose }) => {
 
         <div className="flex flex-1 overflow-hidden">
           {/* Teachers List */}
-          <div className="w-64 border-r-4 border-black bg-slate-50 overflow-y-auto">
+          <div className="w-64 border-r-4 border-brand-900 bg-brand-50 overflow-y-auto">
             <div className="p-4 space-y-2">
               {teachers.length === 0 ? (
                 <p className="text-gray-500 text-sm text-center py-8">
@@ -111,8 +111,8 @@ const AdminTeacherChat = ({ onClose }) => {
                     onClick={() => setSelectedTeacher(teacher)}
                     className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
                       selectedTeacher?.id === teacher.id
-                        ? "bg-accent-gold border-black shadow-md"
-                        : "bg-white border-gray-300 hover:border-black"
+                        ? "bg-accent-gold border-brand-900 shadow-md"
+                        : "bg-white border-gray-300 hover:border-brand-900"
                     }`}
                   >
                     <p className="font-bold text-sm uppercase tracking-tight">
@@ -132,7 +132,7 @@ const AdminTeacherChat = ({ onClose }) => {
             {selectedTeacher ? (
               <>
                 {/* Selected Teacher Info */}
-                <div className="p-6 border-b-4 border-black bg-slate-100">
+                <div className="p-6 border-b-4 border-brand-900 bg-brand-100">
                   <h3 className="text-lg font-bold text-black uppercase tracking-tight">
                     {selectedTeacher.fullName}
                   </h3>
@@ -170,8 +170,8 @@ const AdminTeacherChat = ({ onClose }) => {
                         <div
                           className={`max-w-sm px-6 py-4 rounded-lg border-2 ${
                             msg.senderId === JSON.parse(localStorage.getItem("user")).id
-                              ? "bg-accent-gold border-black"
-                              : `bg-slate-100 border-gray-300 ${!msg.isRead ? "border-accent-red border-4" : ""}`
+                              ? "bg-accent-gold border-brand-900"
+                              : `bg-brand-100 border-gray-300 ${!msg.isRead ? "border-accent-red border-4" : ""}`
                           }`}
                         >
                           <div className="flex items-center gap-2 mb-2">
@@ -209,7 +209,7 @@ const AdminTeacherChat = ({ onClose }) => {
                 {/* Message Input */}
                 <form
                   onSubmit={handleSendMessage}
-                  className="p-6 border-t-4 border-black bg-slate-50"
+                  className="p-6 border-t-4 border-brand-900 bg-brand-50"
                 >
                   <div className="space-y-4">
                     <input
@@ -217,7 +217,7 @@ const AdminTeacherChat = ({ onClose }) => {
                       placeholder="Message subject..."
                       value={subject}
                       onChange={(e) => setSubject(e.target.value)}
-                      className="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-black outline-none font-medium"
+                      className="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-brand-900 outline-none font-medium"
                     />
                     <div className="flex gap-3">
                       <textarea
@@ -225,11 +225,11 @@ const AdminTeacherChat = ({ onClose }) => {
                         value={newMessage}
                         onChange={(e) => setNewMessage(e.target.value)}
                         rows="3"
-                        className="flex-1 p-3 border-2 border-gray-300 rounded-lg focus:border-black outline-none font-medium resize-none"
+                        className="flex-1 p-3 border-2 border-gray-300 rounded-lg focus:border-brand-900 outline-none font-medium resize-none"
                       />
                       <button
                         type="submit"
-                        className="bg-accent-gold border border-slate-700/50 px-6 py-3 rounded-lg font-bold hover:bg-black hover:text-accent-gold transition shadow-md hover:-translate-y-1"
+                        className="bg-accent-gold border border-brand-700/50 px-6 py-3 rounded-lg font-bold hover:bg-brand-950 hover:text-accent-gold transition shadow-md hover:-translate-y-1"
                       >
                         <Send size={20} />
                       </button>
