@@ -86,6 +86,20 @@ exports.handler = async (event, context) => {
       }
     };
   }
+
+  if (requestPath.includes('/api/debug-event')) {
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        eventKeys: Object.keys(event),
+        body: event.body,
+        isBase64Encoded: event.isBase64Encoded,
+        headers: event.headers,
+        typeofBody: typeof event.body
+      })
+    };
+  }
   
   // Fix Netlify base64 encoded bodies for serverless-http
   if (event.body && event.isBase64Encoded) {
