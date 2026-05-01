@@ -282,7 +282,6 @@ const seedData = async () => {
       { name: 'English Language', category: 'Primary', level: 'General', section: null },
       { name: 'Mathematics (Primary)', category: 'Primary', level: 'General', section: null },
       { name: 'Basic Science', category: 'Primary', level: 'General', section: null },
-      { name: 'Social Studies', category: 'Primary', level: 'General', section: null },
       { name: 'National Values', category: 'Primary', level: 'General', section: null },
       { name: 'Agricultural Science', category: 'Primary', level: 'General', section: null },
       { name: 'Home Economics', category: 'Primary', level: 'General', section: null },

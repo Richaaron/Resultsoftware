@@ -1,7 +1,7 @@
 /**
  * Migration script: Update Junior Secondary subjects
  * - Removes: Social Studies, Civic Education
- * - Adds: National Values, Home Economics, Fine Arts, Religious Studies, Computer Studies
+ * - Adds: National Values, Home Economics, Fine Arts, Religious Studies, Computer Studies, Civic Education
  *
  * Run from project root: node update-jss-subjects.js
  */
@@ -26,10 +26,11 @@ const Subject = sequelize.define('Subject', {
   section:  { type: DataTypes.STRING,  allowNull: true },
 });
 
-const REMOVE = ['Social Studies', 'Civic Education'];
+const REMOVE = ['Social Studies'];
 
 const ADD = [
   { name: 'National Values',   category: 'Secondary', level: 'Junior', section: null },
+  { name: 'Civic Education',   category: 'Secondary', level: 'Junior', section: null },
   { name: 'Home Economics',    category: 'Secondary', level: 'Junior', section: null },
   { name: 'Fine Arts',         category: 'Secondary', level: 'Junior', section: null },
   { name: 'Religious Studies', category: 'Secondary', level: 'Junior', section: null },

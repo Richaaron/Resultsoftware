@@ -1,6 +1,7 @@
 /**
- * Migration script: Add new Primary subjects to live database
- * - Adds: Phonics, Quantitative Reasoning, Verbal Reasoning,
+ * Migration script: Update Primary subjects to live database
+ * - Removes: Yoruba, Igbo, Hausa, Social Studies
+ * - Adds: Phonics, National Values, Quantitative Reasoning, Verbal Reasoning,
  *         Religious Studies, Vocational Aptitude, Literature
  *
  * Run from project root: node update-primary-subjects.js
@@ -26,8 +27,11 @@ const Subject = sequelize.define('Subject', {
   section:  { type: DataTypes.STRING,  allowNull: true },
 });
 
+const REMOVE_PRIMARY_SUBJECTS = ['Yoruba', 'Igbo', 'Hausa', 'Social Studies'];
+
 const NEW_PRIMARY_SUBJECTS = [
   { name: 'Phonics',                category: 'Primary', level: 'General', section: null },
+  { name: 'National Values',        category: 'Primary', level: 'General', section: null },
   { name: 'Quantitative Reasoning', category: 'Primary', level: 'General', section: null },
   { name: 'Verbal Reasoning',       category: 'Primary', level: 'General', section: null },
   { name: 'Religious Studies',      category: 'Primary', level: 'General', section: null },
@@ -40,7 +44,21 @@ async function run() {
     await sequelize.authenticate();
     console.log('\n✅ Database connected\n');
 
-    console.log('── Adding new Primary subjects ───────────────────');
+    // 1. Remove old Primary subjects
+    console.log('── Removing old Primary subjects ────────────────');
+    for (const name of REMOVE_PRIMARY_SUBJECTS) {
+      const count = await Subject.destroy({
+        where: { name, category: 'Primary', level: 'General' },
+      });
+      if (count > 0) {
+        console.log(`  ✅ Removed: ${name}`);
+      } else {
+        console.log(`  ⚠  Not found (already removed?): ${name}`);
+      }
+    }
+
+    // 2. Add new Primary subjects
+    console.log('\n── Adding new Primary subjects ───────────────────');
     for (const sub of NEW_PRIMARY_SUBJECTS) {
       const exists = await Subject.findOne({
         where: { name: sub.name, category: 'Primary', level: 'General' },

@@ -216,6 +216,58 @@
     margin-right: 5px;
   }
 
+  /* Remarks Section */
+  .remarks-section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid #000;
+  }
+
+  .remarks-title {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0;
+    text-align: center;
+    letter-spacing: 1px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .remarks-content {
+    padding: 12px;
+  }
+
+  .remark-box {
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .remark-box:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .remark-label {
+    font-weight: bold;
+    font-size: 12px;
+    margin: 0 0 5px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .remark-text {
+    font-size: 11px;
+    line-height: 1.6;
+    text-align: justify;
+    margin: 0;
+    color: #000;
+  }
+
   /* Signatures */
   .signatures-section {
     display: flex;

@@ -32,6 +32,136 @@ const ReportCard = React.forwardRef(({ student, settings, attendanceStats }, ref
     return (calculateTotalScore() / sortedResults.length).toFixed(2);
   };
 
+  // Helper function to calculate performance metrics
+  const getPerformanceMetrics = () => {
+    const average = calculateAverage();
+    const gradeDistribution = sortedResults.reduce((acc, curr) => {
+      const { grade } = getGrade(curr.totalScore);
+      acc[grade] = (acc[grade] || 0) + 1;
+      return acc;
+    }, {});
+
+    const totalSubjects = sortedResults.length;
+    return {
+      average,
+      gradeDistribution,
+      aCount: gradeDistribution.A || 0,
+      bCount: gradeDistribution.B || 0,
+      cCount: gradeDistribution.C || 0,
+      dCount: gradeDistribution.D || 0,
+      fCount: gradeDistribution.F || 0,
+      totalSubjects,
+      attendance: attendanceStats?.percentage || 0,
+    };
+  };
+
+  // Generate Form Teacher/Class Teacher's Remarks (focus on behavior, conduct, improvement)
+  const generateClassTeacherRemark = () => {
+    const metrics = getPerformanceMetrics();
+    const { average, attendance, aCount, bCount, cCount, dCount, fCount } = metrics;
+    let remark = "";
+
+    if (average >= 85) {
+      remark = `${student.fullName} demonstrates exemplary conduct and outstanding academic performance with an average score of ${average}%. The student exhibits discipline, active participation in class, and sets a positive example for peers. Continue to maintain these excellent standards.`;
+    } else if (average >= 75) {
+      remark = `${student.fullName} displays good behavior and solid academic performance with an average score of ${average}%. The student shows consistent effort and cooperation in class. Continued dedication will lead to further improvement.`;
+    } else if (average >= 65) {
+      remark = `${student.fullName} shows satisfactory conduct and reasonable academic performance with an average score of ${average}%. There is potential for improvement through increased focus and dedication. Encourage more active participation in class activities.`;
+    } else if (average >= 55) {
+      remark = `${student.fullName} is generally well-behaved but academic performance needs improvement (average: ${average}%). The student should focus on strengthening weaker areas and seeking help when needed.`;
+    } else if (average >= 45) {
+      remark = `${student.fullName} needs significant improvement in both academic work and classroom engagement (average: ${average}%). Close monitoring and parental involvement are advised to ensure progress.`;
+    } else {
+      remark = `${student.fullName} is struggling academically with an average score of ${average}%. Urgent intervention, including remedial classes and parental support, is strongly recommended.`;
+    }
+
+    // Add subject-specific insights
+    if (aCount >= 4) {
+      remark += ` Excellent performance across multiple subjects, particularly noted.`;
+    } else if (fCount >= 2) {
+      remark += ` Priority focus should be given to the subjects where the student scored lower grades.`;
+    }
+
+    // Add attendance note
+    if (attendance < 75) {
+      remark += ` Attendance at ${attendance}% is below acceptable standards; regular attendance is essential for academic success.`;
+    } else if (attendance < 85) {
+      remark += ` Attendance should be improved to strengthen learning outcomes.`;
+    }
+
+    return remark;
+  };
+
+  // Generate Principal's Remarks (focus on academic achievement and standards)
+  const generatePrincipalRemark = () => {
+    const metrics = getPerformanceMetrics();
+    const { average, aCount, bCount, totalSubjects, attendance } = metrics;
+    const excellentSubjectsCount = aCount + bCount;
+    let remark = "";
+
+    if (average >= 85) {
+      remark = `${student.fullName} has achieved outstanding academic excellence with an average score of ${average}%. This exceptional performance reflects strong mastery of core concepts. The student is a credit to the school and exemplifies our academic standards.`;
+    } else if (average >= 75) {
+      remark = `${student.fullName} has demonstrated commendable academic achievement with an average score of ${average}%. Strong performance in ${excellentSubjectsCount} subjects indicates solid subject mastery. We encourage continued excellence.`;
+    } else if (average >= 65) {
+      remark = `${student.fullName} has achieved a respectable average score of ${average}%. While performance is satisfactory, there is room for significant improvement. Targeted effort in weaker subjects will yield better results.`;
+    } else if (average >= 55) {
+      remark = `${student.fullName} achieved an average score of ${average}%. Academic performance is average; focused revision and tutoring are recommended to reach higher achievement levels.`;
+    } else if (average >= 45) {
+      remark = `${student.fullName} scored an average of ${average}%, indicating performance below our expected academic standards. Remedial support and intensive tutoring are necessary.`;
+    } else {
+      remark = `${student.fullName} scored an average of ${average}%, significantly below school academic standards. A comprehensive intervention plan involving parents, teachers, and specialist support is urgently required.`;
+    }
+
+    // Add overall assessment
+    if (excellentSubjectsCount === totalSubjects) {
+      remark += ` Consistent high performance across all subjects is highly commendable.`;
+    } else if (excellentSubjectsCount >= totalSubjects * 0.7) {
+      remark += ` Strong performance across most subjects is noteworthy.`;
+    }
+
+    // Attendance note for principal
+    if (attendance >= 90) {
+      remark += ` The student's excellent attendance of ${attendance}% reflects strong commitment to academic pursuits.`;
+    } else if (attendance < 80) {
+      remark += ` Attendance of ${attendance}% must be improved for optimal academic achievement.`;
+    }
+
+    return remark;
+  };
+
+  // Generate Proprietress's Remarks (focus on overall school performance and achievement)
+  const generateProprietressRemark = () => {
+    const metrics = getPerformanceMetrics();
+    const { average, aCount, fCount, totalSubjects, attendance } = metrics;
+    let remark = "";
+
+    if (average >= 85) {
+      remark = `${student.fullName} represents the caliber of excellence our institution strives to achieve, with an outstanding average score of ${average}%. This student is a remarkable asset to our school community and embodies our values of academic and personal excellence.`;
+    } else if (average >= 75) {
+      remark = `${student.fullName} has maintained strong academic performance with an average score of ${average}%. The student contributes positively to our school community and upholds our institutional standards.`;
+    } else if (average >= 65) {
+      remark = `${student.fullName} has achieved a commendable average score of ${average}%. We believe in the student's potential and encourage continued dedication toward personal and academic development.`;
+    } else if (average >= 55) {
+      remark = `${student.fullName} achieved an average score of ${average}%. While the student is on the right path, we expect greater commitment to achieving our school's excellence standards in subsequent terms.`;
+    } else if (average >= 45) {
+      remark = `${student.fullName} scored an average of ${average}%, which is below our expected standards. We value this student's place in our school and recommend collaborative efforts between home and school to ensure improvement.`;
+    } else {
+      remark = `${student.fullName} achieved an average score of ${average}%. Our institution is committed to supporting this student's academic growth, and we seek active parental partnership in addressing the performance concerns.`;
+    }
+
+    // Add reference to school mission
+    if (aCount >= 3) {
+      remark += ` The student's exceptional performance aligns with our mission of academic excellence and holistic development.`;
+    }
+
+    if (fCount >= 2) {
+      remark += ` We recommend a comprehensive support plan to enhance the student's learning outcomes.`;
+    }
+
+    return remark;
+  };
+
   return (
     <div className="report-card-container print-only" ref={ref}>
       <div className="report-card-wrapper">
@@ -166,6 +296,31 @@ const ReportCard = React.forwardRef(({ student, settings, attendanceStats }, ref
                 </span>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Automated Remarks Section */}
+        <div className="remarks-section">
+          <h4 className="remarks-title" style={{ backgroundColor: settings.primaryColor, color: "#fff" }}>
+            PERFORMANCE REMARKS & COMMENTS
+          </h4>
+          <div className="remarks-content">
+            <div className="remark-box">
+              <p className="remark-label">Class Teacher / Form Teacher's Remarks:</p>
+              <p className="remark-text">{generateClassTeacherRemark()}</p>
+            </div>
+
+            <div className="remark-box">
+              <p className="remark-label">Principal's Remarks:</p>
+              <p className="remark-text">{generatePrincipalRemark()}</p>
+            </div>
+
+            {settings.proprietressName && (
+              <div className="remark-box">
+                <p className="remark-label">Proprietress's Remarks:</p>
+                <p className="remark-text">{generateProprietressRemark()}</p>
+              </div>
+            )}
           </div>
         </div>
 
