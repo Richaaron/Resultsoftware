@@ -27,11 +27,10 @@ router.post('/', auth, authorize(['ADMIN', 'TEACHER']), validate(schemas.createS
 
   // Generate secure password for parent
   const parentPassword = crypto.randomBytes(8).toString('hex').slice(0, 12);
-  const hashedPassword = await bcrypt.hash(parentPassword, 10);
 
   const parent = await User.create({
     username: `parent_${registrationNumber}`,
-    password: hashedPassword,
+    password: parentPassword, // Model hooks handle hashing
     fullName: `Parent of ${firstName} ${lastName}`,
     email: parentEmail || null,
     role: 'PARENT'

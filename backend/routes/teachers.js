@@ -34,11 +34,10 @@ router.post("/register", auth, authorize(["ADMIN"]), async (req, res) => {
     // Generate password with fvs@ prefix + random numbers
     const randomNumbers = Math.floor(10000 + Math.random() * 90000);
     const password = `fvs@${randomNumbers}`;
-    const hashedPassword = await bcrypt.hash(password, 8);
 
     const teacher = await User.create({
       username,
-      password: hashedPassword,
+      password: password, // Model hooks handle hashing
       fullName,
       email: email || null,
       role: "TEACHER",

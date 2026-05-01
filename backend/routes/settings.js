@@ -138,14 +138,9 @@ router.put("/change-password", auth, async (req, res) => {
       return res.status(401).json({ error: "Current password is incorrect" });
     }
 
-    // Hash and update new password
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
-    
-    // Use User.update to ensure the change is persisted directly
-    await User.update(
-      { password: hashedPassword },
-      { where: { id: user.id } }
-    );
+    // Update password - the User model hooks will handle hashing automatically
+    user.password = newPassword;
+    await user.save();
 
     // Verify password was saved correctly by fetching fresh from DB
     const verifyUser = await User.findByPk(user.id);

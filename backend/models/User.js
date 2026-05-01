@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../utils/db");
+const bcrypt = require("bcryptjs");
 
 const User = sequelize.define("User", {
   id: {
@@ -53,6 +54,21 @@ const User = sequelize.define("User", {
     defaultValue: true,
     comment: 'Soft delete flag - set to false to deactivate without losing data'
   },
+}, {
+  hooks: {
+    beforeSave: async (user) => {
+      if (user.changed('password')) {
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
+      }
+    },
+    beforeUpdate: async (user) => {
+      if (user.changed('password')) {
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
+      }
+    }
+  }
 });
 
 module.exports = User;
