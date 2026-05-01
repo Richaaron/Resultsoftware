@@ -24,6 +24,15 @@ const Subject = sequelize.define('Subject', {
   section:  { type: DataTypes.STRING,  allowNull: true },
 });
 
+// ── Subjects to remove ──────────────────────────────────────────────────────
+const removeSubjects = [
+  'Yoruba Language',
+  'Yoruba',
+  'French',
+  'Igbo Language',
+  'Igbo',
+];
+
 // ── New subjects to add ───────────────────────────────────────────────────────
 const newSubjects = [
   { name: 'Agricultural Science', category: 'Secondary', level: 'Senior', section: 'Science'     },
@@ -41,8 +50,6 @@ const sectionFixes = [
   { name: 'Islamic Religious Studies',   section: null },
   { name: 'Civic Education',             section: null },
   { name: 'Hausa Language',              section: null },
-  { name: 'Igbo Language',               section: null },
-  { name: 'Yoruba Language',             section: null },
   { name: 'Economics',                   section: null }, // shared Art + Commercial
 
   // Science
@@ -68,8 +75,19 @@ async function run() {
     await sequelize.authenticate();
     console.log('\n✅ Database connected\n');
 
+    // 0. Remove subjects
+    console.log('── Removing subjects ────────────────────────────');
+    for (const name of removeSubjects) {
+      const count = await Subject.destroy({
+        where: { name }
+      });
+      if (count > 0) {
+        console.log(`  ✅ Removed: ${name}`);
+      }
+    }
+
     // 1. Add missing subjects
-    console.log('── Adding new subjects ────────────────────────────');
+    console.log('\n── Adding new subjects ────────────────────────────');
     for (const sub of newSubjects) {
       const exists = await Subject.findOne({
         where: { name: sub.name, category: 'Secondary', level: 'Senior' }
