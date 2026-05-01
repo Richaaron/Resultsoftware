@@ -23,21 +23,27 @@ const FormTeacherResultEntry = ({ user }) => {
   const ACADEMIC_YEARS = ["2024/2025", "2025/2026", "2026/2027"];
 
   useEffect(() => {
-    if (user?.isFormTeacher && user?.assignedClass) {
-      fetchData();
+    if (user?.isFormTeacher) {
+      if (user?.assignedClass) {
+        fetchData();
+      } else {
+        setMessage("No class assigned to you yet. Contact admin.");
+      }
     }
   }, [user, term, academicYear]);
 
   const fetchData = async () => {
     try {
       setLoading(true);
+      setMessage(""); // Clear previous messages
+      
       // Fetch students in assigned class
       const studentsRes = await api.get(`/students?studentClass=${user.assignedClass}`);
-      setStudents(studentsRes.data);
+      setStudents(studentsRes.data || []);
 
       // Fetch all subjects
       const subjectsRes = await api.get("/students/subjects");
-      setSubjects(subjectsRes.data);
+      setSubjects(subjectsRes.data || []);
 
       // Fetch existing results
       const resultsRes = await api.get("/results", {
@@ -49,7 +55,7 @@ const FormTeacherResultEntry = ({ user }) => {
       });
 
       const resultsMap = {};
-      resultsRes.data.forEach((result) => {
+      (resultsRes.data || []).forEach((result) => {
         if (!resultsMap[result.StudentId]) {
           resultsMap[result.StudentId] = {};
         }
@@ -64,7 +70,7 @@ const FormTeacherResultEntry = ({ user }) => {
       setResults(resultsMap);
     } catch (error) {
       console.error("Error fetching data:", error);
-      setMessage("Error loading data");
+      setMessage("Error loading data - Please refresh or contact admin");
     } finally {
       setLoading(false);
     }
