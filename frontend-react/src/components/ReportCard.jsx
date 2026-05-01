@@ -54,6 +54,26 @@ const ReportCard = React.forwardRef(({ student, settings, attendanceStats }, ref
           <div className="logo-container empty"></div>
         </div>
 
+        {/* School Authority Details */}
+        <div className="school-authority-section">
+          <div className="authority-detail">
+            <p className="authority-label">Principal:</p>
+            <p className="authority-value" style={{ fontStyle: 'italic', fontFamily: 'cursive', fontSize: '16px', fontWeight: 'bold' }}>
+              {settings.principalName || "Principal Name"}
+            </p>
+          </div>
+          <div className="authority-detail">
+            <p className="authority-label">Head Teacher:</p>
+            <p className="authority-value" style={{ fontStyle: 'italic', fontFamily: 'cursive', fontSize: '16px', fontWeight: 'bold' }}>
+              {settings.headTeacherName || "Head Teacher Name"}
+            </p>
+          </div>
+          <div className="authority-detail">
+            <p className="authority-label">Academic Year:</p>
+            <p className="authority-value">{settings.currentAcademicYear || "Academic Year"}</p>
+          </div>
+        </div>
+
         {/* Student Details */}
         <div className="student-details-grid">
           <div className="detail-item">
@@ -149,13 +169,16 @@ const ReportCard = React.forwardRef(({ student, settings, attendanceStats }, ref
         {/* Signatures */}
         <div className="signatures-section">
           <div className="signature-box">
-            {settings.headTeacherSignature ? (
-              <img src={settings.headTeacherSignature} alt="Teacher Sig" className="signature-img" />
-            ) : (
-              <div className="signature-line"></div>
-            )}
+            <div className="signature-display">
+              {settings.headTeacherSignature ? (
+                <img src={settings.headTeacherSignature} alt="Teacher Sig" className="signature-img" />
+              ) : (
+                <div className="signature-name-styled">{settings.headTeacherName || "Head Teacher"}</div>
+              )}
+            </div>
+            <div className="signature-line"></div>
             <p className="signature-name">{settings.headTeacherName || "Head Teacher"}</p>
-            <p className="signature-title">Form Teacher</p>
+            <p className="signature-title">Form Teacher / Head Teacher</p>
           </div>
           
           {/* Stamp/Seal Placeholder */}
@@ -166,11 +189,14 @@ const ReportCard = React.forwardRef(({ student, settings, attendanceStats }, ref
           </div>
 
           <div className="signature-box">
-            {settings.principalSignature ? (
-              <img src={settings.principalSignature} alt="Principal Sig" className="signature-img" />
-            ) : (
-              <div className="signature-line"></div>
-            )}
+            <div className="signature-display">
+              {settings.principalSignature ? (
+                <img src={settings.principalSignature} alt="Principal Sig" className="signature-img" />
+              ) : (
+                <div className="signature-name-styled">{settings.principalName || "Principal"}</div>
+              )}
+            </div>
+            <div className="signature-line"></div>
             <p className="signature-name">{settings.principalName || "Principal"}</p>
             <p className="signature-title">Principal / Administrator</p>
           </div>

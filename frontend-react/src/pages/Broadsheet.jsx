@@ -444,6 +444,28 @@ const Broadsheet = () => {
               </div>
             </div>
 
+            {/* School Authority Details Section */}
+            <div className="grid grid-cols-3 gap-8 mb-8 p-4 bg-brand-950 border border-brand-700/50 rounded-lg">
+              <div className="text-center">
+                <p className="text-xs font-bold text-brand-400 uppercase tracking-widest mb-2">Principal</p>
+                <p className="text-base font-bold text-white italic" style={{ fontFamily: 'cursive' }}>
+                  {settings?.principalName || "Principal Name"}
+                </p>
+              </div>
+              <div className="text-center">
+                <p className="text-xs font-bold text-brand-400 uppercase tracking-widest mb-2">Head Teacher</p>
+                <p className="text-base font-bold text-white italic" style={{ fontFamily: 'cursive' }}>
+                  {settings?.headTeacherName || "Head Teacher Name"}
+                </p>
+              </div>
+              <div className="text-center">
+                <p className="text-xs font-bold text-brand-400 uppercase tracking-widest mb-2">Academic Year</p>
+                <p className="text-base font-bold text-white">
+                  {settings?.currentAcademicYear || academicYear}
+                </p>
+              </div>
+            </div>
+
             <div className="overflow-x-auto print-full">
               <table className="w-full border-collapse">
                 <thead>
@@ -615,7 +637,12 @@ const Broadsheet = () => {
               <div className="grid grid-cols-2 gap-12">
                 {/* Principal Signature */}
                 <div className="text-center">
-                  <div className="h-24 border-b-2 border-brand-900 mb-2"></div>
+                  <div className="h-20 flex items-center justify-center mb-4">
+                    <p className="text-2xl font-bold text-white italic" style={{ fontFamily: 'cursive' }}>
+                      {settings?.principalName || "Principal"}
+                    </p>
+                  </div>
+                  <div className="h-12 border-b-2 border-brand-900 mb-2"></div>
                   <p className="text-xs font-bold text-white uppercase tracking-widest">
                     {settings?.principalName || "Principal"}
                   </p>
@@ -626,7 +653,12 @@ const Broadsheet = () => {
 
                 {/* Head Teacher Signature */}
                 <div className="text-center">
-                  <div className="h-24 border-b-2 border-brand-900 mb-2"></div>
+                  <div className="h-20 flex items-center justify-center mb-4">
+                    <p className="text-2xl font-bold text-white italic" style={{ fontFamily: 'cursive' }}>
+                      {settings?.headTeacherName || "Head Teacher"}
+                    </p>
+                  </div>
+                  <div className="h-12 border-b-2 border-brand-900 mb-2"></div>
                   <p className="text-xs font-bold text-white uppercase tracking-widest">
                     {settings?.headTeacherName || "Head Teacher"}
                   </p>
