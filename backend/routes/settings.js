@@ -3,6 +3,7 @@ const router = express.Router();
 const Setting = require("../models/Setting");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const logger = require("../utils/logger");
 const { auth, authorize } = require("../middleware/auth");
 
 // Get current settings
