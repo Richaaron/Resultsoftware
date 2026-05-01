@@ -6,6 +6,18 @@ const Joi = require('joi');
  */
 const validate = (schema) => {
   return (req, res, next) => {
+    // Some serverless adapters can provide req.body as a JSON string.
+    // Normalize it to an object before validation.
+    if (typeof req.body === 'string') {
+      try {
+        req.body = JSON.parse(req.body);
+      } catch (error) {
+        const err = new Error('Validation Error');
+        err.status = 400;
+        err.details = [{ message: 'Invalid JSON request body' }];
+        return next(err);
+      }
+    }
     const { error, value } = schema.validate(
       {
         body: req.body,

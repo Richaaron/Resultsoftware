@@ -39,6 +39,39 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
+// Normalize request body for serverless adapters that may expose payload
+// only via req.apiGateway.event.body while Express body parsing yields {}.
+app.use((req, res, next) => {
+  const hasBodyObject = req.body && typeof req.body === 'object' && Object.keys(req.body).length > 0;
+  if (hasBodyObject) {
+    return next();
+  }
+
+  const gatewayBody = req.apiGateway?.event?.body;
+  if (!gatewayBody) {
+    return next();
+  }
+
+  try {
+    let rawBody = gatewayBody;
+
+    if (req.apiGateway?.event?.isBase64Encoded && typeof rawBody === 'string') {
+      rawBody = Buffer.from(rawBody, 'base64').toString('utf8');
+    }
+
+    if (typeof rawBody === 'string') {
+      req.body = JSON.parse(rawBody);
+    } else if (typeof rawBody === 'object' && rawBody !== null) {
+      req.body = rawBody;
+    }
+  } catch (error) {
+    // Leave req.body as-is; validation middleware will return a proper 400
+    // for malformed payloads.
+  }
+
+  next();
+});
+
 // Request logging middleware
 app.use((req, res, next) => {
   req.id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
