@@ -1242,18 +1242,18 @@ const StudentList = () => {
 
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/60 backdrop-blur-sm overflow-y-auto">
-          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-3 w-full max-w-2xl relative border border-brand-700/50 shadow-xl my-4">
+          <div className="professional-card bg-brand-50 dark:bg-brand-900 p-6 w-full max-w-5xl relative border border-brand-700/50 shadow-xl my-4 max-h-[85vh] flex flex-col">
             <button
               onClick={() => setShowAddModal(false)}
-              className="absolute top-2 right-2 text-black dark:text-brand-100 hover:rotate-90 transition-transform"
+              className="absolute top-4 right-4 text-black dark:text-brand-100 hover:rotate-90 transition-transform z-10"
             >
-              <X size={18} />
+              <X size={24} />
             </button>
-            <h3 className="text-lg font-bold text-black dark:text-brand-100 uppercase  tracking-tight mb-2 text-gradient">
+            <h3 className="text-2xl font-bold text-black dark:text-brand-100 uppercase  tracking-tight mb-4 text-gradient">
               Enroll New Legend ⭐
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-1">
+            <form onSubmit={handleSubmit} className="space-y-2 overflow-y-auto flex-1 pr-2">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
                 {/* Profile Image Section */}
                 <div className="flex flex-col items-center gap-0.5">
@@ -1462,7 +1462,7 @@ const StudentList = () => {
                           </div>
                         ))
                       : (
-                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-1">
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-1">
                             {getSubjectsForClass().map((sub) => (
                               <button
                                 key={sub.id}
@@ -1483,20 +1483,20 @@ const StudentList = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 mt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4 pt-4 border-t border-brand-700/30 sticky bottom-0 bg-brand-50 dark:bg-brand-900">
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="btn-secondary w-full py-1.5 text-xs border border-brand-700/50 bg-brand-200 dark:bg-brand-700 hover:bg-brand-300 dark:hover:bg-brand-600 text-black dark:text-white flex items-center justify-center gap-1 font-bold"
+                  className="btn-secondary w-full py-2 text-sm border border-brand-700/50 bg-brand-200 dark:bg-brand-700 hover:bg-brand-300 dark:hover:bg-brand-600 text-black dark:text-white flex items-center justify-center gap-2 font-bold rounded-lg"
                 >
-                  <X size={14} />
+                  <X size={16} />
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="btn-primary w-full py-1.5 text-xs bg-accent-gold flex items-center justify-center gap-1"
+                  className="btn-primary w-full py-2 text-sm bg-accent-gold flex items-center justify-center gap-2 rounded-lg hover:shadow-lg transition-shadow"
                 >
-                  <Sparkles size={14} />
+                  <Sparkles size={16} />
                   Enroll Legend! 🚀
                 </button>
               </div>
