@@ -46,7 +46,7 @@ const sectionFixes = [
   { name: 'Economics',                   section: null }, // shared Art + Commercial
 
   // Science
-  { name: 'Biology',             section: 'Science' },
+  { name: 'Biology',             section: 'General' },
   { name: 'Chemistry',           section: 'Science' },
   { name: 'Physics',             section: 'Science' },
   { name: 'Further Mathematics', section: 'General' },
