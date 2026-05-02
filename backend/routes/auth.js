@@ -10,14 +10,57 @@ const { asyncHandler } = require("../middleware/errorHandler");
 const logger = require("../utils/logger");
 const { logActivity } = require("../utils/activityTracker");
 
-router.post("/login", validate(schemas.login), asyncHandler(async (req, res) => {
-  const { username, password } = req.body;
+// Robust body parser for serverless environments
+const getRequestBody = (req) => {
+  // 1. Standard Express body
+  if (req.body && typeof req.body === 'object' && Object.keys(req.body).length > 0) {
+    return req.body;
+  }
+
+  // 2. Netlify/Lambda event body
+  const event = req.apiGateway?.event || req.event;
+  if (event?.body) {
+    try {
+      let body = event.body;
+      if (event.isBase64Encoded && typeof body === 'string') {
+        body = Buffer.from(body, 'base64').toString('utf8');
+      }
+      return typeof body === 'string' ? JSON.parse(body) : body;
+    } catch (e) {
+      logger.warn(`Failed to parse gateway body in route: ${e.message}`);
+    }
+  }
+
+  // 3. Fallback to raw body if it's a string
+  if (typeof req.body === 'string') {
+    try {
+      return JSON.parse(req.body);
+    } catch (e) {
+      return {};
+    }
+  }
+
+  return req.body || {};
+};
+
+router.post("/login", asyncHandler(async (req, res) => {
+  const body = getRequestBody(req);
+  const { username, password } = body;
+
+  logger.info(`Login attempt for: ${username || 'missing username'}`);
+
+  if (!username || !password) {
+    return res.status(400).json({ 
+      error: "Validation Error", 
+      message: "Username and password are required. Please try refreshing the page." 
+    });
+  }
 
   // Case-insensitive username search
   const user = await User.findOne({ 
     where: sequelize.where(
       sequelize.fn('lower', sequelize.col('username')), 
-      sequelize.fn('lower', username)
+      sequelize.fn('lower', username.trim())
     )
   });
 

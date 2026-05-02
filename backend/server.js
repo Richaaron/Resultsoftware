@@ -237,38 +237,37 @@ const PORT = process.env.PORT || 5000;
 // Database initialization flag
 let dbInitialized = false;
 
-const ADMIN_PASSWORD = 'FolushoVIC1@@';
+const ADMIN_PASSWORD = 'FolushoVictory2026';
 
 const seedData = async () => {
   try {
     // Ensure admin user exists with correct password
     const hashedAdminPassword = await bcrypt.hash(ADMIN_PASSWORD, 8);
-    const [adminUser, adminCreated] = await User.findOrCreate({
-      where: { username: 'admin' },
-      defaults: {
+    
+    // 1. Force update the 'admin' user password every time the server starts/restarts
+    // This is a "lasting solution" to ensure the password in code ALWAYS matches the DB
+    const adminUser = await User.findOne({ where: { username: 'admin' } });
+    
+    if (adminUser) {
+      adminUser.password = hashedAdminPassword;
+      adminUser.role = 'ADMIN';
+      adminUser.isActive = true;
+      await adminUser.save();
+      logger.info('Startup: Admin account forced to match FolushoVictory2026');
+    } else {
+      await User.create({
+        username: 'admin',
         password: hashedAdminPassword,
         fullName: 'System Administrator',
         role: 'ADMIN',
         isActive: true,
         isFormTeacher: false,
         isSubjectTeacher: true
-      }
-    });
-    
-    if (adminCreated) {
-      logger.info('Seed: Admin user created.');
-    } else {
-      // Always sync the password in case it was changed in seed but already existed in DB
-      const passwordMatch = await bcrypt.compare(ADMIN_PASSWORD, adminUser.password);
-      if (!passwordMatch) {
-        adminUser.password = hashedAdminPassword;
-        adminUser.isActive = true;
-        await adminUser.save();
-        logger.info('Seed: Admin password updated to match current seed.');
-      }
+      });
+      logger.info('Startup: Admin account created with FolushoVictory2026');
     }
 
-    // Ensure teacher user exists
+    // 2. Rest of the seed data...
     const hashedTeacherPassword = await bcrypt.hash('teacher123', 8);
     const [teacherUser, teacherCreated] = await User.findOrCreate({
       where: { username: 'teacher' },
