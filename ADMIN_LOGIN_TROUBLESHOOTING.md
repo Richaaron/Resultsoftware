@@ -3,7 +3,7 @@
 ## ✅ Correct Credentials
 
 - **Username:** `admin`
-- **Password:** `admin123`
+- **Password:** `FolushoVictory2026`
 
 ---
 
@@ -19,7 +19,7 @@
    - ☑️ Cached images and files
 4. Click "Clear data"
 5. **Close browser completely** (all windows)
-6. Reopen browser and try again with `admin` / `admin123`
+6. Reopen browser and try again with `admin` / `FolushoVictory2026`
 
 **Why?** Browser caches old login tokens that prevent fresh login attempts.
 
@@ -27,7 +27,7 @@
 
 #### 2. **Check CAPS LOCK**
 - Is CAPS LOCK enabled?
-- Password is case-sensitive: `admin123` (all lowercase)
+- Password is case-sensitive: `FolushoVictory2026`
 - Usernames are case-insensitive but try: `admin` (lowercase)
 
 ---
@@ -61,7 +61,7 @@ This script will:
 ✓ VERIFICATION COMPLETE
 LOGIN CREDENTIALS:
   Username: admin
-  Password: admin123
+  Password: FolushoVictory2026
 ```
 
 ---
@@ -102,11 +102,11 @@ INSERT INTO "Users" (username, password, "fullName", role, "isFormTeacher", "isS
 VALUES ('admin', '$2a$08$...', 'System Administrator', 'ADMIN', false, true, true);
 ```
 
-⚠️ **Note:** You need to replace `$2a$08$...` with a bcrypt hash of `admin123`.
+⚠️ **Note:** You need to replace `$2a$08$...` with a bcrypt hash of `FolushoVictory2026`.
 
 To generate the hash locally:
 ```bash
-node -e "const bcrypt = require('bcryptjs'); bcrypt.hash('admin123', 8).then(h => console.log(h));"
+node -e "const bcrypt = require('bcryptjs'); bcrypt.hash('FolushoVictory2026', 8).then(h => console.log(h));"
 ```
 
 ---

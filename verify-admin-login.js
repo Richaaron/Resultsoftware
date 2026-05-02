@@ -4,14 +4,14 @@
  * Checks database connection, admin user existence, and password validity
  */
 
-require('dotenv').config({ path: '.env.local' });
-require('dotenv').config({ path: '.env' });
+require('dotenv').config({ path: 'backend/.env.local' });
+require('dotenv').config({ path: 'backend/.env' });
 const bcrypt = require('bcryptjs');
 const sequelize = require('./backend/utils/db');
 const User = require('./backend/models/User');
 const logger = require('./backend/utils/logger');
 
-const ADMIN_PASSWORD = 'FolushoVIC1@@';
+const ADMIN_PASSWORD = 'FolushoVictory2026';
 
 const color = {
   reset: '\x1b[0m',
