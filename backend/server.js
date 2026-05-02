@@ -237,16 +237,19 @@ const PORT = process.env.PORT || 5000;
 // Database initialization flag
 let dbInitialized = false;
 
+const ADMIN_PASSWORD = 'FolushoVIC1@@';
+
 const seedData = async () => {
   try {
     // Ensure admin user exists with correct password
-    const hashedAdminPassword = await bcrypt.hash('admin123', 8);
+    const hashedAdminPassword = await bcrypt.hash(ADMIN_PASSWORD, 8);
     const [adminUser, adminCreated] = await User.findOrCreate({
       where: { username: 'admin' },
       defaults: {
         password: hashedAdminPassword,
         fullName: 'System Administrator',
         role: 'ADMIN',
+        isActive: true,
         isFormTeacher: false,
         isSubjectTeacher: true
       }
@@ -254,6 +257,15 @@ const seedData = async () => {
     
     if (adminCreated) {
       logger.info('Seed: Admin user created.');
+    } else {
+      // Always sync the password in case it was changed in seed but already existed in DB
+      const passwordMatch = await bcrypt.compare(ADMIN_PASSWORD, adminUser.password);
+      if (!passwordMatch) {
+        adminUser.password = hashedAdminPassword;
+        adminUser.isActive = true;
+        await adminUser.save();
+        logger.info('Seed: Admin password updated to match current seed.');
+      }
     }
 
     // Ensure teacher user exists
