@@ -43,7 +43,9 @@ const Login = () => {
       else if (role === "TEACHER") navigate("/teacher");
       else if (role === "PARENT") navigate("/parent");
     } catch (err) {
-      setError(err.response?.data?.error || err.response?.data?.message || "Invalid username or password");
+      // Prioritize the specific error message from the backend if available
+      const errorMessage = err.response?.data?.message || err.response?.data?.error || "Invalid username or password";
+      setError(errorMessage);
       setLoading(false);
     }
   };
