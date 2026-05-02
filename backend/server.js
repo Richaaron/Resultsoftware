@@ -19,16 +19,19 @@ validateEnv();
 
 const app = express();
 
-// Security middleware
-app.use(helmet());
+// 1. Core middlewares (Must be first for serverless)
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
-// CORS Configuration
+// 2. Security & CORS
+app.use(helmet());
 const corsOptions = {
   origin: [
     'http://localhost:3000',
     'http://localhost:5173',
+    'https://folushovictory.netlify.app',
     'https://resultsoftware.netlify.app',
-    process.env.FRONTEND_URL || 'https://resultsoftware.netlify.app'
+    process.env.FRONTEND_URL
   ].filter(Boolean),
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -36,39 +39,24 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ limit: '10mb', extended: true }));
-
-// Normalize request body for serverless adapters
+// 3. Body Normalization (Fallback for gateway events)
 app.use((req, res, next) => {
-  // If body is already present and not empty, we're good
   if (req.body && typeof req.body === 'object' && Object.keys(req.body).length > 0) {
     return next();
   }
 
-  // Try to find raw body from different serverless adapters
-  const event = req.apiGateway?.event || req.event || req.apiGateway;
-  const rawBody = event?.body;
-
-  if (rawBody) {
+  const event = req.apiGateway?.event || req.event;
+  if (event?.body) {
     try {
-      let decodedBody = rawBody;
+      const decodedBody = event.isBase64Encoded 
+        ? Buffer.from(event.body, 'base64').toString('utf8')
+        : event.body;
       
-      // Handle base64 encoding if necessary
-      if (event.isBase64Encoded && typeof rawBody === 'string') {
-        decodedBody = Buffer.from(rawBody, 'base64').toString('utf8');
-      }
-
-      if (typeof decodedBody === 'string') {
-        req.body = JSON.parse(decodedBody);
-      } else if (typeof decodedBody === 'object' && decodedBody !== null) {
-        req.body = decodedBody;
-      }
-    } catch (error) {
-      logger.warn(`Failed to parse gateway body: ${error.message}`);
+      req.body = typeof decodedBody === 'string' ? JSON.parse(decodedBody) : decodedBody;
+    } catch (e) {
+      // Silently fail, let routes handle missing data
     }
   }
-
   next();
 });
 

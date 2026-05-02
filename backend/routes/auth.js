@@ -47,12 +47,17 @@ router.post("/login", asyncHandler(async (req, res) => {
   const body = getRequestBody(req);
   const { username, password } = body;
 
-  logger.info(`Login attempt for: ${username || 'missing username'}`);
-
   if (!username || !password) {
+    logger.error({ 
+      msg: 'Login failed: Missing credentials', 
+      bodyKeys: Object.keys(body),
+      hasReqBody: !!req.body,
+      reqBodyType: typeof req.body
+    });
+
     return res.status(400).json({ 
       error: "Validation Error", 
-      message: "Username and password are required. Please try refreshing the page." 
+      message: "Required fields missing. Please ensure your browser is not blocking the request and try again."
     });
   }
 

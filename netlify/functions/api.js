@@ -50,79 +50,19 @@ const handler = serverless(app, {
 });
 
 exports.handler = async (event, context) => {
-  // Get the actual request path
-  let requestPath = event.rawPath || event.path || event.requestContext?.path || '';
-  
-  // Remove query string and hash
-  if (requestPath.includes('?')) {
-    requestPath = requestPath.split('?')[0];
-  }
-  
+  // Let serverless-http handle the request entirely
+  // We only provide basic path logging for debugging
   const method = event.httpMethod || 'GET';
+  const path = event.path || '/';
   
-  console.log(`[netlify-function] ${method} ${requestPath}`);
+  console.log(`[netlify-function] ${method} ${path}`);
   
-  // CRITICAL: Only invoke Express for /api requests
-  const isApiPath = requestPath.includes('/api');
-  
-  if (!isApiPath) {
-    console.log(`[netlify-function] NOT an API path, returning 404 to allow static file serving`);
-    return {
-      statusCode: 404,
-      headers: { 'Content-Type': 'text/plain' },
-      body: 'Not Found'
-    };
-  }
-
-  // Handle CORS preflight for API requests
-  if (method === 'OPTIONS') {
-    console.log(`[netlify-function] OPTIONS request, handling CORS`);
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-      }
-    };
-  }
-
-  if (requestPath.includes('/api/debug-event')) {
-    return {
-      statusCode: 200,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        eventKeys: Object.keys(event),
-        body: event.body,
-        isBase64Encoded: event.isBase64Encoded,
-        headers: event.headers,
-        typeofBody: typeof event.body
-      })
-    };
-  }
-  
-  // Fix Netlify base64 encoded bodies for serverless-http
-  if (event.body && event.isBase64Encoded) {
-    try {
-      event.body = Buffer.from(event.body, 'base64').toString('utf8');
-      event.isBase64Encoded = false;
-      console.log(`[netlify-function] Decoded base64 body`);
-    } catch (e) {
-      console.error(`[netlify-function] Failed to decode base64 body`, e);
-    }
-  }
-
-  // Process API request through Express
-  console.log(`[netlify-function] Processing API request: ${method} ${requestPath}`);
   try {
-    const result = await handler(event, context);
-    console.log(`[netlify-function] API response status: ${result.statusCode}`);
-    return result;
+    return await handler(event, context);
   } catch (error) {
-    console.error(`[netlify-function] Error processing request:`, error);
+    console.error(`[netlify-function] Error:`, error);
     return {
       statusCode: 500,
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ error: 'Internal Server Error', message: error.message })
     };
   }
