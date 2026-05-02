@@ -50,13 +50,17 @@ const handler = serverless(app, {
 });
 
 exports.handler = async (event, context) => {
-  // Let serverless-http handle the request entirely
-  // We only provide basic path logging for debugging
   const method = event.httpMethod || 'GET';
   const path = event.path || '/';
   
   console.log(`[netlify-function] ${method} ${path}`);
   
+  // Explicitly handle base64 encoding for the body before passing to serverless-http
+  if (event.body && event.isBase64Encoded) {
+    event.body = Buffer.from(event.body, 'base64').toString('utf8');
+    event.isBase64Encoded = false;
+  }
+
   try {
     return await handler(event, context);
   } catch (error) {

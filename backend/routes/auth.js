@@ -10,28 +10,25 @@ const { asyncHandler } = require("../middleware/errorHandler");
 const logger = require("../utils/logger");
 const { logActivity } = require("../utils/activityTracker");
 
-// Robust body parser for serverless environments
+// Simplified body parser for serverless environments
 const getRequestBody = (req) => {
-  // 1. Standard Express body
+  // 1. Standard Express body (populated by express.json())
   if (req.body && typeof req.body === 'object' && Object.keys(req.body).length > 0) {
     return req.body;
   }
 
-  // 2. Netlify/Lambda event body
+  // 2. Fallback to raw event body if express.json() failed
   const event = req.apiGateway?.event || req.event;
   if (event?.body) {
     try {
-      let body = event.body;
-      if (event.isBase64Encoded && typeof body === 'string') {
-        body = Buffer.from(body, 'base64').toString('utf8');
-      }
+      const body = event.body;
       return typeof body === 'string' ? JSON.parse(body) : body;
     } catch (e) {
-      logger.warn(`Failed to parse gateway body in route: ${e.message}`);
+      // Ignore
     }
   }
 
-  // 3. Fallback to raw body if it's a string
+  // 3. Fallback to string body
   if (typeof req.body === 'string') {
     try {
       return JSON.parse(req.body);
@@ -47,17 +44,16 @@ router.post("/login", asyncHandler(async (req, res) => {
   const body = getRequestBody(req);
   const { username, password } = body;
 
-  if (!username || !password) {
-    logger.error({ 
-      msg: 'Login failed: Missing credentials', 
-      bodyKeys: Object.keys(body),
-      hasReqBody: !!req.body,
-      reqBodyType: typeof req.body
-    });
+  console.log('--- LOGIN ATTEMPT ---');
+  console.log('Username:', username);
+  console.log('Has Password:', !!password);
+  console.log('Content-Type:', req.headers['content-type']);
+  console.log('Body Keys:', Object.keys(body));
 
+  if (!username || !password) {
     return res.status(400).json({ 
       error: "Validation Error", 
-      message: "Required fields missing. Please ensure your browser is not blocking the request and try again."
+      message: `Required fields missing (username: ${!!username}, password: ${!!password}). Please ensure you are using a modern browser.`
     });
   }
 

@@ -48,13 +48,10 @@ app.use((req, res, next) => {
   const event = req.apiGateway?.event || req.event;
   if (event?.body) {
     try {
-      const decodedBody = event.isBase64Encoded 
-        ? Buffer.from(event.body, 'base64').toString('utf8')
-        : event.body;
-      
-      req.body = typeof decodedBody === 'string' ? JSON.parse(decodedBody) : decodedBody;
+      // Body should already be decoded by the Netlify handler if it was base64
+      req.body = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
     } catch (e) {
-      // Silently fail, let routes handle missing data
+      // Ignore
     }
   }
   next();
