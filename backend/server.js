@@ -39,34 +39,34 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
-// Normalize request body for serverless adapters that may expose payload
-// only via req.apiGateway.event.body while Express body parsing yields {}.
+// Normalize request body for serverless adapters
 app.use((req, res, next) => {
-  const hasBodyObject = req.body && typeof req.body === 'object' && Object.keys(req.body).length > 0;
-  if (hasBodyObject) {
+  // If body is already present and not empty, we're good
+  if (req.body && typeof req.body === 'object' && Object.keys(req.body).length > 0) {
     return next();
   }
 
-  const gatewayBody = req.apiGateway?.event?.body;
-  if (!gatewayBody) {
-    return next();
-  }
+  // Try to find raw body from different serverless adapters
+  const event = req.apiGateway?.event || req.event || req.apiGateway;
+  const rawBody = event?.body;
 
-  try {
-    let rawBody = gatewayBody;
+  if (rawBody) {
+    try {
+      let decodedBody = rawBody;
+      
+      // Handle base64 encoding if necessary
+      if (event.isBase64Encoded && typeof rawBody === 'string') {
+        decodedBody = Buffer.from(rawBody, 'base64').toString('utf8');
+      }
 
-    if (req.apiGateway?.event?.isBase64Encoded && typeof rawBody === 'string') {
-      rawBody = Buffer.from(rawBody, 'base64').toString('utf8');
+      if (typeof decodedBody === 'string') {
+        req.body = JSON.parse(decodedBody);
+      } else if (typeof decodedBody === 'object' && decodedBody !== null) {
+        req.body = decodedBody;
+      }
+    } catch (error) {
+      logger.warn(`Failed to parse gateway body: ${error.message}`);
     }
-
-    if (typeof rawBody === 'string') {
-      req.body = JSON.parse(rawBody);
-    } else if (typeof rawBody === 'object' && rawBody !== null) {
-      req.body = rawBody;
-    }
-  } catch (error) {
-    // Leave req.body as-is; validation middleware will return a proper 400
-    // for malformed payloads.
   }
 
   next();

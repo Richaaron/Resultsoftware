@@ -6,18 +6,18 @@ const Joi = require('joi');
  */
 const validate = (schema) => {
   return (req, res, next) => {
-    // Some serverless adapters can provide req.body as a JSON string.
-    // Normalize it to an object before validation.
-    if (typeof req.body === 'string') {
-      try {
-        req.body = JSON.parse(req.body);
-      } catch (error) {
-        const err = new Error('Validation Error');
-        err.status = 400;
-        err.details = [{ message: 'Invalid JSON request body' }];
-        return next(err);
+    // If body is empty or a string, try to normalize it one last time
+    if (!req.body || Object.keys(req.body).length === 0 || typeof req.body === 'string') {
+      const rawBody = req.body || req.apiGateway?.event?.body || req.event?.body;
+      if (rawBody) {
+        try {
+          req.body = typeof rawBody === 'string' ? JSON.parse(rawBody) : rawBody;
+        } catch (error) {
+          // Ignore parse errors here, let Joi handle it
+        }
       }
     }
+
     const { error, value } = schema.validate(
       {
         body: req.body,

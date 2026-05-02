@@ -25,10 +25,13 @@ const errorHandler = (err, req, res, next) => {
 
   // Validation errors (Joi)
   if (err.isJoi) {
+    const isLoginPath = req.path.includes('login');
+    const helpMessage = isLoginPath ? ' Please ensure you have entered both username and password.' : '';
+    
     return res.status(400).json({
       status: 400,
       error: 'Validation Error',
-      message: err.details.map(d => d.message).join(', '),
+      message: err.details.map(d => d.message.replace(/\"body\./g, '"')).join(', ') + helpMessage,
       ...(isDev && { details: err.details })
     });
   }
