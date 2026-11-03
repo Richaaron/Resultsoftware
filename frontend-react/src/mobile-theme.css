@@ -15,19 +15,19 @@
   }
 
   /* Sidebar / nav panel polish */
-  .fixed.md\:relative.w-64,
-  .fixed.md\:relative.md\:flex,
+  .fixed.md\\:relative.w-64,
+  .fixed.md\\:relative.md\\:flex,
   .bg-brand-900.border-r-4,
-  .md\:hidden.flex.items-center.justify-between.bg-brand-900,
-  .fixed.inset-0.bg-brand-950\/50 {
+  .md\\:hidden.flex.items-center.justify-between.bg-brand-900,
+  .fixed.inset-0.bg-brand-950\\/50 {
     background: linear-gradient(180deg, #0c1630 0%, #0a1020 100%) !important;
     border-color: rgba(96, 165, 250, 0.26) !important;
   }
 
   nav a,
   nav button,
-  .fixed.md\:relative.w-64 button,
-  .fixed.md\:relative.w-64 a {
+  .fixed.md\\:relative.w-64 button,
+  .fixed.md\\:relative.w-64 a {
     min-height: 46px;
     border-color: rgba(96, 165, 250, 0.18) !important;
   }
@@ -77,8 +77,8 @@
   }
 
   /* Profile/security screen polish */
-  .space-y-10.pb-20 > .grid-cols-1.lg\:grid-cols-2,
-  .space-y-10.pb-20 .grid-cols-1.lg\:grid-cols-2 {
+  .space-y-10.pb-20 > .grid-cols-1.lg\\:grid-cols-2,
+  .space-y-10.pb-20 .grid-cols-1.lg\\:grid-cols-2 {
     grid-template-columns: minmax(0, 1fr) !important;
   }
 
@@ -159,6 +159,85 @@
   select,
   textarea,
   a {
+    min-height: 44px;
+  }
+}
+
+/* Tablet-only refinements (768px–1024px); desktop layouts above 1024px are unchanged. */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .teacher-dashboard,
+  #root > div {
+    min-height: 100vh;
+  }
+
+  /* Give the persistent teacher sidebar a little more room without crowding content. */
+  .fixed.md\\:relative.md\\:flex.w-72,
+  .md\\:relative.md\\:flex.w-72 {
+    width: 15rem !important;
+    padding: 1.25rem !important;
+  }
+
+  /* Reduce dashboard gutters and use balanced two-column overview cards on tablets. */
+  main.max-w-6xl {
+    max-width: 100% !important;
+  }
+
+  .flex-1.overflow-y-auto.p-4.md\\:p-10 {
+    padding: 1.5rem !important;
+  }
+
+  .professional-card.p-6.bg-brand-50 .grid-cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .professional-card.p-6.bg-brand-50 .grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  /* Keep forms readable and prevent cramped two-column fields. */
+  .max-w-5xl.professional-card {
+    max-width: 100% !important;
+    padding: 1.25rem !important;
+  }
+
+  .max-w-5xl.professional-card .grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1rem !important;
+  }
+
+  .professional-card.p-6.bg-brand-700.max-w-4xl {
+    max-width: 100% !important;
+    padding: 1.25rem !important;
+  }
+
+  .professional-card.p-6.bg-brand-700.max-w-4xl .grid-cols-3 {
+    gap: 1rem !important;
+  }
+
+  /* Keep the subject broadsheet contained; allow intentional table scrolling. */
+  .max-w-7xl {
+    max-width: 100% !important;
+  }
+
+  .professional-card.bg-brand-900.p-6 {
+    padding: 1.25rem !important;
+  }
+
+  .professional-card.bg-brand-900 .overflow-x-auto {
+    max-width: 100%;
+    overflow-x: auto !important;
+  }
+
+  .professional-card.bg-brand-900 table {
+    min-width: 680px;
+  }
+
+  /* Tablet-sized controls keep comfortable touch targets and spacing. */
+  button,
+  input,
+  select,
+  textarea,
+  nav a {
     min-height: 44px;
   }
 }
