@@ -1,9 +1,12 @@
-/* Keep mobile pages aligned with the portal's dark desktop theme. */
+/* Final dark mobile theme pass for readability and visual consistency */
 @media (max-width: 767px) {
   :root,
   html,
   body,
-  #root {
+  #root,
+  #root > div,
+  .App,
+  .app-shell {
     min-height: 100%;
     background-color: #070d1f;
     color: #f8fafc;
@@ -11,30 +14,14 @@
     -webkit-text-size-adjust: 100%;
   }
 
-  /* Darken every card, panel, and surface used across mobile screens. */
-  .professional-card,
-  .card-content,
-  .glass-premium,
-  .glass-panel,
-  .bg-brand-50,
-  .bg-brand-100,
-  .bg-brand-200,
-  .bg-brand-300,
-  .bg-brand-800,
-  .bg-brand-900,
-  .bg-brand-950,
-  .bg-white,
-  .bg-gray-50,
-  .bg-gray-100,
-  .bg-slate-50,
-  .bg-slate-100,
-  .bg-slate-200 {
-    background-color: #0b1220 !important;
-    color: #f8fafc !important;
-    border-color: rgba(96, 165, 250, 0.32) !important;
+  body,
+  html {
+    background-image: radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.15), transparent 22%),
+      radial-gradient(circle at 85% 30%, rgba(245, 158, 11, 0.08), transparent 20%);
+    background-attachment: fixed;
   }
 
-  /* Ensure text inside those surfaces remains readable. */
+  /* Force all standard card/panel surfaces dark. */
   .professional-card,
   .card-content,
   .glass-premium,
@@ -52,8 +39,33 @@
   .bg-slate-50,
   .bg-slate-100,
   .bg-slate-200,
-  .bg-brand-50 *,
-  .bg-brand-100 *,
+  .bg-neutral-50,
+  .bg-neutral-100 {
+    background-color: #0b1220 !important;
+    color: #f8fafc !important;
+    border-color: rgba(96, 165, 250, 0.32) !important;
+  }
+
+  /* If text is left in a dark container, keep it readable. */
+  .professional-card,
+  .card-content,
+  .glass-premium,
+  .glass-panel,
+  .bg-brand-50,
+  .bg-brand-100,
+  .bg-brand-200,
+  .bg-brand-300,
+  .bg-brand-800,
+  .bg-brand-900,
+  .bg-brand-950,
+  .bg-white,
+  .bg-gray-50,
+  .bg-gray-100,
+  .bg-slate-50,
+  .bg-slate-100,
+  .bg-slate-200,
+  .bg-neutral-50,
+  .bg-neutral-100,
   .bg-white *,
   .bg-gray-50 *,
   .bg-gray-100 *,
@@ -62,42 +74,53 @@
     color: inherit;
   }
 
-  :is(.text-black, .text-gray-900, .text-gray-800, .text-gray-700, .text-gray-600, .text-gray-500, .text-gray-400) {
+  .text-black,
+  .text-gray-900,
+  .text-gray-800,
+  .text-gray-700,
+  .text-gray-600,
+  .text-gray-500,
+  .text-gray-400,
+  .text-slate-700,
+  .text-slate-600,
+  .text-slate-500 {
     color: #f8fafc !important;
   }
 
   .text-brand-400,
   .text-brand-300,
   .text-brand-200,
-  .text-brand-100 {
+  .text-brand-100,
+  .text-brand-50 {
     color: #dbeafe !important;
   }
 
-  /* Preserve gold emphasis and allow gradient text to remain visible. */
-  .text-gradient,
-  .text-gradient-blue {
-    opacity: 1;
-  }
-
+  /* Gold buttons keep readable dark text; red buttons remain white. */
   .bg-accent-gold,
   .bg-yellow-400,
-  .bg-accent-red,
-  .bg-accent-green {
+  .bg-yellow-500,
+  .bg-accent-gold * {
     color: #0a1128 !important;
   }
 
-  .bg-accent-red.text-white,
-  .bg-accent-red > * {
+  .bg-accent-red,
+  .bg-accent-red * {
     color: #ffffff !important;
   }
 
-  /* Form controls must be dark and readable. */
+  .bg-accent-green,
+  .bg-accent-green * {
+    color: #062d1a !important;
+  }
+
+  /* All inputs/selects/textareas become dark surfaces for contrast. */
   input,
   textarea,
-  select {
+  select,
+  .input-field {
     background-color: #0f1c3f !important;
     color: #f8fafc !important;
-    border-color: rgba(96, 165, 250, 0.45) !important;
+    border-color: rgba(96, 165, 250, 0.52) !important;
   }
 
   input::placeholder,
@@ -111,22 +134,38 @@
     color: #f8fafc;
   }
 
-  table {
-    color: #f8fafc;
-  }
-
-  :is(td, th) {
+  /* Tables remain readable on dark mobile theme. */
+  table,
+  th,
+  td,
+  thead,
+  tbody,
+  tr {
+    background-color: transparent !important;
+    color: #f8fafc !important;
     border-color: rgba(148, 163, 184, 0.28) !important;
   }
 
-  .overflow-x-auto table,
   .overflow-x-auto th,
   .overflow-x-auto td {
     color: #f8fafc !important;
   }
 
-  /* Keep small helper text crisp. */
-  :is(p, label, th, td, input, textarea, select) {
+  /* Keep utility text crisp and avoid washed-off labels. */
+  p,
+  label,
+  th,
+  td,
+  span,
+  small,
+  strong,
+  em,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     text-shadow: none;
   }
 }
