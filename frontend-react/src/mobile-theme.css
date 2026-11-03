@@ -11,35 +11,93 @@
     -webkit-text-size-adjust: 100%;
   }
 
-  /* Replace utility light panels and white form controls with dark surfaces. */
-  :is(.bg-white, .bg-gray-50, .bg-gray-100, .bg-brand-50, .bg-brand-100) {
-    background-color: #0a1128 !important;
+  /* Darken every card, panel, and surface used across mobile screens. */
+  .professional-card,
+  .card-content,
+  .glass-premium,
+  .glass-panel,
+  .bg-brand-50,
+  .bg-brand-100,
+  .bg-brand-200,
+  .bg-brand-300,
+  .bg-brand-800,
+  .bg-brand-900,
+  .bg-brand-950,
+  .bg-white,
+  .bg-gray-50,
+  .bg-gray-100,
+  .bg-slate-50,
+  .bg-slate-100,
+  .bg-slate-200 {
+    background-color: #0b1220 !important;
     color: #f8fafc !important;
-    border-color: rgba(96, 165, 250, 0.35);
+    border-color: rgba(96, 165, 250, 0.32) !important;
   }
 
-  /* Make copy that was designed for light panels readable on the dark surface. */
-  :is(.bg-white, .bg-gray-50, .bg-gray-100, .bg-brand-50, .bg-brand-100)
-    :is(.text-black, .text-gray-900, .text-gray-800, .text-gray-700, .text-gray-600, .text-gray-500, .text-gray-400) {
+  /* Ensure text inside those surfaces remains readable. */
+  .professional-card,
+  .card-content,
+  .glass-premium,
+  .glass-panel,
+  .bg-brand-50,
+  .bg-brand-100,
+  .bg-brand-200,
+  .bg-brand-300,
+  .bg-brand-800,
+  .bg-brand-900,
+  .bg-brand-950,
+  .bg-white,
+  .bg-gray-50,
+  .bg-gray-100,
+  .bg-slate-50,
+  .bg-slate-100,
+  .bg-slate-200,
+  .bg-brand-50 *,
+  .bg-brand-100 *,
+  .bg-white *,
+  .bg-gray-50 *,
+  .bg-gray-100 *,
+  .bg-slate-50 *,
+  .bg-slate-100 * {
+    color: inherit;
+  }
+
+  :is(.text-black, .text-gray-900, .text-gray-800, .text-gray-700, .text-gray-600, .text-gray-500, .text-gray-400) {
     color: #f8fafc !important;
   }
 
-  /* Preserve dark text on gold buttons and gold highlight surfaces for contrast. */
-  :is(button, a).bg-accent-gold,
-  :is(button, a).bg-yellow-400,
-  :is(button, a).bg-accent-gold :is(.text-black),
-  :is(button, a).bg-yellow-400 :is(.text-black),
-  .bg-accent-gold > .text-black,
-  .bg-yellow-400 > .text-black {
+  .text-brand-400,
+  .text-brand-300,
+  .text-brand-200,
+  .text-brand-100 {
+    color: #dbeafe !important;
+  }
+
+  /* Preserve gold emphasis and allow gradient text to remain visible. */
+  .text-gradient,
+  .text-gradient-blue {
+    opacity: 1;
+  }
+
+  .bg-accent-gold,
+  .bg-yellow-400,
+  .bg-accent-red,
+  .bg-accent-green {
     color: #0a1128 !important;
   }
 
+  .bg-accent-red.text-white,
+  .bg-accent-red > * {
+    color: #ffffff !important;
+  }
+
+  /* Form controls must be dark and readable. */
   input,
   textarea,
   select {
     background-color: #0f1c3f !important;
     color: #f8fafc !important;
-    border-color: rgba(96, 165, 250, 0.5) !important;
+    border-color: rgba(96, 165, 250, 0.45) !important;
   }
 
   input::placeholder,
@@ -53,16 +111,21 @@
     color: #f8fafc;
   }
 
-  /* Ensure mobile tables remain readable while allowing horizontal scrolling. */
   table {
     color: #f8fafc;
   }
 
   :is(td, th) {
-    border-color: rgba(148, 163, 184, 0.3) !important;
+    border-color: rgba(148, 163, 184, 0.28) !important;
   }
 
-  /* Keep small helper copy legible on phones. */
+  .overflow-x-auto table,
+  .overflow-x-auto th,
+  .overflow-x-auto td {
+    color: #f8fafc !important;
+  }
+
+  /* Keep small helper text crisp. */
   :is(p, label, th, td, input, textarea, select) {
     text-shadow: none;
   }
