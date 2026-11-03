@@ -1,0 +1,69 @@
+/* Keep mobile pages aligned with the portal's dark desktop theme. */
+@media (max-width: 767px) {
+  :root,
+  html,
+  body,
+  #root {
+    min-height: 100%;
+    background-color: #070d1f;
+    color: #f8fafc;
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Replace utility light panels and white form controls with dark surfaces. */
+  :is(.bg-white, .bg-gray-50, .bg-gray-100, .bg-brand-50, .bg-brand-100) {
+    background-color: #0a1128 !important;
+    color: #f8fafc !important;
+    border-color: rgba(96, 165, 250, 0.35);
+  }
+
+  /* Make copy that was designed for light panels readable on the dark surface. */
+  :is(.bg-white, .bg-gray-50, .bg-gray-100, .bg-brand-50, .bg-brand-100)
+    :is(.text-black, .text-gray-900, .text-gray-800, .text-gray-700, .text-gray-600, .text-gray-500, .text-gray-400) {
+    color: #f8fafc !important;
+  }
+
+  /* Preserve dark text on gold buttons and gold highlight surfaces for contrast. */
+  :is(button, a).bg-accent-gold,
+  :is(button, a).bg-yellow-400,
+  :is(button, a).bg-accent-gold :is(.text-black),
+  :is(button, a).bg-yellow-400 :is(.text-black),
+  .bg-accent-gold > .text-black,
+  .bg-yellow-400 > .text-black {
+    color: #0a1128 !important;
+  }
+
+  input,
+  textarea,
+  select {
+    background-color: #0f1c3f !important;
+    color: #f8fafc !important;
+    border-color: rgba(96, 165, 250, 0.5) !important;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #cbd5e1 !important;
+    opacity: 1;
+  }
+
+  select option {
+    background-color: #0f1c3f;
+    color: #f8fafc;
+  }
+
+  /* Ensure mobile tables remain readable while allowing horizontal scrolling. */
+  table {
+    color: #f8fafc;
+  }
+
+  :is(td, th) {
+    border-color: rgba(148, 163, 184, 0.3) !important;
+  }
+
+  /* Keep small helper copy legible on phones. */
+  :is(p, label, th, td, input, textarea, select) {
+    text-shadow: none;
+  }
+}
