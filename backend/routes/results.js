@@ -119,6 +119,82 @@ router.post("/", auth, authorize(["ADMIN", "TEACHER"]), async (req, res) => {
   }
 });
 
+// ---------- GET /by-subject — enrollment roster and matching results ----------
+// Build the broadsheet from registered subject enrollments, not just saved results.
+router.get("/by-subject", auth, authorize(["TEACHER"]), async (req, res) => {
+  try {
+    const { term, academicYear } = req.query;
+    const teacher = req.user;
+
+    if (!teacher.isSubjectTeacher) {
+      return res.status(403).send({ error: "Subject teacher access required" });
+    }
+    if (!term || !academicYear) {
+      return res.status(400).send({ error: "Term and academic year are required" });
+    }
+
+    const assignedSubjects = (Array.isArray(teacher.assignedSubject)
+      ? teacher.assignedSubject
+      : String(teacher.assignedSubject || "").split(","))
+      .map((name) => name.trim())
+      .filter(Boolean);
+
+    if (!assignedSubjects.length) {
+      return res.status(403).send({ error: "No subject is assigned to this teacher" });
+    }
+
+    const subjects = await Subject.findAll({
+      where: {
+        [Op.or]: assignedSubjects.map((name) => ({
+          name: { [Op.iLike]: name },
+        })),
+      },
+    });
+    if (!subjects.length) return res.send([]);
+
+    const studentWhere = { isActive: true };
+    if (teacher.assignedClass) studentWhere.studentClass = teacher.assignedClass;
+
+    const students = await Student.findAll({
+      where: studentWhere,
+      include: [{
+        model: Subject,
+        where: { id: { [Op.in]: subjects.map((subject) => subject.id) } },
+        required: true,
+        through: { attributes: [] },
+      }],
+      order: [["lastName", "ASC"], ["firstName", "ASC"]],
+    });
+    if (!students.length) return res.send([]);
+
+    const results = await Result.findAll({
+      where: {
+        StudentId: { [Op.in]: students.map((student) => student.id) },
+        SubjectId: { [Op.in]: subjects.map((subject) => subject.id) },
+        term,
+        academicYear,
+      },
+      include: [Subject],
+    });
+
+    const resultsByStudent = new Map();
+    for (const result of results) {
+      const studentResults = resultsByStudent.get(result.StudentId) || [];
+      studentResults.push(result);
+      resultsByStudent.set(result.StudentId, studentResults);
+    }
+
+    // Preserve the response shape used by SubjectTeacherBroadsheet.
+    res.send(students.map((student) => ({
+      ...student.toJSON(),
+      Results: resultsByStudent.get(student.id) || [],
+    })));
+  } catch (error) {
+    console.error("GET /results/by-subject error:", error);
+    res.status(500).send({ error: "Failed to fetch subject enrollment broadsheet" });
+  }
+});
+
 // ---------- GET / — list results for a class (Form Teacher view) ----------
 router.get("/", auth, authorize(["ADMIN", "TEACHER"]), async (req, res) => {
   try {
