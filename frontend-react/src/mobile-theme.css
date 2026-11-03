@@ -1,4 +1,4 @@
-/* Final dark mobile theme pass for readability and visual consistency */
+/* Premium dark teacher polish for sidebar, forms, tables, and profile screens */
 @media (max-width: 767px) {
   :root,
   html,
@@ -14,244 +14,151 @@
     -webkit-text-size-adjust: 100%;
   }
 
-  body,
-  html {
-    background-image: radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.15), transparent 22%),
-      radial-gradient(circle at 85% 30%, rgba(245, 158, 11, 0.08), transparent 20%);
-    background-attachment: fixed;
+  /* Sidebar / nav panel polish */
+  .fixed.md\:relative.w-64,
+  .fixed.md\:relative.md\:flex,
+  .bg-brand-900.border-r-4,
+  .md\:hidden.flex.items-center.justify-between.bg-brand-900,
+  .fixed.inset-0.bg-brand-950\/50 {
+    background: linear-gradient(180deg, #0c1630 0%, #0a1020 100%) !important;
+    border-color: rgba(96, 165, 250, 0.26) !important;
   }
 
-  /* Force all standard card/panel surfaces dark. */
-  .professional-card,
-  .card-content,
-  .glass-premium,
-  .glass-panel,
-  .bg-brand-50,
-  .bg-brand-100,
-  .bg-brand-200,
-  .bg-brand-300,
-  .bg-brand-800,
-  .bg-brand-900,
-  .bg-brand-950,
-  .bg-white,
-  .bg-gray-50,
-  .bg-gray-100,
-  .bg-slate-50,
-  .bg-slate-100,
-  .bg-slate-200,
-  .bg-neutral-50,
-  .bg-neutral-100 {
-    background-color: #0b1220 !important;
+  nav a,
+  nav button,
+  .fixed.md\:relative.w-64 button,
+  .fixed.md\:relative.w-64 a {
+    min-height: 46px;
+    border-color: rgba(96, 165, 250, 0.18) !important;
+  }
+
+  nav a.active,
+  nav a[aria-current="page"],
+  .active {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.28), rgba(37, 99, 235, 0.2)) !important;
+    border-color: rgba(245, 158, 11, 0.48) !important;
+    color: #fff !important;
+  }
+
+  /* Student register form polish */
+  .max-w-5xl.professional-card,
+  .max-w-5xl.professional-card.bg-brand-50,
+  .max-w-5xl.professional-card.p-6 {
+    background: linear-gradient(180deg, rgba(11, 18, 32, 0.96), rgba(8, 12, 20, 0.96)) !important;
+    border-color: rgba(96, 165, 250, 0.25) !important;
+    padding: 1rem !important;
+  }
+
+  .max-w-5xl.professional-card .text-gradient,
+  .max-w-5xl.professional-card label,
+  .max-w-5xl.professional-card h2,
+  .max-w-5xl.professional-card h4 {
     color: #f8fafc !important;
-    border-color: rgba(96, 165, 250, 0.32) !important;
   }
 
-  /* If text is left in a dark container, keep it readable. */
-  .professional-card,
-  .card-content,
-  .glass-premium,
-  .glass-panel,
-  .bg-brand-50,
-  .bg-brand-100,
-  .bg-brand-200,
-  .bg-brand-300,
-  .bg-brand-800,
-  .bg-brand-900,
-  .bg-brand-950,
-  .bg-white,
-  .bg-gray-50,
-  .bg-gray-100,
-  .bg-slate-50,
-  .bg-slate-100,
-  .bg-slate-200,
-  .bg-neutral-50,
-  .bg-neutral-100,
-  .bg-white *,
-  .bg-gray-50 *,
-  .bg-gray-100 *,
-  .bg-slate-50 *,
-  .bg-slate-100 * {
-    color: inherit;
+  .max-w-5xl.professional-card .grid-cols-2,
+  .max-w-5xl.professional-card .space-y-4,
+  .max-w-5xl.professional-card .grid-cols-3 {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0.75rem !important;
   }
 
+  .max-w-5xl.professional-card .rounded-xl,
+  .max-w-5xl.professional-card .rounded-lg,
+  .max-w-5xl.professional-card .rounded-2xl,
+  .max-w-5xl.professional-card .p-4,
+  .max-w-5xl.professional-card .p-3 {
+    border-color: rgba(96, 165, 250, 0.22) !important;
+  }
+
+  .max-w-5xl.professional-card button[type="button"].p-3 {
+    min-height: 48px;
+    font-size: 0.7rem;
+  }
+
+  /* Profile/security screen polish */
+  .space-y-10.pb-20 > .grid-cols-1.lg\:grid-cols-2,
+  .space-y-10.pb-20 .grid-cols-1.lg\:grid-cols-2 {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .space-y-10.pb-20 .professional-card,
+  .space-y-10.pb-20 .professional-card.bg-brand-900,
+  .space-y-10.pb-20 .professional-card.p-6 {
+    background: linear-gradient(180deg, #0d1830 0%, #0a1120 100%) !important;
+    border-color: rgba(96, 165, 250, 0.24) !important;
+    padding: 1rem !important;
+  }
+
+  .space-y-10.pb-20 .professional-card h3,
+  .space-y-10.pb-20 .professional-card h2,
+  .space-y-10.pb-20 .professional-card label,
+  .space-y-10.pb-20 .professional-card p,
+  .space-y-10.pb-20 .professional-card span {
+    color: #f8fafc !important;
+  }
+
+  /* Broadsheet polish */
+  .professional-card.bg-brand-900.p-6 {
+    background: linear-gradient(180deg, #0d1830 0%, #0a1120 100%) !important;
+    border-color: rgba(96, 165, 250, 0.24) !important;
+    padding: 1rem !important;
+  }
+
+  .professional-card.bg-brand-900 .text-white,
+  .professional-card.bg-brand-900 .text-brand-400,
+  .professional-card.bg-brand-900 .text-brand-100,
+  .professional-card.bg-brand-900 .text-accent-gold,
+  .professional-card.bg-brand-900 th,
+  .professional-card.bg-brand-900 td,
+  .professional-card.bg-brand-900 h2,
+  .professional-card.bg-brand-900 h3,
+  .professional-card.bg-brand-900 p {
+    color: #f8fafc !important;
+  }
+
+  .professional-card.bg-brand-900 .overflow-x-auto {
+    overflow-x: auto !important;
+  }
+
+  .professional-card.bg-brand-900 table {
+    min-width: 680px;
+  }
+
+  .professional-card.bg-brand-900 thead th,
+  .professional-card.bg-brand-900 tbody td {
+    background: rgba(15, 28, 63, 0.85) !important;
+  }
+
+  /* General dark text readability */
   .text-black,
-  .text-gray-900,
   .text-gray-800,
   .text-gray-700,
   .text-gray-600,
   .text-gray-500,
   .text-gray-400,
-  .text-slate-700,
+  .text-slate-500,
   .text-slate-600,
-  .text-slate-500 {
+  .text-slate-700 {
     color: #f8fafc !important;
   }
 
-  .text-brand-400,
-  .text-brand-300,
-  .text-brand-200,
-  .text-brand-100,
-  .text-brand-50 {
-    color: #dbeafe !important;
+  .bg-brand-50,
+  .bg-brand-100,
+  .bg-gray-50,
+  .bg-gray-100,
+  .bg-slate-50,
+  .bg-slate-100,
+  .bg-white {
+    background-color: #0b1220 !important;
   }
 
-  /* Gold buttons keep readable dark text; red buttons remain white. */
-  .bg-accent-gold,
-  .bg-yellow-400,
-  .bg-yellow-500,
-  .bg-accent-gold * {
-    color: #0a1128 !important;
-  }
-
-  .bg-accent-red,
-  .bg-accent-red * {
-    color: #ffffff !important;
-  }
-
-  .bg-accent-green,
-  .bg-accent-green * {
-    color: #062d1a !important;
-  }
-
-  /* All inputs/selects/textareas become dark surfaces for contrast. */
+  /* Make all action buttons touch-friendly on mobile */
+  button,
   input,
-  textarea,
   select,
-  .input-field {
-    background-color: #0f1c3f !important;
-    color: #f8fafc !important;
-    border-color: rgba(96, 165, 250, 0.52) !important;
-  }
-
-  input::placeholder,
-  textarea::placeholder {
-    color: #cbd5e1 !important;
-    opacity: 1;
-  }
-
-  select option {
-    background-color: #0f1c3f;
-    color: #f8fafc;
-  }
-
-  /* Tables remain readable on dark mobile theme. */
-  table,
-  th,
-  td,
-  thead,
-  tbody,
-  tr {
-    background-color: transparent !important;
-    color: #f8fafc !important;
-    border-color: rgba(148, 163, 184, 0.28) !important;
-  }
-
-  .overflow-x-auto th,
-  .overflow-x-auto td {
-    color: #f8fafc !important;
-  }
-
-  /* Keep utility text crisp and avoid washed-off labels. */
-  p,
-  label,
-  th,
-  td,
-  span,
-  small,
-  strong,
-  em,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    text-shadow: none;
-  }
-
-  /* Teacher result-entry screen: tone down the bright blue panel, tighten layout,
-     and keep score inputs/buttons comfortable to use on a phone. */
-  .professional-card.p-6.bg-brand-700 {
-    width: 100%;
-    max-width: 100%;
-    padding: 1rem !important;
-    background: linear-gradient(160deg, #0d1830 0%, #0a1120 100%) !important;
-    border-color: rgba(96, 165, 250, 0.28) !important;
-    color: #f8fafc !important;
-  }
-
-  .professional-card.p-6.bg-brand-700 .grid-cols-2,
-  .professional-card.p-6.bg-brand-700 .grid-cols-3 {
-    grid-template-columns: minmax(0, 1fr) !important;
-    gap: 1rem !important;
-  }
-
-  .professional-card.p-6.bg-brand-700 .border-white {
-    border-color: rgba(96, 165, 250, 0.35) !important;
-  }
-
-  .professional-card.p-6.bg-brand-700 :is(input, textarea, select) {
-    min-height: 48px;
-    border-radius: 0.75rem;
-    font-size: 1rem;
-  }
-
-  .professional-card.p-6.bg-brand-700 textarea {
-    min-height: 110px;
-  }
-
-  .professional-card.p-6.bg-brand-700 button {
-    min-height: 44px;
-    white-space: normal;
-  }
-
-  .professional-card.p-6.bg-brand-700 .flex.gap-4 {
-    flex-direction: column;
-  }
-
-  /* Overview: make stat and tip cards consistently dark, with non-truncated copy. */
-  .professional-card.p-6.bg-brand-50 {
-    padding: 1rem !important;
-    background: linear-gradient(160deg, #0d1830 0%, #0a1120 100%) !important;
-  }
-
-  .professional-card.p-6.bg-brand-50 .truncate {
-    white-space: normal !important;
-    overflow: visible !important;
-    text-overflow: clip !important;
-  }
-
-  .professional-card.p-6.bg-brand-50 .grid-cols-2,
-  .professional-card.p-6.bg-brand-50 .grid-cols-3 {
-    grid-template-columns: minmax(0, 1fr) !important;
-  }
-
-  /* Subject broadsheet controls and cards fit the viewport; its table scrolls within the page. */
-  .max-w-7xl {
-    max-width: 100% !important;
-  }
-
-  .professional-card.bg-brand-900 {
-    padding: 1rem !important;
-  }
-
-  .professional-card.bg-brand-900 table {
-    min-width: 620px;
-  }
-
-  .professional-card.bg-brand-900 .flex.justify-between.items-center {
-    align-items: flex-start;
-    gap: 0.75rem;
-  }
-
-  .professional-card.bg-brand-900 .text-3xl {
-    font-size: 1.35rem;
-    line-height: 1.35;
-  }
-
-  /* Mobile menu should be a clear dark surface above the page content. */
-  nav a,
-  nav button {
+  textarea,
+  a {
     min-height: 44px;
   }
 }
